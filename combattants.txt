@@ -1,9 +1,11 @@
 Nom HP_max ATT DEF AGI VIT nb_techniques technique1 technique2 ...
-Xavier 250 35 30 25 25 2 Bersek Terreur
-Miko 125 15 10 20 25 2 Ressuscitation Benediction
+Xavier 250 35 20 25 25 2 Bersek Terreur
+Nathalie 125 15 10 20 25 2 Ressuscitation Benediction
 Zed 175 50 20 30 25 2 Bourreau Virus
 Smasheur 350 30 30 10 15 2 Soif Muraille
 Sandrine 175 20 25 20 25 2 Cryogenèse Exploglace
 Anne-Sophie 150 60 15 30 25 2 Saut explosif Scierculaire
 Gaby 100 15 10 15 25 2 Courage éphémère Cicatrices éternels
 Clara 150 20 20 25 25 2 Piège à ours Réinitialisation
+Steve 300 30 40 15 20 2 Bénédiction du Bouclier Cri de Guerre
+Booga 200 30 20 25 25 2 Vol de Données Fossoyeur des Mondes
