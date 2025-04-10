@@ -35,3 +35,20 @@ void appeffet_Statut(Champ champ){
             default:
                 break;
 }
+
+void triParVit(Equipe e1, Equipe e2, Champ tab[6]) { 
+    Champ temp;
+    for (int i=0; i<3; i++) {
+        tab[i] = e1.membres[i];
+        tab[i+3] = e2.membres[i];
+    }
+    for (int i=0; i<5; i++) {
+        for (int j=i+1; j<6; j++) {
+            if (tab[i].vitesse < tab[j].vitesse) {
+                temp = tab[i];
+                tab[i] = tab[j];
+                tab[j] = temp;
+            }
+        }
+    }
+}
