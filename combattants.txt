@@ -1,5 +1,5 @@
 Nom HP_max ATT DEF AGI VIT nb_techniques technique1 technique2 ...
 Xavier 250 35 30 25 25 2 Bersek Terreur
 Miko 125 15 10 20 25 2 Ressuscitation Benediction
-Zed 175 50 20 40 25 2 Bourreau Virus
+Zed 175 50 20 30 25 2 Bourreau Virus
 Smasheur 350 30 30 10 15 2 Soif Muraille
