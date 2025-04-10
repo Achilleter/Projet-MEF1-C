@@ -1,1 +1,2 @@
-
+Nom HP_max ATT DEF AGI VIT nb_techniques technique1 technique2 ...
+Xavier 250 35 30 25 25 2 Bersek Terreur
