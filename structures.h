@@ -10,7 +10,7 @@ typedef enum {
     stun,
     silence,
     gel,
-    invincibilité,
+    invincibilite,
     renvoie_degats
 } EffetStatut;
 
@@ -40,7 +40,7 @@ typedef struct {
     float vitesse;
     EffetActif effets[3]; 
     int nbeffets;
-    Techniquespé tech;
+    Techniquespe techs[2];
     float jauge;
     int statut; //mort ou vivant
     char nom[100];
