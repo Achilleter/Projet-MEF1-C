@@ -1,0 +1,90 @@
+Thème : Cyber Fights
+
+Pour charger la jauge au max(4 barres jaunes) il faut 4 tours si on a une vitesse de 25
+
+Xavier (Combattant) :
+
+PV : 250
+DEF : 20
+Att : 35
+Agi : 25
+Vit : 25
+Comp spé : 
+-Berserk : Insère une clé piratée en lui : devient immunisé à toutes les attaques pdt 1 tour + Att=50 + DEF+=10 pdt 1 tour et peut attaquer, à la fin il est STUN le prochain tour (Rechargement : 3 barres)
+-Terreur : Effraie un ennemi par son aura : Agi(adversaire)=>-20 + Def(adversaire)=>-15 (Rechargement : 2 barres)
+
+
+Nathalie (Support) :
+
+PV : 125
+DEF : 10
+Att : 15
+Agi : 20
+Vit : 25
+Comp spé :
+-De Retour de la Mort : Remonte le temps : PVcourants+=100 pour toute la team + Purge la team de tous les effets négatifs/changement de stats (Rechargement : 4 barres)
+-Instant Céleste : Récupére des PV perdus en combats et les rend à un Cyber : PVcourants+=75 un seul joueur(peut se heal elle-même)(rechargement : 2 barres)
+
+
+Zed (Assassin) : 
+
+PV : 175
+DEF : 15
+Att : 50
+Agi : 30
+Vit : 25
+Comp spé :
+-Marque du Bourreau : Place un traceur sur un ennemi, si ce dernier possède 25% ou moins de ses PV, il est exécuté sans pitié (Rechargement : 3 barres)
+-Virus Biologique : Se faufile dans le dos d'un ennemi pour lui injecter du POISON (rechargement : 2 Barres)
+
+
+Smasheur (Tank) :
+
+PV : 350
+DEF : 30
+Att : 30
+Agi : 10
+Vit : 15
+Comp spé : 
+-Soif de Vie : Aspire et consumme l'énergie vitale qui l'entoure : PV+=20 + PVcourants+=10 + Att-=5 (Rechargement : 2 barres)
+-Muraille Infinie : Se place devant sa team et provoque l'équipe adverse: tank toutes les attaques des ennemis pendant 1 tour + DEF+=20 + renvoi_dégats (Rechargement : 4 barres)
+
+
+Steve (Tank) :
+
+PV : 300
+DEF : 40
+Att : 30
+Agi : 15
+Vit : 20
+Comp Spé: 
+-Bénédiction du Bouclier : Partage de données avec un allié : Offre un bouclier de DEF+=15 à un allié (Rechargement : 2 barres)
+-  : Motive son compagnon : Vit+=25 à un allié (rechargement : 4 barres)
+
+
+Booga (Combattant) :
+
+PV : 200
+DEF : 20
+Att : 30
+Agi : 25
+Vit : 25
+Comp Spé :
+-Vol de Données : Donne un coup d'épée infernale : Dégats = Att + PVcourants+=30 (Rechargement : 2 barres)
+-Fossoyeur des Mondes : Une anomalie dans le système a provoqué un déséquilibre aux stats de Booga : PV=300 + Att=35 + Vit=30 pdt 2 tours (Rechargement : 5 barres)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
