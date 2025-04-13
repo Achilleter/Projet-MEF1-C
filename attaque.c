@@ -51,3 +51,35 @@ void triParVit(Equipe *e1, Equipe *e2, Champ *tab[6]) {
         }
     }
 }
+
+void tour (Equipe e1, Equipe e2){
+    Champ *tab[6];
+    triParVit(e1,e2,tab);
+    for (int i=0;i<6:i++){
+        Champ *a=tab[i];
+        if(a->pvcourants<=0){
+            printf("%s est ko.\n",a->nom);
+            continue;
+        }
+        printf("\nC'est au tour de %s !\n", c->nom);
+        for (int j=0; j<a->nbeffets; j++){
+            if(a->effets[j].duree==0){
+                continue;
+            } else if (a->effets[j].duree>0){
+                appeffet_Statut(a);
+            }
+        }
+        if (a->jauge=5) {
+            int choix;
+            printf("Jauge pleine! Voulez-vous utiliser une technique spéciale? (1:oui, 0:non): ");
+            scanf("%d", &choix);
+            if (choix==1){
+                // Travailler fonction technique
+            }
+        // Travailler fonction cible
+    }
+    a->jauge+=(a->vitesse/40);
+    if(a->jauge>5){
+        a->jauge=5;
+    }
+
