@@ -2,9 +2,9 @@
 #include "structures.h"
 
 void berserk(Champ xavier, Champ ennemi){
-    xavier.techs[0].nom ="Berserk";  
-    xavier.techs[0].nbtactifs = 1;
-    xavier.techs[0].nbtrechargement = 3;
+    xavier.tech.nom ="Berserk";  
+    xavier.tech.nbtactifs = 1;
+    xavier.tech.nbtrechargement = 3;
     if(xavier.jauge < 0){
         xavier.jauge = 0;
     }
@@ -14,7 +14,7 @@ void berserk(Champ xavier, Champ ennemi){
         xavier.def += 15;
         attaque(xavier, ennemi);
     }
-    if(xavier.techs[0].nbtactifs < 1){
+    if(xavier.tech.nbtactifs < 1){
         xavier.effets[0].effet_statut = 2;
         xavier.effets[0].duree = 1;
     }

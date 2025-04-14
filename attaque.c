@@ -2,7 +2,7 @@
 #include "structures.h"
 
 float attaque(Champ champatt, Champ champdef){
-    float degats = champatt.attaque - champdef.defense;
+    float degats = champatt.att - champdef.def;
     if (degats < 0) {
         degats = 0;
     }
@@ -17,10 +17,10 @@ Champ techspé(Champ champatt, Champ champdef, int* nbtactifs, int* nbtrechargme
     if(champatt.tech.nbtrechargement>1){
         *nbtrechargment=champatt.tech.nbtrechargement;
     }
-    if(champatt.effet_statut!=0){
+    if(champatt.tech.effet_statut!=0){
         champdef.statut=champatt.tech.effet_statut;
     }
-    if(champatt.effet_stat!=0){
+    if(champatt.tech.effet_stat!=0){
         champdef.stat=champatt.tech.effet_stat;
     }
 }

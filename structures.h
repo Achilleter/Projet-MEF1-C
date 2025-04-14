@@ -38,9 +38,9 @@ typedef struct {
     float def;
     float agilite;
     float vitesse;
-    EffetActif effets[3]; 
+    EffetActif effets[3];
     int nbeffets;
-    Techniquespe techs[2];
+    Techniquespe tech;
     float jauge;
     int statut; //mort ou vivant
     char nom[100];
