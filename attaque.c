@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "structures.h"
 
 float attaque(Champ champatt, Champ champdef){
     float degats = champatt.attaque - champdef.defense;
