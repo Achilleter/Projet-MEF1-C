@@ -95,6 +95,41 @@ void triParVit(Equipe *e1, Equipe *e2, Champ *tab[6]) {
     }
 }
 
+int memeEquipe(Champ* champ, Equipe* e1) {
+    for (int i=0; i<3; i++) {
+        if (champ==&e1->membres[i]) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+Champ* cible(Champ* att, Equipe* e1, Equipe* e2) {
+    int index=3;
+    printf("Equipe adverse: \n");
+    for (int i=0; i<3; i++) {
+        if (e2->membres[i].pvcourant>0) {
+            printf("%d - %s (PV: %f) \n", i, e2->membres[i].nom, e2->membres[i].pvcourant);
+        } else {
+            printf("%s KO \n", e2->membres[i].nom);
+        }
+    }
+    do{
+        do{
+            printf("Choisissez votre cible (0,1 ou 2): ");
+            scanf("%d",&index);
+            if(index<0 || index>2){
+                printf("Index invalide");
+            }
+        } while (index<0 || index>2);
+        if(e2->membres[index]->pvcourant<=0){
+            printf("Cible KO. Veuillez en chosir une nouvelle\n");
+            index=3;
+        }
+    } while (index==3);
+    return e2->membres[index];
+}
+
 void tour (Equipe* e1, Equipe* e2){
     Champ *tab[6];
     triParVit(e1,e2,tab);
