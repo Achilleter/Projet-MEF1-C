@@ -25,16 +25,15 @@ Champ techspé(Champ champatt, Champ champdef, int* nbtactifs, int* nbtrechargme
     }
 }
 
-void appeffet_Statut(Champ champ){
-        switch(champ.statut){
-            case 1:
-                champ.pvcourant-=champ.pvmax*0.05;
-                break;
-            case 3:
-                champ.vitesse-=champ.vitesse*0.5;
-                break;
-            default:
-                break;
+void appeffetStatut(Champ *champ, EffetStatut effetstatut, int durée) {
+        champ->effets[champ->nbeffets].effet_statut= effetstatut;
+        champ->effets[champ->nbeffets].duree= durée;
+}
+
+void appeffetstat(Champ *champ, EffetStat effetstat, int durée, float valeur) {
+        champ->effets[champ->nbeffets].effet_stat= effetstat;
+        champ->effets[champ->nbeffets].duree= durée;
+        champ->effets[champ->nbeffets].valeur= valeur;
 }
 
 void triParVit(Equipe *e1, Equipe *e2, Champ *tab[6]) {
@@ -67,7 +66,7 @@ void tour (Equipe e1, Equipe e2){
             if(a->effets[j].duree==0){
                 continue;
             } else if (a->effets[j].duree>0){
-                appeffet_Statut(a);
+                appeffet(a);
             }
         }
         if (a->jauge=5) {
@@ -83,4 +82,5 @@ void tour (Equipe e1, Equipe e2){
     if(a->jauge>5){
         a->jauge=5;
     }
+    
 
