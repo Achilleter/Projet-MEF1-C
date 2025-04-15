@@ -25,15 +25,58 @@ Champ techspé(Champ champatt, Champ champdef, int* nbtactifs, int* nbtrechargme
     }
 }
 
+void degatseffetStatut(Champ *champ){
+    if (champ->nbeffets == 0) {
+        return;
+    }
+    else if (champ->nbeffets > 0) {
+        for (int i = 0; i < champ->nbeffets; i++) {
+            switch (champ->effets[i].effet_statut) {
+                case 1:
+                champ->pvcourant -= champ->pvmax * 0.05;
+                break;
+                case 6:
+                if(champ->pvcourant <= champ->pvmax * 0.25) {
+                    champ->pvcourant = 0;
+                    champ->statut = 0; // mort
+                }
+                break;
+            }
+            champ->effets[i].duree--;
+            if (champ->effets[i].duree = 0) {
+                for (int j = i; j < champ->nbeffets-1; j++) {
+                    champ->effets[j] = champ->effets[j + 1];
+                }
+                champ->nbeffets--;
+                i--;
+            }
+        }
+    }
+}
+
 void appeffetStatut(Champ *champ, EffetStatut effetstatut, int durée) {
         champ->effets[champ->nbeffets].effet_statut= effetstatut;
         champ->effets[champ->nbeffets].duree= durée;
 }
 
-void appeffetstat(Champ *champ, EffetStat effetstat, int durée, float valeur) {
-        champ->effets[champ->nbeffets].effet_stat= effetstat;
-        champ->effets[champ->nbeffets].duree= durée;
-        champ->effets[champ->nbeffets].valeur= valeur;
+void appeffetstat(Champ *champ, EffetStat effetstat, float valeur) {
+        switch (effetstat){
+            case 1:
+                champ->att += valeur;
+                break;
+            case 2:
+                champ->def += valeur;
+                break;
+            case 3:
+                champ->vitesse += valeur;
+                break;
+            case 4:
+                champ->pvcourant += valeur;
+                if (champ->pvcourant > champ->pvmax) {
+                    champ->pvcourant = champ->pvmax;
+                }
+                break;
+        }
 }
 
 void triParVit(Equipe *e1, Equipe *e2, Champ *tab[6]) {
@@ -52,12 +95,12 @@ void triParVit(Equipe *e1, Equipe *e2, Champ *tab[6]) {
     }
 }
 
-void tour (Equipe e1, Equipe e2){
+void tour (Equipe* e1, Equipe* e2){
     Champ *tab[6];
     triParVit(e1,e2,tab);
-    for (int i=0;i<6:i++){
+    for (int i=0;i<6;i++){
         Champ *a=tab[i];
-        if(a->pvcourants<=0){
+        if(a->pvcourant<=0){
             printf("%s est ko.\n",a->nom);
             continue;
         }
@@ -76,11 +119,13 @@ void tour (Equipe e1, Equipe e2){
             if (choix==1){
                 // Travailler fonction technique
             }
+            else {
         // Travailler fonction cible
+            }
+            a->jauge+=(a->vitesse/40);
+            if(a->jauge>5){
+                a->jauge=5;
+            }
+        }
     }
-    a->jauge+=(a->vitesse/40);
-    if(a->jauge>5){
-        a->jauge=5;
-    }
-    
-
+}

@@ -8,11 +8,10 @@ typedef enum {
 typedef enum {
     poison = 1,
     stun,
-    silence,
-    gel,
+    provocation,
     invincibilite,
     renvoie_degats,
-    bourreau
+    bourreau,
 } EffetStatut;
 
 typedef struct {

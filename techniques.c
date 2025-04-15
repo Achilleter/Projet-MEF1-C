@@ -9,7 +9,7 @@ void berserk(Champ* xavier, Champ* ennemi){
         printf("Xavier utilise Berserk !\n");
         appeffetStat(xavier,1,20);//augmente l'attaque de 20
         appeffetStat(xavier,2,10);//augmente la defense de 10
-        appeffetStatut(xavier,5,1);//applique invincibilité pendant 1 tour
+        appeffetStatut(xavier,4,1);//applique invincibilité pendant 1 tour
     }
     else if(xavier->tech.nbtactifs == 1){
         appeffetStatut(xavier,2,1);//s'immobilise
@@ -27,7 +27,7 @@ void flashbacks(Champ* nathalie, Champ* allié1, Champ* allié2){
     appeffetStat(allié1,4,100);//soigne de 100
     appeffetStat(allié2,4,100);
     appeffetStat(nathalie,4,100);
-    for(int i=0; i<10; i++){ // enlève tous les effets statuts négatifs (sauf les effets comme l'invincibilité et le renvoie de dégâts)
+    for(int i=0; i<6; i++){ // enlève tous les effets statuts négatifs (sauf les effets comme l'invincibilité et le renvoie de dégâts)
         if(allié1->effets[i].effet_statut != 5 || allié1->effets[i].effet_statut != 6){
             allié1->effets[i].effet_statut = 0;
             allié1->effets[i].duree = 0;
@@ -47,6 +47,6 @@ void flashbacks(Champ* nathalie, Champ* allié1, Champ* allié2){
     printf("\n Zed utilise marque du bourreau ! \n");
     zed->jauge -= 4;
     ennemi->pvcourant -= ennemi->pvmax*0.1;
-    appeffetStatut(ennemi,7,2);//applique l'effet bourreau pendant 2 tours
+    appeffetStatut(ennemi,6,2);//applique l'effet bourreau pendant 2 tours
     zed->tech.nbtrechargement=3;
 }
