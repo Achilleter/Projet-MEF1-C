@@ -52,3 +52,16 @@ void flashbacks(Champ nathalie, Champ allié1, Champ allié2, Champ ennemi){
         nathalie.effets[0].duree = 1;
     }
  }
+
+ void marqueduBourreau(Champ zed, Champ ennemi){
+    if(zed.jauge==4){
+        printf("\n Zed utilise marque du bourreau ! \n");
+        zed.jauge -=4;
+        ennemi.pvcourant -= ennemi.pvmax*0.1;
+        int i=1;
+        while(ennemi.effets[i].effet_statut != 0){
+            i++;
+        }
+        ennemi.effets[i].effet_statut = 7;
+    }
+ }

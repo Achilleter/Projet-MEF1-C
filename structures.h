@@ -11,7 +11,8 @@ typedef enum {
     silence,
     gel,
     invincibilite,
-    renvoie_degats
+    renvoie_degats,
+    bourreau
 } EffetStatut;
 
 typedef struct {
