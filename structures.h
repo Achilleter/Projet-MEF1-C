@@ -38,7 +38,7 @@ typedef struct {
     float def;
     float agilite;
     float vitesse;
-    EffetActif effets[3];
+    EffetActif effets[10];
     int nbeffets;
     Techniquespe tech;
     float jauge;
