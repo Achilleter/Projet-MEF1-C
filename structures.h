@@ -2,7 +2,7 @@ typedef enum {
     boost_att = 1,
     boost_def,
     boost_vitesse,
-    soin_progressif
+    soin
 } EffetStat;
 
 typedef enum {
@@ -39,7 +39,7 @@ typedef struct {
     float def;
     float agilite;
     float vitesse;
-    EffetActif effets[3];
+    EffetActif effets[10];
     int nbeffets;
     Techniquespe tech;
     float jauge;
