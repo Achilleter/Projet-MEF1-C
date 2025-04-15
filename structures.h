@@ -16,10 +16,8 @@ typedef enum {
 } EffetStatut;
 
 typedef struct {
-    EffetStat effet_stat;
     EffetStatut effet_statut;
     int duree;
-    float valeur;
 } EffetActif;
 
 typedef struct {
