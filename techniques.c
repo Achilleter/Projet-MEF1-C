@@ -43,14 +43,13 @@ void berserk(Champ xavier, Champ ennemi){
         return;
     }
     for(int i=0; i<4; i++){
-        if(xavier.effets[i].effet_statut == 0){
-            if(xavier.tech.nbtactifs < 1){
-                xavier.effets[i].effet_statut = 2;
-                xavier.effets[i].duree = 1;
-            }
+        if(xavier.tech.nbtactifs < 1){
+            xavier.effets[i].effet_statut = 2;
+            xavier.effets[i].duree = 1;
         }
     }
 }
+
 
 
 void flashbacks(Champ nathalie, Champ allié1, Champ allié2, Champ ennemi){
