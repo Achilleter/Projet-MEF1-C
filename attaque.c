@@ -169,7 +169,7 @@ void tour (Equipe* e1, Equipe* e2){
             scanf("%d", &choix);
             if (choix==1){
                 printf("%s utilise sont attaque spéciale sur %s!\n", tab[i]->nom, cible->nom);
-                //implementer fonction technique
+                //implementer fonctions techniques
                 // sauter l'attque normale
             }
         
