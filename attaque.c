@@ -147,7 +147,7 @@ void tour (Equipe* e1, Equipe* e2){
     triParVit(e1,e2,tab);
     for (int i=0;i<6;i++){
         if(tab[i]->pvcourant<=0){
-            printf("%s est ko.\n",tab[i]->nom);
+            printf("%s est KO.\n",tab[i]->nom);
         } else {
             printf("\nC'est au tour de %s !\n", tab[i]->nom);
             for (int j=0; j<tab[i]->nbeffets; j++){
