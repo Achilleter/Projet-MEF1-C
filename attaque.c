@@ -7,9 +7,6 @@ float attaque(Champ *champatt, Champ *champdef){
         degats = 0;
     }
     champdef.pvcourant -= degats;
-    if(champdef.pvcourant<=0){
-        champdef.pvcourant=0;
-    }
     return champdef.pvcourant;
 }
 
