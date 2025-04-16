@@ -1,12 +1,15 @@
 #include <stdio.h>
 #include "structures.h"
 
-float attaque(Champ champatt, Champ champdef){
-    float degats = champatt.att - champdef.def;
+float attaque(Champ *champatt, Champ *champdef){
+    float degats = champatt->att - champdef->def;
     if (degats < 0) {
         degats = 0;
     }
     champdef.pvcourant -= degats;
+    if(champdef.pvcourant<=0){
+        champdef.pvcourant=0;
+    }
     return champdef.pvcourant;
 }
 
@@ -113,7 +116,7 @@ int memeEquipe(Champ* champ, Equipe* e1) {
     return 0;
 }
 
-Champ* cible(Champ* att, Equipe* e1, Equipe* e2) {
+Champ* choixCible(Champ* att, Equipe* e1, Equipe* e2) {
     int index=3;
     printf("Equipe adverse: \n");
     for (int i=0; i<3; i++) {
@@ -136,40 +139,55 @@ Champ* cible(Champ* att, Equipe* e1, Equipe* e2) {
             index=3;
         }
     } while (index==3);
-    return e2->membres[index];
+    return &e2->membres[index];
 }
 
 void tour (Equipe* e1, Equipe* e2){
     Champ *tab[6];
     triParVit(e1,e2,tab);
     for (int i=0;i<6;i++){
-        Champ *a=tab[i];
-        if(a->pvcourant<=0){
-            printf("%s est ko.\n",a->nom);
+        if(tab[i]->pvcourant<=0){
+            printf("%s est ko.\n",tab[i]->nom);
             continue;
         }
-        printf("\nC'est au tour de %s !\n", c->nom);
-        for (int j=0; j<a->nbeffets; j++){
-            if(a->effets[j].duree==0){
+        printf("\nC'est au tour de %s !\n", tab[i]->nom);
+        for (int j=0; j<tab[i]->nbeffets; j++){
+            if(tab[i]->effets[j].duree==0){
                 continue;
-            } else if (a->effets[j].duree>0){
-                appeffet(a);
+            } else if (tab[i]->effets[j].duree>0){
+                appeffet(tab[i]);
             }
         }
-        if (a->jauge=5) {
+        Equipe *joueur;
+        Equipe *adversaire;
+            if(memeEquipe(tab[i],e1)==0){
+                joueur=e1;
+                adversaire=e2;
+            } else {
+                joueur=e2;
+                adversaire=e1;
+            }
+        Champ *cible=choixCible(tab[i], joueur, adversaire);
+        if (tab[i]->jauge==5) {
             int choix;
             printf("Jauge pleine! Voulez-vous utiliser une technique spéciale? (1:oui, 0:non): ");
             scanf("%d", &choix);
             if (choix==1){
-                // Travailler fonction technique
+                printf("%s utilise sont attaque spéciale sur %s!\n", tab[i]->nom, cible->nom);
+                //implementer fonction technique
+                // sauter l'attque normale
             }
-            else {
-        // Travailler fonction cible
-            }
-            a->jauge+=(a->vitesse/40);
-            if(a->jauge>5){
-                a->jauge=5;
-            }
+        
+        printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
+        attaque(tab[i],cible);
+        if (cible->pvcourant<0) {
+            cible->pvcourant=0;
+            cible->statut=0;
+        }
+        tab[i]->jauge+=(tab[i]->vitesse/40);
+        if(tab[i]->jauge>5){
+            tab[i]->jauge=5;
         }
     }
+}
 }
