@@ -55,8 +55,17 @@ void degatseffetStatut(Champ *champ){
 }
 
 void appeffetStatut(Champ *champ, EffetStatut effetstatut, int durée) {
+    int bool=0;
+    for (int i=0; i<champ->nbeffets; i++){
+        if(champ->effets[i].effet_statut==effetstatut){
+            champ->effets[i].duree=durée;
+            bool=1;
+        }
+    }
+    if(bool==0){
         champ->effets[champ->nbeffets].effet_statut= effetstatut;
         champ->effets[champ->nbeffets].duree= durée;
+    }
 }
 
 void appeffetstat(Champ *champ, EffetStat effetstat, float valeur) {
