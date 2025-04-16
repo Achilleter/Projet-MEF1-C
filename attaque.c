@@ -163,7 +163,7 @@ void tour (Equipe* e1, Equipe* e2){
                 adversaire=e1;
             }
         Champ *cible=choixCible(tab[i], joueur, adversaire);
-        if (tab[i]->jauge==5) {
+        if (tab[i]->jauge==4) {
             int choix;
             printf("Jauge pleine! Voulez-vous utiliser une technique spéciale? (1:oui, 0:non): ");
             scanf("%d", &choix);
@@ -180,8 +180,8 @@ void tour (Equipe* e1, Equipe* e2){
             cible->statut=0;
         }
         tab[i]->jauge+=(tab[i]->vitesse/40);
-        if(tab[i]->jauge>5){
-            tab[i]->jauge=5;
+        if(tab[i]->jauge>4){
+            tab[i]->jauge=4;
         }
     }
 }
