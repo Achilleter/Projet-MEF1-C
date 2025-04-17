@@ -6,23 +6,8 @@ float attaque(Champ *champatt, Champ *champdef){
     if (degats < 0) {
         degats = 0;
     }
-    champdef.pvcourant -= degats;
-    return champdef.pvcourant;
-}
-
-Champ techspé(Champ champatt, Champ champdef, int* nbtactifs, int* nbtrechargment){
-    if(champatt.tech.nbtactifs>1){
-        *nbtactifs=champatt.tech.nbtactifs;
-    }
-    if(champatt.tech.nbtrechargement>1){
-        *nbtrechargment=champatt.tech.nbtrechargement;
-    }
-    if(champatt.tech.effet_statut!=0){
-        champdef.statut=champatt.tech.effet_statut;
-    }
-    if(champatt.tech.effet_stat!=0){
-        champdef.stat=champatt.tech.effet_stat;
-    }
+    champdef->pvcourant -= degats;
+    return champdef->pvcourant;
 }
 
 void degatseffetStatut(Champ *champ){
@@ -131,7 +116,7 @@ Champ* choixCible(Champ* att, Equipe* e1, Equipe* e2) {
                 printf("Index invalide");
             }
         } while (index<0 || index>2);
-        if(e2->membres[index]->pvcourant<=0){
+        if(e2->membres[index].pvcourant<=0){
             printf("Cible KO. Veuillez en chosir une nouvelle\n");
             index=3;
         }
