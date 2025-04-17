@@ -1,4 +1,4 @@
-Prog = PROJET-MEF1-C
+PROG = PROJET-MEF1-C
 
 # Sources
 SRC=main.c attaque.c lecture_persos.c techniques.c
