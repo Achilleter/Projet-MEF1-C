@@ -31,15 +31,15 @@ void flashbacks(Champ* nathalie, Champ* allié1, Champ* allié2){
     appeffetStat(allié2,4,100);
     appeffetStat(nathalie,4,100);
     for(int i=0; i<6; i++){ // enlève tous les effets statuts négatifs (sauf les effets comme l'invincibilité, le renvoie de dégâts et la provocation)
-        if((allié1->effets[i].effet_statut != 5 || allié1->effets[i].effet_statut != 6) || allié1->effets[i].effet_statut != 3){
+        if((allié1->effets[i].effet_statut != 5 || allié1->effets[i].effet_statut != 4) || allié1->effets[i].effet_statut != 3){
             allié1->effets[i].effet_statut = 0;
             allié1->effets[i].duree = 0;
         }
-        if((allié1->effets[i].effet_statut != 5 || allié1->effets[i].effet_statut != 6) || allié1->effets[i].effet_statut != 3){
+        if((allié1->effets[i].effet_statut != 5 || allié1->effets[i].effet_statut != 4) || allié1->effets[i].effet_statut != 3){
             nathalie->effets[i].effet_statut = 0;
             nathalie->effets[i].duree = 0;
         }
-        if((allié1->effets[i].effet_statut != 5 || allié1->effets[i].effet_statut != 6) || allié1->effets[i].effet_statut != 3){
+        if((allié1->effets[i].effet_statut != 5 || allié1->effets[i].effet_statut != 4) || allié1->effets[i].effet_statut != 3){
             allié2->effets[i].effet_statut = 0;
             allié2->effets[i].duree = 0;
         }
@@ -101,12 +101,20 @@ void motivation(Champ* steve, Champ* allié1, Champ* allié2){
     }
 }
 
-void fossoyeurdesMondes(Champ* booga){
-    
+void fossoyeurdesMondes(Champ* booga, Champ* ennemi){
+    if(booga->tech.nbtactifs == 0){
+        booga->tech.nbtactifs = 2;
+        booga->tech.nbtrechargement = 3;
+        printf("\n Booga utilise Fossoyeur des Mondes ! \n");
+        booga->jauge -= 4;
+        appeffetStat(booga, 4, 25); // Se soigne de 25 PV à chaque tour
+        appeffetStat(booga, 1, 10); // Augmente l'attaque de 10
+        appeffetStat(booga, 2, 10); // Augmente la défense de 10
+    }
 }
 
 void Exploglace(Champ* sandrine, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3){
-    // inflige 50 de dégats à tous les ennemis et diminue leur vitesse de 15
+    // inflige 30 de dégats à tous les ennemis et diminue leur vitesse de 15
     printf("\n Sandrine utilise Exploglace ! \n");
     sandrine->tech.nbtrechargement = 4;
     sandrine->jauge -= 4;
@@ -119,7 +127,7 @@ void Exploglace(Champ* sandrine, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3)
 }
 
 void scierculaire(Champ* annesophie, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3){
-    //inflige 70 dégats à tous les ennemis et réduit leur défense de 5
+    //inflige 50 dégats à tous les ennemis et réduit leur défense de 5
     printf("\n Annesophie utilise Scierculaire ! \n");
     annesophie->tech.nbtrechargement = 4;
     annesophie->jauge -= 4;
