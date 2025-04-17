@@ -1,7 +1,7 @@
 Prog = PROJET-MEF1-C
 
 # Sources
-SRC=main.c fonction.c affichage.c
+SRC=main.c attaque.c lecture_persos.c techniques.c
 
 # Règle par défaut : compile et exécute 
 all: $(PROG)
