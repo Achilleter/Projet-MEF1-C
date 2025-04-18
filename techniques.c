@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include "structures.h"
+#include "principal.h"
 
 void berserk(Champ* xavier, Champ* ennemi){
     // augmente l'attaque de 20 et la défense de 10, applique l'invincibilité pendant 1 tour puis s'immobilise pendant 1 tour
@@ -21,27 +20,26 @@ void berserk(Champ* xavier, Champ* ennemi){
 }
 
 
-void flashbacks(Champ* nathalie, Champ* allié1, Champ* allié2){
+void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
     //soigne de 100 tous les alliés et leur enlève tous les effets statuts négatifs (sauf les effets comme l'invincibilité, le renvoie de dégâts et la provocation)
-    int a=0, b=0, c=0;
     nathalie->tech.nbtrechargement = 4;
     nathalie->jauge -= 4;
     printf("Nathalie utilise Flashbacks !\n");
-    appeffetStat(allié1,4,100);//soigne de 100
-    appeffetStat(allié2,4,100);
+    appeffetStat(allie1,4,100);//soigne de 100
+    appeffetStat(allie2,4,100);
     appeffetStat(nathalie,4,100);
     for(int i=0; i<6; i++){ // enlève tous les effets statuts négatifs (sauf les effets comme l'invincibilité, le renvoie de dégâts et la provocation)
-        if((allié1->effets[i].effet_statut != 5 || allié1->effets[i].effet_statut != 4) || allié1->effets[i].effet_statut != 3){
-            allié1->effets[i].effet_statut = 0;
-            allié1->effets[i].duree = 0;
+        if((allie1->effets[i].effet_statut != 5 || allie1->effets[i].effet_statut != 4) || allie1->effets[i].effet_statut != 3){
+            allie1->effets[i].effet_statut = 0;
+            allie1->effets[i].duree = 0;
         }
-        if((allié1->effets[i].effet_statut != 5 || allié1->effets[i].effet_statut != 4) || allié1->effets[i].effet_statut != 3){
+        if((allie1->effets[i].effet_statut != 5 || allie1->effets[i].effet_statut != 4) || allie1->effets[i].effet_statut != 3){
             nathalie->effets[i].effet_statut = 0;
             nathalie->effets[i].duree = 0;
         }
-        if((allié1->effets[i].effet_statut != 5 || allié1->effets[i].effet_statut != 4) || allié1->effets[i].effet_statut != 3){
-            allié2->effets[i].effet_statut = 0;
-            allié2->effets[i].duree = 0;
+        if((allie1->effets[i].effet_statut != 5 || allie1->effets[i].effet_statut != 4) || allie1->effets[i].effet_statut != 3){
+            allie2->effets[i].effet_statut = 0;
+            allie2->effets[i].duree = 0;
         }
     }
 }
@@ -72,13 +70,13 @@ void murailleInfinie(Champ* smasheur){
     }
 }
 
-void motivation(Champ* steve, Champ* allié1, Champ* allié2){
+void motivation(Champ* steve, Champ* allie1, Champ* allie2){
     //augmentation de la vitesse d'un allié ou de soi même de 25
     printf("\n Steve utilise Motivation ! \n");
     steve->tech.nbtrechargement = 4;
     steve->jauge -= 4;
     int choix=0;
-    printf("\n Qui voulez-vous motiver ? (0=vous, 1=%s, 2=%s) \n", allié1->nom, allié2->nom);
+    printf("\n Qui voulez-vous motiver ? (0=vous, 1=%s, 2=%s) \n", allie1->nom, allie2->nom);
     do{// vérification du choix
     scanf("%d",&choix);
     if(choix<0 || choix>2){
@@ -91,12 +89,12 @@ void motivation(Champ* steve, Champ* allié1, Champ* allié2){
             appeffetStat(steve,3,25);//augmente la vitesse de 25
             break;
         case 1:
-            printf("\n Vous motivez %s ! \n", allié1->nom);
-            appeffetStat(allié1,3,25);
+            printf("\n Vous motivez %s ! \n", allie1->nom);
+            appeffetStat(allie1,3,25);
             break;
         case 2: 
-            printf("\n Vous motivez %s ! \n", allié2->nom);
-            appeffetStat(allié2,3,25);
+            printf("\n Vous motivez %s ! \n", allie2->nom);
+            appeffetStat(allie2,3,25);
             break;
     }
 }
@@ -113,7 +111,7 @@ void fossoyeurdesMondes(Champ* booga, Champ* ennemi){
     }
 }
 
-void Exploglace(Champ* sandrine, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3){
+void exploglace(Champ* sandrine, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3){
     // inflige 30 de dégats à tous les ennemis et diminue leur vitesse de 15
     printf("\n Sandrine utilise Exploglace ! \n");
     sandrine->tech.nbtrechargement = 4;
@@ -149,15 +147,15 @@ void cicatricesEternels(Champ* gaby, Champ* ennemi1, Champ* ennemi2, Champ* enne
     ennemi3->pvcourant -= 100;
 }
 
-void reinitialisation(Champ* clara, Champ* allié1, Champ* allié2){
+void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2){
     // Ressucite un allié avec la moitié de ses points de vies
-    if (allié1->statut==1||allié2->statut==1) {
+    if (allie1->statut==1||allie2->statut==1) {
         printf("\n Aucun de vos alliés n'est mort ! \n");
         return;
     }
-    else if (allié1->statut==0 && allié2->statut==0) {
+    else if (allie1->statut==0 && allie2->statut==0) {
         int choix=0;
-        printf("\n Choississez un allié à ressusciter (1=%s, 2=%s) : \n", allié1->nom, allié2->nom);
+        printf("\n Choississez un allié à ressusciter (1=%s, 2=%s) : \n", allie1->nom, allie2->nom);
         do {
             scanf("%d", &choix);
             if (choix<1 || choix>2) {
@@ -169,29 +167,29 @@ void reinitialisation(Champ* clara, Champ* allié1, Champ* allié2){
         clara->tech.nbtrechargement = 6;
         clara->jauge -= 4;
         if (choix==1) {
-            printf("\n Vous ressuscitez %s ! \n", allié1->nom);
-            allié1->pvcourant = allié1->pvmax / 2;
-            allié1->statut = 1;
+            printf("\n Vous ressuscitez %s ! \n", allie1->nom);
+            allie1->pvcourant = allie1->pvmax / 2;
+            allie1->statut = 1;
         }
         else {
-            printf("\n Vous ressuscitez %s ! \n", allié2->nom);
-            allié2->pvcourant = allié2->pvmax / 2;
-            allié2->statut = 1;
+            printf("\n Vous ressuscitez %s ! \n", allie2->nom);
+            allie2->pvcourant = allie2->pvmax / 2;
+            allie2->statut = 1;
         }
     }
     else {
         printf("\n Clara utilise Réinitialisation ! \n");
         clara->tech.nbtrechargement = 6;
         clara->jauge -= 4;
-        if (allié1->statut==0) {
-            printf("\n Vous ressuscitez %s ! \n", allié1->nom);
-            allié1->pvcourant = allié1->pvmax / 2;
-            allié1->statut = 1;
+        if (allie1->statut==0) {
+            printf("\n Vous ressuscitez %s ! \n", allie1->nom);
+            allie1->pvcourant = allie1->pvmax / 2;
+            allie1->statut = 1;
         }
         else {
-            printf("\n Vous ressuscitez %s ! \n", allié2->nom);
-            allié2->pvcourant = allié2->pvmax / 2;
-            allié2->statut = 1;
+            printf("\n Vous ressuscitez %s ! \n", allie2->nom);
+            allie2->pvcourant = allie2->pvmax / 2;
+            allie2->statut = 1;
         }
     }
 }

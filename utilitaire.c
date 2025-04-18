@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "structures.h"
+#include "principal.h"
 
 Champ getchamp(char nom[20],Champ champ){
     FILE* fp=fopen("champion.txt", "r");
