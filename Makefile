@@ -5,7 +5,7 @@ SRC=main.c attaque.c lecture_persos.c techniques.c
 
 # Règle par défaut : compile et exécute 
 all: $(PROG)
-./$(PROG)
+	./$(PROG)
 
 # Compilation du programme
 $(PROG): $(SRC) fichier.h
