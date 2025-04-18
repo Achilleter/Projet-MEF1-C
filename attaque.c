@@ -155,11 +155,13 @@ void tour (Equipe* e1, Equipe* e2){
             if (choix==1){
                 printf("%s utilise sont attaque spéciale sur %s!\n", tab[i]->nom, cible->nom);
                 //implementer fonctions techniques
-                // sauter l'attque normale
-            }
-        
+            } else {
+                printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
+                attaque(tab[i], cible);
+        } else {
         printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
         attaque(tab[i],cible);
+        }
         if (cible->pvcourant<0) {
             cible->pvcourant=0;
             cible->statut=0;
@@ -169,5 +171,5 @@ void tour (Equipe* e1, Equipe* e2){
             tab[i]->jauge=4;
         }
     }
-}
+  }
 }
