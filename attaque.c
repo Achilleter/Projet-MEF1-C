@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include "structures.h"
+#include "principal.h"
 
 float attaque(Champ *champatt, Champ *champdef){
     float degats = champatt->att - champdef->def;
@@ -16,11 +15,11 @@ void degatseffetStatut(Champ *champ){
     }
     else if (champ->nbeffets > 0) {
         for (int i = 0; i < champ->nbeffets; i++) {
-            switch (champ->effets[i].effet_statut) {
-                case 1:
+            if (champ->effets[i].effet_statut == 1) {
                 champ->pvcourant -= champ->pvmax * 0.05;
                 break;
-                case 6:
+            }
+            else if (champ->effets[i].effet_statut == 6) {
                 if(champ->pvcourant <= champ->pvmax * 0.25) {
                     champ->pvcourant = 0;
                     champ->statut = 0; // mort
@@ -28,7 +27,7 @@ void degatseffetStatut(Champ *champ){
                 break;
             }
             champ->effets[i].duree--;
-            if (champ->effets[i].duree = 0) {
+            if (champ->effets[i].duree == 0) {
                 for (int j = i; j < champ->nbeffets-1; j++) {
                     champ->effets[j] = champ->effets[j + 1];
                 }
@@ -39,21 +38,21 @@ void degatseffetStatut(Champ *champ){
     }
 }
 
-void appeffetStatut(Champ *champ, EffetStatut effetstatut, int durée) {
+void appeffetStatut(Champ *champ, EffetStatut effetstatut, int duree) {
     int bool=0;
     for (int i=0; i<champ->nbeffets; i++){
         if(champ->effets[i].effet_statut==effetstatut){
-            champ->effets[i].duree=durée;
+            champ->effets[i].duree=duree;
             bool=1;
         }
     }
     if(bool==0){
         champ->effets[champ->nbeffets].effet_statut= effetstatut;
-        champ->effets[champ->nbeffets].duree= durée;
+        champ->effets[champ->nbeffets].duree= duree;
     }
 }
 
-void appeffetstat(Champ *champ, EffetStat effetstat, float valeur) {
+void appeffetStat(Champ *champ, EffetStat effetstat, float valeur) {
         switch (effetstat){
             case 1:
                 champ->att += valeur;
@@ -158,6 +157,7 @@ void tour (Equipe* e1, Equipe* e2){
             } else {
                 printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
                 attaque(tab[i], cible);
+        } 
         } else {
         printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
         attaque(tab[i],cible);
@@ -171,5 +171,4 @@ void tour (Equipe* e1, Equipe* e2){
             tab[i]->jauge=4;
         }
     }
-  }
 }
