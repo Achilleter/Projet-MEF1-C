@@ -133,7 +133,7 @@ void tour (Equipe* e1, Equipe* e2){
             printf("\nC'est au tour de %s !\n", tab[i]->nom);
             for (int j=0; j<tab[i]->nbeffets; j++){
                 if (tab[i]->effets[j].duree>0){
-                appeffet(tab[i]);
+                degatseffetStatut(tab[i]);
                 }
             }
         }

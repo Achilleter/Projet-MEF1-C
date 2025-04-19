@@ -49,7 +49,7 @@ typedef struct {
 } Champ;
 
 typedef struct {
-    char *nom;
+    char nom[20];
     Champ membres[3];
 } Equipe;
 
