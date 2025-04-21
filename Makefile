@@ -1,17 +1,21 @@
+# Nom de l'exécutable
 PROG = PROJET-MEF1-C
 
-# Sources
-SRC=main.c attaque.c utilitaire.c techniques.c
+# Fichiers sources
+SRC = main.c attaque.c utilitaire.c techniques.c
 
-# Règle par défaut : compile et exécute 
+# Options de compilation
+CFLAGS = -Wall -Wextra -g
+LDFLAGS = 
+
+# Règle par défaut : compile puis exécute
 all: $(PROG)
 	./$(PROG)
 
-# Compilation du programme
+# Compilation de l'exécutable
 $(PROG): $(SRC) principal.h
-	# Compilation avec les options de débogage et d'optimisation
-	gcc -Wall -Wl,--verbose -o $(PROG) $(SRC)
+	gcc $(CFLAGS) -o $(PROG) $(SRC) $(LDFLAGS)
 
-# Nettoyage
+# Nettoyage des fichiers générés
 clean:
 	rm -f $(PROG)
