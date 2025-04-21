@@ -36,3 +36,36 @@ void afficherEquipe(const Equipe* equipe, Champ *prochain) {
         afficherChamp(&(equipe->membres[i]), i, estProchain);
     }
 }
+
+void afficherChamp(Champ tab[], int deja_pris[]) {
+    for (int i=0; i<10; i++) {
+        if (deja_pris[i]==1){
+            printf("%d - %s (PV:%d ATT:%d DEF:%d AGI:%d VIT:%d) (DEJA PRIS).\n",  i + 1, tab[i].nom, tab[i].pvmax, tab[i].att, tab[i].def, tab[i].agilite, tab[i].vitesse);
+        } else {
+            printf("%d - %s (PV:%d ATT:%d DEF:%d AGI:%d VIT:%d).\n",  i + 1, tab[i].nom, tab[i].pvmax, tab[i].att, tab[i].def, tab[i].agilite, tab[i].vitesse);
+    }
+}
+
+void selectionnerChamp(Champ tous[], Champ e1[3], Champ e2[3]){
+    int deja_pris[10] = {0};
+    char *nom_e1;
+    char *nom_e2;
+    int n1, n2;
+    printf("Nom de l'équipe 1 : ");
+    do{
+        printf("Combien de caractères composent le nom de votre équipe (espaces compris)? ");
+        scanf("%d", &n1);
+    } while (n1<0);
+    nom_e1=malloc(n1*sizeof(char));
+    printf("Entrez le nom de votre équipe: ");
+    scanf("%s", nom_e1);
+    printf("Nom de l'équipe 2 : ");
+    do{
+        printf("Combien de caractères composent le nom de votre équipe (espaces compris)? ");
+        scanf("%d", &n2);
+    } while (n2<0);
+    nom_e2=malloc(n2*sizeof(char));
+    printf("Entrez le nom de votre équipe: ");
+    scanf("%s", nom_e2);
+
+
