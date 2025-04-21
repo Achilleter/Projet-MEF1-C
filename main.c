@@ -9,7 +9,7 @@ int main(){
         printf("Equipe 1: ");
         scanf("%s", equipe1.nom);
         if(strlen(equipe1.nom) > 20){
-            printf("Veuillez entrer un nom d'équipe valide (20 caracteres maximum): ");
+            printf("Veuillez entrer un nom d'equipe valide (20 caracteres maximum): ");
         }
     }while (strlen(equipe1.nom) > 20);
     printf("\n %s\n", equipe1.nom);
