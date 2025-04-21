@@ -1,6 +1,6 @@
 #include "principal.h"
 
-void berserk(Champ* xavier, Champ* ennemi){
+void berserk(Champ* xavier){
     // augmente l'attaque de 20 et la défense de 10, applique l'invincibilité pendant 1 tour puis s'immobilise pendant 1 tour
     if(xavier->tech.nbtactifs == 0){
         xavier->tech.nbtactifs = 2;
@@ -99,7 +99,7 @@ void motivation(Champ* steve, Champ* allie1, Champ* allie2){
     }
 }
 
-void fossoyeurdesMondes(Champ* booga, Champ* ennemi){
+void fossoyeurdesMondes(Champ* booga){
     if(booga->tech.nbtactifs == 0){
         booga->tech.nbtactifs = 2;
         booga->tech.nbtrechargement = 3;

@@ -9,8 +9,8 @@ DEF : 20
 Att : 35
 Agi : 25
 Vit : 25
-Comp spé : 
--Berserk : Insère une clé piratée en lui : devient immunisé à toutes les attaques pdt 1 tour + Att=50 + DEF+=10 pdt 1 tour et peut attaquer, à la fin il est STUN le prochain tour (Rechargement : 3 barres)
+Comp spe : 
+-Berserk : Insere une cle piratee en lui : devient immunise à toutes les attaques pdt 1 tour + Att=50 + DEF+=10 pdt 1 tour et peut attaquer, à la fin il est STUN le prochain tour (Rechargement : 3 barres)
 
 
 Nathalie (Support) :
@@ -20,8 +20,8 @@ DEF : 10
 Att : 15
 Agi : 20
 Vit : 25
-Comp spé :
--De Retour de la Mort : Remonte le temps : PVcourants+=100 pour toute la team + Purge la team de tous les effets négatifs/changement de stats (Rechargement : 4 barres)
+Comp spe :
+-De Retour de la Mort : Remonte le temps : PVcourants+=100 pour toute la team + Purge la team de tous les effets negatifs/changement de stats (Rechargement : 4 barres)
 
 
 Zed (Assassin) : 
@@ -31,8 +31,8 @@ DEF : 15
 Att : 50
 Agi : 30
 Vit : 25
-Comp spé :
--Marque du Bourreau : Place un traceur sur un ennemi, si ce dernier possède 25% ou moins de ses PV, il est exécuté sans pitié (Rechargement : 3 barres)
+Comp spe :
+-Marque du Bourreau : Place un traceur sur un ennemi, si ce dernier possede 25% ou moins de ses PV, il est execute sans pitie (Rechargement : 3 barres)
 
 
 Smasheur (Tank) :
@@ -42,8 +42,8 @@ DEF : 30
 Att : 30
 Agi : 10
 Vit : 15
-Comp spé : 
--Muraille Infinie : Se place devant sa team et provoque l'équipe adverse: tank toutes les attaques des ennemis pendant 1 tour + DEF+=20 + renvoi_dégats (Rechargement : 4 barres)
+Comp spe : 
+-Muraille Infinie : Se place devant sa team et provoque l'equipe adverse: tank toutes les attaques des ennemis pendant 1 tour + DEF+=20 + renvoi_degats (Rechargement : 4 barres)
 
 
 Steve (Tank) :
@@ -53,8 +53,8 @@ DEF : 40
 Att : 30
 Agi : 15
 Vit : 20
-Comp Spé: 
--  : Motive son compagnon : Vit+=25 à un allié (rechargement : 4 barres)
+Comp Spe : 
+-  : Motive son compagnon : Vit+=25 à un allie (rechargement : 4 barres)
 
 
 Booga (Combattant) :
@@ -64,8 +64,8 @@ DEF : 20
 Att : 30
 Agi : 25
 Vit : 25
-Comp Spé :
--Fossoyeur des Mondes : Une anomalie dans le système a provoqué un déséquilibre aux stats de Booga : PV=300 + Att=35 + Vit=30 pdt 2 tours (Rechargement : 5 barres)
+Comp Spe :
+-Fossoyeur des Mondes : Une anomalie dans le systeme a provoque un desequilibre aux stats de Booga : PV=300 + Att=35 + Vit=30 pdt 2 tours (Rechargement : 5 barres)
 
 
 Sandrine(mage) :
@@ -74,8 +74,8 @@ DEF : 20
 Att : 25
 Agi : 20
 Vit : 25
-Comp spé : 
-Exploglace(zone) : Détruit son propre cocon de glace et en envoie les morceaux sur ses adversaires, Inflige 30 dégâts à tous les ennemis et les gels(1 tour) rechargement 4 tours
+Comp spe : 
+Exploglace(zone) : Detruit son propre cocon de glace et en envoie les morceaux sur ses adversaires, Inflige 30 dégâts à tous les ennemis et les gels(1 tour) rechargement 4 tours
 
 Anne-Sophie(tireur) :
 PV : 150
@@ -83,8 +83,8 @@ DEF : 60
 Att : 15
 Agi : 30
 Vit : 25
-Comp spé :
-Scierculaire : Tourne sur elle même et tire sur tous ce qu'elle voit, Inflige 45 dégâts à tous les adversaires et diminue leur défense de 5 rechargement 4 tours
+Comp spe :
+Scierculaire : Tourne sur elle même et tire sur tous ce qu'elle voit, Inflige 45 degats a tous les adversaires et diminue leur defense de 5 rechargement 4 tours
 
 Gaby(mage) :
 PV : 100
@@ -92,8 +92,8 @@ DEF : 15
 Att : 10
 Agi : 15
 Vit : 25
-Comp spé : 
-Cicatrices éternels : Relâche toute sa timidité et laisse ses démons prendre le contrôle, Inflige 100 dégâts à tous les ennemis rechargement 5 tours
+Comp spe : 
+Cicatrices eternels : Relache toute sa timidite et laisse ses demons prendre le controle, Inflige 100 dégâts à tous les ennemis rechargement 5 tours
 
 Clara(support) :
 PV : 150
@@ -101,8 +101,8 @@ DEF : 20
 Att : 20
 Agi : 25
 Vit : 25
-Comp spé :
-Réinitialisation : Réinitialise les donnés d'un allié, Revive un allié 1 cout 4 tours pas de rechargement
+Comp spe :
+Reinitialisation : Reinitialise les donnes d'un allie, Revive un allie 1 cout 4 tours pas de rechargement
 
 
 
