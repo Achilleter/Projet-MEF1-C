@@ -1,7 +1,7 @@
 #include "principal.h"
 
 Champ getchamp(char nom[20],Champ champ){
-    FILE* fp=fopen("combattants.txt", "r");
+    FILE* fp=fopen("champions.txt", "r");
     char string[100];
     if(fp!= NULL){
         while(fgets(string, 99, fp)!=NULL){
