@@ -47,26 +47,3 @@ void afficherEquipeChamp(Champ tab[], int deja_pris[]){
     }
 }
 
-void nomEquipe(Champ tous[], Champ e1[3], Champ e2[3]){
-    int deja_pris[10] = {0};
-    char *nom_e1;
-    char *nom_e2;
-    int n1, n2;
-    printf("Nom de l'équipe 1 : ");
-    do{
-        printf("Combien de caractères composent le nom de votre équipe (espaces compris)? ");
-        scanf("%d", &n1);
-    } while (n1<0);
-    nom_e1=malloc(n1*sizeof(char));
-    printf("Entrez le nom de votre équipe: ");
-    scanf("%s", nom_e1);
-    printf("Nom de l'équipe 2 : ");
-    do{
-        printf("Combien de caractères composent le nom de votre équipe (espaces compris)? ");
-        scanf("%d", &n2);
-    } while (n2<0);
-    nom_e2=malloc(n2*sizeof(char));
-    printf("Entrez le nom de votre équipe: ");
-    scanf("%s", nom_e2);
-
-
