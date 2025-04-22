@@ -26,24 +26,24 @@ void selection(Champ tous[], Champ e1[3], Champ e2[3]){
         printf("%s, choisissez votre combattant %d :\n", nom_e1, i+1);
         afficherEquipeChamp(tous, deja_pris);
         do {
-            printf("Votre choix : ");
+            printf("Votre choix: ");
             scanf("%d", &choix);
-        } while (choix<1 || choix>10 || deja_pris[choix-1]=1);
+        } while (choix<1 || choix>10 || deja_pris[choix-1]==1);
         e1[i]=tous[choix-1];
         deja_pris[choix-1]=1;
-        printf("%s sélectionné !\n\n", e1[i].nom);
-        printf("%s, choisissez votre combattant %d :\n", nom_e2, i+1);
+        printf("%s sélectionné!\n\n", e1[i].nom);
+        printf("%s, choisissez votre combattant %d:\n", nom_e2, i+1);
         afficherEquipeChamp(tous, deja_pris);
         do {
-            printf("Votre choix : ");
+            printf("Votre choix: ");
             scanf("%d", &choix);
-        } while (choix<1 || choix>10 || deja_pris[choix-1]=1);
+        } while (choix<1 || choix>10 || deja_pris[choix-1]==1);
         e2[i]=tous[choix-1];
         deja_pris[choix-1]=1;
-        printf("%s sélectionné !\n\n", e2[i].nom);
+        printf("%s sélectionné!\n\n", e2[i].nom);
     }
 
-    printf("\nComposition des équipes:\n");
+    printf("Composition des équipes:\n");
     printf("%s :\n", nom_e1);
     for (int i=0; i<3; i++){
         printf("- %s\n", e1[i].nom);
@@ -78,7 +78,7 @@ void selection(Champ tous[], Champ e1[3], Champ e2[3]){
 
 // Fonction de Rémi (A revoir car quelques incohérences) 
 
-void choixChamp(Equipe* equipe1, Equipe* equipe2, int deja_pris[10]) {
+//void choixChamp(Equipe* equipe1, Equipe* equipe2, int deja_pris[10]) {
     int choix = 0;
     int champ1 = 0, champ2 = 0; 
     char Champions[10]={"Xavier", "Nathalie", "Zed", "Smasheur", "Sandrine", "Anne-Sophie", "Gaby", "Clara", "Steve", "Booga"};
