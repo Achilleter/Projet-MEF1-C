@@ -28,7 +28,7 @@ void selection(Champ tous[], Champ e1[3], Champ e2[3]){
         do {
             printf("Votre choix : ");
             scanf("%d", &choix);
-        } while (choix<1 || choix>10 || deja_pris[choix-1]);
+        } while (choix<1 || choix>10 || deja_pris[choix-1]=1);
         e1[i]=tous[choix-1];
         deja_pris[choix-1]=1;
         printf("%s sélectionné !\n\n", e1[i].nom);
@@ -37,7 +37,7 @@ void selection(Champ tous[], Champ e1[3], Champ e2[3]){
         do {
             printf("Votre choix : ");
             scanf("%d", &choix);
-        } while (choix<1 || choix>10 || deja_pris[choix-1]);
+        } while (choix<1 || choix>10 || deja_pris[choix-1]=1);
         e2[i]=tous[choix-1];
         deja_pris[choix-1]=1;
         printf("%s sélectionné !\n\n", e2[i].nom);
