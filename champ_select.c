@@ -24,7 +24,7 @@ void choixChamp(Equipe* equipe1, Equipe* equipe2, int deja_pris[10]) {
                     }
                 }while (choix < 1 || choix > 10);
                 if(deja_pris[choix - 1] == 0){
-                    equipe1->membres[champ1] = Champions[choix - 1]; 
+                    //faut assigner le bon champ à equipe1->membres[champ1]
                     getchamp(Champions[choix - 1], equipe1->membres[champ1]);
                     deja_pris[choix - 1] = 1;
                     champ1++;
@@ -44,8 +44,8 @@ void choixChamp(Equipe* equipe1, Equipe* equipe2, int deja_pris[10]) {
                     }
                 }while (choix < 1 || choix > 10);
                 if(deja_pris[choix - 1] == 0){
-                    equipe2->membres[champ2] = Champions[choix - 1]; 
                     getchamp(Champions[choix - 1], equipe2->membres[champ2]);
+                    //faut assigner le bon champ à equipe2->membres[champ2]
                     deja_pris[choix - 1] = 1;
                     champ2++;
                     
