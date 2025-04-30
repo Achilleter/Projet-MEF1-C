@@ -2,7 +2,7 @@
 
 float attaque(Champ *champatt, Champ *champdef){
     if(*champatt == NULL || *champdef == NULL){
-        printf("Ouverture impossible");
+        printf("Erreur : pointeur nul");
         exit(1);
     }
     float degats = champatt->att - champdef->def;
@@ -14,6 +14,10 @@ float attaque(Champ *champatt, Champ *champdef){
 }
 
 void degatseffetStatut(Champ *champ){
+    if(*champ == NULL){
+        printf("Erreur : pointeur nul");
+        exit(1);
+    }
     if (champ->nbeffets == 0) {
         return;
     }
@@ -43,6 +47,10 @@ void degatseffetStatut(Champ *champ){
 }
 
 void appeffetStatut(Champ *champ, EffetStatut effetstatut, int duree) {
+    if(*champ == NULL){
+        printf("Erreur : pointeur nul");
+        exit(1);
+    }
     int bool=0;
     for (int i=0; i<champ->nbeffets; i++){
         if(champ->effets[i].effet_statut==effetstatut){
@@ -57,7 +65,11 @@ void appeffetStatut(Champ *champ, EffetStatut effetstatut, int duree) {
 }
 
 void appeffetStat(Champ *champ, EffetStat effetstat, float valeur) {
-        switch (effetstat){
+    if(*champ == NULL){
+        printf("Erreur : pointeur nul");
+        exit(1);
+    }
+    switch (effetstat){
             case 1:
                 champ->att += valeur;
                 break;
@@ -77,6 +89,16 @@ void appeffetStat(Champ *champ, EffetStat effetstat, float valeur) {
 }
 
 void triParVit(Equipe *e1, Equipe *e2, Champ *tab[6]) {
+    if(*e1 == NULL || *e2 == NULL){
+        printf("Erreur : pointeur nul");
+        exit(1);
+    }
+    for(int i=0; i<6; i++){
+        if(tab[i] == NULL){
+            printf("Erreur : pointeur nul");
+            exit(1);
+        }
+    }
     for (int i=0; i<3; i++) {
         tab[i]=&e1->membres[i];
         tab[i+3]=&e2->membres[i];
@@ -93,6 +115,10 @@ void triParVit(Equipe *e1, Equipe *e2, Champ *tab[6]) {
 }
 
 int memeEquipe(Champ* champ, Equipe* e1) {
+    if(*champ == NULL || *e1 == NULL){
+        printf("Erreur : pointeur nul");
+        exit(1);
+    }
     for (int i=0; i<3; i++) {
         if (champ==&e1->membres[i]) {
             return 1;
@@ -102,6 +128,10 @@ int memeEquipe(Champ* champ, Equipe* e1) {
 }
 
 Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
+    if(*attaquant == NULL || *e1 == NULL || *e2 == NULL){
+        printf("Erreur : pointeur nul");
+        exit(1);
+    }
     int index=3;
     int verif;
     printf("Equipe adverse: \n");
@@ -130,6 +160,10 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
 }
 
 void tour (Equipe* e1, Equipe* e2){
+    if(*e1 == NULL || *e2 == NULL){
+        printf("Erreur : pointeur nul");
+        exit(1);
+    }
     Champ *tab[6];
     int verif;
     triParVit(e1,e2,tab);
