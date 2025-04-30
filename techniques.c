@@ -72,17 +72,19 @@ void murailleInfinie(Champ* smasheur){
 
 void motivation(Champ* steve, Champ* allie1, Champ* allie2){
     //augmentation de la vitesse d'un allié ou de soi même de 25
+    int verif;
     printf("\n Steve utilise Motivation ! \n");
     steve->tech.nbtrechargement = 4;
     steve->jauge -= 4;
     int choix=0;
     printf("\n Qui voulez-vous motiver ? (0=vous, 1=%s, 2=%s) \n", allie1->nom, allie2->nom);
     do{// vérification du choix
-    scanf("%d",&choix);
-    if(choix<0 || choix>2){
-        printf("Index invalide\n");
-    }
-    } while (choix<0 || choix>2);
+        verif=scanf("%d",&choix);
+        if(choix<0 || choix>2){
+            printf("Index invalide\n");
+        }
+        vide_buffer();
+    } while (choix<0 || choix>2 || verif!=1);
     switch (choix){
         case 0:
             printf("\n Vous vous motivez ! \n");
@@ -149,6 +151,7 @@ void cicatricesEternels(Champ* gaby, Champ* ennemi1, Champ* ennemi2, Champ* enne
 
 void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2){
     // Ressucite un allié avec la moitié de ses points de vies
+    int verif;
     if (allie1->statut==1||allie2->statut==1) {
         printf("\n Aucun de vos alliés n'est mort ! \n");
         return;
@@ -157,12 +160,12 @@ void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2){
         int choix=0;
         printf("\n Choississez un allié à ressusciter (1=%s, 2=%s) : \n", allie1->nom, allie2->nom);
         do {
-            scanf("%d", &choix);
+            verif=scanf("%d", &choix);
             if (choix<1 || choix>2) {
                 printf("Index invalide\n");
             }
-        }
-        while (choix<1 || choix>2);
+            vide_buffer();
+        }while (choix<1 || choix>2 || verif!=1);
         printf("\n Clara utilise Réinitialisation ! \n");
         clara->tech.nbtrechargement = 6;
         clara->jauge -= 4;
