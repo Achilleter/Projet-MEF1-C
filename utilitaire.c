@@ -1,39 +1,41 @@
 #include "principal.h"
 
-Champ getchamp(char nom[20],Champ champ){
+void getchamp(Champ* tab[]){
     FILE* fp=fopen("champions.txt", "r");
-    char string[100];
     if(fp!= NULL){
-        while(fgets(string, 99, fp)!=NULL){
-            if(strcmp(string, nom) == 0){
-                strcpy(champ.nom, string);
+        char string[99];
+        for(int i=0; i<10; i++){
                 fgets(string, 99, fp);
-                champ.pvmax=atoi(string);
+                strcpy(tab[i]->nom, string);
                 fgets(string, 99, fp);
-                champ.att=atoi(string);
+                tab[i]->pvmax=atoi(string);
                 fgets(string, 99, fp);
-                champ.def=atoi(string);
+                tab[i]->att=atoi(string);
                 fgets(string, 99, fp);
-                champ.agilite=atoi(string);
+                tab[i]->def=atoi(string);
                 fgets(string, 99, fp);
-                champ.vitesse=atoi(string);
+                tab[i]->agilite=atoi(string);
                 fgets(string, 99, fp);
-                champ.tech.nom=string;
+                tab[i]->vitesse=atoi(string);
                 fgets(string, 99, fp);
-                champ.tech.nom=string;
-                champ.pvcourant=champ.pvmax;
-                champ.jauge=0;
-                champ.nbeffets=0;
-                champ.statut=1; // vivant
+                strcpy(tab[i]->tech.nom, string);
+                tab[i]->pvcourant=tab[i]->pvmax;
+                tab[i]->jauge=0;
+                tab[i]->nbeffets=0;
+                tab[i]->statut=1; // vivant
+                int j=0;
+                while(j==0){
+                    if(fgets(string, 1, fp)=='\n'){
+                        j=1;
+                    }
+                }
             }
+            fclose(fp);
         }
-        fclose(fp);
-    }
     else{
         printf("Erreur d'ouverture du fichier\n");
         exit(1);
     }
-    return champ;
 }
 
 void vide_buffer(){
