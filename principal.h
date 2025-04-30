@@ -71,5 +71,5 @@ void cryogenese(Champ* sandrine, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3)
 void scierculaire(Champ* annesophie, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3);
 void cicatricesEternels(Champ* gaby, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3);
 void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2);
-Champ getchamp(Champ* tab[]);
+void getchamp(Champ* tab[]);
 void vide_buffer();
