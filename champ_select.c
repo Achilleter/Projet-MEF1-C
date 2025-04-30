@@ -4,31 +4,40 @@ void selection(Champ tous[], Champ e1[3], Champ e2[3]){
     int deja_pris[10]={0};
     char *nom_e1;
     char *nom_e2;
-    int n1, n2;
+    int n1, n2, verif;
     printf("Nom de l'équipe 1: ");
     do{
         printf("Combien de caractères composent le nom de votre équipe (espaces compris)? ");
-        scanf("%d", &n1);
-    } while (n1<0);
+        verif=scanf("%d", &n1);
+        vide_buffer();
+    } while (n1<0 || verif!=1);
     nom_e1=malloc(n1*sizeof(char));
     printf("Entrez le nom de votre équipe: ");
-    scanf("%s", nom_e1);
+    do{
+        verif=scanf("%s", nom_e1);
+        vide_buffer();
+    }while(verif!=1);
     printf("Nom de l'équipe 2: ");
     do{
         printf("Combien de caractères composent le nom de votre équipe (espaces compris)? ");
-        scanf("%d", &n2);
-    } while (n2<0);
+        verif=scanf("%d", &n2);
+        vide_buffer();
+    } while (n2<0 || verif!=1);
     nom_e2=malloc(n2*sizeof(char));
     printf("Entrez le nom de votre équipe: ");
-    scanf("%s", nom_e2);
+    do{
+        verif=scanf("%s", nom_e2);
+        vide_buffer();
+    }while(verif!=1);
     for (int i=0; i<3; i++) {
         int choix;
         printf("%s, choisissez votre combattant %d :\n", nom_e1, i+1);
         afficherEquipeChamp(tous, deja_pris);
         do {
             printf("Votre choix: ");
-            scanf("%d", &choix);
-        } while (choix<1 || choix>10 || deja_pris[choix-1]==1);
+            verif=scanf("%d", &choix);
+            vide_buffer();
+        } while (choix<1 || choix>10 || deja_pris[choix-1]==1 || verif!=1);
         e1[i]=tous[choix-1];
         deja_pris[choix-1]=1;
         printf("%s sélectionné!\n\n", e1[i].nom);
