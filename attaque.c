@@ -1,6 +1,10 @@
 #include "principal.h"
 
 float attaque(Champ *champatt, Champ *champdef){
+    if(*champatt == NULL || *champdef == NULL){
+        printf("Ouverture impossible");
+        exit(1);
+    }
     float degats = champatt->att - champdef->def;
     if (degats < 0) {
         degats = 0;
