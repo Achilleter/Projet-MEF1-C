@@ -52,6 +52,8 @@ void selection(Champ tous[], Champ e1[3], Champ e2[3]){
     for (int i = 0; i < 3; i++){
         printf("- %s\n", e2[i].nom);
     }
+    free(nom_e1);
+    free(nom_e2);
 }
 
 
