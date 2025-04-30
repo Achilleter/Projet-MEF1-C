@@ -99,6 +99,7 @@ int memeEquipe(Champ* champ, Equipe* e1) {
 
 Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
     int index=3;
+    int verif;
     printf("Equipe adverse: \n");
     for (int i=0; i<3; i++) {
         if (e2->membres[i].pvcourant>0) {
@@ -110,11 +111,12 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
     do{
         do{
             printf("Choisissez votre cible (0,1 ou 2): ");
-            scanf("%d",&index);
+            verif=scanf("%d",&index);
             if(index<0 || index>2){
                 printf("Index invalide");
             }
-        } while (index<0 || index>2);
+            vide_buffer();
+        } while (index<0 || index>2 || verif!=1);
         if(e2->membres[index].pvcourant<=0){
             printf("Cible KO. Veuillez en chosir une nouvelle\n");
             index=3;
@@ -125,6 +127,7 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
 
 void tour (Equipe* e1, Equipe* e2){
     Champ *tab[6];
+    int verif;
     triParVit(e1,e2,tab);
     for (int i=0;i<6;i++){
         if(tab[i]->pvcourant<=0){
@@ -150,7 +153,13 @@ void tour (Equipe* e1, Equipe* e2){
         if (tab[i]->jauge==4) {
             int choix;
             printf("Jauge pleine! Voulez-vous utiliser une technique spéciale? (1:oui, 0:non): ");
-            scanf("%d", &choix);
+            do{
+                verif=scanf("%d", &choix);
+                if(choix>1 || choix<0){
+                    printf("INDEX INVALIDE");
+                }
+                vide_buffer();
+            }while(choix>1 || choix<0 || verif!=1); 
             if (choix==1){
                 printf("%s utilise sont attaque spéciale sur %s!\n", tab[i]->nom, cible->nom);
                 //implementer fonctions techniques
