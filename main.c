@@ -23,12 +23,11 @@ int main(){
     printf("%s\n", equipe2.nom);
     printf("Choisissez vos champions afin de former votre equipe !\n");
     printf("Pour cela vous devez choisir 1 champion chacun votre tour jusqu'a ce que vous ayez 3 champions.\n");
-    for(int i=0; i<3; i++){
-        printf("Equipe 1, choisissez votre champion numero %d: ", i+1);
-        //choixChamp(&equipe1.membres[i]);
-        printf("Equipe 2, choisissez votre champion numero %d: ", i+1);
-        //choixChamp(&equipe2.membres[i]);
-    }
+    Champ* liste[10];
+    getchamp(liste);
+    int deja_pris[6] = {0}; // tableau pour savoir si le champion a deja ete pris
+    afficherEquipeChamp(*liste, deja_pris); // Affiche la liste des champions disponibles
+    selection(*liste, equipe1, equipe2);
     printf("Vos equipes sont pretes !\n");
     //afficherEquipe(&equipe1);// Affiche l'équipe 1
     //afficherEquipe(&equipe2);

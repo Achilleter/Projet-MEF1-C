@@ -24,7 +24,7 @@ typedef struct {
 } EffetActif;
 
 typedef struct {
-    char *nom;                     
+    char nom[100];                     
     float valeur;                 
     char description[1000];
     int nbtactifs;                
@@ -71,5 +71,5 @@ void exploglace(Champ* sandrine, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3)
 void scierculaire(Champ* annesophie, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3);
 void cicatricesEternels(Champ* gaby, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3);
 void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2);
-Champ getchamp(char nom[20],Champ champ);
+Champ getchamp(Champ* tab[]);
 void vide_buffer();
