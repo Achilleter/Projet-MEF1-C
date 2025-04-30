@@ -1,11 +1,11 @@
 #include "principal.h"
 
 void selection(Champ tous[], Champ e1[3], Champ e2[3]){
-    int deja_pris[10] = {0};
+    int deja_pris[10]={0};
     char *nom_e1;
     char *nom_e2;
     int n1, n2;
-    printf("Nom de l'équipe 1 : ");
+    printf("Nom de l'équipe 1: ");
     do{
         printf("Combien de caractères composent le nom de votre équipe (espaces compris)? ");
         scanf("%d", &n1);
@@ -13,7 +13,7 @@ void selection(Champ tous[], Champ e1[3], Champ e2[3]){
     nom_e1=malloc(n1*sizeof(char));
     printf("Entrez le nom de votre équipe: ");
     scanf("%s", nom_e1);
-    printf("Nom de l'équipe 2 : ");
+    printf("Nom de l'équipe 2: ");
     do{
         printf("Combien de caractères composent le nom de votre équipe (espaces compris)? ");
         scanf("%d", &n2);
@@ -40,15 +40,15 @@ void selection(Champ tous[], Champ e1[3], Champ e2[3]){
         } while (choix<1 || choix>10 || deja_pris[choix-1]==1);
         e2[i]=tous[choix-1];
         deja_pris[choix-1]=1;
-        printf("%s sélectionné!\n\n", e2[i].nom);
+        printf("%s sélectionné!\n", e2[i].nom);
     }
 
     printf("Composition des équipes:\n");
-    printf("%s :\n", nom_e1);
+    printf("%s:\n", nom_e1);
     for (int i=0; i<3; i++){
         printf("- %s\n", e1[i].nom);
     }
-    printf("%s :\n", nom_e2);
+    printf("%s:\n", nom_e2);
     for (int i = 0; i < 3; i++){
         printf("- %s\n", e2[i].nom);
     }
