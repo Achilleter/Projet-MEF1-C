@@ -72,3 +72,4 @@ void scierculaire(Champ* annesophie, Champ* ennemi1, Champ* ennemi2, Champ* enne
 void cicatricesEternels(Champ* gaby, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3);
 void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2);
 Champ getchamp(char nom[20],Champ champ);
+void vide_buffer();
