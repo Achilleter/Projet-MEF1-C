@@ -1,7 +1,7 @@
 #include "principal.h"
 
 float attaque(Champ *champatt, Champ *champdef){
-    if(*champatt == NULL || *champdef == NULL){
+    if(champatt == NULL || champdef == NULL){
         printf("Erreur : pointeur nul");
         exit(1);
     }
@@ -14,7 +14,7 @@ float attaque(Champ *champatt, Champ *champdef){
 }
 
 void degatseffetStatut(Champ *champ){
-    if(*champ == NULL){
+    if(champ == NULL){
         printf("Erreur : pointeur nul");
         exit(1);
     }
@@ -47,7 +47,7 @@ void degatseffetStatut(Champ *champ){
 }
 
 void appeffetStatut(Champ *champ, EffetStatut effetstatut, int duree) {
-    if(*champ == NULL){
+    if(champ == NULL){
         printf("Erreur : pointeur nul");
         exit(1);
     }
@@ -65,7 +65,7 @@ void appeffetStatut(Champ *champ, EffetStatut effetstatut, int duree) {
 }
 
 void appeffetStat(Champ *champ, EffetStat effetstat, float valeur) {
-    if(*champ == NULL){
+    if(champ == NULL){
         printf("Erreur : pointeur nul");
         exit(1);
     }
@@ -89,7 +89,7 @@ void appeffetStat(Champ *champ, EffetStat effetstat, float valeur) {
 }
 
 void triParVit(Equipe *e1, Equipe *e2, Champ *tab[6]) {
-    if(*e1 == NULL || *e2 == NULL){
+    if(e1 == NULL || e2 == NULL){
         printf("Erreur : pointeur nul");
         exit(1);
     }
@@ -115,7 +115,7 @@ void triParVit(Equipe *e1, Equipe *e2, Champ *tab[6]) {
 }
 
 int memeEquipe(Champ* champ, Equipe* e1) {
-    if(*champ == NULL || *e1 == NULL){
+    if(champ == NULL || e1 == NULL){
         printf("Erreur : pointeur nul");
         exit(1);
     }
@@ -128,7 +128,7 @@ int memeEquipe(Champ* champ, Equipe* e1) {
 }
 
 Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
-    if(*attaquant == NULL || *e1 == NULL || *e2 == NULL){
+    if(attaquant == NULL || e1 == NULL || e2 == NULL){
         printf("Erreur : pointeur nul");
         exit(1);
     }
