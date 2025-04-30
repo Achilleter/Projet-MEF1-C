@@ -12,7 +12,7 @@
 
 
 
-Base pour affichage:
+//Base pour affichage:
 //void afficherChamp(const Champ *c, int index, int prochain) {
     // 1. Nom + numéro + statut
     printf("%-12s |%d|", c->nom, index + 1);
