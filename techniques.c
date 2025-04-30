@@ -1,6 +1,10 @@
 #include "principal.h"
 
 void berserk(Champ* xavier){
+    if(xavier==NULL){
+        printf("Erreur: pointeur nul.");
+        exit(1);
+    }
     // augmente l'attaque de 20 et la défense de 10, applique l'invincibilité pendant 1 tour puis s'immobilise pendant 1 tour
     if(xavier->tech.nbtactifs == 0){
         xavier->tech.nbtactifs = 2;
@@ -21,6 +25,10 @@ void berserk(Champ* xavier){
 
 
 void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
+    if(nathalie==NULL||allie1==NULL||allie2==NULL){
+        printf("Erreur: pointeur nul.");
+        exit(10);
+    }
     //soigne de 100 tous les alliés et leur enlève tous les effets statuts négatifs (sauf les effets comme l'invincibilité, le renvoie de dégâts et la provocation)
     nathalie->tech.nbtrechargement = 4;
     nathalie->jauge -= 4;
@@ -45,6 +53,10 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
 }
 
  void marqueduBourreau(Champ* zed, Champ* ennemi){
+    if(zed==NULL||ennemi==NULL){
+        printf("Erreur: pointeur nul.");
+        exit(11);
+    }
     // applique l'effet bourreau sur un ennemi pendant 2 tours
     printf("\n Zed utilise marque du bourreau ! \n");
     zed->jauge -= 4;
@@ -54,6 +66,10 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
 }
 
 void murailleInfinie(Champ* smasheur){
+    if(smasheur==NULL){
+        printf("Erreur: pointeur nul.");
+        exit(100);
+    }
     //provoque les ennemis, augmente sa défense de 20 et renvoie les dégats pendant 1 tour
     if(smasheur->tech.nbtactifs == 0){
         smasheur->tech.nbtactifs = 2;
@@ -71,6 +87,10 @@ void murailleInfinie(Champ* smasheur){
 }
 
 void motivation(Champ* steve, Champ* allie1, Champ* allie2){
+    if(steve==NULL||allie1==NULL||allie2==NULL){
+        printf("Erreur: pointeur nul.");
+        exit(101);
+    }
     //augmentation de la vitesse d'un allié ou de soi même de 25
     int verif;
     printf("\n Steve utilise Motivation ! \n");
@@ -102,6 +122,10 @@ void motivation(Champ* steve, Champ* allie1, Champ* allie2){
 }
 
 void fossoyeurdesMondes(Champ* booga){
+    if(booga==NULL){
+        printf("Erreur: pointeur nul.");
+        exit(110);
+    }
     if(booga->tech.nbtactifs == 0){
         booga->tech.nbtactifs = 2;
         booga->tech.nbtrechargement = 3;
@@ -113,7 +137,11 @@ void fossoyeurdesMondes(Champ* booga){
     }
 }
 
-void exploglace(Champ* sandrine, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3){
+void cryogenese(Champ* sandrine, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3){
+    if(steve==NULL||allie1==NULL||allie2==NULL){
+        printf("Erreur: pointeur nul.");
+        exit(111);
+    }
     // inflige 30 de dégats à tous les ennemis et diminue leur vitesse de 15
     printf("\n Sandrine utilise Exploglace ! \n");
     sandrine->tech.nbtrechargement = 4;
@@ -127,6 +155,10 @@ void exploglace(Champ* sandrine, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3)
 }
 
 void scierculaire(Champ* annesophie, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3){
+    if(annesophie==NULL||ennemi1==NULL||ennemi2==NULL||ennemi3=NULL){
+        printf("Erreur: pointeur nul.");
+        exit(1000);
+    }
     //inflige 50 dégats à tous les ennemis et réduit leur défense de 5
     printf("\n Annesophie utilise Scierculaire ! \n");
     annesophie->tech.nbtrechargement = 4;
@@ -140,6 +172,10 @@ void scierculaire(Champ* annesophie, Champ* ennemi1, Champ* ennemi2, Champ* enne
 }
 
 void cicatricesEternels(Champ* gaby, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3){
+    if(gaby==NULL||ennemi1==NULL||ennemi2==NULL||ennemi3=NULL){
+        printf("Erreur: pointeur nul.");
+        exit(1001);
+    }
     // inflige 100 de dégats à tous les ennemis
     printf("\n Gaby utilise Cicatrices Eternels ! \n");
     gaby->tech.nbtrechargement = 6;
@@ -150,6 +186,10 @@ void cicatricesEternels(Champ* gaby, Champ* ennemi1, Champ* ennemi2, Champ* enne
 }
 
 void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2){
+    if(clara==NULL||allie1==NULL||allie2==NULL){
+        printf("Erreur: pointeur nul.");
+        exit(1010);
+    }
     // Ressucite un allié avec la moitié de ses points de vies
     int verif;
     if (allie1->statut==1||allie2->statut==1) {
