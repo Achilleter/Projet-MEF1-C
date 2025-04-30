@@ -1,6 +1,19 @@
 #include "principal.h"
 
-void afficherChamp(const Champ *c, int index, int prochain) {
+
+
+
+
+
+
+
+
+
+
+
+
+Base pour affichage:
+//void afficherChamp(const Champ *c, int index, int prochain) {
     // 1. Nom + numéro + statut
     printf("%-12s |%d|", c->nom, index + 1);
     if (c->statut == 0)
@@ -29,7 +42,7 @@ void afficherChamp(const Champ *c, int index, int prochain) {
     printf("\n\n");
 }
 
-void afficherEquipe(const Equipe* equipe, Champ *prochain) {
+//void afficherEquipe(const Equipe* equipe, Champ *prochain) {
     printf("\n===[ %s ]===\n\n", equipe->nom);
     for (int i = 0; i < 3; i++) {
         int estProchain = (prochain == &(equipe->membres[i]));
