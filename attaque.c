@@ -97,12 +97,12 @@ int memeEquipe(Champ* champ, Equipe* e1) {
     return 0;
 }
 
-Champ* choixCible(Champ* att, Equipe* e1, Equipe* e2) {
+Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
     int index=3;
     printf("Equipe adverse: \n");
     for (int i=0; i<3; i++) {
         if (e2->membres[i].pvcourant>0) {
-            printf("%d - %s (PV: %f) \n", i, e2->membres[i].nom, e2->membres[i].pvcourant);
+            printf("%d- %s (PV: %f) \n", i, e2->membres[i].nom, e2->membres[i].pvcourant);
         } else {
             printf("%s KO \n", e2->membres[i].nom);
         }
