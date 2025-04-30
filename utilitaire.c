@@ -35,3 +35,8 @@ Champ getchamp(char nom[20],Champ champ){
     }
     return champ;
 }
+
+void vide_buffer(){
+    while (getchar()!='\n'){
+    }
+}
