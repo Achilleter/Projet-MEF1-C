@@ -67,7 +67,7 @@ void marqueduBourreau(Champ* zed, Champ* ennemi);
 void murailleInfinie(Champ* smasheur);
 void motivation(Champ* steve, Champ* allie1, Champ* allie2);
 void fossoyeurdesMondes(Champ* booga);
-void exploglace(Champ* sandrine, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3);
+void cryogenese(Champ* sandrine, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3);
 void scierculaire(Champ* annesophie, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3);
 void cicatricesEternels(Champ* gaby, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3);
 void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2);
