@@ -138,7 +138,7 @@ void fossoyeurdesMondes(Champ* booga){
 }
 
 void cryogenese(Champ* sandrine, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3){
-    if(steve==NULL||allie1==NULL||allie2==NULL){
+    if(sandrine==NULL||ennemi1==NULL||ennemi2==NULL||ennemi3=NULL){
         printf("Erreur: pointeur nul.");
         exit(111);
     }
