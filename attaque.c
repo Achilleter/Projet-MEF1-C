@@ -160,7 +160,7 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
 }
 
 void tour (Equipe* e1, Equipe* e2){
-    if(*e1 == NULL || *e2 == NULL){
+    if(e1 == NULL || e2 == NULL){
         printf("Erreur : pointeur nul");
         exit(1);
     }
