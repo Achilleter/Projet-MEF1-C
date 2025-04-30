@@ -138,7 +138,7 @@ void fossoyeurdesMondes(Champ* booga){
 }
 
 void cryogenese(Champ* sandrine, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3){
-    if(sandrine==NULL||ennemi1==NULL||ennemi2==NULL||ennemi3=NULL){
+    if(sandrine==NULL||ennemi1==NULL||ennemi2==NULL||ennemi3==NULL){
         printf("Erreur: pointeur nul.");
         exit(111);
     }
@@ -155,7 +155,7 @@ void cryogenese(Champ* sandrine, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3)
 }
 
 void scierculaire(Champ* annesophie, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3){
-    if(annesophie==NULL||ennemi1==NULL||ennemi2==NULL||ennemi3=NULL){
+    if(annesophie==NULL||ennemi1==NULL||ennemi2==NULL||ennemi3==NULL){
         printf("Erreur: pointeur nul.");
         exit(1000);
     }
@@ -172,7 +172,7 @@ void scierculaire(Champ* annesophie, Champ* ennemi1, Champ* ennemi2, Champ* enne
 }
 
 void cicatricesEternels(Champ* gaby, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3){
-    if(gaby==NULL||ennemi1==NULL||ennemi2==NULL||ennemi3=NULL){
+    if(gaby==NULL||ennemi1==NULL||ennemi2==NULL||ennemi3==NULL){
         printf("Erreur: pointeur nul.");
         exit(1001);
     }
