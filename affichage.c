@@ -42,13 +42,6 @@
     printf("\n\n");
 }
 
-//void afficherEquipe(const Equipe* equipe, Champ *prochain) {
-    printf("\n===[ %s ]===\n\n", equipe->nom);
-    for (int i = 0; i < 3; i++) {
-        int estProchain = (prochain == &(equipe->membres[i]));
-        afficherChamp(&(equipe->membres[i]), i, estProchain);
-    }
-}
 
 void afficherEquipeChamp(Champ tab[], int deja_pris[]){
     for (int i=0; i<10; i++) {
