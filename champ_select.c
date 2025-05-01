@@ -4,7 +4,7 @@ void selection(Champ tous[], Champ* e1, Champ* e2){
     int deja_pris[10]={0};
     // char *nom_e1;
     // char *nom_e2;
-    // int n1, n2, verif;
+    int verif;
     // printf("Nom de l'équipe 1: ");
     // do{
     //     printf("Combien de caractères composent le nom de votre équipe (espaces compris)? ");
@@ -59,7 +59,7 @@ void selection(Champ tous[], Champ* e1, Champ* e2){
         printf("- %s\n", e1[i].nom);
     }
     printf("%s:\n", nom_e2);
-    for (int i = 0; i < 3; i++){
+    for (int i=0; i<3; i++){
         printf("- %s\n", e2[i].nom);
     }
     free(nom_e1);
