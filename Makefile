@@ -2,7 +2,7 @@
 PROG = PROJET-MEF1-C
 
 # Fichiers sources
-SRC = main.c attaque.c utilitaire.c techniques.c
+SRC = main.c attaque.c utilitaire.c techniques.c champ_select.c affichage.c
 
 # Options de compilation
 CFLAGS = -Wall -Wextra -g

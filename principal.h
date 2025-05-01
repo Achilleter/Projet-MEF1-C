@@ -73,3 +73,4 @@ void cicatricesEternels(Champ* gaby, Champ* ennemi1, Champ* ennemi2, Champ* enne
 void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2);
 void getchamp(Champ* tab[]);
 void vide_buffer();
+void selection(Champ tous[], Champ* e1[], Champ* e2[]);

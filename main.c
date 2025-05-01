@@ -25,9 +25,7 @@ int main(){
     printf("Pour cela vous devez choisir 1 champion chacun votre tour jusqu'a ce que vous ayez 3 champions.\n");
     Champ* liste[10];
     getchamp(liste);
-    int deja_pris[6] = {0}; // tableau pour savoir si le champion a deja ete pris
-    afficherEquipeChamp(*liste, deja_pris); // Affiche la liste des champions disponibles
-    selection(*liste, equipe1, equipe2);
+    selection(*liste, &equipe1, &equipe2);
     printf("Vos equipes sont pretes !\n");
     //afficherEquipe(&equipe1);// Affiche l'équipe 1
     //afficherEquipe(&equipe2);
