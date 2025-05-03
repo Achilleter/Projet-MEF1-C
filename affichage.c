@@ -21,9 +21,9 @@
 void afficherEquipeChamp(Champ tab[], int deja_pris[]){
     for (int i=0; i<10; i++) {
         if (deja_pris[i]==1){
-            printf("%d - %s (PV:%d ATT:%d DEF:%d AGI:%d VIT:%d) (DEJA PRIS).\n",  i + 1, tab[i].nom, tab[i].pvmax, tab[i].att, tab[i].def, tab[i].agilite, tab[i].vitesse);
+            printf("%d - %s (PV:%f ATT:%f DEF:%f AGI:%f VIT:%f) (DEJA PRIS).\n",  i + 1, tab[i].nom, tab[i].pvmax, tab[i].att, tab[i].def, tab[i].agilite, tab[i].vitesse);
         } else {
-            printf("%d - %s (PV:%d ATT:%d DEF:%d AGI:%d VIT:%d).\n",  i + 1, tab[i].nom, tab[i].pvmax, tab[i].att, tab[i].def, tab[i].agilite, tab[i].vitesse);
+            printf("%d - %s (PV:%f ATT:%f DEF:%f AGI:%f VIT:%f).\n",  i + 1, tab[i].nom, tab[i].pvmax, tab[i].att, tab[i].def, tab[i].agilite, tab[i].vitesse);
         }
     }
 }

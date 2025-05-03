@@ -1,10 +1,9 @@
 #include "principal.h"
 
-void selection(Champ tous[], Champ* e1, Champ* e2){                                         
-    int deja_pris[10]={0};
+void selection(Champ tous[], Equipe* e1, Equipe* e2){                                         
     // char *nom_e1;
     // char *nom_e2;
-    int verif;
+    // int verif;
     // printf("Nom de l'équipe 1: ");
     // do{
     //     printf("Combien de caractères composent le nom de votre équipe (espaces compris)? ");
@@ -29,6 +28,7 @@ void selection(Champ tous[], Champ* e1, Champ* e2){
     //     verif=scanf("%s", nom_e2);
     //     vide_buffer();
     // }while(verif!=1);
+    int deja_pris[10]={0};
     for (int i=0; i<3; i++) {
         int choix;
         printf("%s, choisissez votre combattant %d :\n", e1->nom, i+1);
@@ -39,7 +39,7 @@ void selection(Champ tous[], Champ* e1, Champ* e2){
             verif=scanf("%d", &choix);
             vide_buffer();
         } while (choix<1 || choix>10 || deja_pris[choix-1]==1 || verif!=1);
-        e1[i]=tous[choix-1];
+        e1->membres[i]=tous[choix-1];
         deja_pris[choix-1]=1;
         printf("%s sélectionné!\n\n", e1[i].nom);
         printf("%s, choisissez votre combattant %d:\n", e2->nom, i+1);
@@ -48,22 +48,19 @@ void selection(Champ tous[], Champ* e1, Champ* e2){
             printf("Votre choix: ");
             scanf("%d", &choix);
         } while (choix<1 || choix>10 || deja_pris[choix-1]==1);
-        e2[i]=tous[choix-1];
+        e2->membres[i]=tous[choix-1];
         deja_pris[choix-1]=1;
         printf("%s sélectionné!\n", e2[i].nom);
     }
-
     printf("Composition des équipes:\n");
-    printf("%s:\n", nom_e1);
+    printf("%s:\n", e1->nom);
     for (int i=0; i<3; i++){
         printf("- %s\n", e1[i].nom);
     }
-    printf("%s:\n", nom_e2);
+    printf("%s:\n", e2->nom);
     for (int i=0; i<3; i++){
         printf("- %s\n", e2[i].nom);
     }
-    free(nom_e1);
-    free(nom_e2);
 }
 
 
