@@ -35,31 +35,46 @@ void selection(Champ tous[], Equipe* e1, Equipe* e2){
         afficherEquipeChamp(tous, deja_pris);
         int verif;
         do {
+            choix=0;
             printf("Votre choix: ");
             verif=scanf("%d", &choix);
             vide_buffer();
-        } while (choix<1 || choix>10 || deja_pris[choix-1]==1 || verif!=1);
+            if(choix<1 || choix>10){
+                printf("Index invalide\n");
+            }
+            else if(deja_pris[choix-1]==1){
+                printf("Ce champion a deja ete pris !\n");
+            }
+        }while (choix<1 || choix>10 || deja_pris[choix-1]==1 || verif!=1);
         e1->membres[i]=tous[choix-1];
         deja_pris[choix-1]=1;
-        printf("%s sélectionné!\n\n", e1[i].nom);
+        printf("%s a selectionne %s\n\n", e1->nom, e1->membres[i].nom);
         printf("%s, choisissez votre combattant %d:\n", e2->nom, i+1);
         afficherEquipeChamp(tous, deja_pris);
         do {
+            choix=0;
             printf("Votre choix: ");
-            scanf("%d", &choix);
-        } while (choix<1 || choix>10 || deja_pris[choix-1]==1);
+            verif=scanf("%d", &choix);
+            vide_buffer();
+            if(choix<1 || choix>10){
+                printf("Index invalide\n");
+            }
+            else  if(deja_pris[choix-1]==1){
+                printf("Ce champion a deja ete pris !\n");
+            }
+        } while (choix<1 || choix>10 || deja_pris[choix-1]==1 || verif!=1);
         e2->membres[i]=tous[choix-1];
         deja_pris[choix-1]=1;
-        printf("%s sélectionné!\n", e2[i].nom);
+        printf("%s a selectionne %s\n", e2->nom, e2->membres[i].nom);
     }
-    printf("Composition des équipes:\n");
+    printf("Composition des equipes:\n");
     printf("%s:\n", e1->nom);
     for (int i=0; i<3; i++){
-        printf("- %s\n", e1[i].nom);
+        printf("- %s\n", e1->membres[i].nom);
     }
     printf("%s:\n", e2->nom);
     for (int i=0; i<3; i++){
-        printf("- %s\n", e2[i].nom);
+        printf("- %s\n", e2->membres[i].nom);
     }
 }
 
