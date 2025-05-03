@@ -5,7 +5,6 @@ void getchamp(Champ tab[]){
     if(fp!= NULL){
         char string[99];
         for(int i=0; i<10; i++){
-            printf("fesses");
             fgets(string, 99, fp);
             strcpy(tab[i].nom, string);
             fgets(string, 99, fp);
@@ -24,7 +23,6 @@ void getchamp(Champ tab[]){
             tab[i].jauge=0;
             tab[i].nbeffets=0;
             tab[i].statut=1; // vivant
-            printf("fesses");
         }
         fclose(fp);
     }
@@ -32,9 +30,19 @@ void getchamp(Champ tab[]){
         printf("Erreur d'ouverture du fichier\n");
         exit(1);
     }
+    for (int i = 0; i < 10; i++) {
+        nettoyerNom(tab[i].nom);
+    }
 }
 
 void vide_buffer(){
     while (getchar()!='\n'){
+    }
+}
+
+void nettoyerNom(char* nom) {
+    size_t len = strlen(nom);
+    if (len > 0 && nom[len - 1] == '\n') {
+        nom[len - 1] = '\0';
     }
 }

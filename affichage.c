@@ -1,19 +1,45 @@
 #include "principal.h"
 
-// void afficherChamp(Equipe *equipe){
-    // for(int i=0; i<3; i++){
-    //     if(equipe->membres[i].statut == 0){
-    //          printf("%s |✖|", equipe->membres[i].nom);
-    //     }
-    //     else{
-    //         printf("%s |%d|", equipe->membres[i].nom, i+1);
-    //     }
-    //     printf("\n");
-    //     if(equipe->membres[i].nbeffets != 0){
-    //         for(int j=0; j<equipe->membres[i].nbeffets; j++){
-    //             switch (equipe->membres[i].effets[j]) {
-    //                 case 1:
-    //                     printf("(U+2620");
+void afficherChamp(Equipe *equipe){
+    for(int i=0; i<3; i++){
+        if(equipe->membres[i].statut == 0){
+             printf("%s |✖|", equipe->membres[i].nom);
+        }
+        else{
+            printf("%s |%d|", equipe->membres[i].nom, i+1);
+        }
+        printf("\n");
+        if(equipe->membres[i].nbeffets != 0){
+            for(int j=0; j<equipe->membres[i].nbeffets; j++){
+                switch (equipe->membres[i].effets[j].effet_statut) {
+                    case 1:
+                        printf("(poison) ");
+                        break;
+                    case 2:
+                        printf("(stun) ");
+                        break;
+                    case 3:
+                        printf("(provocation) ");
+                        break;
+                    case 4:
+                        printf("(invincibilite) ");
+                        break;
+                    case 5:
+                        printf("(renvoie_degats) ");
+                        break;
+                    case 6:
+                        printf("(bourreau) ");
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        else{
+            printf(" \n");
+        }
+    }
+}
 
 
 
@@ -21,9 +47,10 @@
 void afficherEquipeChamp(Champ tab[], int deja_pris[]){
     for (int i=0; i<10; i++) {
         if (deja_pris[i]==1){
-            printf("%d - %s (PV:%f ATT:%f DEF:%f AGI:%f VIT:%f) (DEJA PRIS).\n",  i + 1, tab[i].nom, tab[i].pvmax, tab[i].att, tab[i].def, tab[i].agilite, tab[i].vitesse);
+            printf("%d - %s (PV:%f ATT:%f DEF:%f AGI:%f VIT:%f) (DEJA PRIS).\n\n",  i + 1, tab[i].nom, tab[i].pvmax, tab[i].att, tab[i].def, tab[i].agilite, tab[i].vitesse);
         } else {
-            printf("%d - %s (PV:%f ATT:%f DEF:%f AGI:%f VIT:%f).\n",  i + 1, tab[i].nom, tab[i].pvmax, tab[i].att, tab[i].def, tab[i].agilite, tab[i].vitesse);
+            printf("%d - %s (PV:%f ATT:%f DEF:%f AGI:%f VIT:%f).\n\n",  i + 1, tab[i].nom, tab[i].pvmax, tab[i].att, tab[i].def, tab[i].agilite, tab[i].vitesse);
+
         }
     }
 }

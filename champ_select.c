@@ -31,7 +31,7 @@ void selection(Champ tous[], Equipe* e1, Equipe* e2){
     int deja_pris[10]={0};
     for (int i=0; i<3; i++) {
         int choix;
-        printf("%s, choisissez votre combattant %d :\n", e1->nom, i+1);
+        printf("%s, choisissez votre combattant %d :\n\n", e1->nom, i+1);
         afficherEquipeChamp(tous, deja_pris);
         int verif;
         do {
@@ -48,8 +48,8 @@ void selection(Champ tous[], Equipe* e1, Equipe* e2){
         }while (choix<1 || choix>10 || deja_pris[choix-1]==1 || verif!=1);
         e1->membres[i]=tous[choix-1];
         deja_pris[choix-1]=1;
-        printf("%s a selectionne %s\n\n", e1->nom, e1->membres[i].nom);
-        printf("%s, choisissez votre combattant %d:\n", e2->nom, i+1);
+        printf("%s a selectionne %s\n", e1->nom, e1->membres[i].nom);
+        printf("%s, choisissez votre combattant %d:\n\n", e2->nom, i+1);
         afficherEquipeChamp(tous, deja_pris);
         do {
             choix=0;
@@ -67,15 +67,12 @@ void selection(Champ tous[], Equipe* e1, Equipe* e2){
         deja_pris[choix-1]=1;
         printf("%s a selectionne %s\n", e2->nom, e2->membres[i].nom);
     }
-    printf("Composition des equipes:\n");
-    printf("%s:\n", e1->nom);
-    for (int i=0; i<3; i++){
-        printf("- %s\n", e1->membres[i].nom);
+    printf("\n\nComposition des equipes:\n\n");
+    printf("%s:%19s:\n", e1->nom, e2->nom); 
+    for (int j=0; j<3; j++){
+        printf("%-20s%s\n", e1->membres[j].nom, e2->membres[j].nom); 
     }
-    printf("%s:\n", e2->nom);
-    for (int i=0; i<3; i++){
-        printf("- %s\n", e2->membres[i].nom);
-    }
+    printf("\n\n");
 }
 
 

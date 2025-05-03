@@ -13,7 +13,7 @@ int main(){
             printf("Veuillez entrer un nom d'equipe valide (20 caracteres maximum): ");
         }
     }while (strlen(equipe1->nom) > 20);
-    printf("bonjour %s\n", equipe1->nom);
+    printf("Bonjour %s\n", equipe1->nom);
     do{
         printf("Equipe 2: ");
         scanf("%s", equipe2->nom);
@@ -21,15 +21,13 @@ int main(){
             printf("Veuillez entrer un nom d'equipe valide (20 caracteres maximum): ");
         }
     }while (strlen(equipe2->nom) > 20);
-    printf("bonjour %s\n", equipe2->nom);
+    printf("Bonjour %s\n", equipe2->nom);
     printf("Choisissez vos champions afin de former votre equipe !\n");
     printf("Pour cela vous devez choisir 1 champion chacun votre tour jusqu'a ce que vous ayez 3 champions.\n");
     Champ liste[10];
     getchamp(liste);
     selection(liste, equipe1, equipe2);
     printf("Vos equipes sont pretes !\n");
-    //afficherEquipe(&equipe1);// Affiche l'équipe 1
-    //afficherEquipe(&equipe2);
     printf("Le combat commence !\n");
     tour(equipe1, equipe2);// Appelle la fonction tour pour chaque équipe
     free(equipe1);
