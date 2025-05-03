@@ -1,19 +1,19 @@
 #include "principal.h"
 
 // void afficherChamp(Equipe *equipe){
-//     for(int i=0; i<3; i++){
-//         if(equipe->membres[i].statut == 0){
-//             printf("%s |✖|", equipe->membres[i].nom);
-//         }
-//         else{
-//             printf("%s |%d|", equipe->membres[i].nom, i+1);
-//         }
-//         printf("\n");
-//         if(equipe->membres[i].nbeffets != 0){
-//             for(int j=0; j<equipe->membres[i].nbeffets; j++){
-//                 switch (equipe->membres[i].effets[j]) {
-//                     case 1:
-//                         printf("(U+2620");
+    // for(int i=0; i<3; i++){
+    //     if(equipe->membres[i].statut == 0){
+    //          printf("%s |✖|", equipe->membres[i].nom);
+    //     }
+    //     else{
+    //         printf("%s |%d|", equipe->membres[i].nom, i+1);
+    //     }
+    //     printf("\n");
+    //     if(equipe->membres[i].nbeffets != 0){
+    //         for(int j=0; j<equipe->membres[i].nbeffets; j++){
+    //             switch (equipe->membres[i].effets[j]) {
+    //                 case 1:
+    //                     printf("(U+2620");
 
 
 

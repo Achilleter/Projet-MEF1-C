@@ -1,10 +1,70 @@
-Xavier 250 35 20 25 25 berserk
-Nathalie 125 15 10 20 25 flashbacks
-Zed 175 50 20 30 25 bourreau
-Smasheur 350 30 30 10 15 muraille
-Sandrine 175 20 25 20 25 cryogenese
-Anne-Sophie 150 60 15 30 25 scierculaire
-Gaby 100 15 10 15 25 cicatrices_éternels
-Clara 150 20 20 25 25 reinitialisation
-Steve 300 30 40 15 20 motivation
-Booga 200 30 20 25 25 fossoyeur_des_Mondes
+Xavier
+250
+35 
+20 
+25 
+25 
+berserk
+Nathalie 
+125 
+15 
+10 
+20 
+25 
+flashbacks
+Zed 
+175 
+50 
+20 
+30 
+25 
+bourreau
+Smasheur 
+350 
+30 
+30 
+10 
+15 
+muraille
+Sandrine 
+175 
+20 
+25 
+20 
+25 
+cryogenese
+Anne-Sophie 
+150 
+60 
+15 
+30 
+25 
+scierculaire
+Gaby 
+100 
+15 
+10 
+15 
+25 
+cicatrices_éternels
+Clara 
+150 
+20 
+20 
+25 
+25 
+reinitialisation
+Steve 
+300 
+30 
+40 
+15 
+20 
+motivation
+Booga 
+200 
+30 
+20 
+25 
+25 
+fossoyeur_des_Mondes
