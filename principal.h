@@ -26,8 +26,7 @@ typedef struct {
 typedef struct {
     char nom[100];                                    
     char description[1000];
-    int nbtactifs;                
-    int nbtrechargement;            
+    int nbtactifs;                          
 } Techniquespe;
 
 typedef struct {

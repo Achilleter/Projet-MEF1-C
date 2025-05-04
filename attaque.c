@@ -9,11 +9,8 @@ float attaque(Champ *champatt, Champ *champdef){
     if (degats < 0) {
         degats = 0;
     }
-    if (champdef->statut == 4) { // invincibilité
-        degats = 0;
-    }
     if (champatt->statut == 5) { // renvoie de dégats
-        champatt->pvcourant -= degats / 2;
+        champatt->pvcourant -= degats / 4;
         if (champatt->pvcourant < 0) {
             champatt->pvcourant = 0;
         }
@@ -156,6 +153,14 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
             printf("%s KO \n", e2->membres[i].nom);
         }
     }
+    for(int j=0; j<3; j++){
+        for(int k=0; k<e2->membres[j].nbeffets; k++){
+            if(e2->membres[j].effets[k].effet_statut==3){
+                printf("%s est provoqué par %s !\n",attaquant->nom, e2->membres[j].nom);
+                return &e2->membres[j];
+            }
+        }
+    }
     do{
         do{
             printf("Choisissez votre cible (0,1 ou 2): ");
@@ -203,6 +208,7 @@ void tour (Equipe* e1, Equipe* e2){
                 adversaire=e2;
             }
         Champ *cible=choixCible(tab[i], joueur, adversaire);
+        float pvtemp=cible->pvcourant;
         if (tab[i]->jaugeactuelle==tab[i]->jaugemax){
             int choix;
             printf("Jauge pleine! Voulez-vous utiliser une technique spéciale? (1:oui, 0:non): ");
@@ -214,7 +220,7 @@ void tour (Equipe* e1, Equipe* e2){
                 vide_buffer();
             }while(choix>1 || choix<0 || verif!=1); 
             if (choix==1){
-                printf("%s utilise sont attaque spéciale sur %s!\n", tab[i]->nom, cible->nom);
+                printf("%s utilise son attaque spéciale !\n", tab[i]->nom);
                 //implementer fonctions techniques
             } else {
                 printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
@@ -223,6 +229,11 @@ void tour (Equipe* e1, Equipe* e2){
         } else {
         printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
         attaque(tab[i],cible);
+        }
+        for(int j=0; j<cible->nbeffets; j++){ // suppression des degats si le statut est invincibilité
+            if(cible->effets[0].effet_statut==4){
+                cible->pvcourant=pvtemp;
+            }
         }
         if (cible->pvcourant<0) {
             cible->pvcourant=0;
