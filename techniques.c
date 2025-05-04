@@ -9,7 +9,7 @@ void berserk(Champ* xavier){
     if(xavier->tech.nbtactifs == 0){
         xavier->tech.nbtactifs = 2;
         xavier->tech.nbtrechargement = 4;
-        xavier->jauge -=3;
+        xavier->jaugeactuelle =0;
         printf("Xavier utilise Berserk !\n");
         appeffetStat(xavier,1,20);//augmente l'attaque de 20
         appeffetStat(xavier,2,10);//augmente la defense de 10
@@ -31,7 +31,7 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
     }
     //soigne de 100 tous les alliés et leur enlève tous les effets statuts négatifs (sauf les effets comme l'invincibilité, le renvoie de dégâts et la provocation)
     nathalie->tech.nbtrechargement = 4;
-    nathalie->jauge -= 4;
+    nathalie->jaugeactuelle = 0;
     printf("Nathalie utilise Flashbacks !\n");
     appeffetStat(allie1,4,100);//soigne de 100
     appeffetStat(allie2,4,100);
@@ -59,7 +59,7 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
     }
     // applique l'effet bourreau sur un ennemi pendant 2 tours
     printf("\n Zed utilise marque du bourreau ! \n");
-    zed->jauge -= 4;
+    zed->jaugeactuelle = 0;
     ennemi->pvcourant -= ennemi->pvmax*0.1;
     appeffetStatut(ennemi,6,2);//applique l'effet bourreau pendant 2 tours
     zed->tech.nbtrechargement=3;
@@ -75,7 +75,7 @@ void murailleInfinie(Champ* smasheur){
         smasheur->tech.nbtactifs = 2;
         smasheur->tech.nbtrechargement = 4;
         printf("\n Smasheur utilise Muraille Infinie ! \n");
-        smasheur->jauge -= 4;
+        smasheur->jaugeactuelle = 0;
         appeffetStatut(smasheur,5,1);//applique l'effet renvoie de dégâts pendant 1 tour
         appeffetStatut(smasheur,3,1);//applique l'effet provocation pendant 1 tour
         appeffetStat(smasheur,3,20);//augmente la défense de 20
@@ -95,7 +95,7 @@ void motivation(Champ* steve, Champ* allie1, Champ* allie2){
     int verif;
     printf("\n Steve utilise Motivation ! \n");
     steve->tech.nbtrechargement = 4;
-    steve->jauge -= 4;
+    steve->jaugeactuelle = 0;
     int choix=0;
     printf("\n Qui voulez-vous motiver ? (0=vous, 1=%s, 2=%s) \n", allie1->nom, allie2->nom);
     do{// vérification du choix
@@ -130,7 +130,7 @@ void fossoyeurdesMondes(Champ* booga){
         booga->tech.nbtactifs = 2;
         booga->tech.nbtrechargement = 3;
         printf("\n Booga utilise Fossoyeur des Mondes ! \n");
-        booga->jauge -= 4;
+        booga->jaugeactuelle = 0;
         appeffetStat(booga, 4, 25); // Se soigne de 25 PV à chaque tour
         appeffetStat(booga, 1, 10); // Augmente l'attaque de 10
         appeffetStat(booga, 2, 10); // Augmente la défense de 10
@@ -145,7 +145,7 @@ void cryogenese(Champ* sandrine, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3)
     // inflige 30 de dégats à tous les ennemis et diminue leur vitesse de 15
     printf("\n Sandrine utilise Exploglace ! \n");
     sandrine->tech.nbtrechargement = 4;
-    sandrine->jauge -= 4;
+    sandrine->jaugeactuelle = 0;
     ennemi1->pvcourant -= 30;
     ennemi2->pvcourant -= 30;
     ennemi3->pvcourant -= 30;
@@ -162,7 +162,7 @@ void scierculaire(Champ* annesophie, Champ* ennemi1, Champ* ennemi2, Champ* enne
     //inflige 50 dégats à tous les ennemis et réduit leur défense de 5
     printf("\n Annesophie utilise Scierculaire ! \n");
     annesophie->tech.nbtrechargement = 4;
-    annesophie->jauge -= 4;
+    annesophie->jaugeactuelle = 0;
     ennemi1->pvcourant -= 50;
     ennemi2->pvcourant -= 50;
     ennemi3->pvcourant -= 50;
@@ -179,7 +179,7 @@ void cicatricesEternels(Champ* gaby, Champ* ennemi1, Champ* ennemi2, Champ* enne
     // inflige 100 de dégats à tous les ennemis
     printf("\n Gaby utilise Cicatrices Eternels ! \n");
     gaby->tech.nbtrechargement = 6;
-    gaby->jauge -= 4;
+    gaby->jaugeactuelle = 0;
     ennemi1->pvcourant -= 100;
     ennemi2->pvcourant -= 100;
     ennemi3->pvcourant -= 100;
@@ -208,7 +208,7 @@ void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2){
         }while (choix<1 || choix>2 || verif!=1);
         printf("\n Clara utilise Réinitialisation ! \n");
         clara->tech.nbtrechargement = 6;
-        clara->jauge -= 4;
+        clara->jaugeactuelle = 0;
         if (choix==1) {
             printf("\n Vous ressuscitez %s ! \n", allie1->nom);
             allie1->pvcourant = allie1->pvmax / 2;
@@ -223,7 +223,7 @@ void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2){
     else {
         printf("\n Clara utilise Réinitialisation ! \n");
         clara->tech.nbtrechargement = 6;
-        clara->jauge -= 4;
+        clara->jaugeactuelle = 0;
         if (allie1->statut==0) {
             printf("\n Vous ressuscitez %s ! \n", allie1->nom);
             allie1->pvcourant = allie1->pvmax / 2;

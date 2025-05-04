@@ -20,7 +20,10 @@ int main(){
         if(strlen(equipe2->nom) > 20){
             printf("Veuillez entrer un nom d'equipe valide (20 caracteres maximum): ");
         }
-    }while (strlen(equipe2->nom) > 20);
+        else if((strcmp(equipe1->nom, equipe2->nom) == 0)){
+            printf("Veuillez entrer un nom d'equipe different de %s: ", equipe1->nom);
+        }
+    }while ((strlen(equipe2->nom) > 20) || (strcmp(equipe1->nom, equipe2->nom) == 0));
     printf("Bonjour %s\n", equipe2->nom);
     printf("Choisissez vos champions afin de former votre equipe !\n");
     printf("Pour cela vous devez choisir 1 champion chacun votre tour jusqu'a ce que vous ayez 3 champions.\n");

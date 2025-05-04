@@ -24,13 +24,10 @@ typedef struct {
 } EffetActif;
 
 typedef struct {
-    char nom[100];                     
-    float valeur;                 
+    char nom[100];                                    
     char description[1000];
     int nbtactifs;                
-    int nbtrechargement;          
-    EffetStat effet_stat;         
-    EffetStatut effet_statut;     
+    int nbtrechargement;            
 } Techniquespe;
 
 typedef struct {
@@ -43,7 +40,8 @@ typedef struct {
     EffetActif effets[10];
     int nbeffets;
     Techniquespe tech;
-    float jauge;
+    float jaugeactuelle;
+    float jaugemax;
     int statut; //mort ou vivant
     char nom[100];
 } Champ;

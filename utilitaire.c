@@ -18,10 +18,16 @@ void getchamp(Champ tab[]){
             fgets(string, 99, fp);
             tab[i].vitesse=atoi(string);
             fgets(string, 99, fp);
+            tab[i].jaugemax=atoi(string);
+            fgets(string, 99, fp);
             strcpy(tab[i].tech.nom, string);
             tab[i].pvcourant=tab[i].pvmax;
-            tab[i].jauge=0;
+            tab[i].jaugeactuelle=0;
             tab[i].nbeffets=0;
+            for(int j=0; j<10; j++){
+                tab[i].effets[j].duree=0;
+                tab[i].effets[j].effet_statut=0;
+            }
             tab[i].statut=1; // vivant
         }
         fclose(fp);

@@ -5,9 +5,23 @@ float attaque(Champ *champatt, Champ *champdef){
         printf("Erreur : pointeur nul");
         exit(1);
     }
-    float degats = champatt->att - champdef->def;
+    float degats = champatt->att - champdef->def; // calcul des dégats
     if (degats < 0) {
         degats = 0;
+    }
+    if (champdef->statut == 4) { // invincibilité
+        degats = 0;
+    }
+    if (champatt->statut == 5) { // renvoie de dégats
+        champatt->pvcourant -= degats / 2;
+        if (champatt->pvcourant < 0) {
+            champatt->pvcourant = 0;
+        }
+    }
+    int alea=rand()%100;
+    if(alea<champdef->agilite){ //esquive
+        degats=0;
+        printf("%s a esquivé l'attaque de %s !\n", champdef->nom, champatt->nom);
     }
     champdef->pvcourant -= degats;
     return champdef->pvcourant;
@@ -182,14 +196,14 @@ void tour (Equipe* e1, Equipe* e2){
         Equipe *joueur;
         Equipe *adversaire;
             if(memeEquipe(tab[i],e1)==0){
-                joueur=e1;
-                adversaire=e2;
-            } else {
                 joueur=e2;
                 adversaire=e1;
+            } else {
+                joueur=e1;
+                adversaire=e2;
             }
         Champ *cible=choixCible(tab[i], joueur, adversaire);
-        if (tab[i]->jauge==4) {
+        if (tab[i]->jaugeactuelle==tab[i]->jaugemax){
             int choix;
             printf("Jauge pleine! Voulez-vous utiliser une technique spéciale? (1:oui, 0:non): ");
             do{
@@ -214,9 +228,9 @@ void tour (Equipe* e1, Equipe* e2){
             cible->pvcourant=0;
             cible->statut=0;
         }
-        tab[i]->jauge+=(tab[i]->vitesse/40);
-        if(tab[i]->jauge>4){
-            tab[i]->jauge=4;
+        tab[i]->jaugeactuelle+=1;
+        if(tab[i]->jaugeactuelle>tab[i]->jaugemax){
+            tab[i]->jaugemax=4;
         }
     }
 }
