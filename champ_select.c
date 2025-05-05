@@ -72,6 +72,8 @@ void selection(Champ tous[], Equipe* e1, Equipe* e2){
     for (int j=0; j<3; j++){
         printf("-%s%*s -%s\n", e1->membres[j].nom, 20+strlen(e1->nom)-strlen(e1->membres[j].nom), "", e2->membres[j].nom); 
     }
+    e1->nbchampvivant=3; // Initialisation du nombre de champions vivants pour chaque équipe
+    e2->nbchampvivant=3;
     printf("\n\n");
 }
 
