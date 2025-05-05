@@ -32,7 +32,20 @@ int main(){
     selection(liste, equipe1, equipe2);
     printf("Vos equipes sont pretes !\n");
     printf("Le combat commence !\n");
-    tour(equipe1, equipe2);// Appelle la fonction tour pour chaque équipe
+    int i=0;
+    while(equipe1->nbchampvivant > 0 && equipe2->nbchampvivant > 0){ // tant que les deux equipes ont des champions vivants
+    i++;
+    tour(equipe1, equipe2);// Appelle la fonction tour pour chaque equipe
+    printf("\n Fin du tour numéro %d\n", 1); // Affiche le numéro du tour
+    printf("Appuyez sur une touche pour continuer...\n");
+    getchar(); // Attend que l'utilisateur appuie sur une touche
+    }
+    if(equipe1->nbchampvivant == 0){
+        printf("L'equipe %s a perdu bravo à l'equipe %s !\n", equipe1->nom, equipe2->nom);
+    } else {
+        printf("L'equipe %s a perdu bravo à l'equipe %s !\n", equipe2->nom, equipe1->nom);
+    }
+    printf("Fin du combat !\n");
     free(equipe1);
     free(equipe2);
     return 0;

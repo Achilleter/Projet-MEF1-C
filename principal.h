@@ -48,6 +48,7 @@ typedef struct {
 typedef struct {
     char nom[20];
     Champ membres[3];
+    int nbchampvivant; //nombre de champions vivants dans l'équipe
 } Equipe;
 
 float attaque(Champ *champatt, Champ *champdef);

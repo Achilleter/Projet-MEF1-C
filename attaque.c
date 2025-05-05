@@ -18,7 +18,7 @@ float attaque(Champ *champatt, Champ *champdef){
     int alea=rand()%100;
     if(alea<champdef->agilite){ //esquive
         degats=0;
-        printf("%s a esquivé l'attaque de %s !\n", champdef->nom, champatt->nom);
+        printf("%s a esquive l'attaque de %s !\n", champdef->nom, champatt->nom);
     }
     champdef->pvcourant -= degats;
     return champdef->pvcourant;
@@ -222,7 +222,34 @@ void tour (Equipe* e1, Equipe* e2){
             if (choix==1){
                 printf("%s utilise son attaque spéciale !\n", tab[i]->nom);
                 //implementer fonctions techniques
-            } else {
+                // switch(tab[i]->tech.nom){
+                //     case 'berserk':
+                //         berserk(tab[i]);
+                //         break;
+                //         case 'flashbacks':
+                //         if (memeEquipe(tab[i],e1)==0){
+                //             int meme=0;
+                //             for (int j=0; j<3; j++){
+                //                 if (&e2->membres[j]==tab[i]){
+                //                     meme=j;
+                //                 }
+                //             }
+                //             printf("%s utilise Flashbacks !\n", tab[i]->nom);
+                //             flashbacks(&e2->membres[meme], &e2->membres[(meme+1)%3], &e2->membres[(meme+2)%3]);
+                //         } 
+                //         else {
+                //             int meme=0;
+                //             for (int j=0; j<3; j++){
+                //                 if (&e1->membres[j]==tab[i]){
+                //                     meme=j;
+                //                 }
+                //             }
+                //             printf("%s utilise Flashbacks !\n", tab[i]->nom);
+                //             flashbacks(&e1->membres[meme], &e1->membres[(meme+1)%3], &e1->membres[(meme+2)%3]);
+                //     }
+                // }
+            }
+            else {
                 printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
                 attaque(tab[i], cible);
         } 
@@ -238,10 +265,22 @@ void tour (Equipe* e1, Equipe* e2){
         if (cible->pvcourant<0) {
             cible->pvcourant=0;
             cible->statut=0;
+            printf("%s à tué %s !\n", tab[i]->nom, cible->nom);
+            if(memeEquipe(cible,e1)==0){
+                e1->nbchampvivant--;
+            } else {
+                e2->nbchampvivant--;
+            }
+        }
+        if(e1->nbchampvivant==0){
+            i=6;
+        }
+        if(e2->nbchampvivant==0){
+            i=6;
         }
         tab[i]->jaugeactuelle+=1;
         if(tab[i]->jaugeactuelle>tab[i]->jaugemax){
-            tab[i]->jaugemax=4;
+            tab[i]->jaugeactuelle=tab[i]->jaugemax;
         }
     }
 }
