@@ -32,7 +32,7 @@ int main(){
     selection(liste, equipe1, equipe2);
     printf("Vos equipes sont pretes !\n");
     printf("Le combat commence !\n");
-    tour(equipe1, equipe2);// Appelle la fonction tour pour chaque équipe
+    tour(equipe1, equipe2);
     free(equipe1);
     free(equipe2);
     return 0;

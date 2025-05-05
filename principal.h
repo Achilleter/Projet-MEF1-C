@@ -72,5 +72,5 @@ void getchamp(Champ tab[]);
 void vide_buffer();
 void selection(Champ tous[], Equipe* e1, Equipe* e2);
 void afficherEquipeChamp(Champ tab[], int deja_pris[]);
-void afficherChamp(Equipe *equipe);
+void afficherChamp(Equipe *equipe, Equipe *equipe2);
 void nettoyerNom(char* nom);
