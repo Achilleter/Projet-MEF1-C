@@ -100,7 +100,7 @@ void selectionia(Champ tous[], Equipe* e1, Equipe* e2){
         deja_pris[choix-1]=1;
         printf("%s a selectionne %s\n", e1->nom, e1->membres[i].nom);
         do{
-            choix=rand()%11;
+            choix=rand()%10+1;
         }
         while(deja_pris[choix-1]==1); // On choisit un champion au hasard qui n'a pas encore été pris
         e2->membres[i]=tous[choix-1];

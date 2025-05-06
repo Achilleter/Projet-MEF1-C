@@ -284,18 +284,19 @@ void touria(Equipe* e1, Equipe* e2, int difficulte){
         Equipe *adversaire;
         Champ* cible;
         if(memeEquipe(tab[i],e1)==0){
+            cible=0;
             joueur=e2;
             adversaire=e1;
             if(difficulte==1){
-                *cible=adversaire->membres[rand()%3];
+                cible=&adversaire->membres[rand()%3];
                 attaque(tab[i], cible);
                 printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
             }
             else if(difficulte==2){
-                *cible=adversaire->membres[0];
+                cible=&adversaire->membres[0];
                 for(int k=1; k<3; k++){
                     if(adversaire->membres[k].pvcourant<cible->pvcourant){
-                        *cible=adversaire->membres[k];
+                        cible=&adversaire->membres[k];
                     }
                 }
                 attaque(tab[i], cible);
@@ -306,10 +307,10 @@ void touria(Equipe* e1, Equipe* e2, int difficulte){
                     //insérer tech spé si jauge pleine
                 }
                 else{
-                    *cible=e1->membres[0];
+                    cible=&e1->membres[0];
                     for(int k=1; k<3; k++){
                         if(e1->membres[k].pvcourant<cible->pvcourant){
-                            *cible=e1->membres[k];
+                            cible=&e1->membres[k];
                         }
                     }
                     attaque(tab[i], cible);
@@ -318,6 +319,7 @@ void touria(Equipe* e1, Equipe* e2, int difficulte){
             }
         }
         else {
+            cible=0;
             joueur=e1;
             adversaire=e2;
             cible=choixCible(tab[i], joueur, adversaire);

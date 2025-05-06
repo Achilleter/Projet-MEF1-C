@@ -1,11 +1,13 @@
 #include "principal.h"
 
 void getchamp(Champ tab[]){
-    FILE* fp=fopen("champions.txt", "r");
+    // recupere les champions depuis le fichier champions.txt et les stocke dans le tableau tab
+    FILE* fp=fopen("champions.txt", "r"); // Ouvre le fichier champions.txt en mode lecture
     if(fp!= NULL){
-        char string[99];
+        char string[99]; // tableau de char pour stocker les lignes du fichier
         for(int i=0; i<10; i++){
-            fgets(string, 99, fp);
+            // on recupere les informations de chaque champion lignes par lignes
+            fgets(string, 99, fp); // lit une ligne du fichier
             strcpy(tab[i].nom, string);
             fgets(string, 99, fp);
             tab[i].pvmax=atoi(string);
@@ -28,26 +30,30 @@ void getchamp(Champ tab[]){
                 tab[i].effets[j].duree=0;
                 tab[i].effets[j].effet_statut=0;
             }
-            tab[i].statut=1; // vivant
+            tab[i].statut=1; // initialise à vivant
         }
         fclose(fp);
     }
     else{
+        // si le fichier n'existe pas ou ne peut pas être ouvert, on affiche un message d'erreur et on quitte le programme
         printf("Erreur d'ouverture du fichier\n");
         exit(1);
     }
     for (int i = 0; i < 10; i++) {
+        // Nettoyage des noms de champions pour enlever les retours à la ligne
         nettoyerNom(tab[i].nom);
     }
 }
 
 void vide_buffer(){
+    // vide le buffer d'entrée pour éviter les erreurs de lecture
     while (getchar()!='\n'){
     }
 }
 
 void nettoyerNom(char* nom) {
-    size_t len = strlen(nom);
+    // Enlève le retour à la ligne à la fin du nom du champion
+    int len = strlen(nom);
     if (len > 0 && nom[len - 1] == '\n') {
         nom[len - 1] = '\0';
     }
