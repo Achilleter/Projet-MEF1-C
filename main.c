@@ -8,12 +8,14 @@ int main(){
     printf("Bienvenue dans Cyberfight !\n");
     int nbjoueurs;
     // choix du nombre de joueurs
+    int verif, verif1;
     do{
         printf("Voulez vous jouer a 1 ou 2 personnes ? (tapez 1 ou 2) !\n");
-        scanf("%d", &nbjoueurs);
+        verif=scanf("%d", &nbjoueurs);
         if (nbjoueurs != 1 && nbjoueurs != 2){
             printf("Veuillez entrer une valeur valide (1 ou 2): ");
         }
+        vide_buffer();
     }while (nbjoueurs != 1 && nbjoueurs != 2); // vérifie que le nombre de joueurs est valide
     //début du jeu à 1 joueur
     if(nbjoueurs == 1){
