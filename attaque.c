@@ -179,7 +179,7 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
 }
 
 void tour (Equipe* e1, Equipe* e2){
-    afficherChamp(e1,e2);
+    affichageCombat(e1,e2);
     if(e1 == NULL || e2 == NULL){
         printf("Erreur : pointeur nul");
         exit(1);
@@ -260,7 +260,7 @@ void tour (Equipe* e1, Equipe* e2){
 }
 
 void touria(Equipe* e1, Equipe* e2, int difficulte){
-    afficherChamp(e1,e2);
+    affichageCombat(e1,e2);
     if(e1 == NULL || e2 == NULL){
         printf("Erreur : pointeur nul");
         exit(1);

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 typedef enum {
     boost_att = 1,
@@ -73,5 +74,7 @@ void getchamp(Champ tab[]);
 void vide_buffer();
 void selection(Champ tous[], Equipe* e1, Equipe* e2);
 void afficherEquipeChamp(Champ tab[], int deja_pris[]);
-void afficherChamp(Equipe *equipe, Equipe *equipe2);
+void affichageCombat(Equipe *equipe, Equipe *equipe2);
 void nettoyerNom(char* nom);
+void selectionia(Champ tous[], Equipe* e1, Equipe* e2);
+void touria(Equipe* e1, Equipe* e2, int difficulte);
