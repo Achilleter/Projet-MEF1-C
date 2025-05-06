@@ -1,6 +1,6 @@
 #include "principal.h"
 
-void afficherChamp(Equipe *equipe1, Equipe *equipe2){
+void affichagecombat(Equipe *equipe1, Equipe *equipe2){
     printf("%s%*s%s\n\n", equipe1->nom, 50,"", equipe2->nom);
     for(int i=0; i<3; i++){
         if(equipe1->membres[i].statut == 0){
