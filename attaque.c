@@ -287,29 +287,36 @@ void touria(Equipe* e1, Equipe* e2, int difficulte){
             joueur=e2;
             adversaire=e1;
             if(difficulte==1){
-                *cible=e1->membres[rand()%3];
+                *cible=adversaire->membres[rand()%3];
                 attaque(tab[i], cible);
                 printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
             }
             else if(difficulte==2){
-                *cible=e1->membres[0];
-                for(int j=1; j<3; j++){
-                    if(e1->membres[j].pvcourant<cible->pvcourant){
-                        *cible=e1->membres[j];
+                *cible=adversaire->membres[0];
+                for(int k=1; k<3; k++){
+                    if(adversaire->membres[k].pvcourant<cible->pvcourant){
+                        *cible=adversaire->membres[k];
                     }
                 }
+                attaque(tab[i], cible);
+                printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
             }
             else{
-                *cible=e1->membres[0];
-                for(int j=1; j<3; j++){
-                    if(e1->membres[j].pvcourant<cible->pvcourant){
-                        *cible=e1->membres[j];
+                if(tab[i]->jaugeactuelle==tab[i]->jaugemax){
+                    //insérer tech spé si jauge pleine
+                }
+                else{
+                    *cible=e1->membres[0];
+                    for(int k=1; k<3; k++){
+                        if(e1->membres[k].pvcourant<cible->pvcourant){
+                            *cible=e1->membres[k];
+                        }
                     }
-                if(tab[i]->jaugeactuelle==tab[i]->jaugemax){}
-                //insérer tech spé si jauge pleine
+                    attaque(tab[i], cible);
+                    printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
                 }
             }
-        } 
+        }
         else {
             joueur=e1;
             adversaire=e2;

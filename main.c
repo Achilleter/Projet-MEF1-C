@@ -66,7 +66,7 @@ int main(){
         }
     }
     else{
-        printf("Vous avez choisi de jouer à deux !\n");
+        printf("Vous avez choisi de jouer a deux !\n");
         // choix du nom de l'équipe 1 puis de l'équipe 2
         printf("Rentrez vos noms d'equipes ! (20 caracteres au maximum)\n");
         do{
