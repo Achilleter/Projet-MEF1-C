@@ -162,9 +162,9 @@ void scierculaire(Champ* annesophie, Champ* ennemi1, Champ* ennemi2, Champ* enne
     ennemi1->pvcourant -= 50;
     ennemi2->pvcourant -= 50;
     ennemi3->pvcourant -= 50;
-    appeffetStat(ennemi1,2,-5);//diminue la défense de 5
-    appeffetStat(ennemi2,2,-5);
-    appeffetStat(ennemi3,2,-5);
+    appeffetStatut(ennemi1,1,2);//applique l'effet poison pendant 2 tours
+    appeffetStatut(ennemi2,1,2);
+    appeffetStatut(ennemi3,1,2);
 }
 
 void cicatrices_eternels(Champ* gaby, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3){
@@ -265,13 +265,26 @@ void sacrifice_fraternel(Champ* xavier, Champ* steve){
     appeffetStat(steve, 5, -(steve->pvcourant)/2);
 }
 
-void amour_incandescent(Champ* nathalie, Champ* smasheur){
-    if(nathalie==NULL||smasheur==NULL){
+void retour_a_la_haine(Champ* gaby, Champ* clara, Equipe* adversaires){
+    if(gaby==NULL||clara==NULL){
         printf("Erreur: pointeur nul.");
         exit(10002);
     }
-    // Smasheur oblige nathalie à le soigner quand il subit des dégats
-    printf("\n Smasheur oblige nathalie a utliser amour incandescent ! \n");
-    nathalie->jaugeactuelle = 0;
-    smasheur->jaugeactuelle = 0;
+    // Gaby et Clara suppriment un ennemi
+    printf("\n Gaby et Clara se combine pour utilise Retour à la haine ! \n");
+    gaby->jaugeactuelle = 0;
+    clara->jaugeactuelle = 0;
+    int choix=0;
+    int verif;
+    do{
+        printf("Choisissez un ennemi à supprimer (1=%s, 2=%s, 3=%s) : \n", adversaires->membres[0].nom, adversaires->membres[1].nom, adversaires->membres[2].nom);
+        verif=scanf("%d", &choix);
+        if (choix<1 || choix>3) {
+            printf("Index invalide\n");
+        }
+        vide_buffer();
+    } while (choix<1 || choix>3 || verif!=1);
+    adversaires->membres[choix].pvcourant = 0;
+    adversaires->membres[choix].statut = 0;
+    printf("\n Vous avez supprimé %s ! \n", adversaires->membres[choix].nom);
 }
