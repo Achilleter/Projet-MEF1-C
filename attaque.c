@@ -15,6 +15,9 @@ float attaque(Champ *champatt, Champ *champdef){
             champatt->pvcourant = 0;
         }
     }
+    if (champdef->statut == 4) { // invincibilité
+        champatt->pvcourant = champatt->pvmax;
+    }
     int alea=rand()%100;
     if(alea<champdef->agilite){ //esquive
         degats=0;
@@ -184,6 +187,12 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
 
 void tour (Equipe* e1, Equipe* e2){
     affichageCombat(e1,e2);
+    for(int i=0; i<3; i++){
+        printf(" %s caca\n", e1->membres[i].tech.nom);
+    }
+    for(int i=0; i<3; i++){
+        printf(" %s caca\n", e2->membres[i].tech.nom);
+    }
     if(e1 == NULL || e2 == NULL){
         printf("Erreur : pointeur nul");
         exit(1);
@@ -211,11 +220,9 @@ void tour (Equipe* e1, Equipe* e2){
                     joueur=e1;
                     adversaire=e2;
                 }
-            Champ *cible=choixCible(tab[i], joueur, adversaire);
-            float pvtemp=cible->pvcourant;
             if (tab[i]->jaugeactuelle==tab[i]->jaugemax){
                 int choix;
-                printf("Jauge pleine! Voulez-vous utiliser une technique spéciale? (1:oui, 0:non): ");
+                printf("Jauge pleine! Voulez-vous utiliser une technique speciale? (1:oui, 0:non): ");
                 do{
                     verif=scanf("%d", &choix);
                     if(choix>1 || choix<0){
@@ -224,70 +231,68 @@ void tour (Equipe* e1, Equipe* e2){
                     vide_buffer();
                 } while(choix>1 || choix<0 || verif!=1); 
                  if (choix==1){
-                    printf("%s utilise son attaque spéciale !\n", tab[i]->nom);
+                    // vérfication de la technique
                     if (strcmp(tab[i]->tech.nom, "berserk")==0) {
                         berserk(tab[i]);
                     } else if (strcmp(tab[i]->tech.nom, "flashbacks")==0) {
-                        if(strcmp(tab[i]->nom, joueur->membres[0].nom)==1 && strcmp(tab[i]->nom, joueur->membres[1].nom)==1) {
-                            flashbacks(tab[i], &joueur->membres[0], &joueur->membres[1]);
-                        } else if (strcmp(tab[i]->nom, joueur->membres[0].nom)==1 && strcmp(tab[i]->nom, joueur->membres[2].nom)==1) {
+                        if(strcmp(tab[i]->nom, joueur->membres[0].nom)==0) {
+                            flashbacks(tab[i], &joueur->membres[1], &joueur->membres[2]);
+                        } else if (strcmp(tab[i]->nom, joueur->membres[1].nom)==0) {
                             flashbacks(tab[i], &joueur->membres[0], &joueur->membres[2]);
-                        } else if (strcmp(tab[i]->nom, joueur->membres[1].nom)==1 && strcmp(tab[i]->nom, joueur->membres[2].nom)==1) { 
-                             flashbacks(tab[i], &joueur->membres[1], &joueur->membres[2]);
+                        } else if (strcmp(tab[i]->nom, joueur->membres[2].nom)==0) { 
+                             flashbacks(tab[i], &joueur->membres[0], &joueur->membres[1]);
                         }
-
                     } else if (strcmp(tab[i]->tech.nom, "bourreau")==0) {
-                        bourreau(tab[i], cible);
+                        bourreau(tab[i], adversaire);
                     } else if (strcmp(tab[i]->tech.nom, "muraille")==0) {
                         muraille(tab[i]);
                     } else if (strcmp(tab[i]->tech.nom, "motivation")==0) {
-                        if(strcmp(tab[i]->nom, joueur->membres[0].nom)==1 && strcmp(tab[i]->nom, joueur->membres[1].nom)==1) {
-                            motivation(tab[i], &joueur->membres[0], &joueur->membres[1]);
-                        } else if (strcmp(tab[i]->nom, joueur->membres[0].nom)==1 && strcmp(tab[i]->nom, joueur->membres[2].nom)==1) {
-                            motivation(tab[i], &joueur->membres[0], &joueur->membres[2]);
-                        } else if (strcmp(tab[i]->nom, joueur->membres[1].nom)==1 && strcmp(tab[i]->nom, joueur->membres[2].nom)==1) {
+                        if(strcmp(tab[i]->nom, joueur->membres[0].nom)==0) {
                             motivation(tab[i], &joueur->membres[1], &joueur->membres[2]);
+                        } else if (strcmp(tab[i]->nom, joueur->membres[1].nom)==0) {
+                            motivation(tab[i], &joueur->membres[0], &joueur->membres[2]);
+                        } else if (strcmp(tab[i]->nom, joueur->membres[2].nom)==0) {
+                            motivation(tab[i], &joueur->membres[0], &joueur->membres[1]);
                         }
                     } else if (strcmp(tab[i]->tech.nom, "fossoyeur_des_mondes")==0) {
                         fossoyeur_des_mondes(tab[i]);
                     } else if (strcmp(tab[i]->tech.nom, "cryogenese")==0) { 
-                        cryogenese(tab[i], &adversaire->membres[0], &adversaire->membres[1], &adversaire->membres[2]);
+                        cryogenese(tab[i], adversaire);
                     } else if (strcmp(tab[i]->tech.nom, "scierculaire")==0) {
-                        scierculaire(tab[i], &adversaire->membres[0], &adversaire->membres[1], &adversaire->membres[2]);
+                        scierculaire(tab[i], adversaire);
                     } else if (strcmp(tab[i]->tech.nom, "cicatrices_eternels")==0){
-                        cicatrices_eternels(tab[i], &adversaire->membres[0], &adversaire->membres[1], &adversaire->membres[2]);
+                        cicatrices_eternels(tab[i], adversaire);
                     } else if (strcmp(tab[i]->tech.nom, "reinitialisation")==0) {
-                        if(strcmp(tab[i]->nom, joueur->membres[0].nom)==1 && strcmp(tab[i]->nom, joueur->membres[1].nom)==1) {
-                            reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[1]);
-                        } else if (strcmp(tab[i]->nom, joueur->membres[0].nom)==1 && strcmp(tab[i]->nom, joueur->membres[2].nom)==1) { 
-                            reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[2]);
-                        } else if (strcmp(tab[i]->nom, joueur->membres[1].nom)==1 && strcmp(tab[i]->nom, joueur->membres[2].nom)==1) {
+                        if(strcmp(tab[i]->nom, joueur->membres[0].nom)==0) {
                             reinitialisation(tab[i], &joueur->membres[1], &joueur->membres[2]);
+                        } else if (strcmp(tab[i]->nom, joueur->membres[1].nom)==0) { 
+                            reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[2]);
+                        } else if (strcmp(tab[i]->nom, joueur->membres[2].nom)==0) {
+                            reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[1]);
                         }
                     }
-                } 
+                }
                 else {
+                    Champ *cible=choixCible(tab[i], joueur, adversaire);
                     printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
                     attaque(tab[i], cible);
-                } 
-            }
-            else {
-            printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
-            attaque(tab[i],cible);
-            }
-            for(int j=0; j<cible->nbeffets; j++){ // suppression des degats si le statut est invincibilité
-                if(cible->effets[0].effet_statut==4){
-                    cible->pvcourant=pvtemp;
                 }
             }
-            if (cible->pvcourant<0) {
-                cible->pvcourant=0;
-                cible->statut=0;
-                printf("%s à tué %s !\n", tab[i]->nom, cible->nom);
-                if(memeEquipe(cible,e1)==0){
-                    e1->nbchampvivant--;
-                } else {
-                    e2->nbchampvivant--;
+            else {
+                Champ *cible=choixCible(tab[i], joueur, adversaire);
+                printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
+                attaque(tab[i],cible);
+            }
+            for(int j=0; j<3; j++){
+                if(adversaire->membres[j].pvcourant<=0 && adversaire->membres[j].statut==1){
+                    adversaire->membres[j].pvcourant=0;
+                    adversaire->membres[j].statut=0;
+                    printf("%s à tué %s !\n", tab[i]->nom, adversaire->membres[j].nom);
+                    if(memeEquipe(&adversaire->membres[j],e1)==0){
+                        e1->nbchampvivant--;
+                    } else {
+                        e2->nbchampvivant--;
+                    }
                 }
             }
             if(e1->nbchampvivant==0){

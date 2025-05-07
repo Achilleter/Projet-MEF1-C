@@ -112,15 +112,15 @@ int main(){
         while(equipe1->nbchampvivant > 0 && equipe2->nbchampvivant > 0){ // tant que les deux equipes ont des champions vivants
         i++;
         tour(equipe1, equipe2);// Appelle la fonction tour pour chaque equipe
-        printf("\n Fin du tour numéro %d\n", 1); // Affiche le numéro du tour
-        printf("Appuyez sur entrée pour continuer...\n");
+        printf("\n Fin du tour numero %d\n", i); // Affiche le numéro du tour
+        printf("Appuyez sur entree pour continuer...\n");
         getchar(); // Attend que l'utilisateur appuie sur entrée
         }
         if(equipe1->nbchampvivant == 0){
-            printf("L'equipe %s a perdu bravo à l'equipe %s !\n", equipe1->nom, equipe2->nom);
+            printf("L'equipe %s a perdu bravo a l'equipe %s !\n", equipe1->nom, equipe2->nom);
         } 
         else if(equipe2->nbchampvivant == 0){
-            printf("L'equipe %s a perdu bravo à l'equipe %s !\n", equipe2->nom, equipe1->nom);
+            printf("L'equipe %s a perdu bravo a l'equipe %s !\n", equipe2->nom, equipe1->nom);
         }
     }
     printf("Fin du combat !\n");

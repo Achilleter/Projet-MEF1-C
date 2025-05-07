@@ -35,31 +35,41 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
     appeffetStat(allie2,4,100);
     appeffetStat(nathalie,4,100);
     for(int i=0; i<6; i++){ // enlève tous les effets statuts négatifs (sauf les effets comme l'invincibilité, le renvoie de dégâts et la provocation)
-        if((allie1->effets[i].effet_statut != 5 || allie1->effets[i].effet_statut != 4) || allie1->effets[i].effet_statut != 3){
+        if((allie1->effets[i].effet_statut != 5 && allie1->effets[i].effet_statut != 4) && allie1->effets[i].effet_statut != 3){
             allie1->effets[i].effet_statut = 0;
             allie1->effets[i].duree = 0;
         }
-        if((allie1->effets[i].effet_statut != 5 || allie1->effets[i].effet_statut != 4) || allie1->effets[i].effet_statut != 3){
+        if((allie1->effets[i].effet_statut != 5 && allie1->effets[i].effet_statut != 4) && allie1->effets[i].effet_statut != 3){
             nathalie->effets[i].effet_statut = 0;
             nathalie->effets[i].duree = 0;
         }
-        if((allie1->effets[i].effet_statut != 5 || allie1->effets[i].effet_statut != 4) || allie1->effets[i].effet_statut != 3){
+        if((allie1->effets[i].effet_statut != 5 && allie1->effets[i].effet_statut != 4) && allie1->effets[i].effet_statut != 3){
             allie2->effets[i].effet_statut = 0;
             allie2->effets[i].duree = 0;
         }
     }
 }
 
- void bourreau(Champ* zed, Champ* ennemi){
+ void bourreau(Champ* zed, Equipe* ennemi){
     if(zed==NULL||ennemi==NULL){
         printf("Erreur: pointeur nul.");
         exit(11);
     }
+    int verif;
+    int choix=0;
+    do{
+    printf("Choisissez un ennemi à viser (1=%s, 2=%s, 3=%s) : \n", ennemi->membres[0].nom, ennemi->membres[1].nom, ennemi->membres[2].nom);
+        verif=scanf("%d", &choix);
+        if (choix<1 || choix>3) {
+            printf("Index invalide\n");
+        }
+        vide_buffer();
+    } while (choix<1 || choix>3 || verif!=1);
     // applique l'effet bourreau sur un ennemi pendant 2 tours
     printf("\n Zed utilise marque du bourreau ! \n");
     zed->jaugeactuelle = 0;
-    ennemi->pvcourant -= ennemi->pvmax*0.1;
-    appeffetStatut(ennemi,6,2);//applique l'effet bourreau pendant 2 tours
+    ennemi->membres[choix-1].pvcourant -= ennemi->membres[choix-1].pvmax*0.1;
+    appeffetStatut(&ennemi->membres[choix-1],6,2);//applique l'effet bourreau pendant 2 tours
 }
 
 void muraille(Champ* smasheur){
@@ -91,8 +101,8 @@ void motivation(Champ* steve, Champ* allie1, Champ* allie2){
     printf("\n Steve utilise Motivation ! \n");
     steve->jaugeactuelle = 0;
     int choix=0;
-    printf("\n Qui voulez-vous motiver ? (0=vous, 1=%s, 2=%s) \n", allie1->nom, allie2->nom);
     do{// vérification du choix
+        printf("\n Qui voulez-vous motiver ? (0=vous, 1=%s, 2=%s) \n", allie1->nom, allie2->nom);
         verif=scanf("%d",&choix);
         if(choix<0 || choix>2){
             printf("Index invalide\n");
@@ -135,49 +145,49 @@ void fossoyeur_des_mondes(Champ* booga){
     }
 }
 
-void cryogenese(Champ* sandrine, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3){
-    if(sandrine==NULL||ennemi1==NULL||ennemi2==NULL||ennemi3==NULL){
+void cryogenese(Champ* sandrine, Equipe* ennemi){
+    if(sandrine==NULL||ennemi==NULL){
         printf("Erreur: pointeur nul.");
         exit(111);
     }
     // inflige 30 de dégats à tous les ennemis et diminue leur vitesse de 15
     printf("\n Sandrine utilise Exploglace ! \n");
     sandrine->jaugeactuelle = 0;
-    ennemi1->pvcourant -= 30;
-    ennemi2->pvcourant -= 30;
-    ennemi3->pvcourant -= 30;
-    appeffetStat(ennemi1,3,15);//diminue la vitesse de 15
-    appeffetStat(ennemi2,3,15);
-    appeffetStat(ennemi3,3,15);
+    ennemi->membres[0].pvcourant -= 30;
+    ennemi->membres[1].pvcourant -= 30;
+    ennemi->membres[2].pvcourant -= 30;
+    appeffetStat(&ennemi->membres[0],3,15);//diminue la vitesse de 15
+    appeffetStat(&ennemi->membres[1],3,15);
+    appeffetStat(&ennemi->membres[2],3,15);
 }
 
-void scierculaire(Champ* annesophie, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3){
-    if(annesophie==NULL||ennemi1==NULL||ennemi2==NULL||ennemi3==NULL){
+void scierculaire(Champ* annesophie, Equipe* ennemi){
+    if(annesophie==NULL||ennemi==NULL){
         printf("Erreur: pointeur nul.");
         exit(1000);
     }
     //inflige 50 dégats à tous les ennemis et réduit leur défense de 5
     printf("\n Annesophie utilise Scierculaire ! \n");
     annesophie->jaugeactuelle = 0;
-    ennemi1->pvcourant -= 50;
-    ennemi2->pvcourant -= 50;
-    ennemi3->pvcourant -= 50;
-    appeffetStatut(ennemi1,1,2);//applique l'effet poison pendant 2 tours
-    appeffetStatut(ennemi2,1,2);
-    appeffetStatut(ennemi3,1,2);
+    ennemi->membres[0].pvcourant -= 50;
+    ennemi->membres[1].pvcourant -= 50;
+    ennemi->membres[2].pvcourant -= 50;
+    appeffetStatut(&ennemi->membres[0],1,2);//applique l'effet poison pendant 2 tours
+    appeffetStatut(&ennemi->membres[1],1,2);
+    appeffetStatut(&ennemi->membres[2],1,2);
 }
 
-void cicatrices_eternels(Champ* gaby, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3){
-    if(gaby==NULL||ennemi1==NULL||ennemi2==NULL||ennemi3==NULL){
+void cicatrices_eternels(Champ* gaby, Equipe* ennemi){
+    if(gaby==NULL||ennemi==NULL){
         printf("Erreur: pointeur nul.");
         exit(1001);
     }
     // inflige 100 de dégats à tous les ennemis
     printf("\n Gaby utilise Cicatrices Eternels ! \n");
     gaby->jaugeactuelle = 0;
-    ennemi1->pvcourant -= 100;
-    ennemi2->pvcourant -= 100;
-    ennemi3->pvcourant -= 100;
+    ennemi->membres[0].pvcourant -= 100;
+    ennemi->membres[1].pvcourant -= 100;
+    ennemi->membres[2].pvcourant -= 100;
 }
 
 void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2){
@@ -187,11 +197,11 @@ void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2){
     }
     // Ressucite un allié avec la moitié de ses points de vies
     int verif;
-    if (allie1->statut==1||allie2->statut==1) {
+    if (allie1->statut==1 && allie2->statut==1) {
         printf("\n Aucun de vos alliés n'est mort ! \n");
         return;
     }
-    else if (allie1->statut==0 && allie2->statut==0) {
+    else if (allie1->statut==0 || allie2->statut==0) {
         int choix=0;
         printf("\n Choississez un allié à ressusciter (1=%s, 2=%s) : \n", allie1->nom, allie2->nom);
         do {
