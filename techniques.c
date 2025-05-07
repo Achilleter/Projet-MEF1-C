@@ -35,15 +35,15 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
     appeffetStat(allie2,4,100);
     appeffetStat(nathalie,4,100);
     for(int i=0; i<6; i++){ // enlève tous les effets statuts négatifs (sauf les effets comme l'invincibilité, le renvoie de dégâts et la provocation)
-        if((allie1->effets[i].effet_statut != 5 || allie1->effets[i].effet_statut != 4) || allie1->effets[i].effet_statut != 3){
+        if((allie1->effets[i].effet_statut != 5 && allie1->effets[i].effet_statut != 4) && allie1->effets[i].effet_statut != 3){
             allie1->effets[i].effet_statut = 0;
             allie1->effets[i].duree = 0;
         }
-        if((allie1->effets[i].effet_statut != 5 || allie1->effets[i].effet_statut != 4) || allie1->effets[i].effet_statut != 3){
+        if((allie1->effets[i].effet_statut != 5 && allie1->effets[i].effet_statut != 4) && allie1->effets[i].effet_statut != 3){
             nathalie->effets[i].effet_statut = 0;
             nathalie->effets[i].duree = 0;
         }
-        if((allie1->effets[i].effet_statut != 5 || allie1->effets[i].effet_statut != 4) || allie1->effets[i].effet_statut != 3){
+        if((allie1->effets[i].effet_statut != 5 && allie1->effets[i].effet_statut != 4) && allie1->effets[i].effet_statut != 3){
             allie2->effets[i].effet_statut = 0;
             allie2->effets[i].duree = 0;
         }
@@ -68,8 +68,8 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
     // applique l'effet bourreau sur un ennemi pendant 2 tours
     printf("\n Zed utilise marque du bourreau ! \n");
     zed->jaugeactuelle = 0;
-    ennemi->membres[choix].pvcourant -= ennemi->membres[choix].pvmax*0.1;
-    appeffetStatut(&ennemi->membres[choix],6,2);//applique l'effet bourreau pendant 2 tours
+    ennemi->membres[choix-1].pvcourant -= ennemi->membres[choix-1].pvmax*0.1;
+    appeffetStatut(&ennemi->membres[choix-1],6,2);//applique l'effet bourreau pendant 2 tours
 }
 
 void muraille(Champ* smasheur){
@@ -197,11 +197,11 @@ void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2){
     }
     // Ressucite un allié avec la moitié de ses points de vies
     int verif;
-    if (allie1->statut==1||allie2->statut==1) {
+    if (allie1->statut==1 && allie2->statut==1) {
         printf("\n Aucun de vos alliés n'est mort ! \n");
         return;
     }
-    else if (allie1->statut==0 && allie2->statut==0) {
+    else if (allie1->statut==0 || allie2->statut==0) {
         int choix=0;
         printf("\n Choississez un allié à ressusciter (1=%s, 2=%s) : \n", allie1->nom, allie2->nom);
         do {

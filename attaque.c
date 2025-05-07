@@ -187,6 +187,12 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
 
 void tour (Equipe* e1, Equipe* e2){
     affichageCombat(e1,e2);
+    for(int i=0; i<3; i++){
+        printf(" %s caca\n", e1->membres[i].tech.nom);
+    }
+    for(int i=0; i<3; i++){
+        printf(" %s caca\n", e2->membres[i].tech.nom);
+    }
     if(e1 == NULL || e2 == NULL){
         printf("Erreur : pointeur nul");
         exit(1);
@@ -278,7 +284,7 @@ void tour (Equipe* e1, Equipe* e2){
                 attaque(tab[i],cible);
             }
             for(int j=0; j<3; j++){
-                if(adversaire->membres[j].pvcourant<=0) {
+                if(adversaire->membres[j].pvcourant<=0 && adversaire->membres[j].statut==1){
                     adversaire->membres[j].pvcourant=0;
                     adversaire->membres[j].statut=0;
                     printf("%s à tué %s !\n", tab[i]->nom, adversaire->membres[j].nom);
