@@ -165,21 +165,21 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
             }
         }
     }
-    do{
+    do{                                                // Choix de la cible en entrant son index
         do{
             printf("Choisissez votre cible (0,1 ou 2): ");
-            verif=scanf("%d",&index);
+            verif=scanf("%d",&index);                // Vérification du scanf
             if(index<0 || index>2){
                 printf("Index invalide");
             }
             vide_buffer();
         } while (index<0 || index>2 || verif!=1);
-        if(e2->membres[index].pvcourant<=0){
+        if(e2->membres[index].pvcourant<=0){        // Si la cible est morte alors on redemande une nouvelle cible
             printf("Cible KO. Veuillez en chosir une nouvelle\n");
             index=3;
         }
     } while (index==3);
-    return &e2->membres[index];
+    return &e2->membres[index];                    // retourne l'adresse de la cible choisie par l'utilisateur
 }
 
 void tour (Equipe* e1, Equipe* e2){
