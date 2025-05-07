@@ -1,16 +1,16 @@
 #include "principal.h"
 
 void affichageCombat(Equipe *equipe1, Equipe *equipe2){
-    printf("%s%*s%s\n\n", equipe1->nom, 50-strlen(equipe1->nom),"", equipe2->nom);
+    printf("%s%*s%s\n\n", equipe1->nom, 50-(int)strlen(equipe1->nom),"", equipe2->nom);
     for(int i=0; i<3; i++){
         if(equipe1->membres[i].statut == 0){
-             printf("%s |✖|%*s%s |%d|", equipe1->membres[i].nom, 46-strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
+             printf("%s |✖|%*s%s |%d|", equipe1->membres[i].nom, 46-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
         }
         else if(equipe2->membres[i].statut == 0){
-            printf("%s |%d|%*s%s |✖|", equipe1->membres[i].nom, i+1, 46-strlen(equipe1->membres[i].nom), "",equipe2->membres[i].nom);
+            printf("%s |%d|%*s%s |✖|", equipe1->membres[i].nom, i+1, 46-(int)strlen(equipe1->membres[i].nom), "",equipe2->membres[i].nom);
         }
         else{
-            printf("%s |%d|%*s%s |%d|", equipe1->membres[i].nom, i+1, 46-strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
+            printf("%s |%d|%*s%s |%d|", equipe1->membres[i].nom, i+1, 46-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
         }
         printf("\n");
         int nbeffets1=equipe1->membres[i].nbeffets;
@@ -44,7 +44,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
                 default:
                     break;
             }
-            printf("%*s", 46-strlen(equipe1->membres[i].nom), "");
+            printf("%*s", 46-(int)strlen(equipe1->membres[i].nom), "");
             switch(equipe2->membres[i].effets[nbeffets2].effet_statut){
                 case 1:
                     printf("(poison) ");
@@ -79,21 +79,31 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
         printf("\n");
         // Affichage des PV sous les membres de l'équipe 1
         int pvactuel1=equipe1->membres[i].pvcourant/20; // variable pour afficher la barre de vie
-        int pvcourant1=equipe1->membres[i].pvcourant/20; // variable qui va servir à afficher les pv de l'équipe 2
+        int pvmax=20;
+        int pvvide1=pvmax-pvactuel1; // variable pour remplir le vide de la barre de vie
         printf("("); 
         while(pvactuel1>0){
             printf("#");
             pvactuel1--;
         }
-        printf(")%*s", 48-pvcourant1, "");
+        while(pvvide1>0){
+            printf(" ");
+            pvvide1--;
+        }
+        printf(")(%.2f)%*s", equipe1->membres[i].pvcourant, 20, "");
         // Affichage des PV sous les membres de l'équipe 2
         int pvactuel2=equipe2->membres[i].pvcourant/20;
+        int pvvide2=pvmax-pvactuel2; // variable pour remplir le vide de la barre de vie
         printf("("); 
-        while (pvactuel2 > 0) {
+        while(pvactuel2>0){
             printf("#");
             pvactuel2--;
         }
-        printf(")\n");
+        while(pvvide2>0){
+            printf(" ");
+            pvvide2--;
+        }
+        printf(")(%.2f)\n", equipe2->membres[i].pvcourant);
     }
 }
 
