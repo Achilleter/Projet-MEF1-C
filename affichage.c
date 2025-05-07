@@ -1,10 +1,11 @@
 #include "principal.h"
 
-void affichageCombat(Equipe *equipe1, Equipe *equipe2){
+void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ *tab[6]){
     printf("%s%*s%s\n\n", equipe1->nom, 50-(int)strlen(equipe1->nom),"", equipe2->nom);
     for(int i=0; i<3; i++){
+        for(int j=0; j<6; j++){
         if(equipe1->membres[i].statut == 0 && equipe2->membres[i].statut != 0){
-             printf("%s |☠|%*s%s |%d|", equipe1->membres[i].nom, 46-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
+            printf("%s |☠|%*s%s |%d|", equipe1->membres[i].nom, 46-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
         }
         else if(equipe2->membres[i].statut != 0 && equipe1->membres[i].statut == 0){
             printf("%s |%d|%*s%s |☠|", equipe1->membres[i].nom, i+1, 46-(int)strlen(equipe1->membres[i].nom), "",equipe2->membres[i].nom);
@@ -15,6 +16,10 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
         else{
             printf("%s |%d|%*s%s |%d|", equipe1->membres[i].nom, i+1, 46-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
         }
+        if(equipe1->membres[i].nom == tab[j]->nom){
+            printf(" (Vous)");
+        }
+    }
         printf("\n");
         int nbeffets1=equipe1->membres[i].nbeffets;
         int nbeffets2=equipe2->membres[i].nbeffets;
