@@ -16,7 +16,7 @@ int main(){
             printf("Veuillez entrer une valeur valide (1 ou 2): ");
         }
         vide_buffer();
-    }while (nbjoueurs != 1 && nbjoueurs != 2 || verif!=1); // vérifie que le nombre de joueurs est valide
+    }while ((nbjoueurs != 1 && nbjoueurs != 2) || verif!=1); // vérifie que le nombre de joueurs est valide
     //début du jeu à 1 joueur
     if(nbjoueurs == 1){
         printf("Vous avez choisi de jouer seul !\n");
