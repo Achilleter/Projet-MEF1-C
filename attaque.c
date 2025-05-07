@@ -183,14 +183,14 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
 }
 
 void tour (Equipe* e1, Equipe* e2){
-    affichageCombat(e1,e2);
-    if(e1 == NULL || e2 == NULL){
+    affichageCombat(e1,e2);                      // Appel de la fonction affichageCombat
+    if(e1 == NULL || e2 == NULL){                // Vérification des pointeurs e1 et e2
         printf("Erreur : pointeur nul");
         exit(1);
     }
     Champ *tab[6];
     int verif;
-    triParVit(e1,e2,tab);
+    triParVit(e1,e2,tab);                        // Appel de la fonction tri
     for (int i=0;i<6;i++){
         if (tab[i]->statut==0){
             printf("%s est mort!", tab[i]->nom);
