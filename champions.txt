@@ -53,7 +53,7 @@ Gaby
 15 
 25 
 7 
-cicatrices_éternels
+cicatrices_eternels
 Clara 
 150 
 20 
@@ -77,4 +77,4 @@ Booga
 25 
 25 
 6 
-fossoyeur_des_Mondes
+fossoyeur_des_mondes
