@@ -1,7 +1,6 @@
 #include "principal.h"
 
 void affichageCombat(Equipe *equipe1, Equipe *equipe2){
-    printf("U+1F600");
     printf("%s%*s%s\n\n", equipe1->nom, 50-(int)strlen(equipe1->nom),"", equipe2->nom);
     for(int i=0; i<3; i++){
         if(equipe1->membres[i].statut == 0 && equipe2->membres[i].statut != 0){
@@ -19,6 +18,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
         printf("\n");
         int nbeffets1=equipe1->membres[i].nbeffets;
         int nbeffets2=equipe2->membres[i].nbeffets;
+        int effetduree=0;
         if(nbeffets1==0){
             printf("(Chill Guy)");
         }
@@ -28,22 +28,58 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
         while(nbeffets1!=0 || nbeffets2!=0){
             switch(equipe1->membres[i].effets[nbeffets1-1].effet_statut){
                 case 1:
-                    printf("(poison) ");
+                    effetduree=equipe1->membres[i].effets[nbeffets1-1].duree;
+                    printf("(");
+                    while(effetduree>0){
+                        printf("poison");
+                        effetduree--;
+                    }
+                    printf(")");
                     break;
                 case 2:
-                    printf("(stun) ");
+                    effetduree=equipe1->membres[i].effets[nbeffets1-1].duree;
+                    printf("(");
+                    while(effetduree>0){
+                        printf("stun");
+                        effetduree--;
+                    }
+                    printf(")");
                     break;
                 case 3:
-                    printf("(provocation) ");
+                    effetduree=equipe1->membres[i].effets[nbeffets1-1].duree;
+                    printf("(");
+                    while(effetduree>0){
+                        printf("provocation");
+                        effetduree--;
+                    }
+                    printf(")");
                     break;
                 case 4:
-                    printf("(invincibilite) ");
+                    effetduree=equipe1->membres[i].effets[nbeffets1-1].duree;
+                    printf("(");
+                    while(effetduree>0){
+                        printf("invincibilite");
+                        effetduree--;
+                    }
+                    printf(")");
                     break;
                 case 5:
-                    printf("(renvoie_degats) ");
+                    effetduree=equipe1->membres[i].effets[nbeffets1-1].duree;
+                    printf("(");
+                    while(effetduree>0){
+                        printf("renvoie_degats");
+                        effetduree--;
+                    }
+                    printf(")");
                     break;
                 case 6:
-                    printf("(bourreau) ");
+                    effetduree=equipe1->membres[i].effets[nbeffets1-1].duree;
+                    printf("(");
+                    while(effetduree>0){
+                        printf("bourreau");
+                        effetduree--;
+                    }
+                    printf(")");
                     break;
                 default:
                     break;
@@ -51,22 +87,58 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
             printf("%*s", 46-(int)strlen(equipe1->membres[i].nom), "");
             switch(equipe2->membres[i].effets[nbeffets2].effet_statut){
                 case 1:
-                    printf("(poison) ");
+                    effetduree=equipe2->membres[i].effets[nbeffets2-1].duree;
+                    printf("(");
+                    while(effetduree>0){
+                        printf("poison");
+                        effetduree--;
+                    }
+                    printf(")");
                     break;
                 case 2:
-                    printf("(stun) ");
+                    effetduree=equipe2->membres[i].effets[nbeffets2-1].duree;
+                    printf("(");
+                    while(effetduree>0){
+                        printf("stun");
+                        effetduree--;
+                    }
+                    printf(")");
                     break;
                 case 3:
-                    printf("(provocation) ");
+                    effetduree=equipe2->membres[i].effets[nbeffets2-1].duree;
+                    printf("(");
+                    while(effetduree>0){
+                        printf("provocation");
+                        effetduree--;
+                    }
+                    printf(")");
                     break;
                 case 4:
-                    printf("(invincibilite) ");
+                    effetduree=equipe2->membres[i].effets[nbeffets2-1].duree;
+                    printf("(");
+                    while(effetduree>0){
+                        printf("invincibilite");
+                        effetduree--;
+                    }
+                    printf(")");
                     break;
                 case 5:
-                    printf("(renvoie_degats) ");
+                    effetduree=equipe2->membres[i].effets[nbeffets2-1].duree;
+                    printf("(");
+                    while(effetduree>0){
+                        printf("renvoie_degats");
+                        effetduree--;
+                    }
+                    printf(")");
                     break;
                 case 6:
-                    printf("(bourreau) ");
+                    effetduree=equipe2->membres[i].effets[nbeffets2-1].duree;
+                    printf("(");
+                    while(effetduree>0){
+                        printf("bourreau");
+                        effetduree--;
+                    }
+                    printf(")");
                     break;
                 default:
                     break;
