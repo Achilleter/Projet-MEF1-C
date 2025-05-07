@@ -7,7 +7,8 @@ typedef enum {
     boost_att = 1,
     boost_def,
     boost_vitesse,
-    soin
+    soin,
+    renforcement
 } EffetStat;
 
 typedef enum {

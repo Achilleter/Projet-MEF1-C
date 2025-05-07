@@ -16,7 +16,7 @@ int main(){
             printf("Veuillez entrer une valeur valide (1 ou 2): ");
         }
         vide_buffer();
-    }while (nbjoueurs != 1 && nbjoueurs != 2); // vérifie que le nombre de joueurs est valide
+    }while ((nbjoueurs != 1 && nbjoueurs != 2) || verif!=1); // vérifie que le nombre de joueurs est valide
     //début du jeu à 1 joueur
     if(nbjoueurs == 1){
         printf("Vous avez choisi de jouer seul !\n");
@@ -24,12 +24,12 @@ int main(){
         // choix de la difficulté de l'IA
         do{
             printf("Choisissez le niveau de difficulte de l'IA ! (1:noob, 2:facile ou 3:moyen)\n");
-            scanf("%d", &difficulte);
+            verif1=scanf("%d", &difficulte);
             if (difficulte<1 || difficulte>3){
                 printf("Veuillez entrer une valeur valide (1, 2 ou 3): ");
             }
-        }
-        while (difficulte<1 || difficulte>3);
+            vide_buffer();
+        } while (difficulte<1 || difficulte>3 || verif1!=1);
         if(difficulte == 1){
             printf("Vous avez choisi le niveau de difficulte noob !\n");
         }
