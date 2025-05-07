@@ -5,7 +5,7 @@ float attaque(Champ *champatt, Champ *champdef){
         printf("Erreur : pointeur nul");
         exit(1);
     }
-    float degats = champatt->att - champdef->def; // calcul des dégats
+    float degats = champatt->att * (100/(100+champdef->def)); // calcul des dégats
     if (degats < 0) {
         degats = 0;
     }
@@ -28,6 +28,7 @@ float attaque(Champ *champatt, Champ *champdef){
 }
 
 void degatseffetStatut(Champ *champ){
+    //verification des pointeurs
     if(champ == NULL){
         printf("Erreur : pointeur nul");
         exit(1);
@@ -37,19 +38,21 @@ void degatseffetStatut(Champ *champ){
     }
     else if (champ->nbeffets > 0) {
         for (int i = 0; i < champ->nbeffets; i++) {
-            if (champ->effets[i].effet_statut == 1) {
+            if (champ->effets[i].effet_statut == 1) { // application poison
                 champ->pvcourant -= champ->pvmax * 0.05;
+                printf("%s subit des degats de poison !\n", champ->nom);
                 break;
             }
-            else if (champ->effets[i].effet_statut == 6) {
+            else if (champ->effets[i].effet_statut == 6) { // application bourreau
                 if(champ->pvcourant <= champ->pvmax * 0.25) {
                     champ->pvcourant = 0;
                     champ->statut = 0; // mort
+                    printf("%s a ete execute !\n", champ->nom);
                 }
                 break;
             }
-            champ->effets[i].duree--;
-            if (champ->effets[i].duree == 0) {
+            champ->effets[i].duree--; // reduction de la duree de l'effet
+            if (champ->effets[i].duree == 0) { // suppression de l'effet si il se termine
                 for (int j = i; j < champ->nbeffets-1; j++) {
                     champ->effets[j] = champ->effets[j + 1];
                 }
@@ -61,45 +64,47 @@ void degatseffetStatut(Champ *champ){
 }
 
 void appeffetStatut(Champ *champ, EffetStatut effetstatut, int duree) {
+    // Verification des pointeurs
     if(champ == NULL){
         printf("Erreur : pointeur nul");
         exit(1);
     }
     int bool=0;
-    for (int i=0; i<champ->nbeffets; i++){
+    for (int i=0; i<champ->nbeffets; i++){ // si champ déjà touché rallongement de l'effet
         if(champ->effets[i].effet_statut==effetstatut){
             champ->effets[i].duree=duree;
             bool=1;
         }
     }
-    if(bool==0){
+    if(bool==0){ // sinon ajout de l'effet
         champ->effets[champ->nbeffets].effet_statut= effetstatut;
         champ->effets[champ->nbeffets].duree= duree;
     }
 }
 
 void appeffetStat(Champ *champ, EffetStat effetstat, float valeur) {
+    // Verification des pointeurs
     if(champ == NULL){
         printf("Erreur : pointeur nul");
         exit(1);
     }
     switch (effetstat){
-            case 1:
+            case 1:// change attaque
                 champ->att += valeur;
                 break;
-            case 2:
+            case 2: // change défense
                 champ->def += valeur;
                 break;
-            case 3:
+            case 3: // change vitesse
                 champ->vitesse += valeur;
                 break;
-            case 4:
+            case 4: // soin
                 champ->pvcourant += valeur;
                 if (champ->pvcourant > champ->pvmax) {
                     champ->pvcourant = champ->pvmax;
                 }
                 break;
-            case 5:
+            case 5: // changement pvmax
                 champ->pvmax+=valeur;
                 champ->pvcourant+=valeur;
                 break;
@@ -150,17 +155,9 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
         printf("Erreur : pointeur nul");
         exit(1);
     }
-    int index=3;                                          // Met l'index initial à 3 (en dehors du tableau)
+    int index=3; // Met l'index initial à 3 (en dehors du tableau)
     int verif;
-    printf("Equipe adverse: \n");
-    for (int i=0; i<3; i++) {
-        if (e2->membres[i].pvcourant>0) {                // Vérification de l'état du champion et affichage en conséquence
-            printf("%d- %s (PV: %f) \n", i, e2->membres[i].nom, e2->membres[i].pvcourant);
-        } else {
-            printf("%s KO \n", e2->membres[i].nom);
-        }
-    }
-    for(int j=0; j<3; j++){
+    for(int j=0; j<3; j++){ // Si un ennemi provocateur est présent, il est la cible par défaut
         for(int k=0; k<e2->membres[j].nbeffets; k++){
             if(e2->membres[j].effets[k].effet_statut==3){
                 printf("%s est provoqué par %s !\n",attaquant->nom, e2->membres[j].nom);
@@ -169,7 +166,7 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
         }
     }
     do{
-        do{
+        do{ // Demande à l'utilisateur de choisir une cible
             printf("Choisissez votre cible (0,1 ou 2): ");
             verif=scanf("%d",&index);
             if(index<0 || index>2){
@@ -177,7 +174,7 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
             }
             vide_buffer();
         } while (index<0 || index>2 || verif!=1);
-        if(e2->membres[index].pvcourant<=0){
+        if(e2->membres[index].pvcourant<=0){ // Si la cible est KO, on redemande une cible
             printf("Cible KO. Veuillez en chosir une nouvelle\n");
             index=3;
         }
@@ -186,13 +183,6 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
 }
 
 void tour (Equipe* e1, Equipe* e2){
-    affichageCombat(e1,e2);
-    for(int i=0; i<3; i++){
-        printf(" %s caca\n", e1->membres[i].tech.nom);
-    }
-    for(int i=0; i<3; i++){
-        printf(" %s caca\n", e2->membres[i].tech.nom);
-    }
     if(e1 == NULL || e2 == NULL){
         printf("Erreur : pointeur nul");
         exit(1);
@@ -205,12 +195,12 @@ void tour (Equipe* e1, Equipe* e2){
             printf("%s est mort!", tab[i]->nom);
         } 
         else {
-                printf("\nC'est au tour de %s !\n", tab[i]->nom);
-                for (int j=0; j<tab[i]->nbeffets; j++){
-                    if (tab[i]->effets[j].duree>0){
+            affichageCombat(e1,e2, tab[i]);
+            for (int j=0; j<tab[i]->nbeffets; j++){
+                if (tab[i]->effets[j].duree>0){
                     degatseffetStatut(tab[i]);
-                    }
                 }
+            }
             Equipe *joueur;
             Equipe *adversaire;
                 if(memeEquipe(tab[i],e1)==0){
@@ -222,7 +212,7 @@ void tour (Equipe* e1, Equipe* e2){
                 }
             if (tab[i]->jaugeactuelle==tab[i]->jaugemax){
                 int choix;
-                printf("Jauge pleine! Voulez-vous utiliser une technique speciale? (1:oui, 0:non): ");
+                printf("Jauge pleine! Voulez-vous utiliser une technique speciale? \n1:oui \n0:non \n");
                 do{
                     verif=scanf("%d", &choix);
                     if(choix>1 || choix<0){

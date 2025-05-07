@@ -11,7 +11,7 @@ Nathalie
 15 
 10 
 20 
-25
+20
 4 
 flashbacks
 Zed 
@@ -19,7 +19,7 @@ Zed
 50 
 20 
 30 
-25
+40
 4 
 bourreau
 Smasheur 
@@ -35,7 +35,7 @@ Sandrine
 20 
 25 
 20 
-25
+30
 6 
 cryogenese
 Anne-Sophie 
@@ -43,7 +43,7 @@ Anne-Sophie
 60 
 15 
 30 
-25 
+35
 5 
 scierculaire
 Gaby 
@@ -51,7 +51,7 @@ Gaby
 15 
 10 
 15 
-25 
+18 
 7 
 cicatrices_eternels
 Clara 
@@ -59,7 +59,7 @@ Clara
 20 
 20 
 25 
-25 
+16 
 7 
 reinitialisation
 Steve 
@@ -67,7 +67,7 @@ Steve
 30 
 40 
 15 
-20 
+28 
 5 
 motivation
 Booga 
@@ -75,6 +75,6 @@ Booga
 30 
 20 
 25 
-25 
+33 
 6 
 fossoyeur_des_mondes
