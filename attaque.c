@@ -301,7 +301,6 @@ void tour (Equipe* e1, Equipe* e2){
 
 
 void touria(Equipe* e1, Equipe* e2, int difficulte){
-    affichageCombat(e1,e2);
     if(e1 == NULL || e2 == NULL){
         printf("Erreur : pointeur nul");
         exit(1);
@@ -314,7 +313,7 @@ void touria(Equipe* e1, Equipe* e2, int difficulte){
             printf("%s est KO.\n",tab[i]->nom);
         } 
         else {
-            printf("\nC'est au tour de %s !\n", tab[i]->nom);
+            affichageCombat(e1,e2, tab[i]);
             for (int j=0; j<tab[i]->nbeffets; j++){
                 if (tab[i]->effets[j].duree>0){
                     degatseffetStatut(tab[i]);
