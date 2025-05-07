@@ -5,6 +5,10 @@ int main(){
     //Initialisation des pointeurs de l'équipe 1 et 2
     Equipe* equipe1 = malloc(sizeof(Equipe));
     Equipe* equipe2 = malloc(sizeof(Equipe));
+    if(!equipe1 || !equipe2){ // Vérification de l'allocation mémoire
+        printf("Erreur d'allocation mémoire\n");
+        exit(1);
+    }
     printf("Bienvenue dans Cyberfight !\n");
     int nbjoueurs;
     // choix du nombre de joueurs
@@ -63,7 +67,7 @@ int main(){
         i++;
         touria(equipe1, equipe2, difficulte);// Appelle la fonction touria pour chaque equipe
         printf("\n Fin du tour numero %d\n", 1); // Affiche le numéro du tour
-        printf("Appuyez sur entrée pour continuer...\n");
+        printf("Appuyez sur la touche entree pour continuer...\n");
         getchar(); // Attend que l'utilisateur appuie sur entrée
         }
         if(equipe1->nbchampvivant == 0){
@@ -114,7 +118,8 @@ int main(){
         }
         if(equipe1->nbchampvivant == 0){
             printf("L'equipe %s a perdu bravo à l'equipe %s !\n", equipe1->nom, equipe2->nom);
-        } else {
+        } 
+        else if(equipe2->nbchampvivant == 0){
             printf("L'equipe %s a perdu bravo à l'equipe %s !\n", equipe2->nom, equipe1->nom);
         }
     }
