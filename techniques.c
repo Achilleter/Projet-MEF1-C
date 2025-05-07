@@ -190,7 +190,7 @@ void cicatrices_eternels(Champ* gaby, Equipe* ennemi){
     ennemi->membres[2].pvcourant -= 100;
 }
 
-void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2){
+void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2, Equipe* allies){
     if(clara==NULL||allie1==NULL||allie2==NULL){
         printf("Erreur: pointeur nul.");
         exit(1010);
@@ -223,6 +223,7 @@ void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2){
             allie2->pvcourant = allie2->pvmax / 2;
             allie2->statut = 1;
         }
+        allies->nbchampvivant++;
     }
     else {
         printf("\n Clara utilise Réinitialisation ! \n");
@@ -237,6 +238,7 @@ void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2){
             allie2->pvcourant = allie2->pvmax / 2;
             allie2->statut = 1;
         }
+        allies->nbchampvivant++;
     }
 }
 

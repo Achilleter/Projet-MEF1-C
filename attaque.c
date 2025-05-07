@@ -254,11 +254,11 @@ void tour (Equipe* e1, Equipe* e2){
                         cicatrices_eternels(tab[i], adversaire);
                     } else if (strcmp(tab[i]->tech.nom, "reinitialisation")==0) {
                         if(strcmp(tab[i]->nom, joueur->membres[0].nom)==0) {
-                            reinitialisation(tab[i], &joueur->membres[1], &joueur->membres[2]);
+                            reinitialisation(tab[i], &joueur->membres[1], &joueur->membres[2], joueur);
                         } else if (strcmp(tab[i]->nom, joueur->membres[1].nom)==0) { 
-                            reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[2]);
+                            reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[2], joueur);
                         } else if (strcmp(tab[i]->nom, joueur->membres[2].nom)==0) {
-                            reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[1]);
+                            reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[1], joueur);
                         }
                     }
                 }
