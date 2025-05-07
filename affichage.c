@@ -3,11 +3,14 @@
 void affichageCombat(Equipe *equipe1, Equipe *equipe2){
     printf("%s%*s%s\n\n", equipe1->nom, 50-(int)strlen(equipe1->nom),"", equipe2->nom);
     for(int i=0; i<3; i++){
-        if(equipe1->membres[i].statut == 0){
-             printf("%s |✖|%*s%s |%d|", equipe1->membres[i].nom, 46-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
+        if(equipe1->membres[i].statut == 0 && equipe2->membres[i].statut != 0){
+             printf("%s |☠|%*s%s |%d|", equipe1->membres[i].nom, 46-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
         }
-        else if(equipe2->membres[i].statut == 0){
-            printf("%s |%d|%*s%s |✖|", equipe1->membres[i].nom, i+1, 46-(int)strlen(equipe1->membres[i].nom), "",equipe2->membres[i].nom);
+        else if(equipe2->membres[i].statut != 0 && equipe1->membres[i].statut == 0){
+            printf("%s |%d|%*s%s |☠|", equipe1->membres[i].nom, i+1, 46-(int)strlen(equipe1->membres[i].nom), "",equipe2->membres[i].nom);
+        }
+        else if(equipe1->membres[i].statut == 0 && equipe2->membres[i].statut == 0){
+            printf("%s |☠|%*s%s |☠|", equipe1->membres[i].nom, 46-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom);
         }
         else{
             printf("%s |%d|%*s%s |%d|", equipe1->membres[i].nom, i+1, 46-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
@@ -46,7 +49,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
                     effetduree=equipe1->membres[i].effets[nbeffets1-1].duree;
                     printf("(");
                     while(effetduree>0){
-                        printf("provocation");
+                        printf("💢");
                         effetduree--;
                     }
                     printf(")");
@@ -55,7 +58,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
                     effetduree=equipe1->membres[i].effets[nbeffets1-1].duree;
                     printf("(");
                     while(effetduree>0){
-                        printf("invincibilite");
+                        printf("💪");
                         effetduree--;
                     }
                     printf(")");
@@ -64,7 +67,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
                     effetduree=equipe1->membres[i].effets[nbeffets1-1].duree;
                     printf("(");
                     while(effetduree>0){
-                        printf("renvoie_degats");
+                        printf("👹");
                         effetduree--;
                     }
                     printf(")");
@@ -73,7 +76,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
                     effetduree=equipe1->membres[i].effets[nbeffets1-1].duree;
                     printf("(");
                     while(effetduree>0){
-                        printf("bourreau");
+                        printf("🗡");
                         effetduree--;
                     }
                     printf(")");
@@ -105,7 +108,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
                     effetduree=equipe2->membres[i].effets[nbeffets2-1].duree;
                     printf("(");
                     while(effetduree>0){
-                        printf("provocation");
+                        printf("💢");
                         effetduree--;
                     }
                     printf(")");
@@ -114,7 +117,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
                     effetduree=equipe2->membres[i].effets[nbeffets2-1].duree;
                     printf("(");
                     while(effetduree>0){
-                        printf("invincibilite");
+                        printf("💪");
                         effetduree--;
                     }
                     printf(")");
@@ -123,7 +126,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
                     effetduree=equipe2->membres[i].effets[nbeffets2-1].duree;
                     printf("(");
                     while(effetduree>0){
-                        printf("renvoie_degats");
+                        printf("👹");
                         effetduree--;
                     }
                     printf(")");
@@ -132,7 +135,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
                     effetduree=equipe2->membres[i].effets[nbeffets2-1].duree;
                     printf("(");
                     while(effetduree>0){
-                        printf("bourreau");
+                        printf("🗡");
                         effetduree--;
                     }
                     printf(")");
@@ -160,7 +163,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
             pvactuel1--;
         }
         while(pvvide1>0){
-            printf(" ");
+            printf("_");
             pvvide1--;
         }
         printf(")(%.2f)%*s", equipe1->membres[i].pvcourant, 20, "");
@@ -173,10 +176,12 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
             pvactuel2--;
         }
         while(pvvide2>0){
-            printf(" ");
+            printf("_");
             pvvide2--;
         }
         printf(")(%.2f)\n", equipe2->membres[i].pvcourant);
+        // afficher la jauge de chaque champion
+        printf("boy");
     }
 }
 
