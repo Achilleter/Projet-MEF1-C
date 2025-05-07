@@ -193,8 +193,9 @@ void tour (Equipe* e1, Equipe* e2){
     triParVit(e1,e2,tab);
     for (int i=0;i<6;i++){
         if (tab[i]->statut==0){
-            printf("%s est mort!", tab[i]->nom)
-        } else {
+            printf("%s est mort!", tab[i]->nom);
+        } 
+        else {
                 printf("\nC'est au tour de %s !\n", tab[i]->nom);
                 for (int j=0; j<tab[i]->nbeffets; j++){
                     if (tab[i]->effets[j].duree>0){
@@ -264,10 +265,13 @@ void tour (Equipe* e1, Equipe* e2){
                             reinitialisation(tab[i], &joueur->membres[1], &joueur->membres[2]);
                         }
                     }
-                } else {
+                } 
+                else {
                     printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
                     attaque(tab[i], cible);
-            } else {
+                } 
+            }
+            else {
             printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
             attaque(tab[i],cible);
             }
@@ -297,9 +301,10 @@ void tour (Equipe* e1, Equipe* e2){
                 tab[i]->jaugeactuelle=tab[i]->jaugemax;
             }
         }
-        }
     }
-    }
+}
+
+
 void touria(Equipe* e1, Equipe* e2, int difficulte){
     affichageCombat(e1,e2);
     if(e1 == NULL || e2 == NULL){

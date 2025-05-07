@@ -255,14 +255,14 @@ void sacrifice_fraternel(Champ* xavier, Champ* steve){
     printf("\n Xavier et Steve se combine pour utilise Sacrifice Fraternel ! \n");
     xavier->jaugeactuelle = 0;
     steve->jaugeactuelle = 0;
-    effetstat(xavier, 1, (steve->att)/2); // augmente l'attaque de xavier selon celle de steve
-    effetstat(xavier, 2, (steve->def)/2); // augmente la défense de xavier selon celle de steve
-    effetstat(xavier, 3, (steve->vitesse)/2); // augmente la vitesse de xavier selon celle de steve
-    effetstat(xavier, 5, (steve->pvcourant)/2); // augmente les pvmax de xavier selon ceux de steve
-    effetstat(steve, 1, -(steve->att)/2); // diminue l'attaque de steve de moitie
-    effetstat(steve, 2, -(steve->def)/2);
-    effetstat(steve, 3, -(steve->vitesse)/2);
-    effetstat(steve, 5, -(steve->pvcourant)/2);
+    appeffetStat(xavier, 1, (steve->att)/2); // augmente l'attaque de xavier selon celle de steve
+    appeffetStat(xavier, 2, (steve->def)/2); // augmente la défense de xavier selon celle de steve
+    appeffetStat(xavier, 3, (steve->vitesse)/2); // augmente la vitesse de xavier selon celle de steve
+    appeffetStat(xavier, 5, (steve->pvcourant)/2); // augmente les pvmax de xavier selon ceux de steve
+    appeffetStat(steve, 1, -(steve->att)/2); // diminue l'attaque de steve de moitie
+    appeffetStat(steve, 2, -(steve->def)/2);
+    appeffetStat(steve, 3, -(steve->vitesse)/2);
+    appeffetStat(steve, 5, -(steve->pvcourant)/2);
 }
 
 void amour_incandescent(Champ* nathalie, Champ* smasheur){
