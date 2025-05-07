@@ -50,7 +50,7 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
     }
 }
 
- void marqueduBourreau(Champ* zed, Champ* ennemi){
+ void bourreau(Champ* zed, Champ* ennemi){
     if(zed==NULL||ennemi==NULL){
         printf("Erreur: pointeur nul.");
         exit(11);
@@ -62,7 +62,7 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
     appeffetStatut(ennemi,6,2);//applique l'effet bourreau pendant 2 tours
 }
 
-void murailleInfinie(Champ* smasheur){
+void muraille(Champ* smasheur){
     if(smasheur==NULL){
         printf("Erreur: pointeur nul.");
         exit(100);
@@ -116,7 +116,7 @@ void motivation(Champ* steve, Champ* allie1, Champ* allie2){
     }
 }
 
-void fossoyeurdesMondes(Champ* booga){
+void fossoyeur_des_mondes(Champ* booga){
     if(booga==NULL){
         printf("Erreur: pointeur nul.");
         exit(110);
@@ -163,7 +163,7 @@ void scierculaire(Champ* annesophie, Champ* ennemi1, Champ* ennemi2, Champ* enne
     appeffetStat(ennemi3,2,-5);
 }
 
-void cicatricesEternels(Champ* gaby, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3){
+void cicatrices_eternels(Champ* gaby, Champ* ennemi1, Champ* ennemi2, Champ* ennemi3){
     if(gaby==NULL||ennemi1==NULL||ennemi2==NULL||ennemi3==NULL){
         printf("Erreur: pointeur nul.");
         exit(1001);
