@@ -192,7 +192,7 @@ void tour (Equipe* e1, Equipe* e2){
     int verif;
     triParVit(e1,e2,tab);
     for (int i=0;i<6;i++){
-        if (tab[i].statut==0){
+        if (tab[i]->statut==0){
             printf("%s est mort!", tab[i]->nom)
         } else {
                 printf("\nC'est au tour de %s !\n", tab[i]->nom);
@@ -218,7 +218,7 @@ void tour (Equipe* e1, Equipe* e2){
                 do{
                     verif=scanf("%d", &choix);
                     if(choix>1 || choix<0){
-                        printf("Index invalide);
+                        printf("Index invalide");
                     }
                     vide_buffer();
                 } while(choix>1 || choix<0 || verif!=1); 
