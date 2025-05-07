@@ -28,7 +28,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
                     effetduree=equipe1->membres[i].effets[nbeffets1-1].duree;
                     printf("(");
                     while(effetduree>0){
-                        printf("poison");
+                        printf("🦠");
                         effetduree--;
                     }
                     printf(")");
@@ -37,7 +37,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
                     effetduree=equipe1->membres[i].effets[nbeffets1-1].duree;
                     printf("(");
                     while(effetduree>0){
-                        printf("stun");
+                        printf("🌀");
                         effetduree--;
                     }
                     printf(")");
@@ -87,7 +87,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
                     effetduree=equipe2->membres[i].effets[nbeffets2-1].duree;
                     printf("(");
                     while(effetduree>0){
-                        printf("poison");
+                        printf("🦠");
                         effetduree--;
                     }
                     printf(")");
@@ -96,7 +96,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
                     effetduree=equipe2->membres[i].effets[nbeffets2-1].duree;
                     printf("(");
                     while(effetduree>0){
-                        printf("stun");
+                        printf("🌀");
                         effetduree--;
                     }
                     printf(")");
@@ -156,7 +156,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
         int pvvide1=pvmax-pvactuel1; // variable pour remplir le vide de la barre de vie
         printf("("); 
         while(pvactuel1>0){
-            printf("#");
+            printf("❤");
             pvactuel1--;
         }
         while(pvvide1>0){
@@ -169,7 +169,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
         int pvvide2=pvmax-pvactuel2; // variable pour remplir le vide de la barre de vie
         printf("("); 
         while(pvactuel2>0){
-            printf("#");
+            printf("❤");
             pvactuel2--;
         }
         while(pvvide2>0){
