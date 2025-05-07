@@ -181,7 +181,32 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2){
         }
         printf(")(%.2f)\n", equipe2->membres[i].pvcourant);
         // afficher la jauge de chaque champion
-        printf("boy");
+        int jaugeactuel1=(equipe1->membres[i].jaugeactuelle)/20; // variable pour afficher la jauge de vie
+        int jaugemax=20;
+        int jaugevide1=jaugemax-jaugeactuel1; // variable pour remplir le vide de la jauge de vie
+        printf("(");
+        while(jaugeactuel1>0){
+            printf("C");
+            jaugeactuel1--;
+        }
+        while(jaugevide1>0){
+            printf("_");
+            jaugevide1--;
+        }
+        printf(")%*s", 20, "");
+        // afficher la jauge de chaque champion de l'équipe 2
+        int jaugeactuel2=(equipe2->membres[i].jaugeactuelle)/20; // variable pour afficher la jauge de vie
+        int jaugevide2=jaugemax-jaugeactuel2; // variable pour remplir le vide de la jauge de vie  
+        printf("(");
+        while(jaugeactuel2>0){
+            printf("C");
+            jaugeactuel2--;
+        }
+        while(jaugevide2>0){
+            printf("_");
+            jaugevide2--;
+        }
+        printf(")\n"); 
     }
 }
 

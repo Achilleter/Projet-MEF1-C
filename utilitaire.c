@@ -42,6 +42,7 @@ void getchamp(Champ tab[]){
     for (int i = 0; i < 10; i++) {
         // Nettoyage des noms de champions pour enlever les retours à la ligne
         nettoyerNom(tab[i].nom);
+        nettoyerNom(tab[i].tech.nom);
     }
 }
 
