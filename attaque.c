@@ -165,32 +165,32 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
             }
         }
     }
-    do{                                                // Choix de la cible en entrant son index
+    do{
         do{
             printf("Choisissez votre cible (0,1 ou 2): ");
-            verif=scanf("%d",&index);                // Vérification du scanf
+            verif=scanf("%d",&index);
             if(index<0 || index>2){
                 printf("Index invalide");
             }
             vide_buffer();
         } while (index<0 || index>2 || verif!=1);
-        if(e2->membres[index].pvcourant<=0){        // Si la cible est morte alors on redemande une nouvelle cible
+        if(e2->membres[index].pvcourant<=0){
             printf("Cible KO. Veuillez en chosir une nouvelle\n");
             index=3;
         }
     } while (index==3);
-    return &e2->membres[index];                    // retourne l'adresse de la cible choisie par l'utilisateur
+    return &e2->membres[index];
 }
 
 void tour (Equipe* e1, Equipe* e2){
-    affichageCombat(e1,e2);                      // Appel de la fonction affichageCombat
-    if(e1 == NULL || e2 == NULL){                // Vérification des pointeurs e1 et e2
+    affichageCombat(e1,e2);
+    if(e1 == NULL || e2 == NULL){
         printf("Erreur : pointeur nul");
         exit(1);
     }
     Champ *tab[6];
     int verif;
-    triParVit(e1,e2,tab);                        // Appel de la fonction tri
+    triParVit(e1,e2,tab);
     for (int i=0;i<6;i++){
         if (tab[i]->statut==0){
             printf("%s est mort!", tab[i]->nom);

@@ -1,17 +1,13 @@
 #include "principal.h"
 
 void affichageCombat(Equipe *equipe1, Equipe *equipe2){
-    printf("U+1F600");
     printf("%s%*s%s\n\n", equipe1->nom, 50-(int)strlen(equipe1->nom),"", equipe2->nom);
     for(int i=0; i<3; i++){
-        if(equipe1->membres[i].statut == 0 && equipe2->membres[i].statut != 0){
-             printf("%s |MORT|%*s%s |%d|", equipe1->membres[i].nom, 46-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
+        if(equipe1->membres[i].statut == 0){
+             printf("%s |✖|%*s%s |%d|", equipe1->membres[i].nom, 46-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
         }
-        else if(equipe2->membres[i].statut != 0 && equipe1->membres[i].statut == 0){
-            printf("%s |%d|%*s%s |MORT|", equipe1->membres[i].nom, i+1, 46-(int)strlen(equipe1->membres[i].nom), "",equipe2->membres[i].nom);
-        }
-        else if(equipe1->membres[i].statut == 0 && equipe2->membres[i].statut == 0){
-            printf("%s |MORT|%*s%s |MORT|", equipe1->membres[i].nom, 46-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom);
+        else if(equipe2->membres[i].statut == 0){
+            printf("%s |%d|%*s%s |✖|", equipe1->membres[i].nom, i+1, 46-(int)strlen(equipe1->membres[i].nom), "",equipe2->membres[i].nom);
         }
         else{
             printf("%s |%d|%*s%s |%d|", equipe1->membres[i].nom, i+1, 46-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
