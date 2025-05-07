@@ -72,12 +72,11 @@ void muraille(Champ* smasheur){
         smasheur->tech.nbtactifs = 2;
         printf("\n Smasheur utilise Muraille Infinie ! \n");
         smasheur->jaugeactuelle = 0;
-        appeffetStatut(smasheur,5,1);//applique l'effet renvoie de dégâts pendant 1 tour
-        appeffetStatut(smasheur,3,1);//applique l'effet provocation pendant 1 tour
+        appeffetStatut(smasheur,5,2);//applique l'effet renvoie de dégâts pendant 1 tour
+        appeffetStatut(smasheur,3,2);//applique l'effet provocation pendant 1 tour
         appeffetStat(smasheur,3,20);//augmente la défense de 20
     }
     else if(smasheur->tech.nbtactifs == 1){
-        smasheur->tech.nbtactifs = 0;
         appeffetStat(smasheur,3,-20);//diminue la défense de 20
     }
 }
@@ -121,13 +120,18 @@ void fossoyeur_des_mondes(Champ* booga){
         printf("Erreur: pointeur nul.");
         exit(110);
     }
+    appeffetStat(booga, 4, 25); // Se soigne de 25 PV à chaque tour
     if(booga->tech.nbtactifs == 0){
         booga->tech.nbtactifs = 2;
         printf("\n Booga utilise Fossoyeur des Mondes ! \n");
         booga->jaugeactuelle = 0;
-        appeffetStat(booga, 4, 25); // Se soigne de 25 PV à chaque tour
         appeffetStat(booga, 1, 10); // Augmente l'attaque de 10
         appeffetStat(booga, 2, 10); // Augmente la défense de 10
+    }
+    else if(booga->tech.nbtactifs == 1){
+        appeffetStat(booga, 1, -10); // Diminue l'attaque de 10
+        appeffetStat(booga, 2, -10); // Diminue la défense de 10
+        printf("\n Booga redevient comme avant ! \n");
     }
 }
 
@@ -224,4 +228,50 @@ void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2){
             allie2->statut = 1;
         }
     }
+}
+
+void nomtechsamirazed(Champ* annesophie, Champ* zed, Equipe* adversaires){
+    if(annesophie==NULL||zed==NULL||adversaires==NULL){
+        printf("Erreur: pointeur nul.");
+        exit(10000);
+    }
+    // Les personnages combinent leurs techniques pour infliger 60 de dégats à tous les ennemis, diminue leur défense de 5 et applique l'effet bourreau pendant 1 tour
+   printf("\n Annesophie et zed se combine pour utilise Nomtechsamirazed ! \n");
+   annesophie->jaugeactuelle = 0;
+    zed->jaugeactuelle = 0;
+    for(int i=0; i<3; i++){
+        adversaires->membres[i].pvcourant -= 60;
+        appeffetStat(&adversaires->membres[i],2,-5); //diminue la défense de tous les ennemis de 5
+        appeffetStatut(&adversaires->membres[i],6,1); //applique l'effet bourreau à tous les ennemis pendant 1 tour
+    }
+}
+
+void sacrifice_fraternel(Champ* xavier, Champ* steve){
+    if(xavier==NULL||steve==NULL){
+        printf("Erreur: pointeur nul.");
+        exit(10001);
+    }
+    // Steve donne la moitié de ses stats à Xavier
+    printf("\n Xavier et Steve se combine pour utilise Sacrifice Fraternel ! \n");
+    xavier->jaugeactuelle = 0;
+    steve->jaugeactuelle = 0;
+    effetstat(xavier, 1, (steve->att)/2); // augmente l'attaque de xavier selon celle de steve
+    effetstat(xavier, 2, (steve->def)/2); // augmente la défense de xavier selon celle de steve
+    effetstat(xavier, 3, (steve->vitesse)/2); // augmente la vitesse de xavier selon celle de steve
+    effetstat(xavier, 5, (steve->pvcourant)/2); // augmente les pvmax de xavier selon ceux de steve
+    effetstat(steve, 1, -(steve->att)/2); // diminue l'attaque de steve de moitie
+    effetstat(steve, 2, -(steve->def)/2);
+    effetstat(steve, 3, -(steve->vitesse)/2);
+    effetstat(steve, 5, -(steve->pvcourant)/2);
+}
+
+void amour_incandescent(Champ* nathalie, Champ* smasheur){
+    if(nathalie==NULL||smasheur==NULL){
+        printf("Erreur: pointeur nul.");
+        exit(10002);
+    }
+    // Smasheur oblige nathalie à le soigner quand il subit des dégats
+    printf("\n Smasheur oblige nathalie a utliser amour incandescent ! \n");
+    nathalie->jaugeactuelle = 0;
+    smasheur->jaugeactuelle = 0;
 }
