@@ -3,29 +3,29 @@
 void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
     printf("%s%*s%s\n\n", equipe1->nom, 70-(int)strlen(equipe1->nom),"", equipe2->nom);
     for(int i=0; i<3; i++){
-        if(equipe1->membres[i].statut == 0 && equipe2->membres[i].statut == 1){
+        if(equipe1->membres[i].statut == 0 && equipe2->membres[i].statut == 1 && equipe1->membres[i].nom != joueur->nom && equipe2->membres[i].nom != joueur->nom){
             printf("%s |☠|%*s%s |%d|", equipe1->membres[i].nom, 66-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
         }
-        if(equipe1->membres[i].statut == 1 && equipe2->membres[i].statut == 0){
+        if(equipe1->membres[i].statut == 1 && equipe2->membres[i].statut == 0 && equipe1->membres[i].nom != joueur->nom && equipe2->membres[i].nom != joueur->nom){
             printf("%s |%d|%*s%s |☠|", equipe1->membres[i].nom, i+1, 66-(int)strlen(equipe1->membres[i].nom), "",equipe2->membres[i].nom);
         }
         else if(equipe1->membres[i].statut == 0 && equipe2->membres[i].statut == 0){
             printf("%s |☠|%*s%s |☠|", equipe1->membres[i].nom, 66-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom);
         }
-        if(equipe1->membres[i].nom == joueur->nom && equipe2->membres[i].nom != joueur->nom){
+        if(equipe1->membres[i].statut == 1 && equipe2->membres[i].statut == 1 && equipe1->membres[i].nom != joueur->nom && equipe2->membres[i].nom != joueur->nom){
+            printf("%s |%d|%*s%s |%d|", equipe1->membres[i].nom, i+1, 66-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
+        }
+        if(equipe1->membres[i].nom == joueur->nom && equipe2->membres[i].nom != joueur->nom && equipe1->membres[i].statut == 1 && equipe2->membres[i].statut == 1){
             printf(")>%s<( |%d|%*s%s |%d|", equipe1->membres[i].nom, i+1, 62-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
         }
-        else if(equipe1->membres[i].nom != joueur->nom && equipe2->membres[i].nom == joueur->nom){
+        else if(equipe1->membres[i].nom != joueur->nom && equipe2->membres[i].nom == joueur->nom && equipe1->membres[i].statut == 1 && equipe2->membres[i].statut == 1){
             printf("%s |%d|%*s)>%s<( |%d|", equipe1->membres[i].nom, i+1, 66-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
         }
-        else if(equipe1->membres[i].statut == 0 && equipe2->membres[i].statut == 1 && equipe2->membres[i].nom == joueur->nom){
+        else if(equipe1->membres[i].statut == 0 && equipe2->membres[i].statut == 1 && equipe2->membres[i].nom == joueur->nom && equipe1->membres[i].nom != joueur->nom){
             printf("%s |☠|%*s)>%s<( |%d|", equipe1->membres[i].nom, 66-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
         }
-        else if(equipe1->membres[i].statut == 1 && equipe2->membres[i].statut == 0 && equipe1->membres[i].nom == joueur->nom){
+        else if(equipe1->membres[i].statut == 1 && equipe2->membres[i].statut == 0 && equipe1->membres[i].nom == joueur->nom && equipe2->membres[i].nom != joueur->nom){
             printf(")>%s<( |%d|%*s%s |☠|", equipe1->membres[i].nom, i+1, 62-(int)strlen(equipe1->membres[i].nom), "",equipe2->membres[i].nom);
-        }
-        else{
-            printf("%s |%d|%*s%s |%d|", equipe1->membres[i].nom, i+1, 66-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
         }
         printf("\n");
         int nbeffets1=equipe1->membres[i].nbeffets;
