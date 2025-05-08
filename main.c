@@ -115,6 +115,7 @@ int main(){
         printf("\n Fin du tour numero %d\n", i); // Affiche le numéro du tour
         printf("Appuyez sur entree pour continuer...\n");
         getchar(); // Attend que l'utilisateur appuie sur entrée
+        }
         if(equipe1->nbchampvivant == 0){
             printf("L'equipe %s a perdu bravo a l'equipe %s !\n", equipe1->nom, equipe2->nom);
         } 

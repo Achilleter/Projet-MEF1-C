@@ -6,7 +6,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
         if(equipe1->membres[i].statut == 0 && equipe2->membres[i].statut == 1){
             printf("%s |☠|%*s%s |%d|", equipe1->membres[i].nom, 66-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
         }
-        if(equipe2->membres[i].statut == 1 && equipe1->membres[i].statut == 0){
+        if(equipe1->membres[i].statut == 1 && equipe2->membres[i].statut == 0){
             printf("%s |%d|%*s%s |☠|", equipe1->membres[i].nom, i+1, 66-(int)strlen(equipe1->membres[i].nom), "",equipe2->membres[i].nom);
         }
         else if(equipe1->membres[i].statut == 0 && equipe2->membres[i].statut == 0){
