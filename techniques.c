@@ -104,11 +104,10 @@ void cadeau_empoisonne(Champ* steve, Equipe* ennemi){
         printf("Erreur: pointeur nul.");
         exit(101);
     }
-    if(steve->tech.nbtactifs == 0){
-        printf("\n Steve utilise Cadeau empoisonne ! \n");
-        steve->jaugeactuelle = 0;
-        steve->tech.nbtactifs = 2;
-        // applique l'effet poison sur 2 ennemi au hasard
+    printf("\n Steve utilise Cadeau empoisonne ! \n");
+    steve->jaugeactuelle = 0;
+    // applique l'effet poison sur 2 ennemi au hasard
+    if(ennemi->nbchampvivant==3){
         int alea=rand()%3;
         int alea2=rand()%3;
         while(alea==alea2){
@@ -116,14 +115,22 @@ void cadeau_empoisonne(Champ* steve, Equipe* ennemi){
         }
         appeffetStatut(&ennemi->membres[alea],1,2);//applique l'effet poison pendant 2 tours
         appeffetStatut(&ennemi->membres[alea2],1,2);//applique l'effet poison pendant 2 tours
-        appeffetStat(&ennemi->membres[alea], 3, -10); // diminue la vitesse de 10
-        appeffetStat(&ennemi->membres[alea2], 3, -10); // diminue la vitesse de 10
+        appeffetStat(&ennemi->membres[alea], 3, -2); // diminue la vitesse de 2
+        appeffetStat(&ennemi->membres[alea2], 3, -2); // diminue la vitesse de 2
     }
-    else if(steve->tech.nbtactifs != 0){
-        steve->tech.nbtactifs--;
-        if(steve->tech.nbtactifs == 0){
-            for(int i=0; i<3; i++){
-                appeffetStat(&ennemi->membres[i], 3, 10); // remet la vitesse à la normale
+    else if(ennemi->nbchampvivant==2){
+        for(int i=0; i<3; i++){
+            if(ennemi->membres[i].statut==1){
+                appeffetStatut(&ennemi->membres[i],1,2);//applique l'effet poison pendant 2 tours
+                appeffetStat(&ennemi->membres[i], 3, -2); // diminue la vitesse de 2
+            }
+        }
+    }
+    else {
+        for(int i=0; i<3; i++){
+            if(ennemi->membres[i].statut==1){
+                appeffetStatut(&ennemi->membres[i],1,2);// applique l'effet poison pendant 2 tours
+                appeffetStat(&ennemi->membres[i], 3, -50); // diminue la vitesse de 50
             }
         }
     }
