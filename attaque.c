@@ -191,9 +191,25 @@ void tour (Equipe* e1, Equipe* e2){
     int verif;
     triParVit(e1,e2,tab);
     for (int i=0;i<6;i++){
+        int verifstun=0;
+        for(int j=0; j<10; j++){
+            if(tab[i]->effets[j].effet_statut==2){
+                verifstun=1;
+            }
+        }
         if (tab[i]->statut==0){
             printf("%s est mort!", tab[i]->nom);
-        } 
+        }
+        else if (verifstun==1){
+            printf("%s est stun !\n", tab[i]->nom);
+            tab[i]->jaugeactuelle+=1;
+            if(tab[i]->jaugeactuelle>tab[i]->jaugemax){
+                tab[i]->jaugeactuelle=tab[i]->jaugemax;
+            }
+        }
+        else if (tab[i]->pvcourant<=0){
+            printf("%s est KO.\n",tab[i]->nom);
+        }
         else {
             affichageCombat(e1,e2, tab[i]);
             for (int j=0; j<tab[i]->nbeffets; j++){
