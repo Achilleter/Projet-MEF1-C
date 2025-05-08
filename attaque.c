@@ -198,7 +198,7 @@ void tour (Equipe* e1, Equipe* e2){
             }
         }
         if (tab[i]->statut==0){
-            printf("%s est mort!", tab[i]->nom);
+            printf("%s est mort(e) !\n", tab[i]->nom);
         }
         else if (verifstun==1){
             printf("%s est stun !\n", tab[i]->nom);
