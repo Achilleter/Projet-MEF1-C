@@ -105,7 +105,7 @@ void cadeau_empoisonne(Champ* steve, Equipe* ennemi){
         exit(101);
     }
     if(steve->tech.nbtactifs == 0){
-        printf("\n Steve utilise Motivation ! \n");
+        printf("\n Steve utilise Cadeau empoisonne ! \n");
         steve->jaugeactuelle = 0;
         steve->tech.nbtactifs = 2;
         // applique l'effet poison sur 2 ennemi au hasard
@@ -158,12 +158,12 @@ void cryogenese(Champ* sandrine, Equipe* ennemi){
     // inflige 30 de dégats à tous les ennemis et diminue les stuns pendant 1 tour
     printf("\n Sandrine utilise Exploglace ! \n");
         sandrine->jaugeactuelle = 0;
-        ennemi->membres[0].pvcourant -= 30;
-        ennemi->membres[1].pvcourant -= 30;
-        ennemi->membres[2].pvcourant -= 30;
-        appeffetStatut(&ennemi->membres[0], 2, 1) ;//applique l'effet stun pendant 1 tour
-        appeffetStatut(&ennemi->membres[1], 2, 1) ;//applique l'effet stun pendant 1 tour
-        appeffetStatut(&ennemi->membres[2], 2, 1) ;//applique l'effet stun pendant 1 tour
+        for(int i=0; i<3; i++){
+            if(ennemi->membres[i].statut==1){
+                ennemi->membres[i].pvcourant -= 30;
+                appeffetStatut(&ennemi->membres[i], 2, 1) ;//applique l'effet stun pendant 1 tour
+            }
+        }
 }
 
 void scierculaire(Champ* annesophie, Equipe* ennemi){

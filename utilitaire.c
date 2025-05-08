@@ -26,6 +26,7 @@ void getchamp(Champ tab[]){
             tab[i].pvcourant=tab[i].pvmax;
             tab[i].jaugeactuelle=0;
             tab[i].nbeffets=0;
+            tab[i].tech.nbtactifs=0;
             for(int j=0; j<10; j++){
                 tab[i].effets[j].duree=0;
                 tab[i].effets[j].effet_statut=0;

@@ -169,19 +169,19 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
     }
     do{
         do{ // Demande à l'utilisateur de choisir une cible
-            printf("Choisissez votre cible (0,1 ou 2): ");
+            printf("Choisissez votre cible (1,2 ou 3): ");
             verif=scanf("%d",&index);
-            if(index<0 || index>2){
+            if(index<1 || index>3){
                 printf("Index invalide");
             }
             vide_buffer();
-        } while (index<0 || index>2 || verif!=1);
-        if(e2->membres[index].pvcourant<=0){ // Si la cible est KO, on redemande une cible
+        } while (index<1 || index>3 || verif!=1);
+        if(e2->membres[index-1].pvcourant<=0){ // Si la cible est KO, on redemande une cible
             printf("Cible KO. Veuillez en chosir une nouvelle\n");
-            index=3;
+            index=4;
         }
-    } while (index==3);
-    return &e2->membres[index];
+    } while (index==4);
+    return &e2->membres[index-1];
 }
 
 void tour (Equipe* e1, Equipe* e2){
@@ -255,7 +255,7 @@ void tour (Equipe* e1, Equipe* e2){
                         bourreau(tab[i], adversaire);
                     } else if (strcmp(tab[i]->tech.nom, "muraille")==0) {
                         muraille(tab[i]);
-                    } else if (strcmp(tab[i]->tech.nom, "motivation")==0) {
+                    } else if (strcmp(tab[i]->tech.nom, "cadeau_empoisonne")==0) {
                         cadeau_empoisonne(tab[i], adversaire);
                     } else if (strcmp(tab[i]->tech.nom, "fossoyeur_des_mondes")==0) {
                         fossoyeur_des_mondes(tab[i]);
