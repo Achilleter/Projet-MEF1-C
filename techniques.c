@@ -12,13 +12,16 @@ void berserk(Champ* xavier){
         printf("Xavier utilise Berserk !\n");
         appeffetStat(xavier,1,20);//augmente l'attaque de 20
         appeffetStat(xavier,2,10);//augmente la defense de 10
-        appeffetStatut(xavier,4,1);//applique invincibilité pendant 1 tour
+        appeffetStatut(xavier,4,2);//applique invincibilité pendant 1 tour
     }
-    else if(xavier->tech.nbtactifs == 1){
-        xavier->tech.nbtactifs = 0;
-        appeffetStatut(xavier,2,1);//s'immobilise
-        appeffetStat(xavier,1,-20);//diminue l'attaque de 20
-        appeffetStat(xavier,2,-10);//diminue la defense de 10
+    else if(xavier->tech.nbtactifs != 0){
+        xavier->tech.nbtactifs--;
+        if(xavier->tech.nbtactifs == 0){
+            xavier->tech.nbtactifs = 0;
+            appeffetStatut(xavier,2,2);//s'immobilise
+            appeffetStat(xavier,1,-20);//diminue l'attaque de 20
+            appeffetStat(xavier,2,-10);//diminue la defense de 10
+        }   
     }
 }
 
@@ -34,16 +37,16 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
     appeffetStat(allie1,4,100);//soigne de 100
     appeffetStat(allie2,4,100);
     appeffetStat(nathalie,4,100);
-    for(int i=0; i<6; i++){ // enlève tous les effets statuts négatifs (sauf les effets comme l'invincibilité, le renvoie de dégâts et la provocation)
-        if((allie1->effets[i].effet_statut != 5 && allie1->effets[i].effet_statut != 4) && allie1->effets[i].effet_statut != 3){
+    for(int i=0; i<10; i++){ // enlève tous les effets statuts négatifs (sauf les effets comme l'invincibilité, le renvoie de dégâts et la provocation)
+        if(allie1->effets[i].effet_statut != 5 && allie1->effets[i].effet_statut != 4 && allie1->effets[i].effet_statut != 3){
             allie1->effets[i].effet_statut = 0;
             allie1->effets[i].duree = 0;
         }
-        if((allie1->effets[i].effet_statut != 5 && allie1->effets[i].effet_statut != 4) && allie1->effets[i].effet_statut != 3){
+        if(nathalie->effets[i].effet_statut != 5 && nathalie->effets[i].effet_statut != 4 && nathalie->effets[i].effet_statut != 3){
             nathalie->effets[i].effet_statut = 0;
             nathalie->effets[i].duree = 0;
         }
-        if((allie1->effets[i].effet_statut != 5 && allie1->effets[i].effet_statut != 4) && allie1->effets[i].effet_statut != 3){
+        if(allie2->effets[i].effet_statut != 5 && allie2->effets[i].effet_statut != 4 && allie2->effets[i].effet_statut != 3){
             allie2->effets[i].effet_statut = 0;
             allie2->effets[i].duree = 0;
         }
@@ -63,6 +66,10 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
         if (choix<1 || choix>3) {
             printf("Index invalide\n");
         }
+        if(ennemi->membres[choix-1].statut==0){ // Si la cible est KO, on redemande une cible
+            printf("Cible KO. Veuillez en chosir une nouvelle\n");
+            choix=0;
+        }
         vide_buffer();
     } while (choix<1 || choix>3 || verif!=1);
     // applique l'effet bourreau sur un ennemi pendant 2 tours
@@ -79,49 +86,46 @@ void muraille(Champ* smasheur){
     }
     //provoque les ennemis, augmente sa défense de 20 et renvoie les dégats pendant 1 tour
     if(smasheur->tech.nbtactifs == 0){
-        smasheur->tech.nbtactifs = 2;
+        smasheur->tech.nbtactifs = 1;
         printf("\n Smasheur utilise Muraille Infinie ! \n");
         smasheur->jaugeactuelle = 0;
         appeffetStatut(smasheur,5,2);//applique l'effet renvoie de dégâts pendant 1 tour
         appeffetStatut(smasheur,3,2);//applique l'effet provocation pendant 1 tour
         appeffetStat(smasheur,3,20);//augmente la défense de 20
     }
-    else if(smasheur->tech.nbtactifs == 1){
+    else if(smasheur->tech.nbtactifs != 0){
+        smasheur->tech.nbtactifs--;
         appeffetStat(smasheur,3,-20);//diminue la défense de 20
     }
 }
 
-void motivation(Champ* steve, Champ* allie1, Champ* allie2){
-    if(steve==NULL||allie1==NULL||allie2==NULL){
+void cadeau_empoisonne(Champ* steve, Equipe* ennemi){
+    if(steve==NULL||ennemi==NULL){
         printf("Erreur: pointeur nul.");
         exit(101);
     }
-    //augmentation de la vitesse d'un allié ou de soi même de 25
-    int verif;
-    printf("\n Steve utilise Motivation ! \n");
-    steve->jaugeactuelle = 0;
-    int choix=0;
-    do{// vérification du choix
-        printf("\n Qui voulez-vous motiver ? (0=vous, 1=%s, 2=%s) \n", allie1->nom, allie2->nom);
-        verif=scanf("%d",&choix);
-        if(choix<0 || choix>2){
-            printf("Index invalide\n");
+    if(steve->tech.nbtactifs == 0){
+        printf("\n Steve utilise Motivation ! \n");
+        steve->jaugeactuelle = 0;
+        steve->tech.nbtactifs = 2;
+        // applique l'effet poison sur 2 ennemi au hasard
+        int alea=rand()%3;
+        int alea2=rand()%3;
+        while(alea==alea2){
+            alea2=rand()%3;
         }
-        vide_buffer();
-    } while (choix<0 || choix>2 || verif!=1);
-    switch (choix){
-        case 0:
-            printf("\n Vous vous motivez ! \n");
-            appeffetStat(steve,3,25);//augmente la vitesse de 25
-            break;
-        case 1:
-            printf("\n Vous motivez %s ! \n", allie1->nom);
-            appeffetStat(allie1,3,25);
-            break;
-        case 2: 
-            printf("\n Vous motivez %s ! \n", allie2->nom);
-            appeffetStat(allie2,3,25);
-            break;
+        appeffetStatut(&ennemi->membres[alea],1,2);//applique l'effet poison pendant 2 tours
+        appeffetStatut(&ennemi->membres[alea2],1,2);//applique l'effet poison pendant 2 tours
+        appeffetStat(&ennemi->membres[alea], 3, -10); // diminue la vitesse de 10
+        appeffetStat(&ennemi->membres[alea2], 3, -10); // diminue la vitesse de 10
+    }
+    else if(steve->tech.nbtactifs != 0){
+        steve->tech.nbtactifs--;
+        if(steve->tech.nbtactifs == 0){
+            for(int i=0; i<3; i++){
+                appeffetStat(&ennemi->membres[i], 3, 10); // remet la vitesse à la normale
+            }
+        }
     }
 }
 
@@ -132,7 +136,7 @@ void fossoyeur_des_mondes(Champ* booga){
     }
     appeffetStat(booga, 4, 25); // Se soigne de 25 PV à chaque tour
     if(booga->tech.nbtactifs == 0){
-        booga->tech.nbtactifs = 2;
+        booga->tech.nbtactifs = 4; // Applique l'effet pendant 4 tours
         printf("\n Booga utilise Fossoyeur des Mondes ! \n");
         booga->jaugeactuelle = 0;
         appeffetStat(booga, 1, 10); // Augmente l'attaque de 10
@@ -143,6 +147,7 @@ void fossoyeur_des_mondes(Champ* booga){
         appeffetStat(booga, 2, -10); // Diminue la défense de 10
         printf("\n Booga redevient comme avant ! \n");
     }
+    booga->tech.nbtactifs--;
 }
 
 void cryogenese(Champ* sandrine, Equipe* ennemi){
@@ -150,15 +155,15 @@ void cryogenese(Champ* sandrine, Equipe* ennemi){
         printf("Erreur: pointeur nul.");
         exit(111);
     }
-    // inflige 30 de dégats à tous les ennemis et diminue leur vitesse de 15
+    // inflige 30 de dégats à tous les ennemis et diminue les stuns pendant 1 tour
     printf("\n Sandrine utilise Exploglace ! \n");
-    sandrine->jaugeactuelle = 0;
-    ennemi->membres[0].pvcourant -= 30;
-    ennemi->membres[1].pvcourant -= 30;
-    ennemi->membres[2].pvcourant -= 30;
-    appeffetStat(&ennemi->membres[0],3,15);//diminue la vitesse de 15
-    appeffetStat(&ennemi->membres[1],3,15);
-    appeffetStat(&ennemi->membres[2],3,15);
+        sandrine->jaugeactuelle = 0;
+        ennemi->membres[0].pvcourant -= 30;
+        ennemi->membres[1].pvcourant -= 30;
+        ennemi->membres[2].pvcourant -= 30;
+        appeffetStatut(&ennemi->membres[0], 2, 1) ;//applique l'effet stun pendant 1 tour
+        appeffetStatut(&ennemi->membres[1], 2, 1) ;//applique l'effet stun pendant 1 tour
+        appeffetStatut(&ennemi->membres[2], 2, 1) ;//applique l'effet stun pendant 1 tour
 }
 
 void scierculaire(Champ* annesophie, Equipe* ennemi){
@@ -166,15 +171,15 @@ void scierculaire(Champ* annesophie, Equipe* ennemi){
         printf("Erreur: pointeur nul.");
         exit(1000);
     }
-    //inflige 50 dégats à tous les ennemis et réduit leur défense de 5
+    //inflige 50 dégats à tous les ennemis et applique l'effet poison pendant 2 tours
     printf("\n Annesophie utilise Scierculaire ! \n");
     annesophie->jaugeactuelle = 0;
-    ennemi->membres[0].pvcourant -= 50;
-    ennemi->membres[1].pvcourant -= 50;
-    ennemi->membres[2].pvcourant -= 50;
-    appeffetStatut(&ennemi->membres[0],1,2);//applique l'effet poison pendant 2 tours
-    appeffetStatut(&ennemi->membres[1],1,2);
-    appeffetStatut(&ennemi->membres[2],1,2);
+    for(int i=0; i<3; i++){
+        if(ennemi->membres[i].statut==1){
+            ennemi->membres[i].pvcourant -= 50;
+            appeffetStatut(&ennemi->membres[i],1,2); 
+        }
+    }
 }
 
 void cicatrices_eternels(Champ* gaby, Equipe* ennemi){
@@ -185,9 +190,11 @@ void cicatrices_eternels(Champ* gaby, Equipe* ennemi){
     // inflige 100 de dégats à tous les ennemis
     printf("\n Gaby utilise Cicatrices Eternels ! \n");
     gaby->jaugeactuelle = 0;
-    ennemi->membres[0].pvcourant -= 100;
-    ennemi->membres[1].pvcourant -= 100;
-    ennemi->membres[2].pvcourant -= 100;
+    for(int i=0; i<3; i++){
+        if(ennemi->membres[i].statut==1){
+            ennemi->membres[i].pvcourant -= 100;
+        }
+    }
 }
 
 void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2, Equipe* allies){
@@ -201,7 +208,7 @@ void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2, Equipe* allies
         printf("\n Aucun de vos alliés n'est mort ! \n");
         return;
     }
-    else if (allie1->statut==0 || allie2->statut==0) {
+    else if (allie1->statut==0 && allie2->statut==0) {
         int choix=0;
         printf("\n Choississez un allié à ressusciter (1=%s, 2=%s) : \n", allie1->nom, allie2->nom);
         do {
@@ -248,8 +255,8 @@ void nomtechsamirazed(Champ* annesophie, Champ* zed, Equipe* adversaires){
         exit(10000);
     }
     // Les personnages combinent leurs techniques pour infliger 60 de dégats à tous les ennemis, diminue leur défense de 5 et applique l'effet bourreau pendant 1 tour
-   printf("\n Annesophie et zed se combine pour utilise Nomtechsamirazed ! \n");
-   annesophie->jaugeactuelle = 0;
+    printf("\n Annesophie et zed se combine pour utilise Nomtechsamirazed ! \n");
+    annesophie->jaugeactuelle = 0;
     zed->jaugeactuelle = 0;
     for(int i=0; i<3; i++){
         adversaires->membres[i].pvcourant -= 60;

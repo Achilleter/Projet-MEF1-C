@@ -65,7 +65,7 @@ void berserk(Champ* xavier);
 void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2);
 void bourreau(Champ* zed, Equipe* ennemi);
 void muraille(Champ* smasheur);
-void motivation(Champ* steve, Champ* allie1, Champ* allie2);
+void cadeau_empoisonne(Champ* steve, Equipe* ennemi);
 void fossoyeur_des_mondes(Champ* booga);
 void cryogenese(Champ* sandrine, Equipe* ennemi);
 void scierculaire(Champ* annesophie, Equipe* ennemi);
