@@ -5,17 +5,18 @@ void berserk(Champ* xavier, Equipe* allie){
         printf("Erreur: pointeur nul.");
         exit(1);
     }
+    int verif;
     for(int i=0; i<3; i++){
-        if(strcmp(allie->membres[i].tech.nom, 'cadeau_empoisonne')==0){
+        if(strcmp(allie->membres[i].tech.nom, "cadeau_empoisonne")==0){
             if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
                 printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allie->membres[i].nom);
                 int choix=0;
-                int verif;
                 do{
-                    scanf("%d", &choix);
+                    verif=scanf("%d", &choix);
                     if (choix<0 || choix>1) {
                         printf("Index invalide\n");
                     }
+                    vide_buffer();
                 }
                 while(choix<0 || choix>1 || verif!=1);
                 if (choix==1){
@@ -83,16 +84,17 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
         exit(11);
     }
     for(int i=0; i<3; i++){
-        if(strcmp(allie->membres[i].tech.nom, 'scierculaire')==0){
+        if(strcmp(allie->membres[i].tech.nom, "scierculaire")==0){
             if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
                 printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allie->membres[i].nom);
                 int choix=0;
                 int verif;
                 do{
-                    scanf("%d", &choix);
+                    verif=scanf("%d", &choix);
                     if (choix<0 || choix>1) {
                         printf("Index invalide\n");
                     }
+                    vide_buffer();
                 }
                 while(choix<0 || choix>1 || verif!=1);
                 if (choix==1){
@@ -105,11 +107,11 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
             }
         }
     }
-    int verif;
+    int verif1;
     int choix=0;
     do{
     printf("Choisissez un ennemi à viser (1=%s, 2=%s, 3=%s) : \n", ennemi->membres[0].nom, ennemi->membres[1].nom, ennemi->membres[2].nom);
-        verif=scanf("%d", &choix);
+        verif1=scanf("%d", &choix);
         if (choix<1 || choix>3) {
             printf("Index invalide\n");
         }
@@ -153,16 +155,17 @@ void cadeau_empoisonne(Champ* steve, Equipe* ennemi, Equipe* allie){
         exit(101);
     }
     for(int i=0; i<3; i++){
-        if(strcmp(allie->membres[i].tech.nom, 'berserk')==0){
+        if(strcmp(allie->membres[i].tech.nom, "berserk")==0){
             if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
                 printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allie->membres[i].nom);
                 int choix=0;
                 int verif;
                 do{
-                    scanf("%d", &choix);
+                    verif=scanf("%d", &choix);
                     if (choix<0 || choix>1) {
                         printf("Index invalide\n");
                     }
+                    vide_buffer();
                 }
                 while(choix<0 || choix>1 || verif!=1);
                 if (choix==1){
@@ -253,16 +256,17 @@ void scierculaire(Champ* annesophie, Equipe* ennemi, Equipe* allie){
         exit(1000);
     }
     for(int i=0; i<3; i++){
-        if(strcmp(allie->membres[i].tech.nom, 'bourreau')==0){
+        if(strcmp(allie->membres[i].tech.nom, "bourreau")==0){
             if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
                 printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allie->membres[i].nom);
                 int choix=0;
                 int verif;
                 do{
-                    scanf("%d", &choix);
+                    verif=scanf("%d", &choix);
                     if (choix<0 || choix>1) {
                         printf("Index invalide\n");
                     }
+                    vide_buffer();
                 }
                 while(choix<0 || choix>1 || verif!=1);
                 if (choix==1){
@@ -292,16 +296,17 @@ void cicatrices_eternels(Champ* gaby, Equipe* ennemi, Equipe* allie){
         exit(1001);
     }
     for(int i=0; i<3; i++){
-        if(strcmp(allie->membres[i].tech.nom, 'reinitialisation')==0){
+        if(strcmp(allie->membres[i].tech.nom, "reinitialisation")==0){
             if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
                 printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allie->membres[i].nom);
                 int choix=0;
                 int verif;
                 do{
-                    scanf("%d", &choix);
+                    verif=scanf("%d", &choix);
                     if (choix<0 || choix>1) {
                         printf("Index invalide\n");
                     }
+                    vide_buffer(); 
                 }
                 while(choix<0 || choix>1 || verif!=1);
                 if (choix==1){
@@ -330,16 +335,17 @@ void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2, Equipe* allies
         exit(1010);
     }
     for(int i=0; i<3; i++){
-        if(strcmp(allies->membres[i].tech.nom, 'cicatrices_eternels')==0){
+        if(strcmp(allies->membres[i].tech.nom, "cicatrices_eternels")==0){
             if(allies->membres[i].jaugeactuelle==allies->membres[i].jaugemax){
                 printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allies->membres[i].nom);
                 int choix=0;
                 int verif;
                 do{
-                    scanf("%d", &choix);
+                    verif=scanf("%d", &choix);
                     if (choix<0 || choix>1) {
                         printf("Index invalide\n");
                     }
+                    vide_buffer();
                 }
                 while(choix<0 || choix>1 || verif!=1);
                 if (choix==1){
