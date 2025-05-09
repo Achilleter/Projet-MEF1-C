@@ -127,10 +127,10 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
                 }
             }
             if(nbeffets1 != 0 && nbeffets2 != 0){
-                printf("%*s", 62-(nbtotaleffet1), "");
+                printf("%*s", 64-(nbtotaleffet1), "");
             }
             else if(nbeffets1 != 0 && nbeffets2 == 0){
-            	printf("%*s(Chill Guy)", 62-(nbtotaleffet2), "");
+            	printf("%*s(Chill Guy)", 64-(nbtotaleffet2), "");
             }
             for(int k=0; k<nbeffets2; k++){
                 int effetdureemax2=equipe2->membres[i].effets[k].duree;
