@@ -38,26 +38,16 @@ void degatseffetStatut(Champ *champ){
     }
     else if (champ->nbeffets > 0) {
         for (int i = 0; i < champ->nbeffets; i++) {
-            if (champ->effets[i].effet_statut == 1) { // application poison
+            if (champ->effets[i].effet_statut == 1 && champ->effets[i].duree>0) { // application poison
                 champ->pvcourant -= champ->pvmax * 0.05;
                 printf("%s subit des degats de poison !\n", champ->nom);
-                break;
             }
-            else if (champ->effets[i].effet_statut == 6) { // application bourreau
+            else if (champ->effets[i].effet_statut == 6 && champ->effets[i].duree>0) { // application bourreau
                 if(champ->pvcourant <= champ->pvmax * 0.25) {
                     champ->pvcourant = 0;
                     champ->statut = 0; // mort
                     printf("%s a ete execute !\n", champ->nom);
                 }
-                break;
-            }
-            champ->effets[i].duree--; // reduction de la duree de l'effet
-            if (champ->effets[i].duree == 0) { // suppression de l'effet si il se termine
-                for (int j = i; j < champ->nbeffets-1; j++) {
-                    champ->effets[j] = champ->effets[j + 1];
-                }
-                champ->nbeffets--;
-                i--;
             }
         }
     }
@@ -77,8 +67,9 @@ void appeffetStatut(Champ *champ, EffetStatut effetstatut, int duree) {
         }
     }
     if(bool==0){ // sinon ajout de l'effet
-        champ->effets[champ->nbeffets].effet_statut= effetstatut;
-        champ->effets[champ->nbeffets].duree= duree;
+        champ->nbeffets++;
+        champ->effets[champ->nbeffets-1].effet_statut= effetstatut;
+        champ->effets[champ->nbeffets-1].duree= duree;
     }
 }
 
@@ -162,8 +153,10 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
     for(int j=0; j<3; j++){ // Si un ennemi provocateur est présent, il est la cible par défaut
         for(int k=0; k<e2->membres[j].nbeffets; k++){
             if(e2->membres[j].effets[k].effet_statut==3){
-                printf("%s est provoqué par %s !\n",attaquant->nom, e2->membres[j].nom);
-                return &e2->membres[j];
+                if(e2->membres[j].effets[k].duree>0){  
+                    printf("%s est provoqué par %s !\n",attaquant->nom, e2->membres[j].nom);
+                    return &e2->membres[j];
+                }
             }
         }
     }
@@ -214,10 +207,8 @@ void tour (Equipe* e1, Equipe* e2){
         }
         else {
             affichageCombat(e1,e2, tab[i]);
-            for (int j=0; j<tab[i]->nbeffets; j++){
-                if (tab[i]->effets[j].duree>0){
-                    degatseffetStatut(tab[i]);
-                }
+            if (tab[i]->nbeffets>0){
+                degatseffetStatut(tab[i]);
             }
             Equipe *joueur;
             Equipe *adversaire;
@@ -336,9 +327,9 @@ void tour (Equipe* e1, Equipe* e2){
                         }
                     }
                     if(memeEquipe(&adversaire->membres[j],e1)==0){
-                        e1->nbchampvivant--;
-                    } else {
                         e2->nbchampvivant--;
+                    } else {
+                        e1->nbchampvivant--;
                     }
                 }
             }

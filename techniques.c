@@ -87,7 +87,7 @@ void muraille(Champ* smasheur){
     //provoque les ennemis, augmente sa défense de 20 et renvoie les dégats pendant 1 tour
     if(smasheur->tech.nbtactifs == 0){
         smasheur->tech.nbtactifs = 1;
-        printf("\n Smasheur utilise Muraille Infinie ! \n");
+        printf("\n Smasheur utilise muraille! \n");
         smasheur->jaugeactuelle = 0;
         appeffetStatut(smasheur,5,2);//applique l'effet renvoie de dégâts pendant 1 tour
         appeffetStatut(smasheur,3,2);//applique l'effet provocation pendant 1 tour
@@ -104,7 +104,6 @@ void cadeau_empoisonne(Champ* steve, Equipe* ennemi){
         printf("Erreur: pointeur nul.");
         exit(101);
     }
-    printf("\n Steve utilise Cadeau empoisonne ! \n");
     steve->jaugeactuelle = 0;
     // applique l'effet poison sur 2 ennemi au hasard
     if(ennemi->nbchampvivant==3){
@@ -117,12 +116,15 @@ void cadeau_empoisonne(Champ* steve, Equipe* ennemi){
         appeffetStatut(&ennemi->membres[alea2],1,2);//applique l'effet poison pendant 2 tours
         appeffetStat(&ennemi->membres[alea], 3, -2); // diminue la vitesse de 2
         appeffetStat(&ennemi->membres[alea2], 3, -2); // diminue la vitesse de 2
+        printf("\n Steve utilise Cadeau empoisonne sur %s ! \n",ennemi->membres[alea].nom);
+        printf("\n Steve utilise Cadeau empoisonne sur %s ! \n",ennemi->membres[alea2].nom);
     }
     else if(ennemi->nbchampvivant==2){
         for(int i=0; i<3; i++){
             if(ennemi->membres[i].statut==1){
                 appeffetStatut(&ennemi->membres[i],1,2);//applique l'effet poison pendant 2 tours
                 appeffetStat(&ennemi->membres[i], 3, -2); // diminue la vitesse de 2
+                printf("\n Steve utilise Cadeau empoisonne sur %s ! \n",ennemi->membres[i].nom);
             }
         }
     }
@@ -131,6 +133,7 @@ void cadeau_empoisonne(Champ* steve, Equipe* ennemi){
             if(ennemi->membres[i].statut==1){
                 appeffetStatut(&ennemi->membres[i],1,2);// applique l'effet poison pendant 2 tours
                 appeffetStat(&ennemi->membres[i], 3, -50); // diminue la vitesse de 50
+                printf("\n Steve utilise Cadeau empoisonne sur %s ! \n",ennemi->membres[i].nom);
             }
         }
     }
