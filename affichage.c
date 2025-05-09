@@ -230,7 +230,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
             printf("_");
             pvvide1--;
         }
-        printf(")(%.2f)%*s", equipe1->membres[i].pvcourant, 20, "");
+        printf(")(%.2f)%*s", equipe1->membres[i].pvcourant, 40, "");
         // Affichage des PV sous les membres de l'équipe 2
         int pvactuel2=equipe2->membres[i].pvcourant/20;
         int pvvide2=pvmax-pvactuel2; // variable pour remplir le vide de la barre de vie
@@ -257,7 +257,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
             printf("_");
             jaugevide1--;
         }
-        printf(")%*s", 40, "");
+        printf(")%*s", 52, "");
         // afficher la jauge de chaque champion de l'équipe 2
         int jaugeactuel2=equipe2->membres[i].jaugeactuelle; // variable pour afficher la jauge de vie
         int jaugemax2=equipe2->membres[i].jaugemax;
