@@ -105,31 +105,82 @@ void appeffetStat(Champ *champ, EffetStat effetstat, float valeur) {
         }
 }
 
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    char *nom;
+    int pv;
+    int attaque;
+    int defense;
+    int agilite;
+    int vitesse;
+} Champ;
+
+typedef struct {
+    Champ membres[3];
+} Equipe;
+
+// Fonction partition. Tri rapide
+int partition(Champ *A[], int debut, int fin) {
+    int inf=debut+1;
+    int sup=fin;
+    Champ *pivot=A[debut];
+    Champ *tmp;
+    // rajouter verif pointeurs
+    while (inf<=sup) {
+        while (sup>=inf && A[sup]->vitesse<pivot->vitesse) {
+            sup=sup-1;
+        }
+        while (inf<=fin && A[inf]->vitesse>pivot->vitesse) {
+            inf=inf+1;
+        }
+        if (inf<sup) {
+            tmp=A[inf];
+            A[inf]=A[sup];
+            A[sup]=tmp;
+        }
+    }
+
+    tmp=A[debut];
+    A[debut]=A[sup];
+    A[sup]=tmp;
+    return sup;
+}
+
+// Fonction récursive de tri rapide
+void triRapideRec(Champ *A[], int debut, int fin) {
+    if (debut<fin) {
+        int pivot=partition(A, debut, fin);
+        triRapideRec(A, debut, pivot - 1);
+        triRapideRec(A, pivot + 1, fin);
+    }
+}
+
+// Fonction principale du tri rapide
+void triRapide(Champ *A[], int n) {
+    triRapideRec(A, 0, n-1);
+}
+
+// Fonction de tri par vitesse de deux équipes
 void triParVit(Equipe *e1, Equipe *e2, Champ *tab[6]) {
-    if(e1 == NULL || e2 == NULL){       // Vérification des pointeurs e1 et e2
-        printf("Erreur : pointeur nul");
+    if (e1==NULL || e2==NULL) {
+        printf("Erreur : pointeur nul\n");
         exit(1);
     }
-    for (int i=0; i<3; i++) {          // Regroupement des 2 équipes dans un seul tableau
+    for (int i=0; i<3; i++) {
         tab[i]=&e1->membres[i];
         tab[i+3]=&e2->membres[i];
     }
-    for (int i=0; i<5; i++) {          // Tri à bulle
-        for (int j=i+1; j<6; j++) {
-            if (tab[i]->vitesse < tab[j]->vitesse) {
-                Champ *temp=tab[i];
-                tab[i]=tab[j];
-                tab[j]=temp;
-            }
-        }
-    }
-    for(int i=0; i<6; i++){
-        if(tab[i] == NULL){            // Vérification du pointeur tab 
-            printf("Erreur : pointeur nul");
-            exit(1);
+    triRapide(tab, 6);
+    for (int i = 0; i < 6; i++) {
+        if (tab[i] == NULL) {
+            printf("Erreur : pointeur nul.");
+            exit(10);
         }
     }
 }
+
 
 int memeEquipe(Champ* champ, Equipe* e1) {
     if(champ == NULL || e1 == NULL) {    // Vérification des pointeurs champ et e1
