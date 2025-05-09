@@ -234,7 +234,7 @@ void tour (Equipe* e1, Equipe* e2){
                  if (choix==1){
                     // vérfication de la technique
                     if (strcmp(tab[i]->tech.nom, "berserk")==0) {
-                        berserk(tab[i]);
+                        berserk(tab[i], joueur);
                     } else if (strcmp(tab[i]->tech.nom, "flashbacks")==0) {
                         if(strcmp(tab[i]->nom, joueur->membres[0].nom)==0) {
                             flashbacks(tab[i], &joueur->membres[1], &joueur->membres[2]);
@@ -244,26 +244,26 @@ void tour (Equipe* e1, Equipe* e2){
                              flashbacks(tab[i], &joueur->membres[0], &joueur->membres[1]);
                         }
                     } else if (strcmp(tab[i]->tech.nom, "bourreau")==0) {
-                        bourreau(tab[i], adversaire);
+                        bourreau(tab[i], adversaire, joueur);
                     } else if (strcmp(tab[i]->tech.nom, "muraille")==0) {
                         muraille(tab[i]);
                     } else if (strcmp(tab[i]->tech.nom, "cadeau_empoisonne")==0) {
-                        cadeau_empoisonne(tab[i], adversaire);
+                        cadeau_empoisonne(tab[i], adversaire, joueur);
                     } else if (strcmp(tab[i]->tech.nom, "fossoyeur_des_mondes")==0) {
                         fossoyeur_des_mondes(tab[i]);
                     } else if (strcmp(tab[i]->tech.nom, "cryogenese")==0) { 
                         cryogenese(tab[i], adversaire);
                     } else if (strcmp(tab[i]->tech.nom, "scierculaire")==0) {
-                        scierculaire(tab[i], adversaire);
+                        scierculaire(tab[i], adversaire, joueur);
                     } else if (strcmp(tab[i]->tech.nom, "cicatrices_eternels")==0){
-                        cicatrices_eternels(tab[i], adversaire);
+                        cicatrices_eternels(tab[i], adversaire, joueur);
                     } else if (strcmp(tab[i]->tech.nom, "reinitialisation")==0) {
                         if(strcmp(tab[i]->nom, joueur->membres[0].nom)==0) {
-                            reinitialisation(tab[i], &joueur->membres[1], &joueur->membres[2], joueur);
+                            reinitialisation(tab[i], &joueur->membres[1], &joueur->membres[2], joueur, adversaire);
                         } else if (strcmp(tab[i]->nom, joueur->membres[1].nom)==0) { 
-                            reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[2], joueur);
+                            reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[2], joueur, adversaire);
                         } else if (strcmp(tab[i]->nom, joueur->membres[2].nom)==0) {
-                            reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[1], joueur);
+                            reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[1], joueur, adversaire);
                         }
                     }
                 }
