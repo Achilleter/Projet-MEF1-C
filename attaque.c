@@ -17,7 +17,7 @@ float attaque(Champ *champatt, Champ *champdef){
         }
     }
     if (champdef->statut == 4) { // invincibilité
-        champatt->pvcourant = champatt->pvmax;
+        degats=0;
     }
     int alea=rand()%100;
     if(alea<champdef->agilite){ //esquive
