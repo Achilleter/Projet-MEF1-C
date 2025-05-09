@@ -127,7 +127,9 @@ int partition(Champ *A[], int debut, int fin) {
     int sup=fin;
     Champ *pivot=A[debut];
     Champ *tmp;
-    // rajouter verif pointeurs
+    if (pivot == NULL){
+        printf("Erreur. Pointeur nul.");
+    }
     while (inf<=sup) {
         while (sup>=inf && A[sup]->vitesse<pivot->vitesse) {
             sup=sup-1;
@@ -155,6 +157,10 @@ void triRapideRec(Champ *A[], int debut, int fin) {
         triRapideRec(A, debut, pivot - 1);
         triRapideRec(A, pivot + 1, fin);
     }
+    for (int i=0, i<6, i++){
+        if (tab[i]==NULL){
+            printf("Erreur. Pointeur nul.");
+        }
 }
 
 // Fonction principale du tri rapide
@@ -173,7 +179,7 @@ void triParVit(Equipe *e1, Equipe *e2, Champ *tab[6]) {
         tab[i+3]=&e2->membres[i];
     }
     triRapide(tab, 6);
-    for (int i = 0; i < 6; i++) {
+    for (int i=0; i<6; i++) {
         if (tab[i] == NULL) {
             printf("Erreur : pointeur nul.");
             exit(10);
