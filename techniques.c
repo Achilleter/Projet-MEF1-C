@@ -120,7 +120,7 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
             choix=0;
         }
         vide_buffer();
-    } while (choix<1 || choix>3 || verif!=1);
+    } while (choix<1 || choix>3 || verif1!=1);
     // applique l'effet bourreau sur un ennemi pendant 2 tours
     printf("\n Zed utilise marque du bourreau ! \n");
     zed->jaugeactuelle = 0;
