@@ -96,7 +96,7 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
                 }
                 while(choix<0 || choix>1 || verif!=1);
                 if (choix==1){
-                    nomtechsamirazed(zed, &allie->membres[i], ennemi);
+                    extermination(zed, &allie->membres[i], ennemi);
                     break;
                 }
                 else{
@@ -266,7 +266,7 @@ void scierculaire(Champ* annesophie, Equipe* ennemi, Equipe* allie){
                 }
                 while(choix<0 || choix>1 || verif!=1);
                 if (choix==1){
-                    nomtechsamirazed(annesophie, &allie->membres[i], ennemi);
+                    extermination(annesophie, &allie->membres[i], ennemi);
                     break;
                 }
                 else{
@@ -399,7 +399,7 @@ void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2, Equipe* allies
     }
 }
 
-void nomtechsamirazed(Champ* annesophie, Champ* zed, Equipe* adversaires){
+void extermination(Champ* annesophie, Champ* zed, Equipe* adversaires){
     if(annesophie==NULL||zed==NULL||adversaires==NULL){
         printf("Erreur: pointeur nul.");
         exit(10000);
