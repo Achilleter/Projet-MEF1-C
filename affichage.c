@@ -32,13 +32,15 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
         int nbeffets2=equipe2->membres[i].nbeffets;
         int effetmax=3;
         int effetduree=0;
+        int nbtotaleffet1=nbeffets1*5;
+        int nbtotaleffet2=nbeffets2*5;
         if(nbeffets1==0 && nbeffets2==0){
             printf("(Chill Guy)%*s(Chill Guy)", 59, "");
         }
         else if(nbeffets1==0 && nbeffets2!=0){
             printf("(Chill Guy)%*s", 59, "");
         }
-        if(nbeffets1!=0 || nbeffets2!=0){
+        else if(nbeffets1!=0 || nbeffets2!=0){
             for(int j=0; j<nbeffets1; j++){
                 int effetdureemax=equipe1->membres[i].effets[j].duree;
                 switch(equipe1->membres[i].effets[j].effet_statut){
@@ -124,8 +126,11 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
                         break;
                 }
             }
-            if(nbeffets1!=0){
-                printf("%*s", 70-(5*nbeffets1), "");
+            if(nbeffets1!=0 && nbeffets2!=0){
+                printf("%*s", 60-(nbtotaleffet1), "");
+            }
+            else if(nbeffets1!=0 && nbeffets2==0){
+            	printf("%*s", 60-(nbtotaleffet2), "");
             }
             for(int k=0; k<nbeffets2; k++){
                 int effetdureemax2=equipe2->membres[i].effets[k].duree;
@@ -219,8 +224,8 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
         printf("\n");
         // Affichage des PV sous les membres de l'équipe 1
         int pvactuel1=equipe1->membres[i].pvcourant/20; // variable pour afficher la barre de vie
-        int pvmax=20;
-        int pvvide1=pvmax-pvactuel1; // variable pour remplir le vide de la barre de vie
+        int pvmax1=equipe1->membres[i].pvmax/20;
+        int pvvide1=pvmax1-pvactuel1; // variable pour remplir le vide de la barre de vie
         printf("("); 
         while(pvactuel1>0){
             printf("❤");
@@ -230,10 +235,11 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
             printf("_");
             pvvide1--;
         }
-        printf(")(%.2f)%*s", equipe1->membres[i].pvcourant, 40, "");
+        printf(")(%.2f)%*s", equipe1->membres[i].pvcourant, 60-pvmax1, "");
         // Affichage des PV sous les membres de l'équipe 2
         int pvactuel2=equipe2->membres[i].pvcourant/20;
-        int pvvide2=pvmax-pvactuel2; // variable pour remplir le vide de la barre de vie
+        int pvmax2=equipe2->membres[i].pvmax/20;
+        int pvvide2=pvmax2-pvactuel2; // variable pour remplir le vide de la barre de vie
         printf("("); 
         while(pvactuel2>0){
             printf("❤");
@@ -246,7 +252,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
         printf(")(%.2f)\n", equipe2->membres[i].pvcourant);
         // afficher la jauge de chaque champion
         int jaugeactuel1=equipe1->membres[i].jaugeactuelle; // variable pour afficher la jauge de vie
-        int jaugemax1=equipe1->membres[i].jaugemax;;
+        int jaugemax1=equipe1->membres[i].jaugemax;
         int jaugevide1=jaugemax1-jaugeactuel1; // variable pour remplir le vide de la jauge de vie
         printf("(");
         while(jaugeactuel1>0){
@@ -257,7 +263,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
             printf("_");
             jaugevide1--;
         }
-        printf(")%*s", 52, "");
+        printf(")%*s", 68-jaugemax1, "");
         // afficher la jauge de chaque champion de l'équipe 2
         int jaugeactuel2=equipe2->membres[i].jaugeactuelle; // variable pour afficher la jauge de vie
         int jaugemax2=equipe2->membres[i].jaugemax;
