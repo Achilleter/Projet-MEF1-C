@@ -70,7 +70,7 @@ void fossoyeur_des_mondes(Champ* booga);
 void cryogenese(Champ* sandrine, Equipe* ennemi);
 void scierculaire(Champ* annesophie, Equipe* ennemi, Equipe* allie);
 void cicatrices_eternels(Champ* gaby, Equipe* ennemi, Equipe* allie);
-void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2, Equipe* allies);
+void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2, Equipe* allies, Equipe* ennemi);
 void getchamp(Champ tab[]);
 void vide_buffer();
 void selection(Champ tous[], Equipe* e1, Equipe* e2);
