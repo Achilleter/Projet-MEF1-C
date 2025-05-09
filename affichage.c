@@ -223,6 +223,16 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
         int pvactuel1=equipe1->membres[i].pvcourant/20; // variable pour afficher la barre de vie
         int pvmax1=equipe1->membres[i].pvmax/20;
         int pvvide1=pvmax1-pvactuel1; // variable pour remplir le vide de la barre de vie
+        int pvaffichage1=0;
+        if(equipe1->membres[i].pvcourant >=100.00){
+            pvaffichage1=3;
+        }
+        else if(equipe1->membres[i].pvcourant >=10.00){
+            pvaffichage1=2;
+        }
+        else if(equipe1->membres[i].pvcourant >=0.00){
+            pvaffichage1=1;
+        }
         printf("("); 
         while(pvactuel1>0){
             printf("❤");
@@ -232,11 +242,28 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
             printf("_");
             pvvide1--;
         }
-        printf(")(%.2f)%*s", equipe1->membres[i].pvcourant, 68-(pvmax1)-(equipe1->membres[i].pvcourant), "");
+        printf(")(");
+        if(pvaffichage1 == 2){
+            printf("0");
+        }
+        else if(pvaffichage1 == 1){
+            printf("00");
+        }
+        printf("%.2f)%*s", equipe1->membres[i].pvcourant, 59-(pvmax1), "");
         // Affichage des PV sous les membres de l'équipe 2
         int pvactuel2=equipe2->membres[i].pvcourant/20;
         int pvmax2=equipe2->membres[i].pvmax/20;
         int pvvide2=pvmax2-pvactuel2; // variable pour remplir le vide de la barre de vie
+        int pvaffichage2=0;
+        if(equipe2->membres[i].pvcourant >=100.00){
+            pvaffichage2=3;
+        }
+        else if(equipe2->membres[i].pvcourant >=10.00){
+            pvaffichage2=2;
+        }
+        else if(equipe2->membres[i].pvcourant >=0.00){
+            pvaffichage2=1;
+        }
         printf("("); 
         while(pvactuel2>0){
             printf("❤");
@@ -246,7 +273,14 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
             printf("_");
             pvvide2--;
         }
-        printf(")(%.2f)\n", equipe2->membres[i].pvcourant);
+        printf(")(");
+        if(pvaffichage2 == 2){
+            printf("0");
+        }
+        else if(pvaffichage2 == 1){
+            printf("00");
+        }
+        printf("%.2f)\n", equipe2->membres[i].pvcourant);
         // afficher la jauge de chaque champion
         int jaugeactuel1=equipe1->membres[i].jaugeactuelle; // variable pour afficher la jauge de vie
         int jaugemax1=equipe1->membres[i].jaugemax;
