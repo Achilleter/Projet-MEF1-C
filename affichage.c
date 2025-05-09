@@ -40,7 +40,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
         else if(nbeffets1 == 0 && nbeffets2 != 0){
             printf("(Chill Guy)%*s", 59, "");
         }
-        else if((nbeffets1 != 0 || nbeffets2 != 0) && (equipe1->membres[i].statut == 1 && equipe2->membres[i].statut == 1)){
+        else if(nbeffets1 != 0 || nbeffets2 != 0){
             for(int j=0; j<nbeffets1; j++){
                 int effetdureemax=equipe1->membres[i].effets[j].duree;
                 switch(equipe1->membres[i].effets[j].effet_statut){
@@ -126,11 +126,11 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
                         break;
                 }
             }
-            if(nbeffets1 != 0 && nbeffets2 != 0 && equipe1->membres[i].statut == 1 && equipe2->membres[i].statut == 1){
-                printf("%*s", 60-(nbtotaleffet1), "");
+            if(nbeffets1 != 0 && nbeffets2 != 0){
+                printf("%*s", 62-(nbtotaleffet1), "");
             }
-            else if(nbeffets1 != 0 && nbeffets2 == 0 && equipe1->membres[i].statut == 1){
-            	printf("%*s(Chill Guy)", 60-(nbtotaleffet2), "");
+            else if(nbeffets1 != 0 && nbeffets2 == 0){
+            	printf("%*s(Chill Guy)", 62-(nbtotaleffet2), "");
             }
             for(int k=0; k<nbeffets2; k++){
                 int effetdureemax2=equipe2->membres[i].effets[k].duree;
@@ -274,7 +274,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
             printf("_");
             jaugevide2--;
         }
-        printf(")\n"); 
+        printf(")\n\n"); 
     }
 }
 
