@@ -1,9 +1,32 @@
 #include "principal.h"
 
-void berserk(Champ* xavier){
+void berserk(Champ* xavier, Equipe* allie){
     if(xavier==NULL){
         printf("Erreur: pointeur nul.");
         exit(1);
+    }
+    for(int i=0; i<3; i++){
+        if(strcmp(allie->membres[i].tech.nom, 'cadeau_empoisonne')==0){
+            if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
+                printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allie->membres[i].nom);
+                int choix=0;
+                int verif;
+                do{
+                    scanf("%d", &choix);
+                    if (choix<0 || choix>1) {
+                        printf("Index invalide\n");
+                    }
+                }
+                while(choix<0 || choix>1 || verif!=1);
+                if (choix==1){
+                    sacrifice_fraternel(xavier, &allie->membres[i]);
+                    break;
+                }
+                else{
+                    printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
+                }
+            }
+        }
     }
     // augmente l'attaque de 20 et la défense de 10, applique l'invincibilité pendant 1 tour puis s'immobilise pendant 1 tour
     if(xavier->tech.nbtactifs == 0){
@@ -124,10 +147,33 @@ void muraille(Champ* smasheur){
     }
 }
 
-void cadeau_empoisonne(Champ* steve, Equipe* ennemi){
+void cadeau_empoisonne(Champ* steve, Equipe* ennemi, Equipe* allie){
     if(steve==NULL||ennemi==NULL){
         printf("Erreur: pointeur nul.");
         exit(101);
+    }
+    for(int i=0; i<3; i++){
+        if(strcmp(allie->membres[i].tech.nom, 'berserk')==0){
+            if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
+                printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allie->membres[i].nom);
+                int choix=0;
+                int verif;
+                do{
+                    scanf("%d", &choix);
+                    if (choix<0 || choix>1) {
+                        printf("Index invalide\n");
+                    }
+                }
+                while(choix<0 || choix>1 || verif!=1);
+                if (choix==1){
+                    sacrifice_fraternel(steve, &allie->membres[i]);
+                    break;
+                }
+                else{
+                    printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
+                }
+            }
+        }
     }
     steve->jaugeactuelle = 0;
     // applique l'effet poison sur 2 ennemi au hasard
@@ -259,7 +305,7 @@ void cicatrices_eternels(Champ* gaby, Equipe* ennemi, Equipe* allie){
                 }
                 while(choix<0 || choix>1 || verif!=1);
                 if (choix==1){
-                    nomtechsamirazed(gaby, &allie->membres[i], ennemi);
+                    retour_a_la_haine(gaby, &allie->membres[i], ennemi);
                     break;
                 }
                 else{
@@ -278,10 +324,33 @@ void cicatrices_eternels(Champ* gaby, Equipe* ennemi, Equipe* allie){
     }
 }
 
-void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2, Equipe* allies){
+void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2, Equipe* allies, Equipe* ennemi){
     if(clara==NULL||allie1==NULL||allie2==NULL){
         printf("Erreur: pointeur nul.");
         exit(1010);
+    }
+    for(int i=0; i<3; i++){
+        if(strcmp(allies->membres[i].tech.nom, 'cicatrices_eternels')==0){
+            if(allies->membres[i].jaugeactuelle==allies->membres[i].jaugemax){
+                printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allies->membres[i].nom);
+                int choix=0;
+                int verif;
+                do{
+                    scanf("%d", &choix);
+                    if (choix<0 || choix>1) {
+                        printf("Index invalide\n");
+                    }
+                }
+                while(choix<0 || choix>1 || verif!=1);
+                if (choix==1){
+                        retour_a_la_haine(clara, &allies->membres[i], ennemi);
+                    break;
+                }
+                else{
+                    printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allies->membres[i].nom);
+                }
+            }
+        }
     }
     // Ressucite un allié avec la moitié de ses points de vies
     int verif;
