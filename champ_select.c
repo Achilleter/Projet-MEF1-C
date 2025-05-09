@@ -67,11 +67,6 @@ void selection(Champ tous[], Equipe* e1, Equipe* e2){
         deja_pris[choix-1]=1;
         printf("%s a selectionne %s\n", e2->nom, e2->membres[i].nom);
     }
-    printf("\n\nComposition des equipes:\n\n");
-    printf("%s:%*s%s:\n", e1->nom, 20, "", e2->nom);
-    for (int j=0; j<3; j++){
-        printf("-%s%*s -%s\n", e1->membres[j].nom, 20+strlen(e1->nom)-strlen(e1->membres[j].nom), "", e2->membres[j].nom); 
-    }
     e1->nbchampvivant=3; // Initialisation du nombre de champions vivants pour chaque équipe
     e2->nbchampvivant=3;
     printf("\n\n");
@@ -106,11 +101,6 @@ void selectionia(Champ tous[], Equipe* e1, Equipe* e2){
         e2->membres[i]=tous[choix-1];
         deja_pris[choix-1]=1;
         printf("%s a selectionne %s\n", e2->nom, e2->membres[i].nom);
-    }
-    printf("\n\nComposition des equipes:\n\n");
-    printf("%s:%*s%s:\n", e1->nom, 20, "", e2->nom);
-    for (int j=0; j<3; j++){
-        printf("-%s%*s -%s\n", e1->membres[j].nom, 20+strlen(e1->nom)-strlen(e1->membres[j].nom), "", e2->membres[j].nom); 
     }
     e1->nbchampvivant=3; // Initialisation du nombre de champions vivants pour chaque équipe
     e2->nbchampvivant=3;
