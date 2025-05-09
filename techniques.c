@@ -5,11 +5,11 @@ void berserk(Champ* xavier, Equipe* allie){
         printf("Erreur: pointeur nul.");
         exit(1);
     }
-    int verif;
     for(int i=0; i<3; i++){
         if(strcmp(allie->membres[i].tech.nom, "cadeau_empoisonne")==0){
             if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
                 printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allie->membres[i].nom);
+                int verif;
                 int choix=0;
                 do{
                     verif=scanf("%d", &choix);
@@ -83,12 +83,12 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
         printf("Erreur: pointeur nul.");
         exit(11);
     }
+    int choix=0;
+    int verif;
     for(int i=0; i<3; i++){
         if(strcmp(allie->membres[i].tech.nom, "scierculaire")==0){
             if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
                 printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allie->membres[i].nom);
-                int choix=0;
-                int verif;
                 do{
                     verif=scanf("%d", &choix);
                     if (choix<0 || choix>1) {
@@ -107,8 +107,8 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
             }
         }
     }
-    int verif1;
-    int choix=0;
+    verif=0;
+    choix=0;
     do{
     printf("Choisissez un ennemi à viser (1=%s, 2=%s, 3=%s) : \n", ennemi->membres[0].nom, ennemi->membres[1].nom, ennemi->membres[2].nom);
         verif1=scanf("%d", &choix);
@@ -334,12 +334,12 @@ void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2, Equipe* allies
         printf("Erreur: pointeur nul.");
         exit(1010);
     }
+    int choix=0;
+    int verif;
     for(int i=0; i<3; i++){
         if(strcmp(allies->membres[i].tech.nom, "cicatrices_eternels")==0){
             if(allies->membres[i].jaugeactuelle==allies->membres[i].jaugemax){
                 printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allies->membres[i].nom);
-                int choix=0;
-                int verif;
                 do{
                     verif=scanf("%d", &choix);
                     if (choix<0 || choix>1) {
@@ -359,13 +359,13 @@ void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2, Equipe* allies
         }
     }
     // Ressucite un allié avec la moitié de ses points de vies
-    int verif;
+    verif=0;
     if (allie1->statut==1 && allie2->statut==1) {
         printf("\n Aucun de vos alliés n'est mort ! \n");
         return;
     }
     else if (allie1->statut==0 && allie2->statut==0) {
-        int choix=0;
+        choix=0;
         printf("\n Choississez un allié à ressusciter (1=%s, 2=%s) : \n", allie1->nom, allie2->nom);
         do {
             verif=scanf("%d", &choix);
