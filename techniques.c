@@ -111,7 +111,7 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
     choix=0;
     do{
     printf("Choisissez un ennemi à viser (1=%s, 2=%s, 3=%s) : \n", ennemi->membres[0].nom, ennemi->membres[1].nom, ennemi->membres[2].nom);
-        verif1=scanf("%d", &choix);
+        verif=scanf("%d", &choix);
         if (choix<1 || choix>3) {
             printf("Index invalide\n");
         }
@@ -120,7 +120,7 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
             choix=0;
         }
         vide_buffer();
-    } while (choix<1 || choix>3 || verif1!=1);
+    } while (choix<1 || choix>3 || verif!=1);
     // applique l'effet bourreau sur un ennemi pendant 2 tours
     printf("\n Zed utilise marque du bourreau ! \n");
     zed->jaugeactuelle = 0;
