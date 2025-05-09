@@ -38,7 +38,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
         else if(nbeffets1==0 && nbeffets2!=0){
             printf("(Chill Guy)%*s", 59, "");
         }
-        else if(nbeffets1!=0 || nbeffets2!=0){
+        if(nbeffets1!=0 || nbeffets2!=0){
             for(int j=0; j<nbeffets1; j++){
                 int effetdureemax=equipe1->membres[i].effets[j].duree;
                 switch(equipe1->membres[i].effets[j].effet_statut){
