@@ -249,7 +249,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
         else if(pvaffichage1 == 1){
             printf("00");
         }
-        printf("%.2f)%*s", equipe1->membres[i].pvcourant, 59-(pvmax1), "");
+        printf("%.2f)%*s", equipe1->membres[i].pvcourant, 60-(pvmax1), "");
         // Affichage des PV sous les membres de l'équipe 2
         int pvactuel2=equipe2->membres[i].pvcourant/20;
         int pvmax2=equipe2->membres[i].pvmax/20;
