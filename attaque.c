@@ -109,12 +109,6 @@ void triParVit(Equipe *e1, Equipe *e2, Champ *tab[6]) {
         printf("Erreur : pointeur nul");
         exit(1);
     }
-    for(int i=0; i<6; i++){
-        if(tab[i] == NULL){            // Vérification du pointeur tab 
-            printf("Erreur : pointeur nul");
-            exit(1);
-        }
-    }
     for (int i=0; i<3; i++) {          // Regroupement des 2 équipes dans un seul tableau
         tab[i]=&e1->membres[i];
         tab[i+3]=&e2->membres[i];
@@ -126,6 +120,12 @@ void triParVit(Equipe *e1, Equipe *e2, Champ *tab[6]) {
                 tab[i]=tab[j];
                 tab[j]=temp;
             }
+        }
+    }
+    for(int i=0; i<6; i++){
+        if(tab[i] == NULL){            // Vérification du pointeur tab 
+            printf("Erreur : pointeur nul");
+            exit(1);
         }
     }
 }
