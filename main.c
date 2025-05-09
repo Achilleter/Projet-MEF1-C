@@ -66,7 +66,7 @@ int main(){
         while(equipe1->nbchampvivant > 0 && equipe2->nbchampvivant > 0){ // tant que les deux equipes ont des champions vivants le jeu continue
         i++;
         touria(equipe1, equipe2, difficulte);// Appelle la fonction touria pour chaque equipe
-        printf("\n Fin du tour numero %d\n", 1); // Affiche le numéro du tour
+        printf("\n Fin du tour numero %d\n", i); // Affiche le numéro du tour
         printf("Appuyez sur la touche entree pour continuer...\n");
         getchar(); // Attend que l'utilisateur appuie sur entrée
         }
