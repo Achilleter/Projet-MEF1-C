@@ -17,6 +17,7 @@ void berserk(Champ* xavier){
     else if(xavier->tech.nbtactifs != 0){
         xavier->tech.nbtactifs--;
         if(xavier->tech.nbtactifs == 0){
+            printf("Xavier est fatigué il s'immobilise !\n");
             xavier->tech.nbtactifs = 0;
             appeffetStatut(xavier,2,2);//s'immobilise
             appeffetStat(xavier,1,-20);//diminue l'attaque de 20
@@ -53,10 +54,33 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
     }
 }
 
- void bourreau(Champ* zed, Equipe* ennemi){
+ void bourreau(Champ* zed, Equipe* ennemi, Equipe* allie){
     if(zed==NULL||ennemi==NULL){
         printf("Erreur: pointeur nul.");
         exit(11);
+    }
+    for(int i=0; i<3; i++){
+        if(strcmp(allie->membres[i].tech.nom, 'scierculaire')==0){
+            if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
+                printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allie->membres[i].nom);
+                int choix=0;
+                int verif;
+                do{
+                    scanf("%d", &choix);
+                    if (choix<0 || choix>1) {
+                        printf("Index invalide\n");
+                    }
+                }
+                while(choix<0 || choix>1 || verif!=1);
+                if (choix==1){
+                    nomtechsamirazed(zed, &allie->membres[i], ennemi);
+                    break;
+                }
+                else{
+                    printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
+                }
+            }
+        }
     }
     int verif;
     int choix=0;
@@ -94,6 +118,7 @@ void muraille(Champ* smasheur){
         appeffetStat(smasheur,3,20);//augmente la défense de 20
     }
     else if(smasheur->tech.nbtactifs != 0){
+        printf("def reduite !\n");
         smasheur->tech.nbtactifs--;
         appeffetStat(smasheur,3,-20);//diminue la défense de 20
     }
@@ -176,10 +201,33 @@ void cryogenese(Champ* sandrine, Equipe* ennemi){
         }
 }
 
-void scierculaire(Champ* annesophie, Equipe* ennemi){
+void scierculaire(Champ* annesophie, Equipe* ennemi, Equipe* allie){
     if(annesophie==NULL||ennemi==NULL){
         printf("Erreur: pointeur nul.");
         exit(1000);
+    }
+    for(int i=0; i<3; i++){
+        if(strcmp(allie->membres[i].tech.nom, 'bourreau')==0){
+            if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
+                printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allie->membres[i].nom);
+                int choix=0;
+                int verif;
+                do{
+                    scanf("%d", &choix);
+                    if (choix<0 || choix>1) {
+                        printf("Index invalide\n");
+                    }
+                }
+                while(choix<0 || choix>1 || verif!=1);
+                if (choix==1){
+                    nomtechsamirazed(annesophie, &allie->membres[i], ennemi);
+                    break;
+                }
+                else{
+                    printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
+                }
+            }
+        }
     }
     //inflige 50 dégats à tous les ennemis et applique l'effet poison pendant 2 tours
     printf("\n Annesophie utilise Scierculaire ! \n");
@@ -192,10 +240,33 @@ void scierculaire(Champ* annesophie, Equipe* ennemi){
     }
 }
 
-void cicatrices_eternels(Champ* gaby, Equipe* ennemi){
+void cicatrices_eternels(Champ* gaby, Equipe* ennemi, Equipe* allie){
     if(gaby==NULL||ennemi==NULL){
         printf("Erreur: pointeur nul.");
         exit(1001);
+    }
+    for(int i=0; i<3; i++){
+        if(strcmp(allie->membres[i].tech.nom, 'reinitialisation')==0){
+            if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
+                printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allie->membres[i].nom);
+                int choix=0;
+                int verif;
+                do{
+                    scanf("%d", &choix);
+                    if (choix<0 || choix>1) {
+                        printf("Index invalide\n");
+                    }
+                }
+                while(choix<0 || choix>1 || verif!=1);
+                if (choix==1){
+                    nomtechsamirazed(gaby, &allie->membres[i], ennemi);
+                    break;
+                }
+                else{
+                    printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
+                }
+            }
+        }
     }
     // inflige 100 de dégats à tous les ennemis
     printf("\n Gaby utilise Cicatrices Eternels ! \n");
