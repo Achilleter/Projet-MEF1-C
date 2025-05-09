@@ -34,13 +34,13 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
         int effetduree=0;
         int nbtotaleffet1=nbeffets1*5;
         int nbtotaleffet2=nbeffets2*5;
-        if(nbeffets1==0 && nbeffets2==0){
+        if(nbeffets1 == 0 && nbeffets2 == 0){
             printf("(Chill Guy)%*s(Chill Guy)", 59, "");
         }
-        else if(nbeffets1==0 && nbeffets2!=0){
+        else if(nbeffets1 == 0 && nbeffets2 != 0){
             printf("(Chill Guy)%*s", 59, "");
         }
-        else if(nbeffets1!=0 || nbeffets2!=0){
+        else if((nbeffets1 != 0 || nbeffets2 != 0) && (equipe1->membres[i].statut == 1 && equipe2->membres[i].statut == 1)){
             for(int j=0; j<nbeffets1; j++){
                 int effetdureemax=equipe1->membres[i].effets[j].duree;
                 switch(equipe1->membres[i].effets[j].effet_statut){
@@ -126,11 +126,11 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
                         break;
                 }
             }
-            if(nbeffets1!=0 && nbeffets2!=0){
+            if(nbeffets1 != 0 && nbeffets2 != 0 && equipe1->membres[i].statut == 1 && equipe2->membres[i].statut == 1){
                 printf("%*s", 60-(nbtotaleffet1), "");
             }
-            else if(nbeffets1!=0 && nbeffets2==0){
-            	printf("%*s", 60-(nbtotaleffet2), "");
+            else if(nbeffets1 != 0 && nbeffets2 == 0 && equipe1->membres[i].statut == 1){
+            	printf("%*s(Chill Guy)", 60-(nbtotaleffet2), "");
             }
             for(int k=0; k<nbeffets2; k++){
                 int effetdureemax2=equipe2->membres[i].effets[k].duree;
@@ -217,9 +217,6 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
                         break;
                 }
             }
-            if(nbeffets1!=0 && nbeffets2==0){
-                printf("%*s(Chill Guy)", 65, "");
-            }
         }
         printf("\n");
         // Affichage des PV sous les membres de l'équipe 1
@@ -287,7 +284,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
 
 void afficherEquipeChamp(Champ tab[], int deja_pris[]){  // Affichage des champions pour la selection
     for (int i=0; i<10; i++) { 
-        if (deja_pris[i]==1){                           // Vérifie si le champion é déjà été choisir pour proposer un affichage différent en conséquence
+        if (deja_pris[i] == 1){                           // Vérifie si le champion é déjà été choisir pour proposer un affichage différent en conséquence
             printf("%d - %s (PV:%.2f ATT:%.2f DEF:%.2f AGI:%.2f VIT:%.2f) (DEJA PRIS).\n",  i + 1, tab[i].nom, tab[i].pvmax, tab[i].att, tab[i].def, tab[i].agilite, tab[i].vitesse);
         } else {
             printf("%d - %s (PV:%.2f ATT:%.2f DEF:%.2f AGI:%.2f VIT:%.2f).\n",  i + 1, tab[i].nom, tab[i].pvmax, tab[i].att, tab[i].def, tab[i].agilite, tab[i].vitesse);
