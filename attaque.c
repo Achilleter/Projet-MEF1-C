@@ -10,6 +10,7 @@ float attaque(Champ *champatt, Champ *champdef){
         degats = 0;
     }
     if (champatt->statut == 5) { // renvoie de dégats
+        printf("%s renvoi les degats de %s",chamdef->nom, champatt->nom);
         champatt->pvcourant -= degats / 4;
         if (champatt->pvcourant < 0) {
             champatt->pvcourant = 0;
