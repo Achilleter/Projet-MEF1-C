@@ -229,23 +229,23 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
         } while (index<1 || index>3 || verif!=1);
         if(e2->membres[index-1].pvcourant<=0){ // Si la cible est KO, on redemande une cible
             printf("Cible KO. Veuillez en chosir une nouvelle\n");
-            index=4;
+            index=3;
         }
-    } while (index==4);
+    } while (index==3);
     return &e2->membres[index-1];
 }
 
-void tour (Equipe* e1, Equipe* e2){
+void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
     if(e1 == NULL || e2 == NULL){
         printf("Erreur : pointeur nul");
         exit(1);
     }
     Champ *tab[6];
     int verif;
-    triParVit(e1,e2,tab);
-    for (int i=0;i<6;i++){
+    triParVit(e1,e2,tab); // Appel de la fonction de tri par vitesse pour définir un ordre de passage
+    for (int i=0;i<6;i++){ // Parcourt du tableau pour faire jouer les 6 champions 
         int verifstun=0;
-        for(int j=0; j<10; j++){
+        for(int j=0; j<10; j++){ 
             if(tab[i]->effets[j].effet_statut==2){
                 verifstun=1;
             }
@@ -284,7 +284,7 @@ void tour (Equipe* e1, Equipe* e2){
                     } 
                     while(choix>1 || choix<0 || verif!=1); 
                     if (choix==1){
-                        // vérfication de la technique
+                        // vérfication de la technique en comporant le noms des techniques eau nom de la technique du personnage situé dans tab[i]
                         if (strcmp(tab[i]->tech.nom, "berserk")==0) {
                             berserk(tab[i], joueur);
                         }
