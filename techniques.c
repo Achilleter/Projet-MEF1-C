@@ -163,10 +163,14 @@ void muraille(Champ* smasheur){
         appeffetStat(smasheur,2,20);//augmente la défense de 20
     }
     else if(smasheur->tech.nbtactifs != 0){
-        printf("La muraille s'est brisee la defense de smasheur revient à la normale !\n");
-        appeffetStat(smasheur,2,-20);//diminue la défense de 20
+        smasheur->tech.nbtactifs--;
+        if(smasheur->tech.nbtactifs == 0){
+            printf("\n Smasheur est fatigué et perds ses bonus ! \n");
+            smasheur->tech.nbtactifs = 0;
+            appeffetStatut(smasheur,3,2);//supprime l'effet provocation
+            appeffetStatut(smasheur,5,2);//supprime l'effet renvoie de dégâts
+        }
     }
-    smasheur->tech.nbtactifs--;
 }
 
 void cadeau_empoisonne(Champ* steve, Equipe* ennemi, Equipe* allie){
@@ -435,9 +439,11 @@ void extermination(Champ* annesophie, Champ* zed, Equipe* adversaires){
     annesophie->jaugeactuelle = 0;
     zed->jaugeactuelle = 0;
     for(int i=0; i<3; i++){
-        adversaires->membres[i].pvcourant -= 60;
-        appeffetStat(&adversaires->membres[i],2,-5); //diminue la défense de tous les ennemis de 5
-        appeffetStatut(&adversaires->membres[i],6,1); //applique l'effet bourreau à tous les ennemis pendant 1 tour
+        if(adversaires->membres[i].statut==1){
+            adversaires->membres[i].pvcourant -= 60;
+            appeffetStat(&adversaires->membres[i],2,-5); //diminue la défense de tous les ennemis de 5
+            appeffetStatut(&adversaires->membres[i],6,1); //applique l'effet bourreau à tous les ennemis pendant 1 tour
+        }
     }
 }
 
