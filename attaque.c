@@ -141,10 +141,11 @@ void triRapideRec(Champ *A[], int debut, int fin) {
         triRapideRec(A, debut, pivot - 1);
         triRapideRec(A, pivot + 1, fin);
     }
-    for (int i=0, i<6, i++){
-        if (tab[i]==NULL){
+    for (int i=0; i<6; i++){
+        if (A[i]==NULL){
             printf("Erreur. Pointeur nul.");
         }
+    }
 }
 
 // Fonction principale du tri rapide
