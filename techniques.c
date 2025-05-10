@@ -167,8 +167,7 @@ void muraille(Champ* smasheur){
         if(smasheur->tech.nbtactifs == 0){
             printf("Smasheur est fatigué et perds ses bonus !\n");
             smasheur->tech.nbtactifs = 0;
-            appeffetStatut(smasheur,3,2);//supprime l'effet provocation
-            appeffetStatut(smasheur,5,2);//supprime l'effet renvoie de dégâts
+            appeffet(smasheur,2,-20);
         }
     }
 }
