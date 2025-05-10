@@ -127,7 +127,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
             }
         }
         if(nbeffets1 != 0 && nbeffets2 != 0){
-            printf("%*s", 68-(nbtotaleffet), "");
+            	printf("%*s", 68-(nbtotaleffet), "");
         }
         else if(nbeffets1 != 0 && nbeffets2 == 0){
             printf("%*s(Chill Guy)", 68-(nbtotaleffet), "");
