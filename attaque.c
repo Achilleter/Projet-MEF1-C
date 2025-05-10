@@ -213,6 +213,8 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
             if(e2->membres[j].effets[k].effet_statut==3){
                 if(e2->membres[j].effets[k].duree>0){  
                     printf("%s est provoqué par %s !\n",attaquant->nom, e2->membres[j].nom);
+                    printf("Appuyez sur entree pour continuer...\n");
+                    getchar();
                     return &e2->membres[j];
                 }
             }
@@ -398,7 +400,7 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
                 if(adversaire->membres[j].pvcourant<=0 && adversaire->membres[j].statut==1){
                     adversaire->membres[j].pvcourant=0;
                     adversaire->membres[j].statut=0;
-                    printf("%s à tué %s !\n", tab[i]->nom, adversaire->membres[j].nom);
+                    printf("%s est mort !\n", adversaire->membres[j].nom);
                     int booltemp=0;
                     for(int k=0; k<adversaire->membres[j].nbeffets; k++){
                         if(booltemp==1){
