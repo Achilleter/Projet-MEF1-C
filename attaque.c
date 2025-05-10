@@ -229,9 +229,9 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
         } while (index<1 || index>3 || verif!=1);
         if(e2->membres[index-1].pvcourant<=0){ // Si la cible est KO, on redemande une cible
             printf("Cible KO. Veuillez en chosir une nouvelle\n");
-            index=3;
+            index=4;
         }
-    } while (index==3);
+    } while (index==4);
     return &e2->membres[index-1];
 }
 
