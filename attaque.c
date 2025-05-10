@@ -220,10 +220,10 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
     }
     do{
         do{ // Demande à l'utilisateur de choisir une cible
-            printf("Choisissez votre cible (1,2 ou 3): ");
+            printf("Choisissez votre cible (1,2 ou 3):\n");
             verif=scanf("%d",&index);
             if(index<1 || index>3){
-                printf("Index invalide");
+                printf("Index invalide\n");
             }
             vide_buffer();
         } while (index<1 || index>3 || verif!=1);

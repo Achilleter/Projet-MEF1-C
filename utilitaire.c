@@ -54,9 +54,13 @@ void vide_buffer(){
 }
 
 void nettoyerNom(char* nom) {
-    // Enlève le retour à la ligne à la fin du nom du champion
+    // Enlève le retour à la ligne
     int len = strlen(nom);
     if (len > 0 && nom[len - 1] == '\n') {
         nom[len - 1] = '\0';
+    }
+    while (len > 0 && nom[len - 1] == ' ') {
+        nom[len - 1] = '\0';
+        len--;
     }
 }

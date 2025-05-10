@@ -8,7 +8,7 @@ void berserk(Champ* xavier, Equipe* allie){
     for(int i=0; i<3; i++){
         if(strcmp(allie->membres[i].tech.nom, "cadeau_empoisonne")==0){
             if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
-                printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allie->membres[i].nom);
+                printf("\nVoulez vous utiliser la technique combinée avec %s (1:oui, 0:non)\n", allie->membres[i].nom);
                 int verif;
                 int choix=0;
                 do{
@@ -24,7 +24,7 @@ void berserk(Champ* xavier, Equipe* allie){
                     return;
                 }
                 else{
-                    printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
+                    printf("\nVous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
                 }
             }
         }
@@ -108,7 +108,7 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
     for(int i=0; i<3; i++){
         if(strcmp(allie->membres[i].tech.nom, "scierculaire")==0){
             if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
-                printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allie->membres[i].nom);
+                printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)\n", allie->membres[i].nom);
                 do{
                     verif=scanf("%d", &choix);
                     if (choix<0 || choix>1) {
@@ -142,7 +142,7 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
         vide_buffer();
     } while (choix<1 || choix>3 || verif!=1);
     // applique l'effet bourreau sur un ennemi pendant 2 tours
-    printf("\n Zed utilise marque du bourreau ! \n");
+    printf("Zed utilise marque du bourreau !\n");
     zed->jaugeactuelle = 0;
     ennemi->membres[choix-1].pvcourant -= ennemi->membres[choix-1].pvmax*0.1;
     appeffetStatut(&ennemi->membres[choix-1],6,2);//applique l'effet bourreau pendant 2 tours
@@ -156,7 +156,7 @@ void muraille(Champ* smasheur){
     //provoque les ennemis, augmente sa défense de 20 et renvoie les dégats pendant 1 tour
     if(smasheur->tech.nbtactifs == 0){
         smasheur->tech.nbtactifs = 2;
-        printf("\n Smasheur utilise muraille! \n");
+        printf("Smasheur utilise muraille!\n");
         smasheur->jaugeactuelle = 0;
         appeffetStatut(smasheur,5,2);//applique l'effet renvoie de dégâts pendant 1 tour
         appeffetStatut(smasheur,3,2);//applique l'effet provocation pendant 1 tour
@@ -165,7 +165,7 @@ void muraille(Champ* smasheur){
     else if(smasheur->tech.nbtactifs != 0){
         smasheur->tech.nbtactifs--;
         if(smasheur->tech.nbtactifs == 0){
-            printf("\n Smasheur est fatigué et perds ses bonus ! \n");
+            printf("Smasheur est fatigué et perds ses bonus !\n");
             smasheur->tech.nbtactifs = 0;
             appeffetStatut(smasheur,3,2);//supprime l'effet provocation
             appeffetStatut(smasheur,5,2);//supprime l'effet renvoie de dégâts
@@ -181,7 +181,7 @@ void cadeau_empoisonne(Champ* steve, Equipe* ennemi, Equipe* allie){
     for(int i=0; i<3; i++){
         if(strcmp(allie->membres[i].tech.nom, "berserk")==0){
             if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
-                printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allie->membres[i].nom);
+                printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)\n", allie->membres[i].nom);
                 int choix=0;
                 int verif;
                 do{
@@ -214,15 +214,15 @@ void cadeau_empoisonne(Champ* steve, Equipe* ennemi, Equipe* allie){
         appeffetStatut(&ennemi->membres[alea2],1,2);//applique l'effet poison pendant 2 tours
         appeffetStat(&ennemi->membres[alea], 3, -2); // diminue la vitesse de 2
         appeffetStat(&ennemi->membres[alea2], 3, -2); // diminue la vitesse de 2
-        printf("\n Steve utilise Cadeau empoisonne sur %s ! \n",ennemi->membres[alea].nom);
-        printf("\n Steve utilise Cadeau empoisonne sur %s ! \n",ennemi->membres[alea2].nom);
+        printf("Steve utilise Cadeau empoisonne sur %s ! \n",ennemi->membres[alea].nom);
+        printf("Steve utilise Cadeau empoisonne sur %s ! \n",ennemi->membres[alea2].nom);
     }
     else if(ennemi->nbchampvivant==2){
         for(int i=0; i<3; i++){
             if(ennemi->membres[i].statut==1){
                 appeffetStatut(&ennemi->membres[i],1,2);//applique l'effet poison pendant 2 tours
                 appeffetStat(&ennemi->membres[i], 3, -2); // diminue la vitesse de 2
-                printf("\n Steve utilise Cadeau empoisonne sur %s ! \n",ennemi->membres[i].nom);
+                printf("Steve utilise Cadeau empoisonne sur %s ! \n",ennemi->membres[i].nom);
             }
         }
     }
@@ -231,7 +231,7 @@ void cadeau_empoisonne(Champ* steve, Equipe* ennemi, Equipe* allie){
             if(ennemi->membres[i].statut==1){
                 appeffetStatut(&ennemi->membres[i],1,2);// applique l'effet poison pendant 2 tours
                 appeffetStat(&ennemi->membres[i], 3, -50); // diminue la vitesse de 50
-                printf("\n Steve utilise Cadeau empoisonne sur %s ! \n",ennemi->membres[i].nom);
+                printf("Steve utilise Cadeau empoisonne sur %s ! \n",ennemi->membres[i].nom);
             }
         }
     }
@@ -245,7 +245,7 @@ void fossoyeur_des_mondes(Champ* booga){
     appeffetStat(booga, 4, 25); // Se soigne de 25 PV à chaque tour
     if(booga->tech.nbtactifs == 0){
         booga->tech.nbtactifs = 4; // Applique l'effet pendant 4 tours
-        printf("\n Booga utilise Fossoyeur des Mondes ! \n");
+        printf("Booga utilise Fossoyeur des Mondes !\n");
         booga->jaugeactuelle = 0;
         appeffetStat(booga, 1, 10); // Augmente l'attaque de 10
         appeffetStat(booga, 2, 10); // Augmente la défense de 10
@@ -253,7 +253,7 @@ void fossoyeur_des_mondes(Champ* booga){
     else if(booga->tech.nbtactifs == 1){
         appeffetStat(booga, 1, -10); // Diminue l'attaque de 10
         appeffetStat(booga, 2, -10); // Diminue la défense de 10
-        printf("\n Booga redevient comme avant et perds ses bonus ! \n");
+        printf("\n Booga redevient comme avant et perds ses bonus !\n");
     }
     booga->tech.nbtactifs--;
 }
@@ -264,7 +264,7 @@ void cryogenese(Champ* sandrine, Equipe* ennemi){
         exit(111);
     }
     // inflige 30 de dégats à tous les ennemis et diminue les stuns pendant 1 tour
-    printf("\n Sandrine utilise Exploglace ! \n");
+    printf("Sandrine utilise Exploglace !\n");
         sandrine->jaugeactuelle = 0;
         for(int i=0; i<3; i++){
             if(ennemi->membres[i].statut==1){
@@ -282,7 +282,7 @@ void scierculaire(Champ* annesophie, Equipe* ennemi, Equipe* allie){
     for(int i=0; i<3; i++){
         if(strcmp(allie->membres[i].tech.nom, "bourreau")==0){
             if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
-                printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allie->membres[i].nom);
+                printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)\n", allie->membres[i].nom);
                 int choix=0;
                 int verif;
                 do{
@@ -304,7 +304,7 @@ void scierculaire(Champ* annesophie, Equipe* ennemi, Equipe* allie){
         }
     }
     //inflige 50 dégats à tous les ennemis et applique l'effet poison pendant 2 tours
-    printf("\n Annesophie utilise Scierculaire ! \n");
+    printf("Annesophie utilise Scierculaire !\n");
     annesophie->jaugeactuelle = 0;
     for(int i=0; i<3; i++){
         if(ennemi->membres[i].statut==1){
@@ -322,7 +322,7 @@ void cicatrices_eternels(Champ* gaby, Equipe* ennemi, Equipe* allie){
     for(int i=0; i<3; i++){
         if(strcmp(allie->membres[i].tech.nom, "reinitialisation")==0){
             if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
-                printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allie->membres[i].nom);
+                printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)\n", allie->membres[i].nom);
                 int choix=0;
                 int verif;
                 do{
@@ -344,7 +344,7 @@ void cicatrices_eternels(Champ* gaby, Equipe* ennemi, Equipe* allie){
         }
     }
     // inflige 100 de dégats à tous les ennemis
-    printf("\n Gaby utilise Cicatrices Eternels ! \n");
+    printf("Gaby utilise Cicatrices Eternels !\n");
     gaby->jaugeactuelle = 0;
     for(int i=0; i<3; i++){
         if(ennemi->membres[i].statut==1){
@@ -363,7 +363,7 @@ void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2, Equipe* allies
     for(int i=0; i<3; i++){
         if(strcmp(allies->membres[i].tech.nom, "cicatrices_eternels")==0){
             if(allies->membres[i].jaugeactuelle==allies->membres[i].jaugemax){
-                printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)", allies->membres[i].nom);
+                printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)\n", allies->membres[i].nom);
                 do{
                     verif=scanf("%d", &choix);
                     if (choix<0 || choix>1) {
@@ -385,12 +385,12 @@ void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2, Equipe* allies
     // Ressucite un allié avec la moitié de ses points de vies
     verif=0;
     if (allie1->statut==1 && allie2->statut==1) {
-        printf("\n Aucun de vos alliés n'est mort ! \n");
+        printf("Aucun de vos alliés n'est mort !\n");
         return;
     }
     else if (allie1->statut==0 && allie2->statut==0) {
         choix=0;
-        printf("\n Choississez un allié à ressusciter (1=%s, 2=%s) : \n", allie1->nom, allie2->nom);
+        printf("Choississez un allié à ressusciter (1=%s, 2=%s) :\n", allie1->nom, allie2->nom);
         do {
             verif=scanf("%d", &choix);
             if (choix<1 || choix>2) {
@@ -398,30 +398,30 @@ void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2, Equipe* allies
             }
             vide_buffer();
         }while (choix<1 || choix>2 || verif!=1);
-        printf("\n Clara utilise Réinitialisation ! \n");
+        printf("Clara utilise Réinitialisation !\n");
         clara->jaugeactuelle = 0;
         if (choix==1) {
-            printf("\n Vous ressuscitez %s ! \n", allie1->nom);
+            printf("Vous ressuscitez %s !\n", allie1->nom);
             allie1->pvcourant = allie1->pvmax / 2;
             allie1->statut = 1;
         }
         else {
-            printf("\n Vous ressuscitez %s ! \n", allie2->nom);
+            printf("Vous ressuscitez %s !\n", allie2->nom);
             allie2->pvcourant = allie2->pvmax / 2;
             allie2->statut = 1;
         }
         allies->nbchampvivant++;
     }
     else {
-        printf("\n Clara utilise Réinitialisation ! \n");
+        printf("Clara utilise Réinitialisation !\n");
         clara->jaugeactuelle = 0;
         if (allie1->statut==0) {
-            printf("\n Vous ressuscitez %s ! \n", allie1->nom);
+            printf("Vous ressuscitez %s !\n", allie1->nom);
             allie1->pvcourant = allie1->pvmax / 2;
             allie1->statut = 1;
         }
         else if (allie2->statut==0) {
-            printf("\n Vous ressuscitez %s ! \n", allie2->nom);
+            printf("Vous ressuscitez %s !\n", allie2->nom);
             allie2->pvcourant = allie2->pvmax / 2;
             allie2->statut = 1;
         }
@@ -435,7 +435,7 @@ void extermination(Champ* annesophie, Champ* zed, Equipe* adversaires){
         exit(10000);
     }
     // Les personnages combinent leurs techniques pour infliger 60 de dégats à tous les ennemis, diminue leur défense de 5 et applique l'effet bourreau pendant 1 tour
-    printf("\n Annesophie et zed se combine pour utilise Nomtechsamirazed ! \n");
+    printf("Annesophie et zed se combine pour utilise Nomtechsamirazed !\n");
     annesophie->jaugeactuelle = 0;
     zed->jaugeactuelle = 0;
     for(int i=0; i<3; i++){
@@ -453,7 +453,7 @@ void sacrifice_fraternel(Champ* xavier, Champ* steve){
         exit(10001);
     }
     // Steve donne la moitié de ses stats à Xavier
-    printf("\n Xavier et Steve se combine pour utilise Sacrifice Fraternel ! \n");
+    printf("Xavier et Steve se combine pour utilise Sacrifice Fraternel !\n");
     xavier->jaugeactuelle = 0;
     steve->jaugeactuelle = 0;
     appeffetStat(xavier, 1, (steve->att)/2); // augmente l'attaque de xavier selon celle de steve
@@ -472,13 +472,13 @@ void retour_a_la_haine(Champ* gaby, Champ* clara, Equipe* adversaires){
         exit(10002);
     }
     // Gaby et Clara suppriment un ennemi
-    printf("\n Gaby et Clara se combine pour utilise Retour à la haine ! \n");
+    printf("Gaby et Clara se combine pour utilise Retour à la haine !\n");
     gaby->jaugeactuelle = 0;
     clara->jaugeactuelle = 0;
     int choix=0;
     int verif;
     do{
-        printf("Choisissez un ennemi à supprimer (1=%s, 2=%s, 3=%s) : \n", adversaires->membres[0].nom, adversaires->membres[1].nom, adversaires->membres[2].nom);
+        printf("Choisissez un ennemi à supprimer (1=%s, 2=%s, 3=%s) :\n", adversaires->membres[0].nom, adversaires->membres[1].nom, adversaires->membres[2].nom);
         verif=scanf("%d", &choix);
         if (choix<1 || choix>3) {
             printf("Index invalide\n");
@@ -486,5 +486,5 @@ void retour_a_la_haine(Champ* gaby, Champ* clara, Equipe* adversaires){
         vide_buffer();
     } while (choix<1 || choix>3 || verif!=1);
     adversaires->membres[choix-1].pvcourant = 0;
-    printf("\n Vous avez supprimé %s ! \n", adversaires->membres[choix].nom);
+    printf("Vous avez supprimé %s !\n", adversaires->membres[choix].nom);
 }
