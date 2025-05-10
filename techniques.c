@@ -41,7 +41,7 @@ void berserk(Champ* xavier, Equipe* allie){
     else if(xavier->tech.nbtactifs != 0){
         xavier->tech.nbtactifs--;
         if(xavier->tech.nbtactifs == 0){
-            printf("Xavier est fatigué il s'immobilise !\n");
+            printf("Xavier est fatigué il s'immobilise et perds ses bonus !\n");
             xavier->tech.nbtactifs = 0;
             appeffetStatut(xavier,2,2);//s'immobilise
             appeffetStat(xavier,1,-20);//diminue l'attaque de 20
@@ -163,7 +163,7 @@ void muraille(Champ* smasheur){
         appeffetStat(smasheur,2,20);//augmente la défense de 20
     }
     else if(smasheur->tech.nbtactifs != 0){
-        printf("def reduite !\n");
+        printf("La muraille s'est brisee la defense de smasheur revient à la normale !\n");
         appeffetStat(smasheur,2,-20);//diminue la défense de 20
     }
     smasheur->tech.nbtactifs--;
@@ -249,7 +249,7 @@ void fossoyeur_des_mondes(Champ* booga){
     else if(booga->tech.nbtactifs == 1){
         appeffetStat(booga, 1, -10); // Diminue l'attaque de 10
         appeffetStat(booga, 2, -10); // Diminue la défense de 10
-        printf("\n Booga redevient comme avant ! \n");
+        printf("\n Booga redevient comme avant et perds ses bonus ! \n");
     }
     booga->tech.nbtactifs--;
 }
