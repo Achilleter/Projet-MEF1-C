@@ -317,12 +317,19 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
 
 
 
-void afficherEquipeChamp(Champ tab[], int deja_pris[]){  // Affichage des champions pour la selection
+void afficherEquipeChamp(Champ tab[], int deja_pris[]){  // affichage des champions pour la selection
+    int alligne = 0; // variable temporelle pour l'alignement
     for (int i=0; i<10; i++) { 
-        if (deja_pris[i] == 1){                           // Vérifie si le champion é déjà été choisir pour proposer un affichage différent en conséquence
-            printf("%d - %s (PV:%.2f ATT:%.2f DEF:%.2f AGI:%.2f VIT:%.2f) (DEJA PRIS).\n",  i + 1, tab[i].nom, tab[i].pvmax, tab[i].att, tab[i].def, tab[i].agilite, tab[i].vitesse);
+        if(i+1<10){
+            alligne = 11;
+        }
+        else if(i+1==10){
+            alligne = 10;
+        }
+        if(deja_pris[i] == 1){                         
+            printf("%d - %s %*s(PV:%.2f | ATT:%.2f | DEF:%.2f | AGI:%.2f | VIT:%.2f) [DEJA PRIS]\n",  i + 1, tab[i].nom, alligne-(int)strlen(tab[i].nom), "", tab[i].pvmax, tab[i].att, tab[i].def, tab[i].agilite, tab[i].vitesse);
         } else {
-            printf("%d - %s (PV:%.2f ATT:%.2f DEF:%.2f AGI:%.2f VIT:%.2f).\n",  i + 1, tab[i].nom, tab[i].pvmax, tab[i].att, tab[i].def, tab[i].agilite, tab[i].vitesse);
+            printf("%d - %s %*s(PV:%.2f | ATT:%.2f | DEF:%.2f | AGI:%.2f | VIT:%.2f)\n",  i + 1, tab[i].nom, alligne-(int)strlen(tab[i].nom), "", tab[i].pvmax, tab[i].att, tab[i].def, tab[i].agilite, tab[i].vitesse);
         }
     }
 }
