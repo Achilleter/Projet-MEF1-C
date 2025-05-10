@@ -400,7 +400,7 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
                 if(adversaire->membres[j].pvcourant<=0 && adversaire->membres[j].statut==1){
                     adversaire->membres[j].pvcourant=0;
                     adversaire->membres[j].statut=0;
-                    printf("%s est mort !\n", adversaire->membres[j].nom);
+                    printf("%s est mort(e) !\n", adversaire->membres[j].nom);
                     int booltemp=0;
                     for(int k=0; k<adversaire->membres[j].nbeffets; k++){
                         if(booltemp==1){
@@ -424,7 +424,7 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
                 if(joueur->membres[j].pvcourant<=0 && joueur->membres[j].statut==1){
                     joueur->membres[j].pvcourant=0;
                     joueur->membres[j].statut=0;
-                    printf("%s à tué %s !\n", tab[i]->nom, joueur->membres[j].nom);
+                    printf("%s est mort(e) !\n", joueur->membres[j].nom);
                     for(int k=0; k<joueur->membres[j].nbeffets; k++){
                         if(joueur->membres[j].effets[k].effet_statut!=0 && joueur->membres[j].effets[k].duree>0){
                             suppressionEffetStatut(&joueur->membres[j], k);
