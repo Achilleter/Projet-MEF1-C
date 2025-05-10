@@ -377,10 +377,15 @@ void tour (Equipe* e1, Equipe* e2){
                     adversaire->membres[j].pvcourant=0;
                     adversaire->membres[j].statut=0;
                     printf("%s à tué %s !\n", tab[i]->nom, adversaire->membres[j].nom);
+                    int booltemp=0;
                     for(int k=0; k<adversaire->membres[j].nbeffets; k++){
+                        if(booltemp==1){
+                            k--;
+                        }
+                        booltemp=0;
                         if(adversaire->membres[j].effets[k].effet_statut!=0 && adversaire->membres[j].effets[k].duree>0){
                             suppressionEffetStatut(&adversaire->membres[j], k);
-                            k--;
+                            booltemp=1;
                         }
                     }
                     if(memeEquipe(&adversaire->membres[j],e1)==0){
@@ -418,13 +423,18 @@ void tour (Equipe* e1, Equipe* e2){
             if(tab[i]->jaugeactuelle>tab[i]->jaugemax){
                 tab[i]->jaugeactuelle=tab[i]->jaugemax;
             }
+            int booltemp=0;
             for(int j=0; j<tab[i]->nbeffets; j++){
+                if(booltemp==1){
+                    j--;
+                }
+                booltemp=0;
                 if(tab[i]->effets[j].effet_statut!=0){
                     tab[i]->effets[j].duree--;
                 }
                 if(tab[i]->effets[j].duree==0){
                     suppressionEffetStatut(tab[i], j);
-                    j--;
+                    booltemp=1;
                 }
             }
         }

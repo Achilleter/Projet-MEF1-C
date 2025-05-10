@@ -62,18 +62,23 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
     appeffetStat(allie1,4,100);//soigne de 100
     appeffetStat(allie2,4,100);
     appeffetStat(nathalie,4,100);
+    int booltemp=0;
     for(int i=0; i<10; i++){ // enlève tous les effets statuts négatifs (sauf les effets comme l'invincibilité, le renvoie de dégâts et la provocation)
+        if(booltemp==1){
+            i--;
+        }
+        booltemp=0;
         if(allie1->effets[i].effet_statut != 5 && allie1->effets[i].effet_statut != 4 && allie1->effets[i].effet_statut != 3){
             suppressionEffetStatut(allie1, i);
-            i--;
+            booltemp=1;
         }
         if(nathalie->effets[i].effet_statut != 5 && nathalie->effets[i].effet_statut != 4 && nathalie->effets[i].effet_statut != 3){
             suppressionEffetStatut(nathalie, i);
-            i--;
+            booltemp=1;
         }
         if(allie2->effets[i].effet_statut != 5 && allie2->effets[i].effet_statut != 4 && allie2->effets[i].effet_statut != 3){
             suppressionEffetStatut(allie2, i);
-            i--;
+            booltemp=1;
         }
     }
 }
