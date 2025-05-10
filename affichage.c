@@ -32,7 +32,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
         int nbeffets2=equipe2->membres[i].nbeffets;
         int effetmax=3;
         int effetduree=0;
-        int nbtotaleffet1=nbeffets1*5;
+        int nbtotaleffet=nbeffets1*5;
         if(nbeffets1 == 0 && nbeffets2 == 0){
             printf("(Chill Guy)%*s(Chill Guy)", 59, "");
         }
