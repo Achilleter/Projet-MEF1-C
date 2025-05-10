@@ -105,22 +105,6 @@ void appeffetStat(Champ *champ, EffetStat effetstat, float valeur) {
         }
 }
 
-#include <stdio.h>
-#include <stdlib.h>
-
-typedef struct {
-    char *nom;
-    int pv;
-    int attaque;
-    int defense;
-    int agilite;
-    int vitesse;
-} Champ;
-
-typedef struct {
-    Champ membres[3];
-} Equipe;
-
 // Fonction partition. Tri rapide
 int partition(Champ *A[], int debut, int fin) {
     int inf=debut+1;
