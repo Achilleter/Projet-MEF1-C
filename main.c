@@ -68,8 +68,9 @@ int main(){
     //     touria(equipe1, equipe2, difficulte);// Appelle la fonction touria pour chaque equipe
     //     printf("\n Fin du tour numero %d\n", i); // Affiche le numéro du tour
     //     printf("Appuyez sur la touche entree pour continuer...\n");
+    //     vide_buffer();// Vide le buffer pour éviter des problèmes inutiles
     //     getchar(); // Attend que l'utilisateur appuie sur entrée
-    //     }
+    //     }//verification de fin de combat
     //     if(equipe1->nbchampvivant == 0){
     //         printf("L'equipe %s a perdu bravo à l'equipe %s !\n", equipe1->nom, equipe2->nom);
     //     } else {
@@ -114,8 +115,9 @@ int main(){
         tour(equipe1, equipe2);// Appelle la fonction tour pour chaque equipe
         printf("\n Fin du tour numero %d\n", i); // Affiche le numéro du tour
         printf("Appuyez sur entree pour continuer...\n");
+        vide_buffer();// Vide le buffer pour éviter des problèmes inutiles
         getchar(); // Attend que l'utilisateur appuie sur entrée
-        }
+        }//verification de fin de combat
         if(equipe1->nbchampvivant == 0){
             printf("L'equipe %s a perdu bravo a l'equipe %s !\n", equipe1->nom, equipe2->nom);
         } 

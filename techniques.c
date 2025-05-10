@@ -160,11 +160,11 @@ void muraille(Champ* smasheur){
         smasheur->jaugeactuelle = 0;
         appeffetStatut(smasheur,5,2);//applique l'effet renvoie de dégâts pendant 1 tour
         appeffetStatut(smasheur,3,2);//applique l'effet provocation pendant 1 tour
-        appeffetStat(smasheur,3,20);//augmente la défense de 20
+        appeffetStat(smasheur,2,20);//augmente la défense de 20
     }
     else if(smasheur->tech.nbtactifs != 0){
         printf("def reduite !\n");
-        appeffetStat(smasheur,3,-20);//diminue la défense de 20
+        appeffetStat(smasheur,2,-20);//diminue la défense de 20
     }
     smasheur->tech.nbtactifs--;
 }
@@ -189,7 +189,7 @@ void cadeau_empoisonne(Champ* steve, Equipe* ennemi, Equipe* allie){
                 }
                 while(choix<0 || choix>1 || verif!=1);
                 if (choix==1){
-                    sacrifice_fraternel(steve, &allie->membres[i]);
+                    sacrifice_fraternel(&allie->membres, steve);
                     return;
                 }
                 else{
@@ -479,7 +479,6 @@ void retour_a_la_haine(Champ* gaby, Champ* clara, Equipe* adversaires){
         }
         vide_buffer();
     } while (choix<1 || choix>3 || verif!=1);
-    adversaires->membres[choix].pvcourant = 0;
-    adversaires->membres[choix].statut = 0;
+    adversaires->membres[choix-1].pvcourant = 0;
     printf("\n Vous avez supprimé %s ! \n", adversaires->membres[choix].nom);
 }
