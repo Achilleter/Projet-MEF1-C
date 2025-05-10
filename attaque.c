@@ -115,10 +115,10 @@ void suppressionEffetStatut(Champ *champ, int numeffet) {
     }
     champ->effets[numeffet].effet_statut=0;
     champ->effets[numeffet].duree=0;
-    champ->effets[numeffet].effet_statut=champ->effets[champ->nbeffets].effet_statut;
-    champ->effets[numeffet].duree=champ->effets[champ->nbeffets].duree;
-    champ->effets[champ->nbeffets].effet_statut=0;
-    champ->effets[champ->nbeffets].duree=0;
+    champ->effets[numeffet].effet_statut=champ->effets[champ->nbeffets-1].effet_statut;
+    champ->effets[numeffet].duree=champ->effets[champ->nbeffets-1].duree;
+    champ->effets[champ->nbeffets-1].effet_statut=0;
+    champ->effets[champ->nbeffets-1].duree=0;
     champ->nbeffets--;
 }
 
