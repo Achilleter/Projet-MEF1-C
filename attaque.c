@@ -6,19 +6,20 @@ float attaque(Champ *champatt, Champ *champdef){
         exit(1);
     }
     float degats = champatt->att * (100/(100+champdef->def)); // calcul des dégats
-    if (degats < 0) {
-        degats = 0;
-    }
-    if (champdef->statut == 5) { // renvoie de dégats
-        printf("%s renvoi les degats de %s",champdef->nom, champatt->nom);
-        champatt->pvcourant -= degats / 4;
-        if (champatt->pvcourant < 0) {
-            champatt->pvcourant = 0;
+    for(int i=0; i<10; i++){
+        if (degats < 0) {
+            degats = 0;
         }
-    }
-    if (champdef->statut == 4) { // invincibilité
-        degats=0;
-    }
+        if (champdef->effets[i].effet_statut == 5) { // renvoie de dégats
+            printf("%s renvoi les degats de %s",champdef->nom, champatt->nom);
+            champatt->pvcourant -= degats / 4;
+            if (champatt->pvcourant < 0) {
+                champatt->pvcourant = 0;
+            }
+        }
+        if (champdef->effets[i].effet_statut == 4) { // invincibilité
+            degats=0;
+        }
     int alea=rand()%100;
     if(alea<champdef->agilite){ //esquive
         degats=0;
