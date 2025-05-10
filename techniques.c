@@ -434,7 +434,7 @@ void extermination(Champ* annesophie, Champ* zed, Equipe* adversaires){
         exit(10000);
     }
     // Les personnages combinent leurs techniques pour infliger 60 de dégats à tous les ennemis, diminue leur défense de 5 et applique l'effet bourreau pendant 1 tour
-    printf("Annesophie et zed se combine pour utilise Nomtechsamirazed !\n");
+    printf("Annesophie et zed se combinent pour utiliser Nomtechsamirazed !\n");
     annesophie->jaugeactuelle = 0;
     zed->jaugeactuelle = 0;
     for(int i=0; i<3; i++){
@@ -452,7 +452,7 @@ void sacrifice_fraternel(Champ* xavier, Champ* steve){
         exit(10001);
     }
     // Steve donne la moitié de ses stats à Xavier
-    printf("Xavier et Steve se combine pour utilise Sacrifice Fraternel !\n");
+    printf("Xavier et Steve se combinent pour utiliser Sacrifice Fraternel !\n");
     xavier->jaugeactuelle = 0;
     steve->jaugeactuelle = 0;
     appeffetStat(xavier, 1, (steve->att)/2); // augmente l'attaque de xavier selon celle de steve
@@ -471,7 +471,7 @@ void retour_a_la_haine(Champ* gaby, Champ* clara, Equipe* adversaires){
         exit(10002);
     }
     // Gaby et Clara suppriment un ennemi
-    printf("Gaby et Clara se combine pour utilise Retour à la haine !\n");
+    printf("Gaby et Clara se combinent pour utiliser Retour à la haine !\n");
     gaby->jaugeactuelle = 0;
     clara->jaugeactuelle = 0;
     int choix=0;
