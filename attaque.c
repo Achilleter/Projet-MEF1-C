@@ -20,6 +20,7 @@ float attaque(Champ *champatt, Champ *champdef){
         if (champdef->effets[i].effet_statut == 4) { // invincibilité
             degats=0;
         }
+    }
     int alea=rand()%100;
     if(alea<champdef->agilite){ //esquive
         degats=0;
