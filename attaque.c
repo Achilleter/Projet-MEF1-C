@@ -105,6 +105,21 @@ void appeffetStat(Champ *champ, EffetStat effetstat, float valeur) {
         }
 }
 
+void suppressionEffetStatut(Champ *champ, int numeffet) {
+    // Verification des pointeurs
+    if(champ == NULL){
+        printf("Erreur : pointeur nul");
+        exit(1);
+    }
+    champ->effets[numeffet].effet_statut=0;
+    champ->effets[numeffet].duree=0;
+    champ->effets[numeffet].effet_statut=champ->effets[champ->nbeffets].effet_statut;
+    champ->effets[numeffet].duree=champ->effets[champ->nbeffets].duree;
+    champ->effets[champ->nbeffets].effet_statut=0;
+    champ->effets[champ->nbeffets].duree=0;
+    champ->nbeffets--;
+}
+
 // Fonction partition. Tri rapide
 int partition(Champ *A[], int debut, int fin) {
     int inf=debut+1;
@@ -250,9 +265,6 @@ void tour (Equipe* e1, Equipe* e2){
         }
         else {
             affichageCombat(e1,e2, tab[i]);
-            if (tab[i]->nbeffets>0){
-                degatseffetStatut(tab[i]);
-            }
             Equipe *joueur;
             Equipe *adversaire;
             if(memeEquipe(tab[i],e1)==0){
@@ -357,19 +369,39 @@ void tour (Equipe* e1, Equipe* e2){
                 printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
                 attaque(tab[i],cible);
             }
+            if (tab[i]->nbeffets>0){
+                degatseffetStatut(tab[i]);
+            }
             for(int j=0; j<3; j++){
                 if(adversaire->membres[j].pvcourant<=0 && adversaire->membres[j].statut==1){
                     adversaire->membres[j].pvcourant=0;
                     adversaire->membres[j].statut=0;
                     printf("%s à tué %s !\n", tab[i]->nom, adversaire->membres[j].nom);
                     for(int k=0; k<adversaire->membres[j].nbeffets; k++){
-                        if(adversaire->membres[j].effets[k].effet_statut!=0){
-                            adversaire->membres[j].effets[k].effet_statut=0;
-                            adversaire->membres[j].effets[k].duree=0;
-                            adversaire->membres[j].nbeffets--;
+                        if(adversaire->membres[j].effets[k].effet_statut!=0 && adversaire->membres[j].effets[k].duree>0){
+                            suppressionEffetStatut(&adversaire->membres[j], k);
+                            k--;
                         }
                     }
                     if(memeEquipe(&adversaire->membres[j],e1)==0){
+                        e2->nbchampvivant--;
+                    } else {
+                        e1->nbchampvivant--;
+                    }
+                }
+            }
+            for(int j=0; j<3; j++){
+                if(joueur->membres[j].pvcourant<=0 && joueur->membres[j].statut==1){
+                    joueur->membres[j].pvcourant=0;
+                    joueur->membres[j].statut=0;
+                    printf("%s à tué %s !\n", tab[i]->nom, joueur->membres[j].nom);
+                    for(int k=0; k<joueur->membres[j].nbeffets; k++){
+                        if(joueur->membres[j].effets[k].effet_statut!=0 && joueur->membres[j].effets[k].duree>0){
+                            suppressionEffetStatut(&joueur->membres[j], k);
+                            k--;
+                        }
+                    }
+                    if(memeEquipe(&joueur->membres[j],e1)==0){
                         e2->nbchampvivant--;
                     } else {
                         e1->nbchampvivant--;
@@ -391,8 +423,8 @@ void tour (Equipe* e1, Equipe* e2){
                     tab[i]->effets[j].duree--;
                 }
                 if(tab[i]->effets[j].duree==0){
-                    tab[i]->effets[j].effet_statut=0;
-                    tab[i]->nbeffets--;
+                    suppressionEffetStatut(tab[i], j);
+                    j--;
                 }
             }
         }
@@ -400,118 +432,118 @@ void tour (Equipe* e1, Equipe* e2){
 }
 
 
- void touria(Equipe* e1, Equipe* e2, int difficulte){
-     if(e1 == NULL || e2 == NULL){
-         printf("Erreur : pointeur nul");
-         exit(1);
-     }
-     Champ *tab[6];
-     int verif;
-     triParVit(e1,e2,tab);
-     for (int i=0;i<6;i++){
-         if(tab[i]->pvcourant<=0){
-             printf("%s est KO.\n",tab[i]->nom);
-         }
-         else {
-             affichageCombat(e1,e2, tab[i]);
-             for (int j=0; j<tab[i]->nbeffets; j++){
-                 if (tab[i]->effets[j].duree>0){
-                     degatseffetStatut(tab[i]);
-                 }
-             }
-             Equipe *joueur;
-             Equipe *adversaire;
-             Champ* cible;
-             if(memeEquipe(tab[i],e1)==0){
-                 cible=0;
-                joueur=e2;
-                 adversaire=e1;
-                 if(difficulte==1){
-                     cible=&adversaire->membres[rand()%3];
-                     attaque(tab[i], cible);
-                     printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
-                 }
-                 else if(difficulte==2){
-                     cible=&adversaire->membres[0];
-                     for(int k=1; k<3; k++){
-                         if(adversaire->membres[k].pvcourant<cible->pvcourant){
-                             cible=&adversaire->membres[k];
-                             }
-                    }
-                    attaque(tab[i], cible);
-                    printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
-                 }
-                 else{
-                     if(tab[i]->jaugeactuelle==tab[i]->jaugemax){
-                         //insérer tech spé si jauge pleine
-                     }
-                     else{
-                         cible=&e1->membres[0];
-                         for(int k=1; k<3; k++){
-                             if(e1->membres[k].pvcourant<cible->pvcourant){
-                                 cible=&e1->membres[k];
-                             }
-                         }
-                         attaque(tab[i], cible);
-                         printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
-                     }
-                 }
-             }
-             else {
-                 cible=0;
-                 joueur=e1;
-                 adversaire=e2;
-                 cible=choixCible(tab[i], joueur, adversaire);
-                 float pvtemp=cible->pvcourant;
-                 if (tab[i]->jaugeactuelle==tab[i]->jaugemax){
-                     int choix;
-                     printf("Jauge pleine! Voulez-vous utiliser une technique spéciale? (1:oui, 0:non): ");
-                     do{
-                         verif=scanf("%d", &choix);
-                         if(choix>1 || choix<0){
-                         printf("INDEX INVALIDE");
-                         }
-                         vide_buffer();
-                     }while(choix>1 || choix<0 || verif!=1); 
-                     if (choix==1){
-                         printf("%s utilise son attaque spéciale !\n", tab[i]->nom);
-                         //implementer fonctions techniques
-                     }
-                     else {
-                     printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
-                     attaque(tab[i], cible);
-                     } 
-                 } 
-                 else {
-                     printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
-                     attaque(tab[i],cible);
-                 }
-                 for(int j=0; j<cible->nbeffets; j++){ // suppression des degats si le statut est invincibilité
-                     if(cible->effets[0].effet_statut==4){
-                     cible->pvcourant=pvtemp;
-                     }
-                 }
-         }
-         if (cible->pvcourant<0) {
-             cible->pvcourant=0;
-             cible->statut=0;
-             printf("%s à tué %s !\n", tab[i]->nom, cible->nom);
-             if(memeEquipe(cible,e1)==0){
-                 e1->nbchampvivant--;
-             } else {
-                 e2->nbchampvivant--;
-             }
-         }
-         if(e1->nbchampvivant==0){
-             i=6;
-         }
-         if(e2->nbchampvivant==0){
-             i=6;
-         }
-         tab[i]->jaugeactuelle+=1;
-         if(tab[i]->jaugeactuelle>tab[i]->jaugemax){
-             tab[i]->jaugeactuelle=tab[i]->jaugemax;
-         }
-     }
- }
- }
+//  void touria(Equipe* e1, Equipe* e2, int difficulte){
+//      if(e1 == NULL || e2 == NULL){
+//          printf("Erreur : pointeur nul");
+//          exit(1);
+//      }
+//      Champ *tab[6];
+//      int verif;
+//      triParVit(e1,e2,tab);
+//      for (int i=0;i<6;i++){
+//          if(tab[i]->pvcourant<=0){
+//              printf("%s est KO.\n",tab[i]->nom);
+//          }
+//          else {
+//              affichageCombat(e1,e2, tab[i]);
+//              for (int j=0; j<tab[i]->nbeffets; j++){
+//                  if (tab[i]->effets[j].duree>0){
+//                      degatseffetStatut(tab[i]);
+//                  }
+//              }
+//              Equipe *joueur;
+//              Equipe *adversaire;
+//              Champ* cible;
+//              if(memeEquipe(tab[i],e1)==0){
+//                  cible=0;
+//                 joueur=e2;
+//                  adversaire=e1;
+//                  if(difficulte==1){
+//                      cible=&adversaire->membres[rand()%3];
+//                      attaque(tab[i], cible);
+//                      printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
+//                  }
+//                  else if(difficulte==2){
+//                      cible=&adversaire->membres[0];
+//                      for(int k=1; k<3; k++){
+//                          if(adversaire->membres[k].pvcourant<cible->pvcourant){
+//                              cible=&adversaire->membres[k];
+//                              }
+//                     }
+//                     attaque(tab[i], cible);
+//                     printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
+//                  }
+//                  else{
+//                      if(tab[i]->jaugeactuelle==tab[i]->jaugemax){
+//                          //insérer tech spé si jauge pleine
+//                      }
+//                      else{
+//                          cible=&e1->membres[0];
+//                          for(int k=1; k<3; k++){
+//                              if(e1->membres[k].pvcourant<cible->pvcourant){
+//                                  cible=&e1->membres[k];
+//                              }
+//                          }
+//                          attaque(tab[i], cible);
+//                          printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
+//                      }
+//                  }
+//              }
+//              else {
+//                  cible=0;
+//                  joueur=e1;
+//                  adversaire=e2;
+//                  cible=choixCible(tab[i], joueur, adversaire);
+//                  float pvtemp=cible->pvcourant;
+//                  if (tab[i]->jaugeactuelle==tab[i]->jaugemax){
+//                      int choix;
+//                      printf("Jauge pleine! Voulez-vous utiliser une technique spéciale? (1:oui, 0:non): ");
+//                      do{
+//                          verif=scanf("%d", &choix);
+//                          if(choix>1 || choix<0){
+//                          printf("INDEX INVALIDE");
+//                          }
+//                          vide_buffer();
+//                      }while(choix>1 || choix<0 || verif!=1); 
+//                      if (choix==1){
+//                          printf("%s utilise son attaque spéciale !\n", tab[i]->nom);
+//                          //implementer fonctions techniques
+//                      }
+//                      else {
+//                      printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
+//                      attaque(tab[i], cible);
+//                      } 
+//                  } 
+//                  else {
+//                      printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
+//                      attaque(tab[i],cible);
+//                  }
+//                  for(int j=0; j<cible->nbeffets; j++){ // suppression des degats si le statut est invincibilité
+//                      if(cible->effets[0].effet_statut==4){
+//                      cible->pvcourant=pvtemp;
+//                      }
+//                  }
+//          }
+//         if (cible->pvcourant<0) {
+//             cible->pvcourant=0;
+//             cible->statut=0;
+//             printf("%s à tué %s !\n", tab[i]->nom, cible->nom);
+//             if(memeEquipe(cible,e1)==0){
+//                 e1->nbchampvivant--;
+//             } else {
+//                 e2->nbchampvivant--;
+//             }
+//         }
+//         if(e1->nbchampvivant==0){
+//             i=6;
+//         }
+//         if(e2->nbchampvivant==0){
+//             i=6;
+//         }
+//         tab[i]->jaugeactuelle+=1;
+//         if(tab[i]->jaugeactuelle>tab[i]->jaugemax){
+//             tab[i]->jaugeactuelle=tab[i]->jaugemax;
+//         }
+//      }
+//  }
+//  }

@@ -21,7 +21,7 @@ void berserk(Champ* xavier, Equipe* allie){
                 while(choix<0 || choix>1 || verif!=1);
                 if (choix==1){
                     sacrifice_fraternel(xavier, &allie->membres[i]);
-                    break;
+                    return;
                 }
                 else{
                     printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
@@ -64,16 +64,16 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
     appeffetStat(nathalie,4,100);
     for(int i=0; i<10; i++){ // enlève tous les effets statuts négatifs (sauf les effets comme l'invincibilité, le renvoie de dégâts et la provocation)
         if(allie1->effets[i].effet_statut != 5 && allie1->effets[i].effet_statut != 4 && allie1->effets[i].effet_statut != 3){
-            allie1->effets[i].effet_statut = 0;
-            allie1->effets[i].duree = 0;
+            suppressionEffetStatut(allie1, i);
+            i--;
         }
         if(nathalie->effets[i].effet_statut != 5 && nathalie->effets[i].effet_statut != 4 && nathalie->effets[i].effet_statut != 3){
-            nathalie->effets[i].effet_statut = 0;
-            nathalie->effets[i].duree = 0;
+            suppressionEffetStatut(nathalie, i);
+            i--;
         }
         if(allie2->effets[i].effet_statut != 5 && allie2->effets[i].effet_statut != 4 && allie2->effets[i].effet_statut != 3){
-            allie2->effets[i].effet_statut = 0;
-            allie2->effets[i].duree = 0;
+            suppressionEffetStatut(allie2, i);
+            i--;
         }
     }
 }
@@ -99,7 +99,7 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
                 while(choix<0 || choix>1 || verif!=1);
                 if (choix==1){
                     extermination(zed, &allie->membres[i], ennemi);
-                    break;
+                    return;
                 }
                 else{
                     printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
@@ -135,7 +135,7 @@ void muraille(Champ* smasheur){
     }
     //provoque les ennemis, augmente sa défense de 20 et renvoie les dégats pendant 1 tour
     if(smasheur->tech.nbtactifs == 0){
-        smasheur->tech.nbtactifs = 1;
+        smasheur->tech.nbtactifs = 2;
         printf("\n Smasheur utilise muraille! \n");
         smasheur->jaugeactuelle = 0;
         appeffetStatut(smasheur,5,2);//applique l'effet renvoie de dégâts pendant 1 tour
@@ -144,9 +144,9 @@ void muraille(Champ* smasheur){
     }
     else if(smasheur->tech.nbtactifs != 0){
         printf("def reduite !\n");
-        smasheur->tech.nbtactifs--;
         appeffetStat(smasheur,3,-20);//diminue la défense de 20
     }
+    smasheur->tech.nbtactifs--;
 }
 
 void cadeau_empoisonne(Champ* steve, Equipe* ennemi, Equipe* allie){
@@ -170,7 +170,7 @@ void cadeau_empoisonne(Champ* steve, Equipe* ennemi, Equipe* allie){
                 while(choix<0 || choix>1 || verif!=1);
                 if (choix==1){
                     sacrifice_fraternel(steve, &allie->membres[i]);
-                    break;
+                    return;
                 }
                 else{
                     printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
@@ -271,7 +271,7 @@ void scierculaire(Champ* annesophie, Equipe* ennemi, Equipe* allie){
                 while(choix<0 || choix>1 || verif!=1);
                 if (choix==1){
                     extermination(annesophie, &allie->membres[i], ennemi);
-                    break;
+                    return;
                 }
                 else{
                     printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
@@ -311,7 +311,7 @@ void cicatrices_eternels(Champ* gaby, Equipe* ennemi, Equipe* allie){
                 while(choix<0 || choix>1 || verif!=1);
                 if (choix==1){
                     retour_a_la_haine(gaby, &allie->membres[i], ennemi);
-                    break;
+                    return;
                 }
                 else{
                     printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
@@ -350,7 +350,7 @@ void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2, Equipe* allies
                 while(choix<0 || choix>1 || verif!=1);
                 if (choix==1){
                         retour_a_la_haine(clara, &allies->membres[i], ennemi);
-                    break;
+                    return;
                 }
                 else{
                     printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allies->membres[i].nom);
@@ -396,7 +396,7 @@ void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2, Equipe* allies
             allie1->pvcourant = allie1->pvmax / 2;
             allie1->statut = 1;
         }
-        else {
+        else if (allie2->statut==0) {
             printf("\n Vous ressuscitez %s ! \n", allie2->nom);
             allie2->pvcourant = allie2->pvmax / 2;
             allie2->statut = 1;
