@@ -189,7 +189,7 @@ void cadeau_empoisonne(Champ* steve, Equipe* ennemi, Equipe* allie){
                 }
                 while(choix<0 || choix>1 || verif!=1);
                 if (choix==1){
-                    sacrifice_fraternel(&allie->membres, steve);
+                    sacrifice_fraternel(allie->membres, steve);
                     return;
                 }
                 else{
