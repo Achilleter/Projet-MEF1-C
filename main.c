@@ -56,7 +56,7 @@ int main(){
             }
             vide_buffer();
         }
-        while (strlen(equipe1->nom) > 20); //verifie que le nom de l'équipe est valide
+        while (strlen(equipe1->nom) > 20 || verif2 != 1); //verifie que le nom de l'équipe est valide
         printf("Bonjour %s\n\n", equipe1->nom);
         strcpy(equipe2->nom, "IA"); // Initialise le nom de l'IA
         printf("Choisissez vos champions afin de former votre equipe !\n");
