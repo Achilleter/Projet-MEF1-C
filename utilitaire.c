@@ -54,7 +54,7 @@ void vide_buffer(){
 }
 
 void nettoyerNom(char* nom) {
-    // Enlève le retour à la ligne
+    // Enlève le retour à la ligne et les espaces à la fin du nom
     int len = strlen(nom);
     if (len > 0 && nom[len - 1] == '\n') {
         nom[len - 1] = '\0';

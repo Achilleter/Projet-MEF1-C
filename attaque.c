@@ -52,7 +52,6 @@ void degatseffetStatut(Champ *champ){
             }
             else if(champ->effets[i].effet_statut == 4 && champ->effets[i].duree>0) { // application invincibilité
                 champ->pvcourant = pvtemp;
-                printf("%s a bloque tous les degats des effets !\n", champ->nom);
             }
         }
     }
@@ -546,9 +545,6 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                 verifstun=1;
             }
         }
-        if (verifstun==1){
-            printf("%s est stun !\n", tab[i]->nom);
-        }
         if (tab[i]->pvcourant<=0){
             printf("%s est KO.\n",tab[i]->nom);
         }
@@ -580,166 +576,165 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
             }
             else {
                 if(memeEquipe(tab[i],e1)==0){
-                joueur=e2;
-                adversaire=e1;
-                        Champ *cible;
-                        if(difficulte==1){
-                            do{
-                                cible=&adversaire->membres[rand()%3];
-                            }
-                            while(cible->pvcourant>0);
-                            attaque(tab[i], cible);
-                            printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
+                    joueur=e2;
+                    adversaire=e1;
+                    Champ *cible;
+                    if(difficulte==1){
+                        do{
+                            cible=&adversaire->membres[rand()%3];
                         }
-                        else if(difficulte==2){
-                            cible=&adversaire->membres[0];
-                            for(int k=1; k<3; k++){
-                                if(adversaire->membres[k].pvcourant<cible->pvcourant && adversaire->membres[k].pvcourant>0){
-                                    cible=&adversaire->membres[k];
-                                }
-                            }
-                            attaque(tab[i], cible);
-                            printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
-                        }
-                        else{
-                            if(tab[i]->jaugeactuelle==tab[i]->jaugemax){
-                                // vérfication de la technique en comparant le noms des techniques au nom de la technique du personnage situé dans tab[i]
-                                if (strcmp(tab[i]->tech.nom, "berserk")==0) {
-                                    berserk(tab[i], joueur);
-                                }
-                                else if (strcmp(tab[i]->tech.nom, "flashbacks")==0) {
-                                    if(strcmp(tab[i]->nom, joueur->membres[0].nom)==0) {
-                                        flashbacks(tab[i], &joueur->membres[1], &joueur->membres[2]);
-                                    }
-                                    else if (strcmp(tab[i]->nom, joueur->membres[1].nom)==0) {
-                                        flashbacks(tab[i], &joueur->membres[0], &joueur->membres[2]);
-                                    }
-                                    else if (strcmp(tab[i]->nom, joueur->membres[2].nom)==0) { 
-                                        flashbacks(tab[i], &joueur->membres[0], &joueur->membres[1]);
-                                    }
-                                }
-                                else if (strcmp(tab[i]->tech.nom, "bourreau")==0) {
-                                    bourreau(tab[i], adversaire, joueur);
-                                }
-                                else if (strcmp(tab[i]->tech.nom, "muraille")==0) {
-                                    muraille(tab[i]);
-                                }
-                                else if (strcmp(tab[i]->tech.nom, "cadeau_empoisonne")==0) {
-                                    cadeau_empoisonne(tab[i], adversaire, joueur);
-                                }
-                                else if (strcmp(tab[i]->tech.nom, "fossoyeur_des_mondes")==0) {
-                                    fossoyeur_des_mondes(tab[i]);
-                                }
-                                else if (strcmp(tab[i]->tech.nom, "cryogenese")==0) { 
-                                    cryogenese(tab[i], adversaire);
-                                }
-                                else if (strcmp(tab[i]->tech.nom, "scierculaire")==0) {
-                                    scierculaire(tab[i], adversaire, joueur);
-                                }
-                                else if (strcmp(tab[i]->tech.nom, "cicatrices_eternels")==0){
-                                    cicatrices_eternels(tab[i], adversaire, joueur);
-                                }
-                                else if (strcmp(tab[i]->tech.nom, "reinitialisation")==0) {
-                                    if(strcmp(tab[i]->nom, joueur->membres[0].nom)==0) {
-                                        reinitialisation(tab[i], &joueur->membres[1], &joueur->membres[2], joueur, adversaire);
-                                    }
-                                    else if (strcmp(tab[i]->nom, joueur->membres[1].nom)==0) { 
-                                        reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[2], joueur, adversaire);
-                                    }
-                                    else if (strcmp(tab[i]->nom, joueur->membres[2].nom)==0) {
-                                        reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[1], joueur, adversaire);
-                                    }
-                                }
-                            }
-                            else{
-                                cible=&e1->membres[0];
-                                for(int k=1; k<3; k++){
-                                    if(e1->membres[k].pvcourant<cible->pvcourant && e1->membres[k].pvcourant>0){
-                                        cible=&e1->membres[k];
-                                    }
-                                }
-                                attaque(tab[i], cible);
-                                printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
-                            }
+                        while(cible->pvcourant>0);
+                        attaque(tab[i], cible);
+                        printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
+                    }
+                    else if(difficulte==2){
+                    cible=&adversaire->membres[0];
+                    for(int k=1; k<3; k++){
+                        if(adversaire->membres[k].pvcourant<cible->pvcourant && adversaire->membres[k].pvcourant>0){
+                            cible=&adversaire->membres[k];
                         }
                     }
-                    else {
-                        joueur=e1;
-                        adversaire=e2;
-                        if (tab[i]->jaugeactuelle==tab[i]->jaugemax){
-                            int choix;
-                            printf("Jauge pleine! Voulez-vous utiliser une technique speciale? \n1:oui \n0:non \n");
-                            do{
-                                verif=scanf("%d", &choix);
-                                if(choix>1 || choix<0){
-                                    printf("Index invalide");
+                    attaque(tab[i], cible);
+                    printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
+                    }
+                    else{
+                        if(tab[i]->jaugeactuelle==tab[i]->jaugemax){
+                            // vérfication de la technique en comparant le noms des techniques au nom de la technique du personnage situé dans tab[i]
+                            if (strcmp(tab[i]->tech.nom, "berserk")==0) {
+                                berserk(tab[i], joueur);
+                            }
+                            else if (strcmp(tab[i]->tech.nom, "flashbacks")==0) {
+                                if(strcmp(tab[i]->nom, joueur->membres[0].nom)==0) {
+                                    flashbacks(tab[i], &joueur->membres[1], &joueur->membres[2]);
                                 }
-                                vide_buffer();
-                            } 
-                            while(choix>1 || choix<0 || verif!=1); 
-                            if (choix==1){
-                                // vérfication de la technique en comporant le noms des techniques eau nom de la technique du personnage situé dans tab[i]
-                                if (strcmp(tab[i]->tech.nom, "berserk")==0) {
-                                    berserk(tab[i], joueur);
+                                else if (strcmp(tab[i]->nom, joueur->membres[1].nom)==0) {
+                                    flashbacks(tab[i], &joueur->membres[0], &joueur->membres[2]);
                                 }
-                                else if (strcmp(tab[i]->tech.nom, "flashbacks")==0) {
-                                    if(strcmp(tab[i]->nom, joueur->membres[0].nom)==0) {
-                                        flashbacks(tab[i], &joueur->membres[1], &joueur->membres[2]);
-                                    }
-                                    else if (strcmp(tab[i]->nom, joueur->membres[1].nom)==0) {
-                                        flashbacks(tab[i], &joueur->membres[0], &joueur->membres[2]);
-                                    }
-                                    else if (strcmp(tab[i]->nom, joueur->membres[2].nom)==0) { 
-                                        flashbacks(tab[i], &joueur->membres[0], &joueur->membres[1]);
-                                    }
-                                }
-                                else if (strcmp(tab[i]->tech.nom, "bourreau")==0) {
-                                    bourreau(tab[i], adversaire, joueur);
-                                }
-                                else if (strcmp(tab[i]->tech.nom, "muraille")==0) {
-                                    muraille(tab[i]);
-                                }
-                                else if (strcmp(tab[i]->tech.nom, "cadeau_empoisonne")==0) {
-                                    cadeau_empoisonne(tab[i], adversaire, joueur);
-                                }
-                                else if (strcmp(tab[i]->tech.nom, "fossoyeur_des_mondes")==0) {
-                                    fossoyeur_des_mondes(tab[i]);
-                                }
-                                else if (strcmp(tab[i]->tech.nom, "cryogenese")==0) { 
-                                    cryogenese(tab[i], adversaire);
-                                }
-                                else if (strcmp(tab[i]->tech.nom, "scierculaire")==0) {
-                                    scierculaire(tab[i], adversaire, joueur);
-                                }
-                                else if (strcmp(tab[i]->tech.nom, "cicatrices_eternels")==0){
-                                    cicatrices_eternels(tab[i], adversaire, joueur);
-                                }
-                                else if (strcmp(tab[i]->tech.nom, "reinitialisation")==0) {
-                                    if(strcmp(tab[i]->nom, joueur->membres[0].nom)==0) {
-                                        reinitialisation(tab[i], &joueur->membres[1], &joueur->membres[2], joueur, adversaire);
-                                    }
-                                    else if (strcmp(tab[i]->nom, joueur->membres[1].nom)==0) { 
-                                        reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[2], joueur, adversaire);
-                                    }
-                                    else if (strcmp(tab[i]->nom, joueur->membres[2].nom)==0) {
-                                        reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[1], joueur, adversaire);
-                                    }
+                                else if (strcmp(tab[i]->nom, joueur->membres[2].nom)==0) { 
+                                    flashbacks(tab[i], &joueur->membres[0], &joueur->membres[1]);
                                 }
                             }
-                            else {
-                                Champ *cible=choixCible(tab[i], joueur, adversaire);
-                                printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
-                                attaque(tab[i], cible);
+                            else if (strcmp(tab[i]->tech.nom, "bourreau")==0) {
+                                bourreau(tab[i], adversaire, joueur);
+                            }
+                            else if (strcmp(tab[i]->tech.nom, "muraille")==0) {
+                                muraille(tab[i]);
+                            }
+                            else if (strcmp(tab[i]->tech.nom, "cadeau_empoisonne")==0) {
+                                cadeau_empoisonne(tab[i], adversaire, joueur);
+                            }
+                            else if (strcmp(tab[i]->tech.nom, "fossoyeur_des_mondes")==0) {
+                                fossoyeur_des_mondes(tab[i]);
+                            }
+                            else if (strcmp(tab[i]->tech.nom, "cryogenese")==0) { 
+                                cryogenese(tab[i], adversaire);
+                            }
+                            else if (strcmp(tab[i]->tech.nom, "scierculaire")==0) {
+                                scierculaire(tab[i], adversaire, joueur);
+                            }
+                            else if (strcmp(tab[i]->tech.nom, "cicatrices_eternels")==0){
+                                cicatrices_eternels(tab[i], adversaire, joueur);
+                            }
+                            else if (strcmp(tab[i]->tech.nom, "reinitialisation")==0) {
+                                if(strcmp(tab[i]->nom, joueur->membres[0].nom)==0) {
+                                    reinitialisation(tab[i], &joueur->membres[1], &joueur->membres[2], joueur, adversaire);
+                                }
+                                else if (strcmp(tab[i]->nom, joueur->membres[1].nom)==0) { 
+                                    reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[2], joueur, adversaire);
+                                }
+                                else if (strcmp(tab[i]->nom, joueur->membres[2].nom)==0) {
+                                    reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[1], joueur, adversaire);
+                                }
+                            }
+                        }
+                        else{
+                            cible=&e1->membres[0];
+                            for(int k=1; k<3; k++){
+                                if(e1->membres[k].pvcourant<cible->pvcourant && e1->membres[k].pvcourant>0){
+                                    cible=&e1->membres[k];
+                                }
+                            }
+                            attaque(tab[i], cible);
+                            printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
+                        }
+                    }
+                }
+                else {
+                    joueur=e1;
+                    adversaire=e2;
+                    if (tab[i]->jaugeactuelle==tab[i]->jaugemax){
+                        int choix;
+                        printf("Jauge pleine! Voulez-vous utiliser une technique speciale? \n1:oui \n0:non \n");
+                        do{
+                            verif=scanf("%d", &choix);
+                            if(choix>1 || choix<0){
+                                printf("Index invalide");
+                            }
+                            vide_buffer();
+                        } 
+                        while(choix>1 || choix<0 || verif!=1); 
+                        if (choix==1){
+                            // vérfication de la technique en comporant le noms des techniques eau nom de la technique du personnage situé dans tab[i]
+                            if (strcmp(tab[i]->tech.nom, "berserk")==0) {
+                                berserk(tab[i], joueur);
+                            }
+                            else if (strcmp(tab[i]->tech.nom, "flashbacks")==0) {
+                                if(strcmp(tab[i]->nom, joueur->membres[0].nom)==0) {
+                                    flashbacks(tab[i], &joueur->membres[1], &joueur->membres[2]);
+                                }
+                                else if (strcmp(tab[i]->nom, joueur->membres[1].nom)==0) {
+                                    flashbacks(tab[i], &joueur->membres[0], &joueur->membres[2]);
+                                }
+                                else if (strcmp(tab[i]->nom, joueur->membres[2].nom)==0) { 
+                                    flashbacks(tab[i], &joueur->membres[0], &joueur->membres[1]);
+                                }
+                            }
+                            else if (strcmp(tab[i]->tech.nom, "bourreau")==0) {
+                                bourreau(tab[i], adversaire, joueur);
+                            }
+                            else if (strcmp(tab[i]->tech.nom, "muraille")==0) {
+                                muraille(tab[i]);
+                            }
+                            else if (strcmp(tab[i]->tech.nom, "cadeau_empoisonne")==0) {
+                                cadeau_empoisonne(tab[i], adversaire, joueur);
+                            }
+                            else if (strcmp(tab[i]->tech.nom, "fossoyeur_des_mondes")==0) {
+                                fossoyeur_des_mondes(tab[i]);
+                            }
+                            else if (strcmp(tab[i]->tech.nom, "cryogenese")==0) { 
+                                cryogenese(tab[i], adversaire);
+                            }
+                            else if (strcmp(tab[i]->tech.nom, "scierculaire")==0) {
+                                scierculaire(tab[i], adversaire, joueur);
+                            }
+                            else if (strcmp(tab[i]->tech.nom, "cicatrices_eternels")==0){
+                                cicatrices_eternels(tab[i], adversaire, joueur);
+                            }
+                            else if (strcmp(tab[i]->tech.nom, "reinitialisation")==0) {
+                                if(strcmp(tab[i]->nom, joueur->membres[0].nom)==0) {
+                                    reinitialisation(tab[i], &joueur->membres[1], &joueur->membres[2], joueur, adversaire);
+                                }
+                                else if (strcmp(tab[i]->nom, joueur->membres[1].nom)==0) { 
+                                    reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[2], joueur, adversaire);
+                                }
+                                else if (strcmp(tab[i]->nom, joueur->membres[2].nom)==0) {
+                                    reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[1], joueur, adversaire);
+                                }
                             }
                         }
                         else {
                             Champ *cible=choixCible(tab[i], joueur, adversaire);
                             printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
-                            attaque(tab[i],cible);
+                            attaque(tab[i], cible);
                         }
                     }
+                    else {
+                        Champ *cible=choixCible(tab[i], joueur, adversaire);
+                        printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
+                        attaque(tab[i],cible);
+                    }
                 }
-
+            }
             if (tab[i]->tech.nbtactifs != 0) {
                 // vérfication de la technique
                 if (strcmp(tab[i]->tech.nom, "berserk")==0) {
