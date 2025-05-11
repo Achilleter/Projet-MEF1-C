@@ -469,9 +469,6 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
                     booltemp++;
                 }
             }
-            free(joueur); // Libération de la mémoire allouée dynamiquement.
-            free(adversaire); // Libération de la mémoire allouée dynamiquement.
-            free(cible); // Libération de la mémoire allouée dynamiquement.
         }
     }
 }
