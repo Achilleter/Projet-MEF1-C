@@ -36,16 +36,17 @@ void degatseffetStatut(Champ *champ){
         printf("Erreur : pointeur nul");
         exit(1);
     }
+    int pvcourant=champ->pvcourant;
     if (champ->nbeffets == 0) {
         return;
     }
     else if (champ->nbeffets > 0) {
         for (int i = 0; i < champ->nbeffets; i++) {
-            if (champ->effets[i].effet_statut == 1 && champ->effets[i].duree>0 && champ->effets[i].effet_statut != 4) { // application poison
+            if (champ->effets[i].effet_statut == 1 && champ->effets[i].duree>0) { // application poison
                 champ->pvcourant -= champ->pvmax * 0.05;
                 printf("%s subit des degats de poison !\n", champ->nom);
             }
-            else if (champ->effets[i].effet_statut == 6 && champ->effets[i].duree>0 && champ->effets[i].effet_statut != 4) { // application bourreau
+            else if (champ->effets[i].effet_statut == 6 && champ->effets[i].duree>0) { // application bourreau
                 if(champ->pvcourant <= champ->pvmax * 0.25) {
                     champ->pvcourant = 0;
                     champ->statut = 0; // mort
@@ -53,7 +54,8 @@ void degatseffetStatut(Champ *champ){
                 }
             }
             else if(champ->effets[i].effet_statut == 4 && champ->effets[i].duree>0) {
-                    printf("%s bloque les dégats !\n", champ->nom);
+                    champ->pvcourant=pvcourant;
+                    printf("%s récupère les pv perdus !\n", champ->nom);
             }
         }
     }
