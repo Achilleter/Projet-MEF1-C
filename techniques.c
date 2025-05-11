@@ -9,7 +9,8 @@ void berserk(Champ* xavier, Equipe* allie){
         if(strcmp(allie->membres[i].tech.nom, "cadeau_empoisonne")==0){
             int choix=0;
             if(allie->boolia==0){
-                if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
+                if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax && allie->membres[i].statut==1){
+                    // Demande à l'utilisateur s'il veut utiliser la technique combinée
                     printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)\n", allie->membres[i].nom);
                     int verif;
                     do{
@@ -23,17 +24,18 @@ void berserk(Champ* xavier, Equipe* allie){
                 }
             }
             else if(allie->boolia==1){
-                if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
+                if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax && allie->membres[i].statut==1){
+                    // L'IA choisit de combiner la technique toujours
                     choix=1;
                     printf("L'IA a choisi de combiner la technique avec %s\n", allie->membres[i].nom);
                 }
-                if (choix==1){
-                    sacrifice_fraternel(xavier, &allie->membres[i]);
-                    return;
-                }
-                else{
-                    printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
-                }
+            }
+            if (choix==1){
+                sacrifice_fraternel(xavier, &allie->membres[i]);
+                return;
+            }
+            else{
+                printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
             }
         }
     }
@@ -116,7 +118,8 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
     for(int i=0; i<3; i++){
         if(strcmp(allie->membres[i].tech.nom, "scierculaire")==0){
             if(allie->boolia==0){
-                if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
+                if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax && allie->membres[i].statut==1){
+                    // Demande à l'utilisateur s'il veut utiliser la technique combinée
                     printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)\n", allie->membres[i].nom);
                     do{
                         verif=scanf("%d", &choix);
@@ -129,17 +132,18 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
                 }
             }
             else if(allie->boolia==1){
-                if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
+                if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax && allie->membres[i].statut==1){
+                    // L'IA choisit de combiner la technique toujours
                     choix=1;
                     printf("L'IA a choisi de combiner la technique avec %s\n", allie->membres[i].nom);
                 }
-                if (choix==1){
-                    extermination(&allie->membres[i], zed, ennemi);
-                    return;
-                }
-                else{
-                    printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
-                }
+            }
+            if (choix==1){
+                extermination(&allie->membres[i], zed, ennemi);
+                return;
+            }
+            else{
+                printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
             }
         }
     }
@@ -206,7 +210,8 @@ void cadeau_empoisonne(Champ* steve, Equipe* ennemi, Equipe* allie){
         if(strcmp(allie->membres[i].tech.nom, "berserk")==0){
             int choix=0;
             if(allie->boolia==0){
-                if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
+                if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax && allie->membres[i].statut==1){
+                    // Demande à l'utilisateur s'il veut utiliser la technique combinée
                     printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)\n", allie->membres[i].nom);
                     int verif;
                     do{
@@ -220,17 +225,18 @@ void cadeau_empoisonne(Champ* steve, Equipe* ennemi, Equipe* allie){
                 }
             }
             else if(allie->boolia==1){
-                if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
+                if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax && allie->membres[i].statut==1){
+                    // L'IA choisit de combiner la technique toujours
                     choix=1;
                     printf("L'IA a choisi de combiner la technique avec %s\n", allie->membres[i].nom);
                 }
-                if (choix==1){
-                    sacrifice_fraternel(&allie->membres[i], steve);
-                    return;
-                }
-                else{
-                    printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
-                }
+            }
+           if (choix==1){
+                sacrifice_fraternel(&allie->membres[i], steve);
+                return;
+            }
+            else{
+                printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
             }
         }
     }
@@ -315,7 +321,8 @@ void scierculaire(Champ* annesophie, Equipe* ennemi, Equipe* allie){
         if(strcmp(allie->membres[i].tech.nom, "bourreau")==0){
             int choix=0;
             if(allie->boolia==0){
-                if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
+                if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax && allie->membres[i].statut==1){
+                    // Demande à l'utilisateur s'il veut utiliser la technique combinée
                     printf("\nVoulez vous utiliser la technique combinée avec %s (1:oui, 0:non)\n", allie->membres[i].nom);
                     int verif;
                     do{
@@ -329,17 +336,18 @@ void scierculaire(Champ* annesophie, Equipe* ennemi, Equipe* allie){
                 }
             }
             else if(allie->boolia==1){
-                if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
+                if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax && allie->membres[i].statut==1){
+                    // L'IA choisit de combiner la technique toujours
                     choix=1;
                     printf("L'IA a choisi de combiner la technique avec %s\n", allie->membres[i].nom);
                 }
-                if (choix==1){
-                    extermination(annesophie, &allie->membres[i], ennemi);
-                    return;
-                }
-                else{
-                    printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
-                }
+            }
+            if (choix==1){
+                extermination(annesophie, &allie->membres[i], ennemi);
+                return;
+            }
+            else{
+                printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
             }
         }
     }
@@ -363,7 +371,8 @@ void cicatrices_eternels(Champ* gaby, Equipe* ennemi, Equipe* allie){
         if(strcmp(allie->membres[i].tech.nom, "reinitialisation")==0){
             int choix=0;
             if(allie->boolia==0){
-                if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
+                if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax && allie->membres[i].statut==1){
+                    // Demande à l'utilisateur s'il veut utiliser la technique combinée
                     printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)\n", allie->membres[i].nom);
                     int verif;
                     do{
@@ -377,17 +386,18 @@ void cicatrices_eternels(Champ* gaby, Equipe* ennemi, Equipe* allie){
                 }
             }
             else if(allie->boolia==1){
-                if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax){
+                if(allie->membres[i].jaugeactuelle==allie->membres[i].jaugemax && allie->membres[i].statut==1){
+                    // L'IA choisit de combiner la technique toujours
                     choix=1;
                     printf("L'IA a choisi de combiner la technique avec %s\n", allie->membres[i].nom);
                 }
-                if (choix==1){
-                    retour_a_la_haine(gaby, &allie->membres[i], ennemi, allie);
-                    return;
-                }
-                else{
-                    printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
-                }
+            }
+            if (choix==1){
+                retour_a_la_haine(gaby, &allie->membres[i], ennemi, allie);
+                return;
+            }
+            else{
+                printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allie->membres[i].nom);
             }
         }
     }
@@ -412,7 +422,8 @@ void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2, Equipe* allies
         if(strcmp(allies->membres[i].tech.nom, "cicatrices_eternels")==0){
             int choix=0;
             if(allies->boolia==0){
-                if(allies->membres[i].jaugeactuelle==allies->membres[i].jaugemax){
+                if(allies->membres[i].jaugeactuelle==allies->membres[i].jaugemax && allie1->statut==1){
+                    // Demande à l'utilisateur s'il veut utiliser la technique combinée
                     printf("Voulez vous utiliser la technique combinée avec %s (1:oui, 0:non)\n", allies->membres[i].nom);
                     int verif;
                     do{
@@ -426,17 +437,18 @@ void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2, Equipe* allies
                 }
             }
             else if(allies->boolia==1){
-                if(allies->membres[i].jaugeactuelle==allies->membres[i].jaugemax){
+                if(allies->membres[i].jaugeactuelle==allies->membres[i].jaugemax && allie1->statut==1){
+                    // L'IA choisit de combiner la technique toujours
                     choix=1;
                     printf("L'IA a choisi de combiner la technique avec %s\n", allies->membres[i].nom);
                 }
-                if (choix==1){
-                    retour_a_la_haine(&allies->membres[i], clara, ennemi, allies);
-                    return;
-                }
-                else{
-                    printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allies->membres[i].nom);
-                }
+            }
+            if (choix==1){
+                retour_a_la_haine(&allies->membres[i], clara, ennemi, allies);
+                return;
+            }
+            else{
+                printf("Vous avez choisi de ne pas combiner la technique avec %s\n", allies->membres[i].nom);
             }
         }
     }
