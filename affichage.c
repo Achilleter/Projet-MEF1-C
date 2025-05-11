@@ -230,14 +230,6 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
         int pvactuel1=equipe1->membres[i].pvcourant/20; // Variable temporaire pour afficher la barre de vie
         int pvmax1=equipe1->membres[i].pvmax/20; // Variable temporaire pour affiche la barre de vie même avec le vide
         int pvvide1=pvmax1-pvactuel1; // variable pour remplir le vide de la barre de vie
-        if(equipe1->membres[i].pvcourant >=100.00){ // Si le PV est supérieur ou égal à 100, on affiche un 3 chiffres suivi d'un . puis 2 chiffres
-        }
-        else if(equipe1->membres[i].pvcourant >=10.00 && equipe1->membres[i].pvcourant < 100.00){ // Si le PV est supérieur ou égal à 10, on affiche un 0 puis de 2 chiffres suivi d'un . puis 2 chiffres
-            printf("0");
-        }
-        else if(equipe1->membres[i].pvcourant >=0.00 && equipe1->membres[i].pvcourant < 10.00){ // Si le PV est supérieur ou égal à 0, on affiche deux 0 puis de 2 chiffres suivi d'un . puis 2 chiffres
-            printf("00");
-        }
         printf("("); 
         while(pvactuel1>0){ // Boucle while pour afficher la barre de vie selon ses PV courants
             printf("❤");
@@ -248,19 +240,19 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
             pvvide1--;
         }
         printf(")(");
+        if(equipe1->membres[i].pvcourant >=100.00){ // Si le PV est supérieur ou égal à 100, on affiche un 3 chiffres suivi d'un . puis 2 chiffres
+        }
+        else if(equipe1->membres[i].pvcourant >=10.00 && equipe1->membres[i].pvcourant < 100.00){ // Si le PV est supérieur ou égal à 10, on affiche un 0 puis de 2 chiffres suivi d'un . puis 2 chiffres
+            printf("0");
+        }
+        else if(equipe1->membres[i].pvcourant >=0.00 && equipe1->membres[i].pvcourant < 10.00){ // Si le PV est supérieur ou égal à 0, on affiche deux 0 puis de 2 chiffres suivi d'un . puis 2 chiffres
+            printf("00");
+        }
         printf("%.2f)%*s", equipe1->membres[i].pvcourant, 60-(pvmax1), ""); // Affichage des PV courants en float
         // Affichage des PV sous les membres de l'équipe 2
         int pvactuel2=equipe2->membres[i].pvcourant/20;
         int pvmax2=equipe2->membres[i].pvmax/20;
         int pvvide2=pvmax2-pvactuel2;
-        if(equipe2->membres[i].pvcourant >=100.00){
-        }
-        else if(equipe2->membres[i].pvcourant >=10.00 && equipe2->membres[i].pvcourant < 100.00){
-            printf("0");
-        }
-        else if(equipe2->membres[i].pvcourant >=0.00 && equipe2->membres[i].pvcourant < 10.00){
-            printf("00");
-        }
         printf("("); 
         while(pvactuel2>0){
             printf("❤");
@@ -271,6 +263,14 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
             pvvide2--;
         }
         printf(")(");
+        if(equipe2->membres[i].pvcourant >=100.00){
+        }
+        else if(equipe2->membres[i].pvcourant >=10.00 && equipe2->membres[i].pvcourant < 100.00){
+            printf("0");
+        }
+        else if(equipe2->membres[i].pvcourant >=0.00 && equipe2->membres[i].pvcourant < 10.00){
+            printf("00");
+        }
         printf("%.2f)\n", equipe2->membres[i].pvcourant);
         // Afficher la jauge de chaque champion
         int jaugeactuel1=equipe1->membres[i].jaugeactuelle; // Variable temporaire pour afficher la jauge courante
