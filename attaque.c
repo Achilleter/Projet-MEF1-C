@@ -462,31 +462,24 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
             if (tab[i]->nbeffets>0){
                 degatseffetStatut(tab[i]); // Application des dégâts d'effets.
             }
-            if(equipetemp == 1){
+            if(equipetemp == 1 && pvtemp>e1->membres[joueurinvincibletemp].pvcourant){ // Vérifie si le champion est dans l'équipe 1 et si son pv est supérieur à celui de l'équipe 1.
                 e1->membres[joueurinvincibletemp].pvcourant=pvtemp;
-                printf("%s a bloqué tous les dégats !\n", e1->membres[joueurinvincibletemp].nom);
+                printf("%s a bloque tous les dégats !\n", e1->membres[joueurinvincibletemp].nom);
             }
-            else if(equipetemp == 2){
+            else if(equipetemp == 2 && pvtemp>e2->membres[joueurinvincibletemp].pvcourant){
                 e2->membres[joueurinvincibletemp].pvcourant=pvtemp;
-                printf("%s a bloqué tous les dégats !\n", e2->membres[joueurinvincibletemp].nom);
+                printf("%s a bloque tous les dégats !\n", e2->membres[joueurinvincibletemp].nom);
             }
             for(int j=0; j<3; j++){ // Gere la mort des champions.
                 if(adversaire->membres[j].pvcourant<=0 && adversaire->membres[j].statut==1){ // Mis à jour du statut du champion.
                     adversaire->membres[j].pvcourant=0;
                     adversaire->membres[j].statut=0;
                     printf("%s est mort(e) !\n", adversaire->membres[j].nom);
-                    int booltemp1=0; // Mise en place d'un booléen temporaire pour gérer la durée et le nombre des effets. 
-                    while (booltemp1 < tab[i]->nbeffets) {
-                        if (tab[i]->effets[booltemp1].effet_statut != 0) {
-                            tab[i]->effets[booltemp1].duree--; // Baisse la durée des effets
-                        }
-                        if (tab[i]->effets[booltemp1].duree <= 0) { // Supprime l'effet si ça dure est inférieure ou égale à 0.
-                            suppressionEffetStatut(tab[i], booltemp1);
-                        }
-                        else {
-                        booltemp1++;
-                        }
+                    for(int m=0; j<adversaire->membres[j].nbeffets; m++){
+                        adversaire->membres[j].effets[m].duree=0; // Suppression de l'effet si le champion est mort.
+                        adversaire->membres[j].effets[m].effet_statut=0;
                     }
+                    adversaire->membres[j].nbeffets=0; // Réinitialisation du nombre d'effets.
                     if(memeEquipe(&adversaire->membres[j],e1)==0){
                         e2->nbchampvivant--; //Baisse le nombre de champions vivants dans l'équipe.
                     } 
@@ -500,18 +493,11 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
                     joueur->membres[j].pvcourant=0;
                     joueur->membres[j].statut=0;
                     printf("%s est mort(e) !\n", joueur->membres[j].nom);
-                    int j = 0;
-                    while (j < tab[i]->nbeffets) {
-                        if (tab[i]->effets[j].effet_statut != 0) {
-                            tab[i]->effets[j].duree--;
-                        }
-                        if (tab[i]->effets[j].duree <= 0) {
-                            suppressionEffetStatut(tab[i], j);
-                        }
-                        else {
-                            j++;
-                        }
+                    for(int n=0; n<joueur->membres[j].nbeffets; n++){
+                        joueur->membres[j].effets[n].duree=0; // Suppression de l'effet si le champion est mort.
+                        joueur->membres[j].effets[n].effet_statut=0;
                     }
+                    joueur->membres[j].nbeffets=0;
                     if(memeEquipe(&joueur->membres[j],e1)==0){
                         e2->nbchampvivant--;
                     } else {
@@ -529,16 +515,16 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
             if(tab[i]->jaugeactuelle>tab[i]->jaugemax){ // Met la barre de jauge au maximum si cette dernière est atteinte.
                 tab[i]->jaugeactuelle=tab[i]->jaugemax;
             }
-            int booltemp2 = 0;
-            while (booltemp2 < tab[i]->nbeffets) {
-                if (tab[i]->effets[booltemp2].effet_statut != 0) {
-                    tab[i]->effets[booltemp2].duree--; // Baisse la durée des effets
+            int booltemp = 0;
+            while (booltemp < tab[i]->nbeffets) {
+                if (tab[i]->effets[booltemp].effet_statut != 0) {
+                    tab[i]->effets[booltemp].duree--; // Baisse la durée des effets
                 }
-                if (tab[i]->effets[booltemp2].duree <= 0) { // Supprime l'effet si ça dure est inférieure ou égale à 0.
-                    suppressionEffetStatut(tab[i], booltemp2);
+                if (tab[i]->effets[booltemp].duree <= 0) { // Supprime l'effet si ça dure est inférieure ou égale à 0.
+                    suppressionEffetStatut(tab[i], booltemp);
                 }
                 else {
-                    booltemp2++;
+                    booltemp++;
                 }
             }
         }
@@ -870,17 +856,11 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                     adversaire->membres[j].pvcourant=0;
                     adversaire->membres[j].statut=0;
                     printf("%s est mort(e) !\n", adversaire->membres[j].nom);
-                    int booltemp=0;
-                    for(int k=0; k<adversaire->membres[j].nbeffets; k++){
-                        if(booltemp==1){
-                            k--;
-                        }
-                        booltemp=0;
-                        if(adversaire->membres[j].effets[k].effet_statut!=0 && adversaire->membres[j].effets[k].duree>0){
-                            suppressionEffetStatut(&adversaire->membres[j], k);
-                            booltemp=1;
-                        }
+                    for(int v=0; v<adversaire->membres[j].nbeffets; v++){
+                        adversaire->membres[j].effets[v].duree=0; // Suppression de l'effet si le champion est mort.
+                        adversaire->membres[j].effets[v].effet_statut=0;
                     }
+                    adversaire->membres[j].nbeffets=0;
                     if(memeEquipe(&adversaire->membres[j],e1)==0){
                         e2->nbchampvivant--;
                     } 
@@ -894,18 +874,11 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                     joueur->membres[j].pvcourant=0;
                     joueur->membres[j].statut=0;
                     printf("%s est mort(e) !\n", joueur->membres[j].nom);
-                    int booltemp1 = 0;
-                    while (booltemp1 < tab[i]->nbeffets) {
-                        if (tab[i]->effets[booltemp1].effet_statut != 0) {
-                            tab[i]->effets[booltemp1].duree--;
-                        }
-                        if (tab[i]->effets[booltemp1].duree <= 0) {
-                            suppressionEffetStatut(tab[i], booltemp1);
-                        }
-                        else {
-                            j++;
-                        }
+                    for(int s=0; s<joueur->membres[j].nbeffets; s++){
+                        joueur->membres[j].effets[s].duree=0; // Suppression de l'effet si le champion est mort.
+                        joueur->membres[j].effets[s].effet_statut=0;
                     }
+                    joueur->membres[j].nbeffets=0;
                     if(memeEquipe(&joueur->membres[j],e1)==0){
                         e2->nbchampvivant--;
                     } else {
@@ -923,16 +896,16 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
             if(tab[i]->jaugeactuelle>tab[i]->jaugemax){
                 tab[i]->jaugeactuelle=tab[i]->jaugemax;
             }
-            int booltemp2 = 0;
-            while (booltemp2 < tab[i]->nbeffets) {
-                if (tab[i]->effets[booltemp2].effet_statut != 0) {
-                    tab[i]->effets[booltemp2].duree--;
+            int booltemp = 0;
+            while (booltemp < tab[i]->nbeffets) {
+                if (tab[i]->effets[booltemp].effet_statut != 0) {
+                    tab[i]->effets[booltemp].duree--;
                 }
-                if (tab[i]->effets[booltemp2].duree <= 0) {
-                    suppressionEffetStatut(tab[i], booltemp2);
+                if (tab[i]->effets[booltemp].duree <= 0) {
+                    suppressionEffetStatut(tab[i], booltemp);
                 }
                 else {
-                    booltemp2++;
+                    booltemp++;
                 }
             }
         }
