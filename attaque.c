@@ -46,7 +46,6 @@ void degatseffetStatut(Champ *champ){
             else if (champ->effets[i].effet_statut == 6 && champ->effets[i].duree>0) { // application bourreau
                 if(champ->pvcourant <= champ->pvmax * 0.25) {
                     champ->pvcourant = 0;
-                    champ->statut = 0; // mort
                     printf("%s a ete execute par bourreau !\n", champ->nom);
                 }
             }
