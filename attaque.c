@@ -36,10 +36,10 @@ void degatseffetStatut(Champ *champ){
         printf("Erreur : pointeur nul");
         exit(1);
     }
+    int pvcourant=champ->pvcourant;
     if (champ->nbeffets == 0) {
         return;
     }
-    int pvcourant=champ->pvcourant;
     else if (champ->nbeffets > 0) {
         for (int i = 0; i < champ->nbeffets; i++) {
             if (champ->effets[i].effet_statut == 1 && champ->effets[i].duree>0) { // application poison
