@@ -42,12 +42,15 @@ void degatseffetStatut(Champ *champ){
             if (champ->effets[i].effet_statut == 1 && champ->effets[i].duree>0) { // application poison
                 champ->pvcourant -= champ->pvmax * 0.05;
                 printf("%s subit des degats de poison !\n", champ->nom);
+                if (champ->pvcourant <= 0) {
+                    return;
+                }
             }
             else if (champ->effets[i].effet_statut == 6 && champ->effets[i].duree>0) { // application bourreau
                 if(champ->pvcourant <= champ->pvmax * 0.25) {
                     champ->pvcourant = 0;
-                    champ->statut = 0; // mort
                     printf("%s a ete execute par bourreau !\n", champ->nom);
+                    return;
                 }
             }
             else if(champ->effets[i].effet_statut == 4 && champ->effets[i].duree>0) { // application invincibilité

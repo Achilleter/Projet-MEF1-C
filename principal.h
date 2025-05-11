@@ -17,7 +17,7 @@ typedef enum {
     provocation,
     invincibilite,
     renvoie_degats,
-    execute,
+    bourreau
 } EffetStatut;
 
 typedef struct {
