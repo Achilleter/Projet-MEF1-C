@@ -33,6 +33,7 @@ void degatseffetStatut(Champ *champ){
         printf("Erreur : pointeur nul");
         exit(1);
     }
+    float pvtemp=champ->pvcourant;
     if (champ->nbeffets == 0) {
         return;
     }
@@ -48,6 +49,10 @@ void degatseffetStatut(Champ *champ){
                     champ->statut = 0; // mort
                     printf("%s a ete execute par bourreau !\n", champ->nom);
                 }
+            }
+            else if(champ->effets[i].effet_statut == 4 && champ->effets[i].duree>0) { // application invincibilité
+                champ->pvcourant = pvtemp;
+                printf("%s a bloque tous les degats des effets !\n", champ->nom);
             }
         }
     }
