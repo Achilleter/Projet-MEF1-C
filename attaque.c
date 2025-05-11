@@ -580,7 +580,7 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                         do{
                             cible=&adversaire->membres[rand()%3];
                         }
-                        while(cible->pvcourant>0);
+                        while(cible->pvcourant<=0);
                         attaque(tab[i], cible);
                         printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
                     }
