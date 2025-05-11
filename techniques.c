@@ -186,7 +186,7 @@ void muraille(Champ* smasheur){
     }
     //provoque les ennemis, augmente sa défense de 30 et renvoie les dégats pendant 1 tour
     if(smasheur->tech.nbtactifs == 0){
-        smasheur->tech.nbtactifs = 1;
+        smasheur->tech.nbtactifs = 2;
         printf("Smasheur utilise muraille!\n");
         smasheur->jaugeactuelle = 0;
         appeffetStatut(smasheur,5,2);//applique l'effet renvoie de dégâts pendant 1 tour
