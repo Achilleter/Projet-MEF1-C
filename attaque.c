@@ -239,29 +239,29 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
     return &e2->membres[index-1];
 }
 
-void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
+void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
     if(e1 == NULL || e2 == NULL){
         printf("Erreur : pointeur nul");
         exit(1);
     }
     Champ *tab[6];
     int verif;
-    triParVit(e1,e2,tab); // Appel de la fonction de tri par vitesse pour définir un ordre de passage
-    for (int i=0;i<6;i++){ // Parcourt du tableau pour faire jouer les 6 champions 
-        int verifstun=0;
+    triParVit(e1,e2,tab); // Appel de la fonction de tri par vitesse pour définir un ordre de passage.
+    for (int i=0;i<6;i++){ // Parcourt du tableau pour faire jouer les 6 champions. 
+        int verifstun=0; // Vérifie si le champion est stun.
         for(int j=0; j<10; j++){ 
             if(tab[i]->effets[j].effet_statut==2){
                 verifstun=1;
             }
         }
-        if (tab[i]->pvcourant<=0){
+        if (tab[i]->pvcourant<=0){ // Vérifie si le champion est mort.
             printf("%s est KO, il ne peut pas attaquer\n",tab[i]->nom);
         }
-        else {
+        else { 
             affichageCombat(e1,e2, tab[i]);
             Equipe *joueur;
             Equipe *adversaire;
-            float pvtemp=0;
+            float pvtemp=0; // Mise en place de statistiques temporaires dans le cadre d'un stun.
             int joueurinvincibletemp=0;
             int equipetemp=0;
             for(int j=0; j<3; j++){
@@ -284,7 +284,7 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
                 printf("%s est stun !\n", tab[i]->nom);
             }   
             else {
-                if(memeEquipe(tab[i],e1)==0){
+                if(memeEquipe(tab[i],e1)==0){ //Vérifie l'équipe du champion actuel.
                     joueur=e2;
                     adversaire=e1;
                 } 
@@ -292,10 +292,10 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
                     joueur=e1;
                     adversaire=e2;
                 }
-                if (tab[i]->jaugeactuelle==tab[i]->jaugemax){
+                if (tab[i]->jaugeactuelle==tab[i]->jaugemax){ //Vérifie si la jauge est à son maximum.
                     int choix;
                     printf("Jauge pleine! Voulez-vous utiliser une technique speciale? \n1:oui \n0:non \n");
-                    printf("Description de la technique spéciale: \n");
+                    printf("Description de la technique spéciale: \n"); //Affiche la description des techniques spéciales en comprant le nom de la technique du champion actuelle aux noms des techniques préalablement définis.
                     if (strcmp(tab[i]->tech.nom, "berserk")==0) {
                         printf("Berseck: Insere une cle piratee en lui : devient immunise à toutes les attaques pdt 1 tour + Att=50 + DEF+=10 pdt 1 tour et peut attaquer, à la fin il est STUN le prochain tour\n");
                     } 
@@ -326,7 +326,7 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
                     else if (strcmp(tab[i]->tech.nom, "reinitialisation")==0){
                         printf("Reinitialisation : Reinitialise les donnes d'un allie, Revive un allie 1 cout 4 tours\n");
                     }
-                    do{
+                    do{ // Demande au joueur s'il souhaite utiliser sa technique spéciale
                         verif=scanf("%d", &choix);
                         if(choix>1 || choix<0){
                             printf("Index invalide");
@@ -335,7 +335,7 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
                     } 
                     while(choix>1 || choix<0 || verif!=1); 
                     if (choix==1){
-                        // vérfication de la technique en comparant le noms des techniques au nom de la technique du personnage situé dans tab[i]
+                        // Vérfication de la technique en comparant le noms des techniques au nom de la technique du personnage situé dans tab[i].
                         if (strcmp(tab[i]->tech.nom, "berserk")==0) {
                             berserk(tab[i], joueur);
                         }
@@ -384,7 +384,7 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
                         }
                     }
                     else {
-                        Champ *cible=choixCible(tab[i], joueur, adversaire);
+                        Champ *cible=choixCible(tab[i], joueur, adversaire); //Appel de la fonction choixCible pour assurer la validité de la cible choisie.
                         printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
                         attaque(tab[i], cible);
                     }
@@ -396,7 +396,7 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
                 }
             }
             if (tab[i]->tech.nbtactifs != 0) {
-                // vérfication de la technique
+                // vérfication de la technique avec le nom de la technique du champion.
                 if (strcmp(tab[i]->tech.nom, "berserk")==0) {
                     berserk(tab[i], joueur);
                 }
@@ -443,7 +443,7 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
                 }
             }
             if (tab[i]->nbeffets>0){
-                degatseffetStatut(tab[i]);
+                degatseffetStatut(tab[i]); // Application des dégâts d'effets.
             }
             if(equipetemp == 1){
                 e1->membres[joueurinvincibletemp].pvcourant=pvtemp;
@@ -453,12 +453,12 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
                 e2->membres[joueurinvincibletemp].pvcourant=pvtemp;
                 printf("%s a bloqué tous les dégats !\n", e2->membres[joueurinvincibletemp].nom);
             }
-            for(int j=0; j<3; j++){
-                if(adversaire->membres[j].pvcourant<=0 && adversaire->membres[j].statut==1){
+            for(int j=0; j<3; j++){ // Gestion des effets
+                if(adversaire->membres[j].pvcourant<=0 && adversaire->membres[j].statut==1){ // Mis à jour du statut du champion.
                     adversaire->membres[j].pvcourant=0;
                     adversaire->membres[j].statut=0;
                     printf("%s est mort(e) !\n", adversaire->membres[j].nom);
-                    int booltemp=0;
+                    int booltemp=0; // Mise en place d'un booléen temporaire pour gérer la durée et le nombre des effets. 
                     for(int k=0; k<adversaire->membres[j].nbeffets; k++){
                         if(booltemp==1){
                             k--;
@@ -470,7 +470,7 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
                         }
                     }
                     if(memeEquipe(&adversaire->membres[j],e1)==0){
-                        e2->nbchampvivant--;
+                        e2->nbchampvivant--; //Baisse le nombre de champions vivants dans l'équipe.
                     } 
                     else {
                         e1->nbchampvivant--;
@@ -501,22 +501,22 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
                     }
                 }
             }
-            if(e1->nbchampvivant==0){
+            if(e1->nbchampvivant==0){ //Arrête le programme dès que tous les champions de l'équipe sont morts.
                 break;
             }
             if(e2->nbchampvivant==0){
                 break;
             }
-            tab[i]->jaugeactuelle+=1;
-            if(tab[i]->jaugeactuelle>tab[i]->jaugemax){
+            tab[i]->jaugeactuelle+=1; // Augmente la barre de jauge de 1 à chaque fin de tour.
+            if(tab[i]->jaugeactuelle>tab[i]->jaugemax){ // Met la barre de jauge au maximum si cette dernière est atteinte.
                 tab[i]->jaugeactuelle=tab[i]->jaugemax;
             }
             int j = 0;
             while (j < tab[i]->nbeffets) {
                 if (tab[i]->effets[j].effet_statut != 0) {
-                    tab[i]->effets[j].duree--;
+                    tab[i]->effets[j].duree--; // Baisse la durée des effets
                 }
-                if (tab[i]->effets[j].duree <= 0) {
+                if (tab[i]->effets[j].duree <= 0) { // Supprime l'effet si ça dure est inférieure ou égale à 0.
                     suppressionEffetStatut(tab[i], j);
                 }
                 else {
@@ -668,6 +668,37 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                     if (tab[i]->jaugeactuelle==tab[i]->jaugemax){   
                         int choix;
                         printf("Jauge pleine! Voulez-vous utiliser une technique speciale? \n1:oui \n0:non \n");
+                        printf("Description de la technique spéciale: \n");
+                        if (strcmp(tab[i]->tech.nom, "berserk")==0) {
+                            printf("Berseck: Insere une cle piratee en lui : devient immunise à toutes les attaques pdt 1 tour + Att=50 + DEF+=10 pdt 1 tour et peut attaquer, à la fin il est STUN le prochain tour\n");
+                        } 
+                        else if (strcmp(tab[i]->tech.nom, "flashbacks")==0) {
+                            printf("Flashbacks: Remonte le temps : PVcourants+=100 pour toute la team + Purge la team de tous les effets negatifs/changement de stats\n");
+                        }
+                        else if (strcmp(tab[i]->tech.nom, "bourreau")==0){
+                            printf("Bourreau: Place un traceur sur un ennemi, si ce dernier possede 25 pourcent ou moins de ses PV, il est execute sans pitie\n");
+                        } 
+                        else if (strcmp(tab[i]->tech.nom, "muraille")==0){
+                            printf("Muraille: Se place devant sa team et provoque l'equipe adverse: tank toutes les attaques des ennemis pendant 1 tour + DEF+=20 + renvoi_degats\n");
+                        } 
+                        else if (strcmp(tab[i]->tech.nom, "cadeau_empoisonne")==0){
+                            printf("Cadeau empoisonne: ...\n");
+                        }
+                        else if (strcmp(tab[i]->tech.nom, "fossoyeur_des_mondes")==0){
+                            printf("Fossoyeur des mondes: Une anomalie dans le systeme a provoque un desequilibre aux stats de Booga : PV=300 + Att=35 + Vit=30 pdt 2 tours\n");
+                        }
+                        else if (strcmp(tab[i]->tech.nom, "cryogenese")==0){
+                            printf("Cryogenese: Detruit son propre cocon de glace et en envoie les morceaux sur ses adversaires, Inflige 30 dégâts à tous les ennemis et les gels(1 tour)\n");
+                        }
+                        else if (strcmp(tab[i]->tech.nom, "scierculaire")==0){
+                            printf("Tourne sur elle même et tire sur tous ce qu'elle voit, Inflige 45 degats a tous les adversaires et diminue leur defense de 5\n");
+                        }
+                        else if (strcmp(tab[i]->tech.nom, "cicatrices_eternels")==0){
+                            printf("Cicatrices eternels : Relache toute sa timidite et laisse ses demons prendre le controle, Inflige 100 dégâts à tous les ennemis\n");
+                        }
+                        else if (strcmp(tab[i]->tech.nom, "reinitialisation")==0){
+                            printf("Reinitialisation : Reinitialise les donnes d'un allie, Revive un allie 1 cout 4 tours\n");
+                        }
                         do{
                             verif=scanf("%d", &choix);
                             if(choix>1 || choix<0){
