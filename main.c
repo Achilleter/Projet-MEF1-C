@@ -5,14 +5,14 @@ int main(){
     //Initialisation des pointeurs de l'équipe 1 et 2
     Equipe* equipe1 = malloc(sizeof(Equipe));
     Equipe* equipe2 = malloc(sizeof(Equipe));
-    if(!equipe1 || !equipe2){ // Vérification de l'allocation mémoire
+    if(equipe1 == NULL || equipe2 == NULL){ // Vérification de l'allocation mémoire
         printf("Erreur d'allocation mémoire\n");
         exit(1);
     }
     printf("==========[Bienvenue dans CyberFight !]==========\n\n");
     int nbjoueurs;
     // choix du nombre de joueurs
-    int verif, verif1, verif2, verif3, verif4;
+    int verif, verif1, verif2, verif3, verif4, verif5;
     do{ // Demande le nombre de joueurs si un joueur est choisi l'IA est activée
         printf("%*sSEUL contre IA (1)\n\n%*s1j contre 1j (2)\n", 15, "", 17, "");
         verif=scanf("%d", &nbjoueurs);
@@ -110,8 +110,7 @@ int main(){
                 printf("Veuillez entrer un nom d'equipe different de %s: ", equipe1->nom);
             }
             vide_buffer();
-        }
-        while ((strlen(equipe2->nom) > 20) || (strcmp(equipe1->nom, equipe2->nom) == 0) || verif4 != 1); //verifie que le nom de l'équipe est assez court et différent de l'équipe 1
+        }while ((strlen(equipe2->nom) > 20) || (strcmp(equipe1->nom, equipe2->nom) == 0) || verif4 != 1); //verifie que le nom de l'équipe est assez court et différent de l'équipe 1
         printf("Bonjour %s\n\n", equipe2->nom);
         printf("Choisissez vos champions afin de former votre equipe !\n");
         printf("Pour cela vous devez choisir 1 champion chacun votre tour jusqu'a ce que vous ayez 3 champions.\n\n");
@@ -121,12 +120,14 @@ int main(){
         printf("Vos equipes sont pretes !\n");
         printf("Le combat commence !\n");
         int i=0;
-        while(equipe1->nbchampvivant > 0 && equipe2->nbchampvivant > 0){ // tant que les deux equipes ont des champions vivants
-        i++;
-        tour(equipe1, equipe2);// Appelle la fonction tour pour chaque equipe
-        printf("\n%*s==========Fin du tour numero %d==========\n", 20, "", i); // Affiche le numéro du tour
-        printf("Appuyez sur entree pour continuer...\n");
-        getchar(); // Attend que l'utilisateur appuie sur entrée
+        char pause[2];
+        while((equipe1->nbchampvivant > 0 && equipe2->nbchampvivant > 0) || verif5 != 1){ // tant que les deux equipes ont des champions vivants
+            i++;
+            tour(equipe1, equipe2);// Appelle la fonction tour pour chaque equipe
+            printf("\n%*s==========Fin du tour numero %d==========\n", 20, "", i); // Affiche le numéro du tour
+            verif5=scanf("%1[^\n]", pause); // Attend une entrée utilisateur
+            getchar(); // Attend que l'utilisateur appuie sur entrée
+            vide_buffer(); 
         }//verification de fin de combat
         if(equipe1->nbchampvivant == 0){
             printf("L'equipe %s a perdu bravo a l'equipe %s !\n", equipe1->nom, equipe2->nom);
@@ -135,7 +136,7 @@ int main(){
             printf("L'equipe %s a perdu bravo a l'equipe %s !\n", equipe2->nom, equipe1->nom);
         }
     } // fin du combat
-    printf("\n%*s==========Fin du combat !==========\n", 20, "");
+    printf("\n%*s[Fin du combat !]\n", 20, "");
     printf("Merci d'avoir joue a Cyberfight !\n");
     // libération de la mémoire
     free(equipe1);

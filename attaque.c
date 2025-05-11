@@ -536,6 +536,7 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
         printf("Erreur : pointeur nul");
         exit(1);
     }
+    srand(time(NULL)); // Initialisation de la fonction rand
     Champ *tab[6];
     int verif;
     triParVit(e1,e2,tab); // Appel de la fonction de tri par vitesse pour définir un ordre de passage
