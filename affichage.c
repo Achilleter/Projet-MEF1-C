@@ -245,7 +245,6 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
         }
         printf(")(");
         if(pvaffichage1 == 3){
-            continue;
         }
         else if(pvaffichage1 == 2){
             printf("0");
@@ -279,7 +278,6 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
         }
         printf(")(");
         if(pvaffichage2 == 3){
-            continue;
         }
         else if(pvaffichage2 == 2){
             printf("0");
