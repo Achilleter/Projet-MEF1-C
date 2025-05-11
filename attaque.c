@@ -113,12 +113,11 @@ void suppressionEffetStatut(Champ *champ, int numeffet) {
         printf("Erreur : pointeur nul");
         exit(1);
     }
-    champ->effets[numeffet].effet_statut=0;
-    champ->effets[numeffet].duree=0;
-    champ->effets[numeffet].effet_statut=champ->effets[champ->nbeffets-1].effet_statut;
-    champ->effets[numeffet].duree=champ->effets[champ->nbeffets-1].duree;
-    champ->effets[champ->nbeffets-1].effet_statut=0;
-    champ->effets[champ->nbeffets-1].duree=0;
+   if (numeffet != champ->nbeffets - 1) {
+        champ->effets[numeffet] = champ->effets[champ->nbeffets - 1];
+    }
+    champ->effets[champ->nbeffets - 1].effet_statut = 0;
+    champ->effets[champ->nbeffets - 1].duree = 0;
     champ->nbeffets--;
 }
 
@@ -427,10 +426,16 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
                     joueur->membres[j].pvcourant=0;
                     joueur->membres[j].statut=0;
                     printf("%s est mort(e) !\n", joueur->membres[j].nom);
-                    for(int k=0; k<joueur->membres[j].nbeffets; k++){
-                        if(joueur->membres[j].effets[k].effet_statut!=0 && joueur->membres[j].effets[k].duree>0){
-                            suppressionEffetStatut(&joueur->membres[j], k);
-                            k--;
+                    int j = 0;
+                    while (j < tab[i]->nbeffets) {
+                        if (tab[i]->effets[j].effet_statut != 0) {
+                            tab[i]->effets[j].duree--;
+                        }
+                        if (tab[i]->effets[j].duree <= 0) {
+                            suppressionEffetStatut(tab[i], j);
+                        }
+                        else {
+                            j++;
                         }
                     }
                     if(memeEquipe(&joueur->membres[j],e1)==0){
@@ -450,18 +455,16 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
             if(tab[i]->jaugeactuelle>tab[i]->jaugemax){
                 tab[i]->jaugeactuelle=tab[i]->jaugemax;
             }
-            int booltemp=0;
-            for(int j=0; j<tab[i]->nbeffets; j++){
-                if(booltemp==1){
-                    j--;
-                }
-                booltemp=0;
-                if(tab[i]->effets[j].effet_statut!=0){
+            int j = 0;
+            while (j < tab[i]->nbeffets) {
+                if (tab[i]->effets[j].effet_statut != 0) {
                     tab[i]->effets[j].duree--;
                 }
-                if(tab[i]->effets[j].duree==0){
+                if (tab[i]->effets[j].duree <= 0) {
                     suppressionEffetStatut(tab[i], j);
-                    booltemp=1;
+                }
+                else {
+                    j++;
                 }
             }
         }
