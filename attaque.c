@@ -217,9 +217,9 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
         }
         else { 
             affichageCombat(e1,e2, tab[i]);
-            Equipe *joueur=malloc(sizeof(Equipe)); // Allocation dynamique de mémoire pour le joueur.
-            Equipe *adversaire=malloc(sizeof(Equipe));
-            Champ *cible=malloc(sizeof(Champ));
+            Equipe *joueur;
+            Equipe *adversaire;
+            Champ *cible;
             if(joueur == NULL || adversaire == NULL || cible == NULL){ // Vérification de l'allocation dynamique.
                 printf("Erreur : allocation dynamique echouee");
                 exit(1);
@@ -504,9 +504,9 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
         }
         else {
             affichageCombat(e1,e2, tab[i]);
-            Equipe *joueur=malloc(sizeof(Equipe)); // Allocation dynamique de mémoire pour le joueur.
-            Equipe *adversaire=malloc(sizeof(Equipe));
-            Champ *cible=malloc(sizeof(Champ));
+            Equipe *joueur;
+            Equipe *adversaire;
+            Champ *cible;
             if(joueur == NULL || adversaire == NULL || cible == NULL){ // Vérification de l'allocation dynamique.
                 printf("Erreur : allocation dynamique echouee");
                 exit(1);
