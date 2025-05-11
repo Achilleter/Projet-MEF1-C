@@ -121,69 +121,28 @@ void suppressionEffetStatut(Champ *champ, int numeffet) {
     champ->nbeffets--;
 }
 
-int partition(Champ *A[], int debut, int fin) { // Fonction partition. Tri rapide
-    int inf=debut+1;
-    int sup=fin;
-    Champ *pivot=A[debut];
-    Champ *tmp;
-    if (pivot == NULL){
-        printf("Erreur. Pointeur nul.");
-    }
-    while (inf<=sup) {
-        while (sup>=inf && A[sup]->vitesse<pivot->vitesse) {
-            sup=sup-1;
-        }
-        while (inf<=fin && A[inf]->vitesse>pivot->vitesse) {
-            inf=inf+1;
-        }
-        if (inf<sup) {
-            tmp=A[inf];
-            A[inf]=A[sup];
-            A[sup]=tmp;
-        }
-    }
-
-    tmp=A[debut];
-    A[debut]=A[sup];
-    A[sup]=tmp;
-    return sup;
-}
-
-void triRapideRec(Champ *A[], int debut, int fin) { // Fonction récursive de tri rapide
-    if (A == NULL) { // Vérification du pointeur
-        printf("Erreur. Pointeur nul.");
+void triParVit(Equipe* e1, Equipe* e2, Champ* tab[6]) {
+    if(e1 == NULL || e2 == NULL){       // Vérification des pointeurs e1 et e2
+        printf("Erreur : pointeur nul");
         exit(1);
     }
-    if (debut<fin) {
-        int pivot=partition(A, debut, fin);
-        triRapideRec(A, debut, pivot - 1);
-        triRapideRec(A, pivot + 1, fin);
-    }
-    for (int i=0; i<6; i++){
-        if (A[i]==NULL){
-            printf("Erreur. Pointeur nul.");
+    for(int i=0; i<6; i++){
+        if(tab[i] == NULL){            // Vérification du pointeur tab 
+            printf("Erreur : pointeur nul");
+            exit(1);
         }
     }
-}
-
-void triRapide(Champ *A[], int n) { // Fonction principale du tri rapide
-    triRapideRec(A, 0, n-1);
-}
-
-void triParVit(Equipe *e1, Equipe *e2, Champ *tab[6]) { // Fonction qui trie par vitesse les champions
-    if (e1==NULL || e2==NULL) { // Vérification des pointeurs e1 et e2
-        printf("Erreur : pointeur nul\n");
-        exit(1);
-    }
-    for (int i=0; i<3; i++) { // Met tous les champions dan sle même tableau pour pouvoir les trier
+    for (int i=0; i<3; i++) {          // Regroupement des 2 équipes dans un seul tableau
         tab[i]=&e1->membres[i];
         tab[i+3]=&e2->membres[i];
     }
-    triRapide(tab, 6); // Appel de la fonction triRapide
-    for (int i=0; i<6; i++) {
-        if (tab[i] == NULL) {
-            printf("Erreur : pointeur nul");
-            exit(10);
+    for (int i=0; i<5; i++) {          // Tri à bulle
+        for (int j=i+1; j<6; j++) {
+            if (tab[i]->vitesse < tab[j]->vitesse) {
+                Champ* temp=tab[i];
+                tab[i]=tab[j];
+                tab[j]=temp;
+            }
         }
     }
 }
@@ -530,7 +489,6 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
         printf("Erreur : pointeur nul");
         exit(1);
     }
-    srand(time(NULL)); // Initialisation de la fonction rand
     Champ *tab[6];
     int verif;
     triParVit(e1,e2,tab); // Appel de la fonction de tri par vitesse pour définir un ordre de passage
