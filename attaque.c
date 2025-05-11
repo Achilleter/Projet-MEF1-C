@@ -122,8 +122,7 @@ void suppressionEffetStatut(Champ *champ, int numeffet) {
     champ->nbeffets--;
 }
 
-// Fonction partition. Tri rapide
-int partition(Champ *A[], int debut, int fin) {
+int partition(Champ *A[], int debut, int fin) { // Fonction partition. Tri rapide
     int inf=debut+1;
     int sup=fin;
     Champ *pivot=A[debut];
@@ -151,8 +150,7 @@ int partition(Champ *A[], int debut, int fin) {
     return sup;
 }
 
-// Fonction récursive de tri rapide
-void triRapideRec(Champ *A[], int debut, int fin) {
+void triRapideRec(Champ *A[], int debut, int fin) { // Fonction récursive de tri rapide
     if (debut<fin) {
         int pivot=partition(A, debut, fin);
         triRapideRec(A, debut, pivot - 1);
@@ -165,22 +163,20 @@ void triRapideRec(Champ *A[], int debut, int fin) {
     }
 }
 
-// Fonction principale du tri rapide
-void triRapide(Champ *A[], int n) {
+void triRapide(Champ *A[], int n) { // Fonction principale du tri rapide
     triRapideRec(A, 0, n-1);
 }
 
-// Fonction de tri par vitesse de deux équipes
-void triParVit(Equipe *e1, Equipe *e2, Champ *tab[6]) {
-    if (e1==NULL || e2==NULL) {
+void triParVit(Equipe *e1, Equipe *e2, Champ *tab[6]) { // Fonction qui trie par vitesse les champions
+    if (e1==NULL || e2==NULL) { // Vérification des pointeurs e1 et e2
         printf("Erreur : pointeur nul\n");
         exit(1);
     }
-    for (int i=0; i<3; i++) {
+    for (int i=0; i<3; i++) { // Met tous les champions dan sle même tableau pour pouvoir les trier
         tab[i]=&e1->membres[i];
         tab[i+3]=&e2->membres[i];
     }
-    triRapide(tab, 6);
+    triRapide(tab, 6); // Appel de la fonction triRapide
     for (int i=0; i<6; i++) {
         if (tab[i] == NULL) {
             printf("Erreur : pointeur nul");
