@@ -9,12 +9,12 @@ int main(){
         printf("Erreur d'allocation mémoire\n");
         exit(1);
     }
-    printf("Bienvenue dans Cyberfight !\n");
+    printf("==========[Bienvenue dans CyberFight !]==========\n\n");
     int nbjoueurs;
     // choix du nombre de joueurs
     int verif, verif1;
     do{ // Demande le nombre de joueurs si un joueur est choisi l'IA est activée
-        printf("Voulez vous jouer a 1 ou 2 personnes ? (tapez 1 ou 2) !\n");
+        printf("%*sSEUL contre IA (1)\n\n%*s1j contre 1j (2)\n", 15, "", 17, "");
         verif=scanf("%d", &nbjoueurs);
         if (nbjoueurs != 1 && nbjoueurs != 2){
             printf("Veuillez entrer une valeur valide (1 ou 2): ");
@@ -26,11 +26,11 @@ int main(){
     if(nbjoueurs == 1){
         equipe2->boolia=1; // Initialise l'équipe 2 comme IA
         equipe1->boolia=0; // Initialise l'équipe 1 comme joueur
-        printf("Vous avez choisi de jouer seul !\n");
+        printf("---------------[SEUL contre IA]------------------\n\n");
         int difficulte;
         // choix de la difficulte de l'IA
         do{ // Verification de la saisie
-            printf("Choisissez le niveau de difficulte de l'IA ! (1:noob, 2:facile ou 3:moyen)\n");
+            printf("Difficulte de l'IA :\n-Noob (1)\n-Facile (2)\n-Moyen (3)\n");
             verif1=scanf("%d", &difficulte);
             if (difficulte<1 || difficulte>3){
                 printf("Veuillez entrer une valeur valide (1, 2 ou 3): ");
@@ -39,13 +39,13 @@ int main(){
         } while (difficulte<1 || difficulte>3 || verif1!=1);
         // Affiche le niveau de difficulté choisi
         if(difficulte == 1){
-            printf("Vous avez choisi le niveau de difficulte noob !\n");
+            printf("[Noob] (Il faut vraiment le vouloir pour perdre contre l'IA)\n\n");
         }
         else if(difficulte == 2){
-            printf("Vous avez choisi le niveau de difficulte facile !\n");
+            printf("[Facile] (Attention l'IA fait peur... Très peur !!)\n\n");
         }
         else{
-            printf("Vous avez choisi le niveau de difficulte moyen (bon courage !) !\n");
+            printf("[Moyen] (Bon courage !)\n\n");
         }
         //demande le nom de l'équipe
         do{ // Demande le nom de l'équipe a la bonnne taille
@@ -56,10 +56,10 @@ int main(){
             }
         }
         while (strlen(equipe1->nom) > 20); //verifie que le nom de l'équipe est valide
-        printf("Bonjour %s\n", equipe1->nom);
+        printf("Bonjour %s\n\n", equipe1->nom);
         strcpy(equipe2->nom, "IA"); // Initialise le nom de l'IA
         printf("Choisissez vos champions afin de former votre equipe !\n");
-        printf("Pour cela vous devez choisir 1 champion chacun votre tour jusqu'a ce que vous ayez 3 champions.\n");
+        printf("Pour cela vous devez choisir 1 champion chacun votre tour jusqu'a ce que vous ayez 3 champions.\n\n");
         Champ liste[10];
         getchamp(liste); //récupère la liste des champions depuis le fichier champions.txt
         selectionia(liste, equipe1, equipe2); // Appelle la fonction pour choisir les champions
@@ -87,7 +87,7 @@ int main(){
         equipe1->boolia=0; // Dit qu'il n'y a pas d'IA
         equipe2->boolia=0; 
         // choix du nom de l'équipe 1 puis de l'équipe 2
-        printf("Vous avez choisi de jouer a deux !\n");
+        printf("-----------------[1j contre 1j]-------------------\n\n");
         printf("Rentrez vos noms d'equipes ! (20 caracteres au maximum)\n");
         do{ // Demande le nom de l'équipe a la bonnne taille
             printf("Equipe 1: ");
@@ -97,7 +97,7 @@ int main(){
             }
         }
         while (strlen(equipe1->nom) > 20); //verifie que le nom de l'équipe est assez court
-        printf("Bonjour %s\n", equipe1->nom);
+        printf("Bonjour %s\n\n", equipe1->nom);
         do{ // Demande le nom de l'équipe a la bonnne taille
             printf("Equipe 2: ");
             scanf("%s", equipe2->nom);
@@ -109,9 +109,9 @@ int main(){
             }
         }
         while ((strlen(equipe2->nom) > 20) || (strcmp(equipe1->nom, equipe2->nom) == 0)); //verifie que le nom de l'équipe est assez court et différent de l'équipe 1
-        printf("Bonjour %s\n", equipe2->nom);
+        printf("Bonjour %s\n\n", equipe2->nom);
         printf("Choisissez vos champions afin de former votre equipe !\n");
-        printf("Pour cela vous devez choisir 1 champion chacun votre tour jusqu'a ce que vous ayez 3 champions.\n");
+        printf("Pour cela vous devez choisir 1 champion chacun votre tour jusqu'a ce que vous ayez 3 champions.\n\n");
         Champ liste[10];
         getchamp(liste); //récupère la liste des champions depuis le fichier champions.txt
         selection(liste, equipe1, equipe2); // Appelle la fonction pour choisir les champions

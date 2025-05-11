@@ -576,19 +576,19 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                     joueur=e2;
                     adversaire=e1;
                     Champ *cible;
-                    if(difficulte==1){
+                    if(difficulte==1){ // Difficulté "noob" de l'IA
                         do{
-                            cible=&adversaire->membres[rand()%3];
+                            cible=&adversaire->membres[rand()%3]; // Choisit aléatoirement les cibles
                         }
                         while(cible->pvcourant<=0);
                         printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
                         printf("Appuyez sur entree pour continuer...\n");
                         getchar();
                     }
-                    else if(difficulte==2){
-                    cible=&adversaire->membres[0];
+                    else if(difficulte==2){ // Difficulté "facile" de l'IA
+                    cible=&adversaire->membres[0]; // Le premier membre de l'équipe adverse est pris comme cible par défaut
                     for(int k=1; k<3; k++){
-                        if(adversaire->membres[k].pvcourant<cible->pvcourant && adversaire->membres[k].pvcourant>0){
+                        if(adversaire->membres[k].pvcourant<cible->pvcourant && adversaire->membres[k].pvcourant>0){ // Prends comme cible le membre de l'équipe adverse ayant le moins de PV
                             cible=&adversaire->membres[k];
                         }
                     }
