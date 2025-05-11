@@ -220,14 +220,6 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
             Equipe *joueur;
             Equipe *adversaire;
             Champ *cible;
-            if(joueur == NULL || adversaire == NULL || cible == NULL){ // Vérification de l'allocation dynamique.
-                printf("Erreur : allocation dynamique echouee");
-                exit(1);
-            }
-            if(joueur == NULL || adversaire == NULL){ // Vérification de l'allocation dynamique.
-                printf("Erreur : allocation dynamique echouee");
-                exit(1);
-            }
             float pvtemp=0; // Mise en place de statistiques temporaires dans le cadre d'un stun.
             int joueurinvincibletemp=0;
             int equipetemp=0;
@@ -507,10 +499,6 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
             Equipe *joueur;
             Equipe *adversaire;
             Champ *cible;
-            if(joueur == NULL || adversaire == NULL || cible == NULL){ // Vérification de l'allocation dynamique.
-                printf("Erreur : allocation dynamique echouee");
-                exit(1);
-            }
             float pvtemp=0;
             int joueurinvincibletemp=0;
             int equipetemp=0;
