@@ -17,7 +17,7 @@ int main(){
         printf("%*sSEUL contre IA (1)\n\n%*s1j contre 1j (2)\n", 15, "", 17, "");
         verif=scanf("%d", &nbjoueurs);
         if (nbjoueurs != 1 && nbjoueurs != 2){
-            printf("Veuillez entrer une valeur valide (1 ou 2): ");
+            printf("Veuillez entrer une valeur valide (1 ou 2):\n\n");
         }
         vide_buffer();
     }
