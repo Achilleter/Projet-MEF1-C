@@ -12,7 +12,7 @@ Projet CY-Fighters — Première année de Pré-Ingénieur CY Tech, Semestre 2 2
 **Cyberfight** est un jeu de combat stratégique 3 contre 3, qui se déroule dans un univers **futuriste** où les guerriers maîtrisent des **attaques spéciales**.
 
 Le joueur peut affronter :
-- un **autre joueur en local**  
+- un **autre joueur en local** 🧍‍♂️
 - ou une **IA** avec plusieurs niveaux de difficulté 🤖
 
 Chaque combat met en jeu des personnages et des **techniques spéciales** qui déclenchent des effets temporaires :
