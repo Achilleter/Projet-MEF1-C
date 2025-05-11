@@ -532,14 +532,14 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                 for(int k=0; k<e1->membres[j].nbeffets; k++){
                     if(e1->membres[j].effets[k].effet_statut==5){
                         pvtemp=e1->membres[j].pvcourant;
-                        int joueurinvincible=j;
-                        int equipetemp=1;
+                        joueurinvincibletemp=j;
+                        equipetemp=1;
                     }
                     for(int k=0; k<e2->membres[j].nbeffets; k++){
                         if(e2->membres[j].effets[k].effet_statut==5){
                             pvtemp=e2->membres[j].pvcourant;
-                            int joueurinvincible=j;
-                            int equipetemp=2;
+                            joueurinvincibletemp=j;
+                            equipetemp=2;
                         }
                     }
                 }
