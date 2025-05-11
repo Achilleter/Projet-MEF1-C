@@ -17,9 +17,6 @@ float attaque(Champ *champatt, Champ *champdef){
                 champatt->pvcourant = 0;
             }
         }
-        if (champdef->effets[i].effet_statut == 4) { // invincibilité
-            degats=0;
-        }
     }
     int alea=rand()%100;
     if(alea<champdef->agilite){ //esquive
@@ -36,7 +33,6 @@ void degatseffetStatut(Champ *champ){
         printf("Erreur : pointeur nul");
         exit(1);
     }
-    int pvcourant=champ->pvcourant;
     if (champ->nbeffets == 0) {
         return;
     }
@@ -52,10 +48,6 @@ void degatseffetStatut(Champ *champ){
                     champ->statut = 0; // mort
                     printf("%s a ete execute par bourreau !\n", champ->nom);
                 }
-            }
-            else if(champ->effets[i].effet_statut == 4 && champ->effets[i].duree>0) {
-                    champ->pvcourant=pvcourant;
-                    printf("%s récupère les pv perdus !\n", champ->nom);
             }
         }
     }
@@ -268,6 +260,25 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
             affichageCombat(e1,e2, tab[i]);
             Equipe *joueur;
             Equipe *adversaire;
+            float pvtemp=0;
+            int joueurinvincibletemp=0;
+            int equipetemp=0;
+            for(int j=0; j<3; j++){
+                for(int k=0; k<e1->membres[j].nbeffets; k++){
+                    if (e1->membres[j].effets[k].effet_statut==4){
+                        pvtemp=e1->membres[j].pvcourant;
+                        joueurinvincibletemp=j;
+                        equipetemp=1;
+                    }
+                }
+                for(int k=0; k<e2->membres[j].nbeffets; k++){
+                    if (e2->membres[j].effets[k].effet_statut==4){
+                        pvtemp=e2->membres[j].pvcourant;
+                        joueurinvincibletemp=j;
+                        equipetemp=2;
+                    }
+                }
+            }
             if(verifstun==1){
                 printf("%s est stun !\n", tab[i]->nom);
             }   
@@ -401,6 +412,14 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
             }
             if (tab[i]->nbeffets>0){
                 degatseffetStatut(tab[i]);
+            }
+            if(equipetemp == 1){
+                e1->membres[joueurinvincibletemp].pvcourant=pvtemp;
+                printf("%s est invincible !\n Il récupère tout ses pv !\n", e1->membres[joueurinvincibletemp].nom);
+            }
+            else if(equipetemp == 2){
+                e2->membres[joueurinvincibletemp].pvcourant=pvtemp;
+                printf("%s est invincible !\n Il récupère tout ses pv !\n", e1->membres[joueurinvincibletemp].nom);
             }
             for(int j=0; j<3; j++){
                 if(adversaire->membres[j].pvcourant<=0 && adversaire->membres[j].statut==1){
