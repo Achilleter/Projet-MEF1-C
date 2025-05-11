@@ -1,7 +1,7 @@
 #include "principal.h"
 
 void berserk(Champ* xavier, Equipe* allie){
-    if(xavier==NULL){
+    if(xavier==NULL||allie==NULL){
         printf("Erreur: pointeur nul.");
         exit(1);
     }
@@ -109,7 +109,7 @@ void flashbacks(Champ* nathalie, Champ* allie1, Champ* allie2){
 }
 
  void bourreau(Champ* zed, Equipe* ennemi, Equipe* allie){
-    if(zed==NULL||ennemi==NULL){
+    if(zed==NULL||ennemi==NULL||allie==NULL){
         printf("Erreur: pointeur nul.");
         exit(11);
     }
@@ -202,7 +202,7 @@ void muraille(Champ* smasheur){
 }
 
 void cadeau_empoisonne(Champ* steve, Equipe* ennemi, Equipe* allie){
-    if(steve==NULL||ennemi==NULL){
+    if(steve==NULL||ennemi==NULL||allie==NULL){
         printf("Erreur: pointeur nul.");
         exit(101);
     }
@@ -313,7 +313,7 @@ void cryogenese(Champ* sandrine, Equipe* ennemi){
 }
 
 void scierculaire(Champ* annesophie, Equipe* ennemi, Equipe* allie){
-    if(annesophie==NULL||ennemi==NULL){
+    if(annesophie==NULL||ennemi==NULL||allie==NULL){
         printf("Erreur: pointeur nul.");
         exit(1000);
     }
@@ -363,7 +363,7 @@ void scierculaire(Champ* annesophie, Equipe* ennemi, Equipe* allie){
 }
 
 void cicatrices_eternels(Champ* gaby, Equipe* ennemi, Equipe* allie){
-    if(gaby==NULL||ennemi==NULL){
+    if(gaby==NULL||ennemi==NULL||allie==NULL){
         printf("Erreur: pointeur nul.");
         exit(1001);
     }
@@ -412,7 +412,7 @@ void cicatrices_eternels(Champ* gaby, Equipe* ennemi, Equipe* allie){
 }
 
 void reinitialisation(Champ* clara, Champ* allie1, Champ* allie2, Equipe* allies, Equipe* ennemi){
-    if(clara==NULL||allie1==NULL||allie2==NULL){
+    if(clara==NULL||allie1==NULL||allie2==NULL||ennemi==NULL||allies==NULL){
         printf("Erreur: pointeur nul.");
         exit(1010);
     }
@@ -537,7 +537,7 @@ void sacrifice_fraternel(Champ* xavier, Champ* steve){
 }
 
 void retour_a_la_haine(Champ* gaby, Champ* clara, Equipe* adversaires, Equipe* allie){
-    if(gaby==NULL||clara==NULL){
+    if(gaby==NULL||clara==NULL||adversaires==NULL||allie==NULL){
         printf("Erreur: pointeur nul.");
         exit(10002);
     }

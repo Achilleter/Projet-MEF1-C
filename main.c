@@ -13,7 +13,7 @@ int main(){
     int nbjoueurs;
     // choix du nombre de joueurs
     int verif, verif1;
-    do{
+    do{ // Demande le nombre de joueurs si un joueur est choisi l'IA est activée
         printf("Voulez vous jouer a 1 ou 2 personnes ? (tapez 1 ou 2) !\n");
         verif=scanf("%d", &nbjoueurs);
         if (nbjoueurs != 1 && nbjoueurs != 2){
@@ -29,7 +29,7 @@ int main(){
         printf("Vous avez choisi de jouer seul !\n");
         int difficulte;
         // choix de la difficulte de l'IA
-        do{
+        do{ // Verification de la saisie
             printf("Choisissez le niveau de difficulte de l'IA ! (1:noob, 2:facile ou 3:moyen)\n");
             verif1=scanf("%d", &difficulte);
             if (difficulte<1 || difficulte>3){
@@ -37,6 +37,7 @@ int main(){
             }
             vide_buffer();
         } while (difficulte<1 || difficulte>3 || verif1!=1);
+        // Affiche le niveau de difficulté choisi
         if(difficulte == 1){
             printf("Vous avez choisi le niveau de difficulte noob !\n");
         }
@@ -47,7 +48,7 @@ int main(){
             printf("Vous avez choisi le niveau de difficulte moyen (bon courage !) !\n");
         }
         //demande le nom de l'équipe
-        do{
+        do{ // Demande le nom de l'équipe a la bonnne taille
             printf("Rentrez votre nom d'equipe ! (20 caracteres au maximum)\n");
             scanf("%s", equipe1->nom);
             if(strlen(equipe1->nom) > 20){
@@ -68,7 +69,7 @@ int main(){
         int i=0;
         while(equipe1->nbchampvivant > 0 && equipe2->nbchampvivant > 0){ // tant que les deux equipes ont des champions vivants le jeu continue
         i++;
-        touria(equipe1, equipe2, difficulte);// Appelle la fonction touria pour chaque equipe
+        touria(equipe1, equipe2, difficulte);// Appelle la fonction de combat
         printf("\n Fin du tour numero %d\n", i); // Affiche le numéro du tour
         printf("\n%*s==========Fin du tour numero %d==========\n", 20, "", i);
         getchar(); // Attend que l'utilisateur appuie sur entrée
@@ -88,7 +89,7 @@ int main(){
         // choix du nom de l'équipe 1 puis de l'équipe 2
         printf("Vous avez choisi de jouer a deux !\n");
         printf("Rentrez vos noms d'equipes ! (20 caracteres au maximum)\n");
-        do{
+        do{ // Demande le nom de l'équipe a la bonnne taille
             printf("Equipe 1: ");
             scanf("%s", equipe1->nom);
             if(strlen(equipe1->nom) > 20){
@@ -97,13 +98,13 @@ int main(){
         }
         while (strlen(equipe1->nom) > 20); //verifie que le nom de l'équipe est assez court
         printf("Bonjour %s\n", equipe1->nom);
-        do{
+        do{ // Demande le nom de l'équipe a la bonnne taille
             printf("Equipe 2: ");
             scanf("%s", equipe2->nom);
             if(strlen(equipe2->nom) > 20){
                 printf("Veuillez entrer un nom d'equipe valide (20 caracteres maximum): ");
             }
-            else if((strcmp(equipe1->nom, equipe2->nom) == 0)){
+            else if((strcmp(equipe1->nom, equipe2->nom) == 0)){ //verifie que le nom de l'équipe est différent de l'équipe 1
                 printf("Veuillez entrer un nom d'equipe different de %s: ", equipe1->nom);
             }
         }
