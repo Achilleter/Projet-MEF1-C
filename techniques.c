@@ -43,7 +43,7 @@ void berserk(Champ* xavier, Equipe* allie){
     //technique de xavier
     // augmente l'attaque de 20 pendant 1 tour et ce soigne de 50, applique l'invincibilité pendant 1 tour puis s'immobilise pendant 1 tour
     if(xavier->tech.nbtactifs == 0){
-        xavier->tech.nbtactifs = 1;
+        xavier->tech.nbtactifs = 2;
         xavier->jaugeactuelle =0;
         printf("Xavier utilise Berserk !\n");
         appeffetStat(xavier,1,20);//augmente l'attaque de 20
