@@ -132,7 +132,7 @@ int main(){
             printf("L'equipe %s a perdu bravo a l'equipe %s !\n", equipe2->nom, equipe1->nom);
         }
     } // fin du combat
-    printf("Fin du combat !\n");
+    printf("===============Fin du combat !===============\n\n");
     printf("Merci d'avoir joue a Cyberfight !\n");
     // libération de la mémoire
     free(equipe1);
