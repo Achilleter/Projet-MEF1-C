@@ -150,6 +150,10 @@ int partition(Champ *A[], int debut, int fin) { // Fonction partition. Tri rapid
 }
 
 void triRapideRec(Champ *A[], int debut, int fin) { // Fonction récursive de tri rapide
+    if (A == NULL) { // Vérification du pointeur
+        printf("Erreur. Pointeur nul.");
+        exit(1);
+    }
     if (debut<fin) {
         int pivot=partition(A, debut, fin);
         triRapideRec(A, debut, pivot - 1);
@@ -254,8 +258,16 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
         }
         else { 
             affichageCombat(e1,e2, tab[i]);
-            Equipe *joueur;
-            Equipe *adversaire;
+            Equipe *joueur=malloc(sizeof(Equipe)); // Allocation dynamique de mémoire pour le joueur.
+            Equipe *adversaire=malloc(sizeof(Equipe));
+            if(joueur == NULL || adversaire == NULL){ // Vérification de l'allocation dynamique.
+                printf("Erreur : allocation dynamique échouée");
+                exit(1);
+            }
+            if(joueur == NULL || adversaire == NULL){ // Vérification de l'allocation dynamique.
+                printf("Erreur : allocation dynamique échouée");
+                exit(1);
+            }
             float pvtemp=0; // Mise en place de statistiques temporaires dans le cadre d'un stun.
             int joueurinvincibletemp=0;
             int equipetemp=0;
@@ -379,13 +391,23 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
                         }
                     }
                     else {
-                        Champ *cible=choixCible(tab[i], joueur, adversaire); //Appel de la fonction choixCible pour assurer la validité de la cible choisie.
+                        Champ *cible=malloc(sizeof(Champ)); // Allocation dynamique de mémoire pour la cible.
+                        if(cible == NULL){ // Vérification de l'allocation dynamique.
+                            printf("Erreur : allocation dynamique échouée");
+                            exit(1);
+                        }
+                        cible=choixCible(tab[i], joueur, adversaire); //Appel de la fonction choixCible pour assurer la validité de la cible choisie.
                         printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
                         attaque(tab[i], cible);
                     }
                 }
                 else {
-                Champ *cible=choixCible(tab[i], joueur, adversaire);
+                Champ *cible=malloc(sizeof(Champ)); // Allocation dynamique de mémoire pour la cible.
+                if(cible == NULL){ // Vérification de l'allocation dynamique.
+                    printf("Erreur : allocation dynamique échouée");
+                    exit(1);
+                }
+                cible=choixCible(tab[i], joueur, adversaire);
                 printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
                 attaque(tab[i],cible);
                 }
@@ -448,20 +470,21 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
                 e2->membres[joueurinvincibletemp].pvcourant=pvtemp;
                 printf("%s a bloqué tous les dégats !\n", e2->membres[joueurinvincibletemp].nom);
             }
-            for(int j=0; j<3; j++){ // Gestion des effets
+            for(int j=0; j<3; j++){ // Gere la mort des champions.
                 if(adversaire->membres[j].pvcourant<=0 && adversaire->membres[j].statut==1){ // Mis à jour du statut du champion.
                     adversaire->membres[j].pvcourant=0;
                     adversaire->membres[j].statut=0;
                     printf("%s est mort(e) !\n", adversaire->membres[j].nom);
-                    int booltemp=0; // Mise en place d'un booléen temporaire pour gérer la durée et le nombre des effets. 
-                    for(int k=0; k<adversaire->membres[j].nbeffets; k++){
-                        if(booltemp==1){
-                            k--;
+                    int booltemp1=0; // Mise en place d'un booléen temporaire pour gérer la durée et le nombre des effets. 
+                    while (booltemp1 < tab[i]->nbeffets) {
+                        if (tab[i]->effets[booltemp1].effet_statut != 0) {
+                            tab[i]->effets[booltemp1].duree--; // Baisse la durée des effets
                         }
-                        booltemp=0;
-                        if(adversaire->membres[j].effets[k].effet_statut!=0 && adversaire->membres[j].effets[k].duree>0){
-                            suppressionEffetStatut(&adversaire->membres[j], k);
-                            booltemp=1;
+                        if (tab[i]->effets[booltemp1].duree <= 0) { // Supprime l'effet si ça dure est inférieure ou égale à 0.
+                            suppressionEffetStatut(tab[i], booltemp1);
+                        }
+                        else {
+                        booltemp1++;
                         }
                     }
                     if(memeEquipe(&adversaire->membres[j],e1)==0){
@@ -506,16 +529,16 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
             if(tab[i]->jaugeactuelle>tab[i]->jaugemax){ // Met la barre de jauge au maximum si cette dernière est atteinte.
                 tab[i]->jaugeactuelle=tab[i]->jaugemax;
             }
-            int m = 0;
-            while (m < tab[i]->nbeffets) {
-                if (tab[i]->effets[m].effet_statut != 0) {
-                    tab[i]->effets[m].duree--; // Baisse la durée des effets
+            int booltemp2 = 0;
+            while (booltemp2 < tab[i]->nbeffets) {
+                if (tab[i]->effets[booltemp2].effet_statut != 0) {
+                    tab[i]->effets[booltemp2].duree--; // Baisse la durée des effets
                 }
-                if (tab[i]->effets[m].duree <= 0) { // Supprime l'effet si ça dure est inférieure ou égale à 0.
-                    suppressionEffetStatut(tab[i], m);
+                if (tab[i]->effets[booltemp2].duree <= 0) { // Supprime l'effet si ça dure est inférieure ou égale à 0.
+                    suppressionEffetStatut(tab[i], booltemp2);
                 }
                 else {
-                    m++;
+                    booltemp2++;
                 }
             }
         }
@@ -542,8 +565,12 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
         }
         else {
             affichageCombat(e1,e2, tab[i]);
-            Equipe *joueur;
-            Equipe *adversaire;
+            Equipe *joueur=malloc(sizeof(Equipe)); // Allocation dynamique de mémoire pour le joueur.
+            Equipe *adversaire=malloc(sizeof(Equipe));
+            if(joueur == NULL || adversaire == NULL){ // Vérification de l'allocation dynamique.
+                printf("Erreur : allocation dynamique échouée");
+                exit(1);
+            }
             float pvtemp=0;
             int joueurinvincibletemp=0;
             int equipetemp=0;
@@ -570,12 +597,17 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                 if(memeEquipe(tab[i],e1)==0){
                     joueur=e2;
                     adversaire=e1;
-                    Champ *cible;
+                    Champ *cible=malloc(sizeof(Champ));
+                    if(cible == NULL){ // Vérification de l'allocation dynamique.
+                        printf("Erreur : allocation dynamique échouée");
+                        exit(1);
+                    }
                     if(difficulte==1){ // Difficulté "noob" de l'IA
                         do{
                             cible=&adversaire->membres[rand()%3]; // Choisit aléatoirement les cibles
                         }
                         while(cible->pvcourant<=0);
+                        attaque(tab[i], cible);
                         printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
                         printf("Appuyez sur entree pour continuer...\n");
                         getchar();
@@ -651,6 +683,7 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                                     cible=&e1->membres[k];
                                 }
                             }
+                            attaque(tab[i], cible);
                             printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
                             printf("Appuyez sur entree pour continuer...\n");
                             getchar();
@@ -752,13 +785,23 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                             }
                         }
                         else {
-                            Champ *cible=choixCible(tab[i], joueur, adversaire);
+                            Champ *cible=malloc(sizeof(Champ)); // Allocation dynamique de mémoire pour la cible.
+                            if(cible == NULL){ // Vérification de l'allocation dynamique.
+                                printf("Erreur : allocation dynamique échouée");
+                                exit(1);
+                            }
+                            cible=choixCible(tab[i], joueur, adversaire);
                             printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
                             attaque(tab[i], cible);
                         }
                     }
                     else {
-                        Champ *cible=choixCible(tab[i], joueur, adversaire);
+                        Champ *cible=malloc(sizeof(Champ)); // Allocation dynamique de mémoire pour la cible.
+                        if(cible == NULL){ // Vérification de l'allocation dynamique.
+                            printf("Erreur : allocation dynamique échouée");
+                            exit(1);
+                        }
+                        cible=choixCible(tab[i], joueur, adversaire);
                         printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
                         attaque(tab[i],cible);
                     }
@@ -851,13 +894,13 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                     joueur->membres[j].pvcourant=0;
                     joueur->membres[j].statut=0;
                     printf("%s est mort(e) !\n", joueur->membres[j].nom);
-                    int j = 0;
-                    while (j < tab[i]->nbeffets) {
-                        if (tab[i]->effets[j].effet_statut != 0) {
-                            tab[i]->effets[j].duree--;
+                    int booltemp1 = 0;
+                    while (booltemp1 < tab[i]->nbeffets) {
+                        if (tab[i]->effets[booltemp1].effet_statut != 0) {
+                            tab[i]->effets[booltemp1].duree--;
                         }
-                        if (tab[i]->effets[j].duree <= 0) {
-                            suppressionEffetStatut(tab[i], j);
+                        if (tab[i]->effets[booltemp1].duree <= 0) {
+                            suppressionEffetStatut(tab[i], booltemp1);
                         }
                         else {
                             j++;
@@ -880,16 +923,16 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
             if(tab[i]->jaugeactuelle>tab[i]->jaugemax){
                 tab[i]->jaugeactuelle=tab[i]->jaugemax;
             }
-            int m = 0;
-            while (m < tab[i]->nbeffets) {
-                if (tab[i]->effets[m].effet_statut != 0) {
-                    tab[i]->effets[m].duree--;
+            int booltemp2 = 0;
+            while (booltemp2 < tab[i]->nbeffets) {
+                if (tab[i]->effets[booltemp2].effet_statut != 0) {
+                    tab[i]->effets[booltemp2].duree--;
                 }
-                if (tab[i]->effets[m].duree <= 0) {
-                    suppressionEffetStatut(tab[i], m);
+                if (tab[i]->effets[booltemp2].duree <= 0) {
+                    suppressionEffetStatut(tab[i], booltemp2);
                 }
                 else {
-                    m++;
+                    booltemp2++;
                 }
             }
         }
