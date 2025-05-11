@@ -1,8 +1,8 @@
 #include "principal.h"
 
 void selection(Champ tous[], Equipe* e1, Equipe* e2){  
-    if (e1==NULL || e2==NULL){
-        printf("Erreur: pointeur nul");
+    if (e1 == NULL || e2 == NULL){ // Vérification des pointeurs e1 et e2
+        printf("Erreur : pointeur nul");
         exit(10);
     }
     int deja_pris[10]={0}; // Tableau pour savoir quels champions ont déjà été pris
