@@ -53,7 +53,7 @@ void degatseffetStatut(Champ *champ){
                     printf("%s a ete execute par bourreau !\n", champ->nom);
                 }
             }
-            else if(champ->effets[i].efffet_statut == 4 && champ->effets[i].duree>0) {
+            else if(champ->effets[i].effet_statut == 4 && champ->effets[i].duree>0) {
                 if(pvcourant>champ->pvcourant){
                     champ->pvcourant=pvcourant;
                 }
