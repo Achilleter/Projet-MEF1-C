@@ -561,14 +561,14 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
             int equipetemp=0;
             for(int j=0; j<3; j++){
                 for(int k=0; k<e1->membres[j].nbeffets; k++){
-                    if(e1->membres[j].effets[k].effet_statut==5){
+                    if (e1->membres[j].effets[k].effet_statut==4){
                         pvtemp=e1->membres[j].pvcourant;
                         joueurinvincibletemp=j;
                         equipetemp=1;
                     }
                 }
                 for(int k=0; k<e2->membres[j].nbeffets; k++){
-                    if(e2->membres[j].effets[k].effet_statut==5){
+                    if (e2->membres[j].effets[k].effet_statut==4){
                         pvtemp=e2->membres[j].pvcourant;
                         joueurinvincibletemp=j;
                         equipetemp=2;
@@ -790,11 +790,13 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
             if (tab[i]->nbeffets>0){
                 degatseffetStatut(tab[i]);
             }
-            if(equipetemp==1){
+            if(equipetemp == 1){
                 e1->membres[joueurinvincibletemp].pvcourant=pvtemp;
+                printf("%s a bloqué tous les dégats !\n", e1->membres[joueurinvincibletemp].nom);
             }
-            else if(equipetemp==2){
+            else if(equipetemp == 2){
                 e2->membres[joueurinvincibletemp].pvcourant=pvtemp;
+                printf("%s a bloqué tous les dégats !\n", e2->membres[joueurinvincibletemp].nom);
             }
             for(int j=0; j<3; j++){
                 if(adversaire->membres[j].pvcourant<=0 && adversaire->membres[j].statut==1){
