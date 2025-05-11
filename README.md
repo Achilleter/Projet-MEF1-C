@@ -8,15 +8,22 @@ Projet CY-Fighters — Première année de Pré-Ingénieur CY Tech, Semestre 2 2
 
 ## 📄 Description du projet 
 [Lire le sujet](./Projet_CY-Fighters_preing1_2024_2025_v1.0.pdf)
-Cyberfight est un jeu de combat 3v3 dans un unviers futuriste.
-L'utilisateur peut choisir d'affronter un autre joueur physique ou contre une IA qui a différents niveaux de difficulté.
-Pour pimenter le jeu, nous avons rajouté des effets qui font toujours suite à une attaque spéciale. En voici, la liste: 
+**Cyberfight** est un jeu de combat stratégique 3 contre 3, qui se déroule dans un univers **futuriste** où les guerriers maîtrisent des **attaques spéciales**.
+
+Le joueur peut affronter :
+- un **autre joueur en local**,  
+- ou une **IA** avec plusieurs niveaux de difficulté.
+
+Chaque combat met en jeu des personnages et de **techniques spéciales** qui déclenchent des effets temporaires :
 - Poison 🐍
 - Stun 🌀
 - Provocation 💢
 - Invincibilté 🛡
 - Renvoie_dégâts 🦔
-- - Execute 🗡
+- Execute 🗡
 
 ## ⚙️ Compilation
 Lancez la commande `make`.
+
+## 🧪 Utilisation
+
