@@ -790,11 +790,11 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
             if (tab[i]->nbeffets>0){
                 degatseffetStatut(tab[i]);
             }
-            if(equipetemp == 1){
+            if(equipetemp == 1 && pvtemp>e1->membres[joueurinvincibletemp].pvcourant){
                 e1->membres[joueurinvincibletemp].pvcourant=pvtemp;
                 printf("%s a bloqué tous les dégats !\n", e1->membres[joueurinvincibletemp].nom);
             }
-            else if(equipetemp == 2){
+            else if(equipetemp == 2 && pvtemp>e2->membres[joueurinvincibletemp].pvcourant){
                 e2->membres[joueurinvincibletemp].pvcourant=pvtemp;
                 printf("%s a bloqué tous les dégats !\n", e2->membres[joueurinvincibletemp].nom);
             }
