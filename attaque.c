@@ -583,6 +583,8 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                         while(cible->pvcourant>0);
                         attaque(tab[i], cible);
                         printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
+                        printf("Appuyez sur entree pour continuer...\n");
+                        getchar();
                     }
                     else if(difficulte==2){
                     cible=&adversaire->membres[0];
@@ -593,6 +595,8 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                     }
                     attaque(tab[i], cible);
                     printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
+                    printf("Appuyez sur entree pour continuer...\n");
+                    getchar();
                     }
                     else{
                         if(tab[i]->jaugeactuelle==tab[i]->jaugemax){
@@ -643,6 +647,8 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                                     reinitialisation(tab[i], &joueur->membres[0], &joueur->membres[1], joueur, adversaire);
                                 }
                             }
+                            printf("Appuyez sur entree pour continuer...\n");
+                            getchar();
                         }
                         else{
                             cible=&e1->membres[0];
@@ -653,6 +659,8 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                             }
                             attaque(tab[i], cible);
                             printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
+                            printf("Appuyez sur entree pour continuer...\n");
+                            getchar();
                         }
                     }
                 }
