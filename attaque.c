@@ -297,34 +297,34 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
                     printf("Jauge pleine! Voulez-vous utiliser une technique speciale? \n1:oui \n0:non \n");
                     printf("Description de la technique spéciale: \n"); //Affiche la description des techniques spéciales en comprant le nom de la technique du champion actuelle aux noms des techniques préalablement définis.
                     if (strcmp(tab[i]->tech.nom, "berserk")==0) {
-                        printf("Berseck: Insere une cle piratee en lui : devient immunise à toutes les attaques pdt 1 tour + Att=50 + DEF+=10 pdt 1 tour et peut attaquer, à la fin il est STUN le prochain tour\n");
+                        printf("Berserk : Insere une cle piratee en lui : devient immunise a toutes les attaques pendant 1 tour et attaque+30 pendant 1 tour, puis s'immobilise le prochain tour\n");
                     } 
                     else if (strcmp(tab[i]->tech.nom, "flashbacks")==0) {
-                        printf("Flashbacks: Remonte le temps : PVcourants+=100 pour toute la team + Purge la team de tous les effets negatifs/changement de stats\n");
+                        printf("Flashbacks : Repare ses coequipiers : PVcourants+=60 pour toute la team et purge ses alliés de tous les effets negatifs\n");
                     }
                     else if (strcmp(tab[i]->tech.nom, "bourreau")==0){
-                        printf("Bourreau: Place un traceur sur un ennemi, si ce dernier possede 25 pourcent ou moins de ses PV, il est execute sans pitie\n");
+                        printf("Bourreau : Place un traceur sur un ennemi : si ce dernier possede 25 pourcent ou moins de ses pvmax, il est execute sans pitie et pvcourant-(pvmax/10)\n");
                     } 
                     else if (strcmp(tab[i]->tech.nom, "muraille")==0){
-                        printf("Muraille: Se place devant sa team et provoque l'equipe adverse: tank toutes les attaques des ennemis pendant 1 tour + DEF+=20 + renvoi_degats\n");
+                        printf("Muraille : Se place devant son équipe et provoque l'equipe adverse : applique provocation et renvoi de degats sur lui même et defense+30\n");
                     } 
                     else if (strcmp(tab[i]->tech.nom, "cadeau_empoisonne")==0){
-                        printf("Cadeau empoisonne: ...\n");
+                        printf("Cadeau empoisonne : Il court circuite ses ennemis : applique poison à 2 ennemis aléatoires et vitesse-2\n");
                     }
                     else if (strcmp(tab[i]->tech.nom, "fossoyeur_des_mondes")==0){
-                        printf("Fossoyeur des mondes: Une anomalie dans le systeme a provoque un desequilibre aux stats de Booga : PV=300 + Att=35 + Vit=30 pdt 2 tours\n");
+                        printf("Fossoyeur des mondes : Une anomalie dans le systeme provoque un desequilibre chez Booga : pv+30 et defense+30 pendant 2 tours +10attaque\n");
                     }
                     else if (strcmp(tab[i]->tech.nom, "cryogenese")==0){
-                        printf("Cryogenese: Detruit son propre cocon de glace et en envoie les morceaux sur ses adversaires, Inflige 30 dégâts à tous les ennemis et les gels(1 tour)\n");
+                        printf("Cryogenese : Sa glaciere integree explose et gel les adversaires : Inflige 30 degats à tous les ennemis et les stuns pendant 1 tour\n");
                     }
                     else if (strcmp(tab[i]->tech.nom, "scierculaire")==0){
-                        printf("Tourne sur elle même et tire sur tous ce qu'elle voit, Inflige 45 degats a tous les adversaires et diminue leur defense de 5\n");
+                        printf("Scierculaire : Tourne sur elle même et tire sur tous ce qu'elle voit : Inflige 50 degats a tous les adversaires et leur applique poison\n");
                     }
                     else if (strcmp(tab[i]->tech.nom, "cicatrices_eternels")==0){
-                        printf("Cicatrices eternels : Relache toute sa timidite et laisse ses demons prendre le controle, Inflige 100 dégâts à tous les ennemis\n");
+                        printf("Cicatrices eternels : Relache toute sa timidite et laisse ses demons prendre le controle : Inflige 100 degats à tous les ennemis\n");
                     }
                     else if (strcmp(tab[i]->tech.nom, "reinitialisation")==0){
-                        printf("Reinitialisation : Reinitialise les donnes d'un allie, Revive un allie 1 cout 4 tours\n");
+                        printf("Reinitialisation : Reinitialise les donnes d'un allie : Ramene un allie a la vie\n");
                     }
                     do{ // Demande au joueur s'il souhaite utiliser sa technique spéciale
                         verif=scanf("%d", &choix);
@@ -670,34 +670,34 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                         printf("Jauge pleine! Voulez-vous utiliser une technique speciale? \n1:oui \n0:non \n");
                         printf("Description de la technique spéciale: \n");
                         if (strcmp(tab[i]->tech.nom, "berserk")==0) {
-                            printf("Berseck: Insere une cle piratee en lui : devient immunise à toutes les attaques pdt 1 tour + Att=50 + DEF+=10 pdt 1 tour et peut attaquer, à la fin il est STUN le prochain tour\n");
+                            printf("Berserk : Insere une cle piratee en lui : devient immunise à toutes les attaques pendant 1 tour et attaque+30 pendant 1 tour, puis s'immobilise le prochain tour\n");
                         } 
                         else if (strcmp(tab[i]->tech.nom, "flashbacks")==0) {
-                            printf("Flashbacks: Remonte le temps : PVcourants+=100 pour toute la team + Purge la team de tous les effets negatifs/changement de stats\n");
+                            printf("Flashbacks : Repare ses coequipiers : PVcourants+=60 pour toute la team et purge ses alliés de tous les effets negatifs\n");
                         }
                         else if (strcmp(tab[i]->tech.nom, "bourreau")==0){
-                            printf("Bourreau: Place un traceur sur un ennemi, si ce dernier possede 25 pourcent ou moins de ses PV, il est execute sans pitie\n");
+                            printf("Bourreau : Place un traceur sur un ennemi : si ce dernier possede 25 pourcent ou moins de ses pvmax, il est execute sans pitie et pvcourant-(pvmax/10)\n");
                         } 
                         else if (strcmp(tab[i]->tech.nom, "muraille")==0){
-                            printf("Muraille: Se place devant sa team et provoque l'equipe adverse: tank toutes les attaques des ennemis pendant 1 tour + DEF+=20 + renvoi_degats\n");
+                            printf("Muraille : Se place devant son équipe et provoque l'equipe adverse : applique provocation et renvoi de degats sur lui même et defense+30\n");
                         } 
                         else if (strcmp(tab[i]->tech.nom, "cadeau_empoisonne")==0){
-                            printf("Cadeau empoisonne: ...\n");
+                            printf("Cadeau empoisonne : Il court circuite ses ennemis : applique poison à 2 ennemis aléatoires et vitesse-2\n");
                         }
                         else if (strcmp(tab[i]->tech.nom, "fossoyeur_des_mondes")==0){
-                            printf("Fossoyeur des mondes: Une anomalie dans le systeme a provoque un desequilibre aux stats de Booga : PV=300 + Att=35 + Vit=30 pdt 2 tours\n");
+                            printf("Fossoyeur des mondes : Une anomalie dans le systeme provoque un desequilibre chez Booga : pv+30 et defense+30 pendant 2 tours +10attaque\n");
                         }
                         else if (strcmp(tab[i]->tech.nom, "cryogenese")==0){
-                            printf("Cryogenese: Detruit son propre cocon de glace et en envoie les morceaux sur ses adversaires, Inflige 30 dégâts à tous les ennemis et les gels(1 tour)\n");
+                            printf("Cryogenese : Sa glaciere integree explose et gel les adversaires : Inflige 30 dégâts à tous les ennemis et les stuns pendant 1 tour\n");
                         }
                         else if (strcmp(tab[i]->tech.nom, "scierculaire")==0){
-                            printf("Tourne sur elle même et tire sur tous ce qu'elle voit, Inflige 45 degats a tous les adversaires et diminue leur defense de 5\n");
+                            printf("Scierculaire : Tourne sur elle même et tire sur tous ce qu'elle voit : Inflige 50 degats a tous les adversaires et leur applique poison\n");
                         }
                         else if (strcmp(tab[i]->tech.nom, "cicatrices_eternels")==0){
-                            printf("Cicatrices eternels : Relache toute sa timidite et laisse ses demons prendre le controle, Inflige 100 dégâts à tous les ennemis\n");
+                            printf("Cicatrices eternels : Relache toute sa timidite et laisse ses demons prendre le controle : Inflige 100 degats à tous les ennemis\n");
                         }
                         else if (strcmp(tab[i]->tech.nom, "reinitialisation")==0){
-                            printf("Reinitialisation : Reinitialise les donnes d'un allie, Revive un allie 1 cout 4 tours\n");
+                            printf("Reinitialisation : Reinitialise les donnes d'un allie : Ramene un allie a la vie\n");
                         }
                         do{
                             verif=scanf("%d", &choix);
