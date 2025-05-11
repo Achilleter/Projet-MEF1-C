@@ -184,7 +184,7 @@ void triParVit(Equipe *e1, Equipe *e2, Champ *tab[6]) {
     triRapide(tab, 6);
     for (int i=0; i<6; i++) {
         if (tab[i] == NULL) {
-            printf("Erreur : pointeur nul.");
+            printf("Erreur : pointeur nul");
             exit(10);
         }
     }
