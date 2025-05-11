@@ -307,7 +307,7 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
                         printf("Flashbacks: Remonte le temps : PVcourants+=100 pour toute la team + Purge la team de tous les effets negatifs/changement de stats\n");
                     }
                     else if (strcmp(tab[i]->tech.nom, "bourreau")==0){
-                        printf("Bourreau: Place un traceur sur un ennemi, si ce dernier possede 25 pour cent ou moins de ses PV, il est execute sans pitie\n");
+                        printf("Bourreau: Place un traceur sur un ennemi, si ce dernier possede 25 pourcent ou moins de ses PV, il est execute sans pitie\n");
                     } 
                     else if (strcmp(tab[i]->tech.nom, "muraille")==0){
                         printf("Muraille: Se place devant sa team et provoque l'equipe adverse: tank toutes les attaques des ennemis pendant 1 tour + DEF+=20 + renvoi_degats\n");
@@ -566,31 +566,35 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                         joueurinvincibletemp=j;
                         equipetemp=1;
                     }
-                    for(int k=0; k<e2->membres[j].nbeffets; k++){
-                        if(e2->membres[j].effets[k].effet_statut==5){
-                            pvtemp=e2->membres[j].pvcourant;
-                            joueurinvincibletemp=j;
-                            equipetemp=2;
-                        }
+                }
+                for(int k=0; k<e2->membres[j].nbeffets; k++){
+                    if(e2->membres[j].effets[k].effet_statut==5){
+                        pvtemp=e2->membres[j].pvcourant;
+                        joueurinvincibletemp=j;
+                        equipetemp=2;
                     }
                 }
-                if(verifstun==1){
-                    printf("%s est stun !\n", tab[i]->nom);
-                }
-                else {
-                    if(memeEquipe(tab[i],e1)==0){
-                        joueur=e2;
-                        adversaire=e1;
+            }
+            if(verifstun==1){
+                printf("%s est stun !\n", tab[i]->nom);
+            }
+            else {
+                if(memeEquipe(tab[i],e1)==0){
+                joueur=e2;
+                adversaire=e1;
                         Champ *cible;
                         if(difficulte==1){
-                        cible=&adversaire->membres[rand()%3];
-                        attaque(tab[i], cible);
-                        printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
+                            do{
+                                cible=&adversaire->membres[rand()%3];
+                            }
+                            while(cible->pvcourant>0);
+                            attaque(tab[i], cible);
+                            printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
                         }
                         else if(difficulte==2){
                             cible=&adversaire->membres[0];
                             for(int k=1; k<3; k++){
-                                if(adversaire->membres[k].pvcourant<cible->pvcourant){
+                                if(adversaire->membres[k].pvcourant<cible->pvcourant && adversaire->membres[k].pvcourant>0){
                                     cible=&adversaire->membres[k];
                                 }
                             }
@@ -650,7 +654,7 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                             else{
                                 cible=&e1->membres[0];
                                 for(int k=1; k<3; k++){
-                                    if(e1->membres[k].pvcourant<cible->pvcourant){
+                                    if(e1->membres[k].pvcourant<cible->pvcourant && e1->membres[k].pvcourant>0){
                                         cible=&e1->membres[k];
                                     }
                                 }
@@ -735,7 +739,7 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                         }
                     }
                 }
-            }
+
             if (tab[i]->tech.nbtactifs != 0) {
                 // vérfication de la technique
                 if (strcmp(tab[i]->tech.nom, "berserk")==0) {
