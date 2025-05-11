@@ -25,9 +25,8 @@ Chaque personnage dispose :
   - **Renvoi de dégâts** 🦔   
   - **Exécution** 🗡
  
-  🤝 Attaques combinées : 3 duos légendaires !
-Certains **duos de personnages** débloquent une **attaque combinée surpuissante** s’ils combattent dans la même équipe et qu'ils ont leurs jauges au maximum. Ces duos offrent une **synergie tactique inédite** :
-
+🤝 Attaques combinées : 3 duos légendaires !
+Certains **duos de personnages** débloquent une **attaque combinée surpuissante** s’ils combattent dans la même équipe et qu'ils ont leurs jauges au maximum.
 - **Steve & Xavier** 
 - **Clara & Gaby**    
 - **Anne-Sophie & Zed** 
