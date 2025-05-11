@@ -12,8 +12,8 @@ Projet CY-Fighters — Première année de Pré-Ingénieur CY Tech, Semestre 2 2
 **Cyberfight** est un jeu de combat stratégique 3 contre 3, qui se déroule dans un univers **futuriste** où les guerriers maîtrisent des **attaques spéciales**.
 
 Le joueur peut affronter :
-- un **autre joueur en local**,  
-- ou une **IA** avec plusieurs niveaux de difficulté.
+- un **autre joueur en local**  
+- ou une **IA** avec plusieurs niveaux de difficulté 🤖
 
 Chaque combat met en jeu des personnages et de **techniques spéciales** qui déclenchent des effets temporaires :
 - Poison 🐍
@@ -27,4 +27,10 @@ Chaque combat met en jeu des personnages et de **techniques spéciales** qui dé
 Lancez la commande `make`.
 
 ## 🧪 Utilisation
+
+**Déroulement du jeu**
+1. Choix du mode : 1v1 local ou contre l'IA 🤖
+2. Sélection de 3 combattants par équipe
+3. Tour par tour : choisissez vos cibles et vos techniques
+4. L'équipe survivante remporte le combat ! 🏆
 
