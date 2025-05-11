@@ -42,15 +42,12 @@ void degatseffetStatut(Champ *champ){
             if (champ->effets[i].effet_statut == 1 && champ->effets[i].duree>0) { // application poison
                 champ->pvcourant -= champ->pvmax * 0.05;
                 printf("%s subit des degats de poison !\n", champ->nom);
-                if (champ->pvcourant <= 0) {
-                    return;
-                }
             }
             else if (champ->effets[i].effet_statut == 6 && champ->effets[i].duree>0) { // application bourreau
                 if(champ->pvcourant <= champ->pvmax * 0.25) {
                     champ->pvcourant = 0;
+                    champ->statut = 0; // mort
                     printf("%s a ete execute par bourreau !\n", champ->nom);
-                    return;
                 }
             }
             else if(champ->effets[i].effet_statut == 4 && champ->effets[i].duree>0) { // application invincibilité
@@ -302,6 +299,10 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
                 if (tab[i]->jaugeactuelle==tab[i]->jaugemax){
                     int choix;
                     printf("Jauge pleine! Voulez-vous utiliser une technique speciale? \n1:oui \n0:non \n");
+                    printf("Description de la technique spéciale: \n");
+                    if (strcmp(tab[i]->tech.nom, "berserk")==0) {
+                            printf("Berseck: Insere une cle piratee en lui : devient immunise à toutes les attaques pdt 1 tour + Att=50 + DEF+=10 pdt 1 tour et peut attaquer, à la fin il est STUN le prochain tour");
+                    }
                     do{
                         verif=scanf("%d", &choix);
                         if(choix>1 || choix<0){
