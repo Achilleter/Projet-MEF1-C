@@ -448,20 +448,21 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
                 e2->membres[joueurinvincibletemp].pvcourant=pvtemp;
                 printf("%s a bloqué tous les dégats !\n", e2->membres[joueurinvincibletemp].nom);
             }
-            for(int j=0; j<3; j++){ // Gestion des effets
+            for(int j=0; j<3; j++){ // Gere la mort des champions.
                 if(adversaire->membres[j].pvcourant<=0 && adversaire->membres[j].statut==1){ // Mis à jour du statut du champion.
                     adversaire->membres[j].pvcourant=0;
                     adversaire->membres[j].statut=0;
                     printf("%s est mort(e) !\n", adversaire->membres[j].nom);
-                    int booltemp=0; // Mise en place d'un booléen temporaire pour gérer la durée et le nombre des effets. 
-                    for(int k=0; k<adversaire->membres[j].nbeffets; k++){
-                        if(booltemp==1){
-                            k--;
+                    int booltemp1=0; // Mise en place d'un booléen temporaire pour gérer la durée et le nombre des effets. 
+                    while (booltemp1 < tab[i]->nbeffets) {
+                        if (tab[i]->effets[booltemp1].effet_statut != 0) {
+                            tab[i]->effets[booltemp1].duree--; // Baisse la durée des effets
                         }
-                        booltemp=0;
-                        if(adversaire->membres[j].effets[k].effet_statut!=0 && adversaire->membres[j].effets[k].duree>0){
-                            suppressionEffetStatut(&adversaire->membres[j], k);
-                            booltemp=1;
+                        if (tab[i]->effets[booltemp1].duree <= 0) { // Supprime l'effet si ça dure est inférieure ou égale à 0.
+                            suppressionEffetStatut(tab[i], booltemp1);
+                        }
+                        else {
+                        booltemp1++;
                         }
                     }
                     if(memeEquipe(&adversaire->membres[j],e1)==0){
@@ -506,16 +507,16 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
             if(tab[i]->jaugeactuelle>tab[i]->jaugemax){ // Met la barre de jauge au maximum si cette dernière est atteinte.
                 tab[i]->jaugeactuelle=tab[i]->jaugemax;
             }
-            int m = 0;
-            while (m < tab[i]->nbeffets) {
-                if (tab[i]->effets[m].effet_statut != 0) {
-                    tab[i]->effets[m].duree--; // Baisse la durée des effets
+            int booltemp2 = 0;
+            while (booltemp2 < tab[i]->nbeffets) {
+                if (tab[i]->effets[booltemp2].effet_statut != 0) {
+                    tab[i]->effets[booltemp2].duree--; // Baisse la durée des effets
                 }
-                if (tab[i]->effets[m].duree <= 0) { // Supprime l'effet si ça dure est inférieure ou égale à 0.
-                    suppressionEffetStatut(tab[i], m);
+                if (tab[i]->effets[booltemp2].duree <= 0) { // Supprime l'effet si ça dure est inférieure ou égale à 0.
+                    suppressionEffetStatut(tab[i], booltemp2);
                 }
                 else {
-                    m++;
+                    booltemp2++;
                 }
             }
         }
@@ -851,13 +852,13 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                     joueur->membres[j].pvcourant=0;
                     joueur->membres[j].statut=0;
                     printf("%s est mort(e) !\n", joueur->membres[j].nom);
-                    int j = 0;
-                    while (j < tab[i]->nbeffets) {
-                        if (tab[i]->effets[j].effet_statut != 0) {
-                            tab[i]->effets[j].duree--;
+                    int booltemp1 = 0;
+                    while (booltemp1 < tab[i]->nbeffets) {
+                        if (tab[i]->effets[booltemp1].effet_statut != 0) {
+                            tab[i]->effets[booltemp1].duree--;
                         }
-                        if (tab[i]->effets[j].duree <= 0) {
-                            suppressionEffetStatut(tab[i], j);
+                        if (tab[i]->effets[booltemp1].duree <= 0) {
+                            suppressionEffetStatut(tab[i], booltemp1);
                         }
                         else {
                             j++;
@@ -880,16 +881,16 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
             if(tab[i]->jaugeactuelle>tab[i]->jaugemax){
                 tab[i]->jaugeactuelle=tab[i]->jaugemax;
             }
-            int m = 0;
-            while (m < tab[i]->nbeffets) {
-                if (tab[i]->effets[m].effet_statut != 0) {
-                    tab[i]->effets[m].duree--;
+            int booltemp2 = 0;
+            while (booltemp2 < tab[i]->nbeffets) {
+                if (tab[i]->effets[booltemp2].effet_statut != 0) {
+                    tab[i]->effets[booltemp2].duree--;
                 }
-                if (tab[i]->effets[m].duree <= 0) {
-                    suppressionEffetStatut(tab[i], m);
+                if (tab[i]->effets[booltemp2].duree <= 0) {
+                    suppressionEffetStatut(tab[i], booltemp2);
                 }
                 else {
-                    m++;
+                    booltemp2++;
                 }
             }
         }
