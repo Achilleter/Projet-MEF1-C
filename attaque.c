@@ -443,7 +443,7 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
                 }
             }
             if (tab[i]->nbeffets>0){
-                degatseffetStatut(tab[i]); // Application des dégâts d'effets..
+                degatseffetStatut(tab[i]); // Application des dégâts d'effets.
             }
             if(equipetemp == 1){
                 e1->membres[joueurinvincibletemp].pvcourant=pvtemp;
