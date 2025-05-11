@@ -415,11 +415,11 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
             }
             if(equipetemp == 1){
                 e1->membres[joueurinvincibletemp].pvcourant=pvtemp;
-                printf("%s est invincible !\n Il récupère tout ses pv !\n", e1->membres[joueurinvincibletemp].nom);
+                printf("%s a bloqué tous les dégats !\n", e1->membres[joueurinvincibletemp].nom);
             }
             else if(equipetemp == 2){
                 e2->membres[joueurinvincibletemp].pvcourant=pvtemp;
-                printf("%s est invincible !\n Il récupère tout ses pv !\n", e1->membres[joueurinvincibletemp].nom);
+                printf("%s a bloqué tous les dégats !\n", e2->membres[joueurinvincibletemp].nom);
             }
             for(int j=0; j<3; j++){
                 if(adversaire->membres[j].pvcourant<=0 && adversaire->membres[j].statut==1){
