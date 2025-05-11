@@ -255,7 +255,7 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
             }
         }
         if (tab[i]->pvcourant<=0){
-            printf("%s est KO.\n",tab[i]->nom);
+            printf("%s est KO, il ne peut pas attaquer\n",tab[i]->nom);
         }
         else {
             affichageCombat(e1,e2, tab[i]);
@@ -543,7 +543,7 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
             }
         }
         if (tab[i]->pvcourant<=0){
-            printf("%s est KO.\n",tab[i]->nom);
+            printf("%s est KO, il ne peut pas attaquer\n",tab[i]->nom);
         }
         else {
             affichageCombat(e1,e2, tab[i]);
@@ -581,7 +581,6 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                             cible=&adversaire->membres[rand()%3];
                         }
                         while(cible->pvcourant<=0);
-                        attaque(tab[i], cible);
                         printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
                         printf("Appuyez sur entree pour continuer...\n");
                         getchar();
@@ -657,7 +656,6 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                                     cible=&e1->membres[k];
                                 }
                             }
-                            attaque(tab[i], cible);
                             printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
                             printf("Appuyez sur entree pour continuer...\n");
                             getchar();
@@ -667,7 +665,7 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                 else {
                     joueur=e1;
                     adversaire=e2;
-                    if (tab[i]->jaugeactuelle==tab[i]->jaugemax){
+                    if (tab[i]->jaugeactuelle==tab[i]->jaugemax){   
                         int choix;
                         printf("Jauge pleine! Voulez-vous utiliser une technique speciale? \n1:oui \n0:non \n");
                         do{
