@@ -15,7 +15,7 @@ Le joueur peut affronter :
 - un **autre joueur en local**  
 - ou une **IA** avec plusieurs niveaux de difficulté 🤖
 
-Chaque combat met en jeu des personnages et de **techniques spéciales** qui déclenchent des effets temporaires :
+Chaque combat met en jeu des personnages et des **techniques spéciales** qui déclenchent des effets temporaires :
 - Poison 🐍
 - Stun 🌀
 - Provocation 💢
