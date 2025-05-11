@@ -653,6 +653,7 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                                     cible=&e1->membres[k];
                                 }
                             }
+                            attaque(tab[i], cible);
                             printf("%s attaque %s.\n", tab[i]->nom, cible->nom);
                             printf("Appuyez sur entree pour continuer...\n");
                             getchar();
