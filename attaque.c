@@ -39,6 +39,7 @@ void degatseffetStatut(Champ *champ){
     if (champ->nbeffets == 0) {
         return;
     }
+    int pvcourant=champ->pvcourant;
     else if (champ->nbeffets > 0) {
         for (int i = 0; i < champ->nbeffets; i++) {
             if (champ->effets[i].effet_statut == 1 && champ->effets[i].duree>0) { // application poison
@@ -50,6 +51,11 @@ void degatseffetStatut(Champ *champ){
                     champ->pvcourant = 0;
                     champ->statut = 0; // mort
                     printf("%s a ete execute par bourreau !\n", champ->nom);
+                }
+            }
+            else if(champ->effets[i].efffet_statut == 4 && champ->effets[i].duree>0) {
+                if(pvcourant>champ->pvcourant){
+                    champ->pvcourant=pvcourant;
                 }
             }
         }
