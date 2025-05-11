@@ -1,6 +1,10 @@
 #include "principal.h"
 
-void selection(Champ tous[], Equipe* e1, Equipe* e2){                                         
+void selection(Champ tous[], Equipe* e1, Equipe* e2){  
+    if (e1==NULL || e2==NULL){
+        printf("Erreur: pointeur nul");
+        exit(10);
+    }
     int deja_pris[10]={0}; // Tableau pour savoir quels champions ont déjà été pris
     for (int i=0; i<3; i++) { // Debut de la boucle pour choisir les champions
         int choix;
