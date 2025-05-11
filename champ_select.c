@@ -10,7 +10,7 @@ void selection(Champ tous[], Equipe* e1, Equipe* e2){
         int verif;
         do { // Verification de la saisie
             choix=0;
-            printf("Votre choix: ");
+            printf("\nVotre choix: ");
             verif=scanf("%d", &choix);
             vide_buffer();
             if(choix<1 || choix>10){
@@ -22,13 +22,13 @@ void selection(Champ tous[], Equipe* e1, Equipe* e2){
         }while (choix<1 || choix>10 || deja_pris[choix-1]==1 || verif!=1);
         e1->membres[i]=tous[choix-1];
         deja_pris[choix-1]=1; // On marque le champion comme pris
-        printf("%s a selectionne %s\n", e1->nom, e1->membres[i].nom);
+        printf("%s a selectionne %s\n\n", e1->nom, e1->membres[i].nom);
         //debut du choix pour le joueur 2
         printf("%s, choisissez votre combattant %d:\n\n", e2->nom, i+1);
         afficherEquipeChamp(tous, deja_pris);
         do { // Verification de la saisie
             choix=0;
-            printf("Votre choix: ");
+            printf("\nVotre choix: ");
             verif=scanf("%d", &choix);
             vide_buffer();
             if(choix<1 || choix>10){
@@ -40,7 +40,7 @@ void selection(Champ tous[], Equipe* e1, Equipe* e2){
         } while (choix<1 || choix>10 || deja_pris[choix-1]==1 || verif!=1);
         e2->membres[i]=tous[choix-1];
         deja_pris[choix-1]=1; // On marque le champion comme pris
-        printf("%s a selectionne %s\n", e2->nom, e2->membres[i].nom);
+        printf("%s a selectionne %s\n\n", e2->nom, e2->membres[i].nom);
     }
     // Fin de la boucle pour choisir les champions
     e1->nbchampvivant=3; // Initialisation du nombre de champions vivants pour chaque équipe
@@ -58,7 +58,7 @@ void selectionia(Champ tous[], Equipe* e1, Equipe* e2){
         int verif;
         do { // Verification de la saisie
             choix=0;
-            printf("Votre choix: ");
+            printf("\nVotre choix: ");
             verif=scanf("%d", &choix);
             vide_buffer();
             if(choix<1 || choix>10){
@@ -70,7 +70,7 @@ void selectionia(Champ tous[], Equipe* e1, Equipe* e2){
         }while (choix<1 || choix>10 || deja_pris[choix-1]==1 || verif!=1);
         e1->membres[i]=tous[choix-1];
         deja_pris[choix-1]=1; // On marque le champion comme pris
-        printf("%s a selectionne %s\n", e1->nom, e1->membres[i].nom);
+        printf("%s a selectionne %s\n\n", e1->nom, e1->membres[i].nom);
         //debut du choix pour l'IA
         do{
             choix=rand()%10+1;
@@ -78,7 +78,7 @@ void selectionia(Champ tous[], Equipe* e1, Equipe* e2){
         while(deja_pris[choix-1]==1); // On choisit un champion au hasard qui n'a pas encore été pris
         e2->membres[i]=tous[choix-1];
         deja_pris[choix-1]=1; // On marque le champion comme pris
-        printf("%s a selectionne %s\n", e2->nom, e2->membres[i].nom);
+        printf("%s a selectionne %s\n\n", e2->nom, e2->membres[i].nom);
     }
     // Fin de la boucle pour choisir les champions
     e1->nbchampvivant=3; // Initialisation du nombre de champions vivants pour chaque équipe
