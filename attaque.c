@@ -213,7 +213,7 @@ Champ* choixCible(Champ* attaquant, Equipe* e1, Equipe* e2) {
         for(int k=0; k<e2->membres[j].nbeffets; k++){
             if(e2->membres[j].effets[k].effet_statut==3){
                 if(e2->membres[j].effets[k].duree>0){  
-                    printf("%s est provoqué par %s !\n",attaquant->nom, e2->membres[j].nom);
+                    printf("%s est provoque par %s !\n",attaquant->nom, e2->membres[j].nom);
                     printf("Appuyez sur entree pour continuer...\n");
                     getchar();
                     return &e2->membres[j];
@@ -262,11 +262,11 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
             Equipe *adversaire=malloc(sizeof(Equipe));
             Champ *cible=malloc(sizeof(Champ));
             if(joueur == NULL || adversaire == NULL || cible == NULL){ // Vérification de l'allocation dynamique.
-                printf("Erreur : allocation dynamique échouée");
+                printf("Erreur : allocation dynamique echouee");
                 exit(1);
             }
             if(joueur == NULL || adversaire == NULL){ // Vérification de l'allocation dynamique.
-                printf("Erreur : allocation dynamique échouée");
+                printf("Erreur : allocation dynamique echouee");
                 exit(1);
             }
             float pvtemp=0; // Mise en place de statistiques temporaires dans le cadre d'un stun.
@@ -303,33 +303,33 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
                 if (tab[i]->jaugeactuelle==tab[i]->jaugemax){ //Vérifie si la jauge est à son maximum.
                     int choix;
                     printf("Jauge pleine! Voulez-vous utiliser une technique speciale? \n1:oui \n0:non \n");
-                    printf("Description de la technique spéciale: \n"); //Affiche la description des techniques spéciales en comprant le nom de la technique du champion actuelle aux noms des techniques préalablement définis.
+                    printf("Description de la technique speciale: \n"); //Affiche la description des techniques spéciales en comprant le nom de la technique du champion actuelle aux noms des techniques préalablement définis.
                     if (strcmp(tab[i]->tech.nom, "berserk")==0) {
                         printf("Berserk : Insere une cle piratee en lui : devient immunise a toutes les attaques pendant 1 tour et attaque+30 pendant 1 tour, puis s'immobilise le prochain tour\n");
                     } 
                     else if (strcmp(tab[i]->tech.nom, "flashbacks")==0) {
-                        printf("Flashbacks : Repare ses coequipiers : PVcourants+=60 pour toute la team et purge ses alliés de tous les effets negatifs\n");
+                        printf("Flashbacks : Repare ses coequipiers : PVcourants+=60 pour toute la team et purge ses allies de tous les effets negatifs\n");
                     }
                     else if (strcmp(tab[i]->tech.nom, "bourreau")==0){
                         printf("Bourreau : Place un traceur sur un ennemi : si ce dernier possede 25 pourcent ou moins de ses pvmax, il est execute sans pitie et pvcourant-(pvmax/10)\n");
                     } 
                     else if (strcmp(tab[i]->tech.nom, "muraille")==0){
-                        printf("Muraille : Se place devant son équipe et provoque l'equipe adverse : applique provocation et renvoi de degats sur lui même et defense+30\n");
+                        printf("Muraille : Se place devant son equipe et provoque l'equipe adverse : applique provocation et renvoi de degats sur lui même et defense+30\n");
                     } 
                     else if (strcmp(tab[i]->tech.nom, "cadeau_empoisonne")==0){
-                        printf("Cadeau empoisonne : Il court circuite ses ennemis : applique poison à 2 ennemis aléatoires et vitesse-2\n");
+                        printf("Cadeau empoisonne : Il court circuite ses ennemis : applique poison a 2 ennemis aleatoires et vitesse-2\n");
                     }
                     else if (strcmp(tab[i]->tech.nom, "fossoyeur_des_mondes")==0){
                         printf("Fossoyeur des mondes : Une anomalie dans le systeme provoque un desequilibre chez Booga : pv+30 et defense+30 pendant 2 tours +10attaque\n");
                     }
                     else if (strcmp(tab[i]->tech.nom, "cryogenese")==0){
-                        printf("Cryogenese : Sa glaciere integree explose et gel les adversaires : Inflige 30 degats à tous les ennemis et les stuns pendant 1 tour\n");
+                        printf("Cryogenese : Sa glaciere integree explose et gel les adversaires : Inflige 30 degats a tous les ennemis et les stuns pendant 1 tour\n");
                     }
                     else if (strcmp(tab[i]->tech.nom, "scierculaire")==0){
                         printf("Scierculaire : Tourne sur elle même et tire sur tous ce qu'elle voit : Inflige 50 degats a tous les adversaires et leur applique poison\n");
                     }
                     else if (strcmp(tab[i]->tech.nom, "cicatrices_eternels")==0){
-                        printf("Cicatrices eternels : Relache toute sa timidite et laisse ses demons prendre le controle : Inflige 100 degats à tous les ennemis\n");
+                        printf("Cicatrices eternels : Relache toute sa timidite et laisse ses demons prendre le controle : Inflige 100 degats a tous les ennemis\n");
                     }
                     else if (strcmp(tab[i]->tech.nom, "reinitialisation")==0){
                         printf("Reinitialisation : Reinitialise les donnes d'un allie : Ramene un allie a la vie\n");
@@ -455,11 +455,11 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
             }
             if(equipetemp == 1 && pvtemp>e1->membres[joueurinvincibletemp].pvcourant){ // Vérifie si le champion est dans l'équipe 1 et si son pv est supérieur à celui de l'équipe 1.
                 e1->membres[joueurinvincibletemp].pvcourant=pvtemp;
-                printf("%s a bloque tous les dégats !\n", e1->membres[joueurinvincibletemp].nom);
+                printf("%s a bloque tous les degats !\n", e1->membres[joueurinvincibletemp].nom);
             }
             else if(equipetemp == 2 && pvtemp>e2->membres[joueurinvincibletemp].pvcourant){
                 e2->membres[joueurinvincibletemp].pvcourant=pvtemp;
-                printf("%s a bloque tous les dégats !\n", e2->membres[joueurinvincibletemp].nom);
+                printf("%s a bloque tous les degats !\n", e2->membres[joueurinvincibletemp].nom);
             }
             for(int j=0; j<3; j++){ // Gere la mort des champions.
                 if(adversaire->membres[j].pvcourant<=0 && adversaire->membres[j].statut==1){ // Mis à jour du statut du champion.
@@ -496,10 +496,10 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
                     }
                 }
             }
-            if(e1->nbchampvivant==0){ //Arrête le programme dès que tous les champions de l'équipe sont morts.
+            if(e1->nbchampvivant==0 || (e1->membres[0].pvcourant==0 && e1->membres[0].pvcourant==0 && e1->membres[0].pvcourant==0)){ //Arrête le programme dès que tous les champions de l'équipe sont morts.
                 break;
             }
-            if(e2->nbchampvivant==0){
+            if(e2->nbchampvivant==0|| (e2->membres[0].pvcourant==0 && e2->membres[0].pvcourant==0 && e2->membres[0].pvcourant==0)){
                 break;
             }
             tab[i]->jaugeactuelle+=1; // Augmente la barre de jauge de 1 à chaque fin de tour.
@@ -549,7 +549,7 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
             Equipe *adversaire=malloc(sizeof(Equipe));
             Champ *cible=malloc(sizeof(Champ));
             if(joueur == NULL || adversaire == NULL || cible == NULL){ // Vérification de l'allocation dynamique.
-                printf("Erreur : allocation dynamique échouée");
+                printf("Erreur : allocation dynamique echouee");
                 exit(1);
             }
             float pvtemp=0;
@@ -600,7 +600,7 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                     printf("Appuyez sur entree pour continuer...\n");
                     getchar();
                     }
-                    else{
+                    else{ // Difficulté "moyenne" de l'IA
                         if(tab[i]->jaugeactuelle==tab[i]->jaugemax){
                             // vérfication de la technique en comparant le noms des techniques au nom de la technique du personnage situé dans tab[i]
                             if (strcmp(tab[i]->tech.nom, "berserk")==0) {
@@ -672,33 +672,33 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                     if (tab[i]->jaugeactuelle==tab[i]->jaugemax){   
                         int choix;
                         printf("Jauge pleine! Voulez-vous utiliser une technique speciale? \n1:oui \n0:non \n");
-                        printf("Description de la technique spéciale: \n");
+                        printf("Description de la technique speciale: \n");
                         if (strcmp(tab[i]->tech.nom, "berserk")==0) {
-                            printf("Berserk : Insere une cle piratee en lui : devient immunise à toutes les attaques pendant 1 tour et attaque+30 pendant 1 tour, puis s'immobilise le prochain tour\n");
+                            printf("Berserk : Insere une cle piratee en lui : devient immunise a toutes les attaques pendant 1 tour et attaque+30 pendant 1 tour, puis s'immobilise le prochain tour\n");
                         } 
                         else if (strcmp(tab[i]->tech.nom, "flashbacks")==0) {
-                            printf("Flashbacks : Repare ses coequipiers : PVcourants+=60 pour toute la team et purge ses alliés de tous les effets negatifs\n");
+                            printf("Flashbacks : Repare ses coequipiers : PVcourants+=60 pour toute la team et purge ses allies de tous les effets negatifs\n");
                         }
                         else if (strcmp(tab[i]->tech.nom, "bourreau")==0){
                             printf("Bourreau : Place un traceur sur un ennemi : si ce dernier possede 25 pourcent ou moins de ses pvmax, il est execute sans pitie et pvcourant-(pvmax/10)\n");
                         } 
                         else if (strcmp(tab[i]->tech.nom, "muraille")==0){
-                            printf("Muraille : Se place devant son équipe et provoque l'equipe adverse : applique provocation et renvoi de degats sur lui même et defense+30\n");
+                            printf("Muraille : Se place devant son equipe et provoque l'equipe adverse : applique provocation et renvoi de degats sur lui même et defense+30\n");
                         } 
                         else if (strcmp(tab[i]->tech.nom, "cadeau_empoisonne")==0){
-                            printf("Cadeau empoisonne : Il court circuite ses ennemis : applique poison à 2 ennemis aléatoires et vitesse-2\n");
+                            printf("Cadeau empoisonne : Il court circuite ses ennemis : applique poison a 2 ennemis aleatoires et vitesse-2\n");
                         }
                         else if (strcmp(tab[i]->tech.nom, "fossoyeur_des_mondes")==0){
                             printf("Fossoyeur des mondes : Une anomalie dans le systeme provoque un desequilibre chez Booga : pv+30 et defense+30 pendant 2 tours +10attaque\n");
                         }
                         else if (strcmp(tab[i]->tech.nom, "cryogenese")==0){
-                            printf("Cryogenese : Sa glaciere integree explose et gel les adversaires : Inflige 30 dégâts à tous les ennemis et les stuns pendant 1 tour\n");
+                            printf("Cryogenese : Sa glaciere integree explose et gel les adversaires : Inflige 30 degâts a tous les ennemis et les stuns pendant 1 tour\n");
                         }
                         else if (strcmp(tab[i]->tech.nom, "scierculaire")==0){
                             printf("Scierculaire : Tourne sur elle même et tire sur tous ce qu'elle voit : Inflige 50 degats a tous les adversaires et leur applique poison\n");
                         }
                         else if (strcmp(tab[i]->tech.nom, "cicatrices_eternels")==0){
-                            printf("Cicatrices eternels : Relache toute sa timidite et laisse ses demons prendre le controle : Inflige 100 degats à tous les ennemis\n");
+                            printf("Cicatrices eternels : Relache toute sa timidite et laisse ses demons prendre le controle : Inflige 100 degats a tous les ennemis\n");
                         }
                         else if (strcmp(tab[i]->tech.nom, "reinitialisation")==0){
                             printf("Reinitialisation : Reinitialise les donnes d'un allie : Ramene un allie a la vie\n");
@@ -825,11 +825,11 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
             }
             if(equipetemp == 1 && pvtemp>e1->membres[joueurinvincibletemp].pvcourant){
                 e1->membres[joueurinvincibletemp].pvcourant=pvtemp;
-                printf("%s a bloqué tous les dégats !\n", e1->membres[joueurinvincibletemp].nom);
+                printf("%s a bloque tous les degats !\n", e1->membres[joueurinvincibletemp].nom);
             }
             else if(equipetemp == 2 && pvtemp>e2->membres[joueurinvincibletemp].pvcourant){
                 e2->membres[joueurinvincibletemp].pvcourant=pvtemp;
-                printf("%s a bloqué tous les dégats !\n", e2->membres[joueurinvincibletemp].nom);
+                printf("%s a bloque tous les degats !\n", e2->membres[joueurinvincibletemp].nom);
             }
             for(int j=0; j<3; j++){
                 if(adversaire->membres[j].pvcourant<=0 && adversaire->membres[j].statut==1){
