@@ -307,7 +307,7 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
                         printf("Flashbacks: Remonte le temps : PVcourants+=100 pour toute la team + Purge la team de tous les effets negatifs/changement de stats\n");
                     }
                     else if (strcmp(tab[i]->tech.nom, "bourreau")==0){
-                        printf("Bourreau: Place un traceur sur un ennemi, si ce dernier possede 25% ou moins de ses PV, il est execute sans pitie\n");
+                        printf("Bourreau: Place un traceur sur un ennemi, si ce dernier possede 25 pour cent ou moins de ses PV, il est execute sans pitie\n");
                     } 
                     else if (strcmp(tab[i]->tech.nom, "muraille")==0){
                         printf("Muraille: Se place devant sa team et provoque l'equipe adverse: tank toutes les attaques des ennemis pendant 1 tour + DEF+=20 + renvoi_degats\n");
