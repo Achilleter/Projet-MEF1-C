@@ -507,16 +507,16 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
             if(tab[i]->jaugeactuelle>tab[i]->jaugemax){ // Met la barre de jauge au maximum si cette dernière est atteinte.
                 tab[i]->jaugeactuelle=tab[i]->jaugemax;
             }
-            int j = 0;
-            while (j < tab[i]->nbeffets) {
-                if (tab[i]->effets[j].effet_statut != 0) {
-                    tab[i]->effets[j].duree--; // Baisse la durée des effets
+            int m = 0;
+            while (m < tab[i]->nbeffets) {
+                if (tab[i]->effets[m].effet_statut != 0) {
+                    tab[i]->effets[m].duree--; // Baisse la durée des effets
                 }
-                if (tab[i]->effets[j].duree <= 0) { // Supprime l'effet si ça dure est inférieure ou égale à 0.
-                    suppressionEffetStatut(tab[i], j);
+                if (tab[i]->effets[m].duree <= 0) { // Supprime l'effet si ça dure est inférieure ou égale à 0.
+                    suppressionEffetStatut(tab[i], m);
                 }
                 else {
-                    j++;
+                    m++;
                 }
             }
         }
@@ -881,16 +881,16 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
             if(tab[i]->jaugeactuelle>tab[i]->jaugemax){
                 tab[i]->jaugeactuelle=tab[i]->jaugemax;
             }
-            int j = 0;
-            while (j < tab[i]->nbeffets) {
-                if (tab[i]->effets[j].effet_statut != 0) {
-                    tab[i]->effets[j].duree--;
+            int m = 0;
+            while (m < tab[i]->nbeffets) {
+                if (tab[i]->effets[m].effet_statut != 0) {
+                    tab[i]->effets[m].duree--;
                 }
-                if (tab[i]->effets[j].duree <= 0) {
-                    suppressionEffetStatut(tab[i], j);
+                if (tab[i]->effets[m].duree <= 0) {
+                    suppressionEffetStatut(tab[i], m);
                 }
                 else {
-                    j++;
+                    m++;
                 }
             }
         }
