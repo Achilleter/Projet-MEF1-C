@@ -255,9 +255,6 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour
                 verifstun=1;
             }
         }
-        if (verifstun==1){
-            printf("%s est stun !\n", tab[i]->nom);
-        }
         if (tab[i]->pvcourant<=0){
             printf("%s est KO.\n",tab[i]->nom);
         }
