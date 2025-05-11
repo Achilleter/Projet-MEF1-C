@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 
-typedef enum { // Effets de statistiques possibles
+typedef enum {
     boost_att = 1,
     boost_def,
     boost_vitesse,
@@ -11,7 +11,7 @@ typedef enum { // Effets de statistiques possibles
     renforcement
 } EffetStat;
 
-typedef enum { // Effets de statut possibles
+typedef enum {
     poison = 1,
     stun,
     provocation,
@@ -20,17 +20,18 @@ typedef enum { // Effets de statut possibles
     execute
 } EffetStatut;
 
-typedef struct { // Effets de statut actifs sur un champion
+typedef struct {
     EffetStatut effet_statut;
     int duree;
 } EffetActif;
 
-typedef struct { // Techniques spéciales
+typedef struct {
     char nom[100];                                    
+    char description[1000];
     int nbtactifs;                          
 } Techniquespe;
 
-typedef struct { // Caractéristiques d'un champion
+typedef struct {
     float pvcourant;
     float pvmax;
     float att;
@@ -46,13 +47,13 @@ typedef struct { // Caractéristiques d'un champion
     char nom[100];
 } Champ;
 
-typedef struct { // Caractéristiques d'une équipe
+typedef struct {
     char nom[20];
     Champ membres[3];
     int nbchampvivant; //nombre de champions vivants dans l'équipe
     int boolia; // 1 si IA, 0 si joueur
 } Equipe;
-// fonctions de notre programme
+
 float attaque(Champ *champatt, Champ *champdef);
 void degatseffetStatut(Champ *champ);
 void appeffetStatut(Champ *champ, EffetStatut effetstatut, int duree);
