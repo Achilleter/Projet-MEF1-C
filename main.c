@@ -98,7 +98,7 @@ int main(){
             }
             vide_buffer();
         }
-        while (strlen(equipe1->nom) > 20); //verifie que le nom de l'équipe est assez court
+        while (strlen(equipe1->nom) > 20 || verif3 != 1); //verifie que le nom de l'équipe est assez court
         printf("Bonjour %s\n\n", equipe1->nom);
         do{ // Demande le nom de l'équipe a la bonnne taille
             printf("Equipe 2: ");
@@ -111,7 +111,7 @@ int main(){
             }
             vide_buffer();
         }
-        while ((strlen(equipe2->nom) > 20) || (strcmp(equipe1->nom, equipe2->nom) == 0)); //verifie que le nom de l'équipe est assez court et différent de l'équipe 1
+        while ((strlen(equipe2->nom) > 20) || (strcmp(equipe1->nom, equipe2->nom) == 0) || verif4 != 1); //verifie que le nom de l'équipe est assez court et différent de l'équipe 1
         printf("Bonjour %s\n\n", equipe2->nom);
         printf("Choisissez vos champions afin de former votre equipe !\n");
         printf("Pour cela vous devez choisir 1 champion chacun votre tour jusqu'a ce que vous ayez 3 champions.\n\n");
