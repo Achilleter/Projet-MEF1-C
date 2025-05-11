@@ -668,6 +668,37 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                     if (tab[i]->jaugeactuelle==tab[i]->jaugemax){   
                         int choix;
                         printf("Jauge pleine! Voulez-vous utiliser une technique speciale? \n1:oui \n0:non \n");
+                        printf("Description de la technique spéciale: \n");
+                        if (strcmp(tab[i]->tech.nom, "berserk")==0) {
+                            printf("Berseck: Insere une cle piratee en lui : devient immunise à toutes les attaques pdt 1 tour + Att=50 + DEF+=10 pdt 1 tour et peut attaquer, à la fin il est STUN le prochain tour\n");
+                        } 
+                        else if (strcmp(tab[i]->tech.nom, "flashbacks")==0) {
+                            printf("Flashbacks: Remonte le temps : PVcourants+=100 pour toute la team + Purge la team de tous les effets negatifs/changement de stats\n");
+                        }
+                        else if (strcmp(tab[i]->tech.nom, "bourreau")==0){
+                            printf("Bourreau: Place un traceur sur un ennemi, si ce dernier possede 25 pourcent ou moins de ses PV, il est execute sans pitie\n");
+                        } 
+                        else if (strcmp(tab[i]->tech.nom, "muraille")==0){
+                            printf("Muraille: Se place devant sa team et provoque l'equipe adverse: tank toutes les attaques des ennemis pendant 1 tour + DEF+=20 + renvoi_degats\n");
+                        } 
+                        else if (strcmp(tab[i]->tech.nom, "cadeau_empoisonne")==0){
+                            printf("Cadeau empoisonne: ...\n");
+                        }
+                        else if (strcmp(tab[i]->tech.nom, "fossoyeur_des_mondes")==0){
+                            printf("Fossoyeur des mondes: Une anomalie dans le systeme a provoque un desequilibre aux stats de Booga : PV=300 + Att=35 + Vit=30 pdt 2 tours\n");
+                        }
+                        else if (strcmp(tab[i]->tech.nom, "cryogenese")==0){
+                            printf("Cryogenese: Detruit son propre cocon de glace et en envoie les morceaux sur ses adversaires, Inflige 30 dégâts à tous les ennemis et les gels(1 tour)\n");
+                        }
+                        else if (strcmp(tab[i]->tech.nom, "scierculaire")==0){
+                            printf("Tourne sur elle même et tire sur tous ce qu'elle voit, Inflige 45 degats a tous les adversaires et diminue leur defense de 5\n");
+                        }
+                        else if (strcmp(tab[i]->tech.nom, "cicatrices_eternels")==0){
+                            printf("Cicatrices eternels : Relache toute sa timidite et laisse ses demons prendre le controle, Inflige 100 dégâts à tous les ennemis\n");
+                        }
+                        else if (strcmp(tab[i]->tech.nom, "reinitialisation")==0){
+                            printf("Reinitialisation : Reinitialise les donnes d'un allie, Revive un allie 1 cout 4 tours\n");
+                        }
                         do{
                             verif=scanf("%d", &choix);
                             if(choix>1 || choix<0){
