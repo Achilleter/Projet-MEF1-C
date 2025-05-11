@@ -253,10 +253,10 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
         int pvmax2=equipe2->membres[i].pvmax/20;
         int pvvide2=pvmax2-pvactuel2; // variable pour remplir le vide de la barre de vie
         int pvaffichage2=0;
-        if(equipe2->membres[i].pvcourant >=10.00 && equipe1->membres[i].pvcourant < 100.00){
+        if(equipe2->membres[i].pvcourant >=10.00 && equipe2->membres[i].pvcourant < 100.00){
             pvaffichage2=2;
         }
-        else if(equipe2->membres[i].pvcourant >=0.00 && equipe1->membres[i].pvcourant < 10.00){
+        else if(equipe2->membres[i].pvcourant >=0.00 && equipe2->membres[i].pvcourant < 10.00){
             pvaffichage2=1;
         }
         printf("("); 
