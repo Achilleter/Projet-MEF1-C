@@ -51,6 +51,7 @@ typedef struct {
     char nom[20];
     Champ membres[3];
     int nbchampvivant; //nombre de champions vivants dans l'équipe
+    int boolia; // 1 si IA, 0 si joueur
 } Equipe;
 
 float attaque(Champ *champatt, Champ *champdef);
@@ -77,8 +78,8 @@ void selection(Champ tous[], Equipe* e1, Equipe* e2);
 void afficherEquipeChamp(Champ tab[], int deja_pris[]);
 void affichageCombat(Equipe *equipe, Equipe *equipe2, Champ* joueur);
 void nettoyerNom(char* nom);
-// void selectionia(Champ tous[], Equipe* e1, Equipe* e2);
-// void touria(Equipe* e1, Equipe* e2, int difficulte);
+void selectionia(Champ tous[], Equipe* e1, Equipe* e2);
+void touria(Equipe* e1, Equipe* e2, int difficulte);
 void extermination(Champ* annesophie,Champ* zed, Equipe* adversaires);
 void sacrifice_fraternel(Champ* xavier, Champ* steve);
 void retour_a_la_haine(Champ* gaby, Champ* clara, Equipe* adversaires);
