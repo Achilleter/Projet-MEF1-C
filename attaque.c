@@ -56,6 +56,7 @@ void degatseffetStatut(Champ *champ){
             else if(champ->effets[i].effet_statut == 4 && champ->effets[i].duree>0) {
                 if(pvcourant>champ->pvcourant){
                     champ->pvcourant=pvcourant;
+                    printf("%s bloque les dégats !\n", champ->nom);
                 }
             }
         }
