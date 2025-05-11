@@ -6,7 +6,7 @@ int main(){
     Equipe* equipe1 = malloc(sizeof(Equipe));
     Equipe* equipe2 = malloc(sizeof(Equipe));
     if(equipe1 == NULL || equipe2 == NULL){ // Vérification de l'allocation mémoire
-        printf("Erreur d'allocation mémoire\n");
+        printf("Erreur d'allocation memoire\n");
         exit(1);
     }
     printf("==========[Bienvenue dans CyberFight !]==========\n\n");
@@ -42,7 +42,7 @@ int main(){
             printf("[Noob] (Il faut vraiment le vouloir pour perdre contre l'IA)\n\n");
         }
         else if(difficulte == 2){
-            printf("[Facile] (Attention l'IA fait peur... Très peur !!)\n\n");
+            printf("[Facile] (Attention l'IA fait peur... Tres peur !!)\n\n");
         }
         else{
             printf("[Moyen] (Bon courage !)\n\n");
@@ -76,10 +76,10 @@ int main(){
         getchar(); // Attend que l'utilisateur appuie sur entrée
         }//verification de fin de combat
         if(equipe1->nbchampvivant == 0){
-            printf("L'equipe %s a perdu bravo à l'equipe %s !\n", equipe1->nom, equipe2->nom);
+            printf("L'equipe %s a perdu bravo a l'equipe %s !\n", equipe1->nom, equipe2->nom);
         } 
         else {
-            printf("L'equipe %s a perdu bravo à l'equipe %s !\n", equipe2->nom, equipe1->nom);
+            printf("L'equipe %s a perdu bravo a l'equipe %s !\n", equipe2->nom, equipe1->nom);
         }
         //fin du combat
     }
