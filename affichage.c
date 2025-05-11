@@ -1,7 +1,7 @@
 #include "principal.h"
 
 void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
-    printf("%s%*s%s\n\n", equipe1->nom, 70-(int)strlen(equipe1->nom),"", equipe2->nom);
+    printf("\n%s%*s%s\n\n", equipe1->nom, 70-(int)strlen(equipe1->nom),"", equipe2->nom);
     for(int i=0; i<3; i++){
         if(equipe1->membres[i].statut == 0 && equipe2->membres[i].statut == 1 && equipe1->membres[i].nom != joueur->nom && equipe2->membres[i].nom != joueur->nom){
             printf("%s |☠|%*s%s |%d|", equipe1->membres[i].nom, 66-(int)strlen(equipe1->membres[i].nom), "", equipe2->membres[i].nom, i+1);
@@ -225,13 +225,10 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
         int pvmax1=equipe1->membres[i].pvmax/20;
         int pvvide1=pvmax1-pvactuel1; // variable pour remplir le vide de la barre de vie
         int pvaffichage1=0;
-        if(equipe1->membres[i].pvcourant >=100.00){
-            pvaffichage1=3;
-        }
-        else if(equipe1->membres[i].pvcourant >=10.00){
+        if(equipe1->membres[i].pvcourant >=10.00 && equipe1->membres[i].pvcourant < 100.00){
             pvaffichage1=2;
         }
-        else if(equipe1->membres[i].pvcourant >=0.00){
+        else if(equipe1->membres[i].pvcourant >=0.00 && equipe1->membres[i].pvcourant < 10.00){
             pvaffichage1=1;
         }
         printf("("); 
@@ -256,10 +253,7 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
         int pvmax2=equipe2->membres[i].pvmax/20;
         int pvvide2=pvmax2-pvactuel2; // variable pour remplir le vide de la barre de vie
         int pvaffichage2=0;
-        if(equipe2->membres[i].pvcourant >=100.00){
-            pvaffichage2=3;
-        }
-        else if(equipe2->membres[i].pvcourant >=10.00){
+        if(equipe2->membres[i].pvcourant >=10.00){
             pvaffichage2=2;
         }
         else if(equipe2->membres[i].pvcourant >=0.00){
@@ -312,9 +306,6 @@ void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
         printf(")\n\n"); 
     }
 }
-
-
-
 
 
 void afficherEquipeChamp(Champ tab[], int deja_pris[]){  // affichage des champions pour la selection

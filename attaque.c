@@ -42,12 +42,15 @@ void degatseffetStatut(Champ *champ){
             if (champ->effets[i].effet_statut == 1 && champ->effets[i].duree>0) { // application poison
                 champ->pvcourant -= champ->pvmax * 0.05;
                 printf("%s subit des degats de poison !\n", champ->nom);
+                if (champ->pvcourant <= 0) {
+                    return;
+                }
             }
             else if (champ->effets[i].effet_statut == 6 && champ->effets[i].duree>0) { // application bourreau
                 if(champ->pvcourant <= champ->pvmax * 0.25) {
                     champ->pvcourant = 0;
-                    champ->statut = 0; // mort
                     printf("%s a ete execute par bourreau !\n", champ->nom);
+                    return;
                 }
             }
             else if(champ->effets[i].effet_statut == 4 && champ->effets[i].duree>0) { // application invincibilité
@@ -184,7 +187,7 @@ void triParVit(Equipe *e1, Equipe *e2, Champ *tab[6]) {
     triRapide(tab, 6);
     for (int i=0; i<6; i++) {
         if (tab[i] == NULL) {
-            printf("Erreur : pointeur nul.");
+            printf("Erreur : pointeur nul");
             exit(10);
         }
     }
@@ -532,14 +535,14 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                 for(int k=0; k<e1->membres[j].nbeffets; k++){
                     if(e1->membres[j].effets[k].effet_statut==5){
                         pvtemp=e1->membres[j].pvcourant;
-                        int joueurinvincible=j;
-                        int equipetemp=1;
+                        joueurinvincibletemp=j;
+                        equipetemp=1;
                     }
                     for(int k=0; k<e2->membres[j].nbeffets; k++){
                         if(e2->membres[j].effets[k].effet_statut==5){
                             pvtemp=e2->membres[j].pvcourant;
-                            int joueurinvincible=j;
-                            int equipetemp=2;
+                            joueurinvincibletemp=j;
+                            equipetemp=2;
                         }
                     }
                 }
