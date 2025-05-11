@@ -82,5 +82,5 @@ void selectionia(Champ tous[], Equipe* e1, Equipe* e2);
 void touria(Equipe* e1, Equipe* e2, int difficulte);
 void extermination(Champ* annesophie,Champ* zed, Equipe* adversaires);
 void sacrifice_fraternel(Champ* xavier, Champ* steve);
-void retour_a_la_haine(Champ* gaby, Champ* clara, Equipe* adversaires);
+void retour_a_la_haine(Champ* gaby, Champ* clara, Equipe* adversaires, Equipe* allie);
 void suppressionEffetStatut(Champ* champ, int numeffet);
