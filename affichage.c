@@ -2,6 +2,10 @@
 
 // Fonction qui affiche le combat entre les deux équipes
 void affichageCombat(Equipe *equipe1, Equipe *equipe2, Champ* joueur){
+    if(equipe1 == NULL || equipe2 == NULL || joueur == NULL){ // Vérification si les équipes ou le joueur sont nuls
+        printf("Erreur: pointeur nul");
+        exit(1);
+    }
     printf("\n%s%*s%s\n\n", equipe1->nom, 70-(int)strlen(equipe1->nom),"", equipe2->nom); // Affichage des noms des équipes sur une ligne
     for(int i=0; i<3; i++){ // Boucle pour afficher les membres de chaque équipe avec leur statut et le membre qui doit jouer, le tout sur une ligne
         if(equipe1->membres[i].statut == 0 && equipe2->membres[i].statut == 1 && equipe1->membres[i].nom != joueur->nom && equipe2->membres[i].nom != joueur->nom){

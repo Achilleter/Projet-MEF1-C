@@ -12,7 +12,7 @@ int main(){
     printf("==========[Bienvenue dans CyberFight !]==========\n\n");
     int nbjoueurs;
     // choix du nombre de joueurs
-    int verif, verif1;
+    int verif, verif1, verif2, verif3, verif4;
     do{ // Demande le nombre de joueurs si un joueur est choisi l'IA est activée
         printf("%*sSEUL contre IA (1)\n\n%*s1j contre 1j (2)\n", 15, "", 17, "");
         verif=scanf("%d", &nbjoueurs);
@@ -50,10 +50,11 @@ int main(){
         //demande le nom de l'équipe
         do{ // Demande le nom de l'équipe a la bonnne taille
             printf("Rentrez votre nom d'equipe ! (20 caracteres au maximum)\n");
-            scanf("%s", equipe1->nom);
+            verif2=scanf("%s", equipe1->nom);
             if(strlen(equipe1->nom) > 20){
                 printf("Veuillez entrer un nom d'equipe valide (20 caracteres maximum): ");
             }
+            vide_buffer();
         }
         while (strlen(equipe1->nom) > 20); //verifie que le nom de l'équipe est valide
         printf("Bonjour %s\n\n", equipe1->nom);
@@ -91,22 +92,24 @@ int main(){
         printf("Rentrez vos noms d'equipes ! (20 caracteres au maximum)\n");
         do{ // Demande le nom de l'équipe a la bonnne taille
             printf("Equipe 1: ");
-            scanf("%s", equipe1->nom);
+            verif3=scanf("%s", equipe1->nom);
             if(strlen(equipe1->nom) > 20){
                 printf("Veuillez entrer un nom d'equipe valide (20 caracteres maximum): ");
             }
+            vide_buffer();
         }
         while (strlen(equipe1->nom) > 20); //verifie que le nom de l'équipe est assez court
         printf("Bonjour %s\n\n", equipe1->nom);
         do{ // Demande le nom de l'équipe a la bonnne taille
             printf("Equipe 2: ");
-            scanf("%s", equipe2->nom);
+            verif4=scanf("%s", equipe2->nom);
             if(strlen(equipe2->nom) > 20){
                 printf("Veuillez entrer un nom d'equipe valide (20 caracteres maximum): ");
             }
             else if((strcmp(equipe1->nom, equipe2->nom) == 0)){ //verifie que le nom de l'équipe est différent de l'équipe 1
                 printf("Veuillez entrer un nom d'equipe different de %s: ", equipe1->nom);
             }
+            vide_buffer();
         }
         while ((strlen(equipe2->nom) > 20) || (strcmp(equipe1->nom, equipe2->nom) == 0)); //verifie que le nom de l'équipe est assez court et différent de l'équipe 1
         printf("Bonjour %s\n\n", equipe2->nom);
