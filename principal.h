@@ -58,7 +58,7 @@ float attaque(Champ *champatt, Champ *champdef);
 void degatseffetStatut(Champ *champ);
 void appeffetStatut(Champ *champ, EffetStatut effetstatut, int duree);
 void appeffetStat(Champ *champ, EffetStat effetstat, float valeur);
-void triParVit(Equipe *e1, Equipe *e2, Champ *tab[6]);
+void triParVit(Equipe* e1, Equipe* e2, Champ* tab[6]);
 int memeEquipe(Champ* champ, Equipe* e1);
 Champ *choixCible(Champ* att, Equipe* e1, Equipe* e2);
 void tour (Equipe* e1, Equipe* e2);
