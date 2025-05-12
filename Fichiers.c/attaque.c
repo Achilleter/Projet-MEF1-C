@@ -316,10 +316,10 @@ void tour (Equipe* e1, Equipe* e2){ // fonction représentant un tour.
                         printf("Muraille : Se place devant son équipe et provoque l'equipe adverse : applique provocation et renvoi de degats sur lui même et defense+30\n");
                     } 
                     else if (strcmp(tab[i]->tech.nom, "cadeau_empoisonne")==0){
-                        printf("Cadeau empoisonne : Il court circuite ses ennemis : applique poison à 2 ennemis aléatoires et vitesse-2\n");
+                        printf("Cadeau empoisonne : Il court circuite ses ennemis : applique poison à 2 ennemis aléatoires\n");
                     }
                     else if (strcmp(tab[i]->tech.nom, "fossoyeur_des_mondes")==0){
-                        printf("Fossoyeur des mondes : Une anomalie dans le systeme provoque un desequilibre chez Booga : pv+30 et defense+30 pendant 2 tours +10attaque\n");
+                        printf("Fossoyeur des mondes : Une anomalie dans le systeme provoque un desequilibre chez Booga : pv+30 et defense+30 pendant 2 tours et attaque+5\n");
                     }
                     else if (strcmp(tab[i]->tech.nom, "cryogenese")==0){
                         printf("Cryogenese : Sa glaciere integree explose et gel les adversaires : Inflige 30 degats à tous les ennemis et les stuns pendant 1 tour\n");
@@ -696,10 +696,10 @@ void touria (Equipe* e1, Equipe* e2, int difficulte){ // fonction représentant 
                             printf("Muraille : Se place devant son équipe et provoque l'equipe adverse : applique provocation et renvoi de degats sur lui même et defense+30\n");
                         } 
                         else if (strcmp(tab[i]->tech.nom, "cadeau_empoisonne")==0){
-                            printf("Cadeau empoisonne : Il court circuite ses ennemis : applique poison à 2 ennemis aléatoires et vitesse-2\n");
+                            printf("Cadeau empoisonne : Il court circuite ses ennemis : applique poison à 2 ennemis aléatoires\n");
                         }
                         else if (strcmp(tab[i]->tech.nom, "fossoyeur_des_mondes")==0){
-                            printf("Fossoyeur des mondes : Une anomalie dans le systeme provoque un desequilibre chez Booga : pv+30 et defense+30 pendant 2 tours +10attaque\n");
+                            printf("Fossoyeur des mondes : Une anomalie dans le systeme provoque un desequilibre chez Booga : pv+30 et defense+30 pendant 2 tours et attaque+5\n");
                         }
                         else if (strcmp(tab[i]->tech.nom, "cryogenese")==0){
                             printf("Cryogenese : Sa glaciere integree explose et gel les adversaires : Inflige 30 dégâts à tous les ennemis et les stuns pendant 1 tour\n");
