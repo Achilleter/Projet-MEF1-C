@@ -56,7 +56,7 @@ void berserk(Champ* xavier, Equipe* allie){
             printf("Xavier est fatigue il se stun et perd ses bonus !\n"); // a la fin de la technique, il perd ses bonus et se stun
             xavier->tech.nbtactifs = 0;
             appeffetStatut(xavier,2,2);//s'immobilise
-            appeffetStat(xavier,1,20);//diminue l'attaque de 20
+            appeffetStat(xavier,1,-20);//diminue l'attaque de 20
         }   
     }
 }
@@ -254,8 +254,6 @@ void cadeau_empoisonne(Champ* steve, Equipe* ennemi, Equipe* allie){
         }
         appeffetStatut(&ennemi->membres[alea],1,2);//applique l'effet poison pendant 2 tours
         appeffetStatut(&ennemi->membres[alea2],1,2);//applique l'effet poison pendant 2 tours
-        appeffetStat(&ennemi->membres[alea], 3, -2); // diminue la vitesse de 2
-        appeffetStat(&ennemi->membres[alea2], 3, -2); // diminue la vitesse de 2
         printf("Steve utilise Cadeau empoisonne sur %s ! \n",ennemi->membres[alea].nom);
         printf("Steve utilise Cadeau empoisonne sur %s ! \n",ennemi->membres[alea2].nom);
     }
@@ -263,7 +261,6 @@ void cadeau_empoisonne(Champ* steve, Equipe* ennemi, Equipe* allie){
         for(int i=0; i<3; i++){
             if(ennemi->membres[i].statut==1){
                 appeffetStatut(&ennemi->membres[i],1,2);//applique l'effet poison pendant 2 tours
-                appeffetStat(&ennemi->membres[i], 3, -2); // diminue la vitesse de 2
                 printf("Steve utilise Cadeau empoisonne sur %s ! \n",ennemi->membres[i].nom);
             }
         }
@@ -272,7 +269,6 @@ void cadeau_empoisonne(Champ* steve, Equipe* ennemi, Equipe* allie){
         for(int i=0; i<3; i++){ // Si il n'y a qu'un ennemi vivant, petite surprise
             if(ennemi->membres[i].statut==1){
                 appeffetStatut(&ennemi->membres[i],1,2);// applique l'effet poison pendant 2 tours
-                appeffetStat(&ennemi->membres[i], 3, -20); // diminue la vitesse de 20
                 printf("Steve utilise Cadeau empoisonne sur %s ! \n",ennemi->membres[i].nom);
             }
         }
@@ -285,7 +281,7 @@ void fossoyeur_des_mondes(Champ* booga){
         exit(110);
     }
     // augmente l'attaque de 5 a l'infini, la defense de 10 et se soigne de 25 PV a chaque tour pendant 2 tours
-    appeffetStat(booga, 4, 25); // Se soigne de 25 PV a chaque tour
+    appeffetStat(booga, 4, 10); // Se soigne de 20 PV a chaque tour
     if(booga->tech.nbtactifs == 0){
         booga->tech.nbtactifs = 3; // Applique l'effet pendant 2 tours
         printf("Booga utilise Fossoyeur des Mondes !\n");
